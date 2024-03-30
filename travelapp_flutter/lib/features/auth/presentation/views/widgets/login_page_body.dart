@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/image_slider.dart';
-import 'package:travelapp_flutter/features/auth/presentation/views/widgets/login_form.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/widgets/login_sheet.dart';
 
 class LoginPageBody extends StatelessWidget {
   const LoginPageBody({super.key});
@@ -14,7 +15,7 @@ class LoginPageBody extends StatelessWidget {
         ImageSlider(),
         // login form
         Expanded(
-          child: LoginForm(),
+          child: LoginSheet(),
         ),
       ],
     );

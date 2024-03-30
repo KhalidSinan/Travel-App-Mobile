@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/widgets/custom_check_box.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
-import 'package:travelapp_flutter/features/auth/presentation/views/widgets/custom_check_box.dart';
 
 class LoginOptions extends StatelessWidget {
   const LoginOptions({
