@@ -9,15 +9,22 @@ class LoginPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        // image slider
-        ImageSlider(),
-        // login form
-        Expanded(
-          child: LoginSheet(),
-        ),
-      ],
+    return const SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: Stack(
+        children: [
+          // image slider
+          ImageSlider(),
+          // login form
+          Positioned(
+            bottom: 0,
+            right: 0,
+            left: 0,
+            child: LoginSheet(),
+          ),
+        ],
+      ),
     );
   }
 }
