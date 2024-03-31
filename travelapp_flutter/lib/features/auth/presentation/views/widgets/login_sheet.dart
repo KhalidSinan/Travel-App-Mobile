@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/register_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/login_form.dart';
 
 class LoginSheet extends StatefulWidget {
@@ -12,13 +15,8 @@ class LoginSheet extends StatefulWidget {
 class _LoginSheetState extends State<LoginSheet> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(24),
+    return CustomSheet(
       height: MediaQuery.sizeOf(context).height * .75,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
-      ),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +42,7 @@ class _LoginSheetState extends State<LoginSheet> {
               children: [
                 const Text("Don't have an account?"),
                 CustomTextButton(
-                  onPressed: () {},
+                  onPressed: () => Get.to(const RegisterPage()),
                   label: 'Sign up',
                   color: const Color(0xff2d2e49),
                 ),

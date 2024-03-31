@@ -1,19 +1,22 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({
+class CustomButtonWithIcon extends StatelessWidget {
+  const CustomButtonWithIcon({
     super.key,
-    required this.onPressed,
     required this.label,
+    required this.onPressed,
     this.color,
+    required this.icon,
   });
-  final VoidCallback onPressed;
   final String label;
+  final IconData icon;
+  final VoidCallback onPressed;
   final Color? color;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: () {},
       style: ElevatedButton.styleFrom(
         backgroundColor: color ?? const Color(0xff2d2e49),
         shape: RoundedRectangleBorder(
@@ -24,13 +27,18 @@ class CustomButton extends StatelessWidget {
           vertical: 16,
         ),
       ),
-      child: Text(
-        label,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon),
+          const SizedBox(width: 8),
+          Text(
+            label,
+            style: const TextStyle(
+              color: Color(0xff2d2e49),
+            ),
+          ),
+        ],
       ),
     );
   }
