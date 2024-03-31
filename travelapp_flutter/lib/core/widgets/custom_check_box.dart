@@ -22,7 +22,7 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
       children: [
         Checkbox(
           splashRadius: 0,
-          activeColor: Colors.grey,
+          activeColor: const Color(0xff2d2e49),
           value: widget.value,
           onChanged: widget.onChanged,
         ),
