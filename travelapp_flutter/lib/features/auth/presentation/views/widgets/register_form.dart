@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 
@@ -11,6 +13,10 @@ class RegisterForm extends StatefulWidget {
 
 class _RegisterFormState extends State<RegisterForm> {
   GlobalKey<FormState> formKey = GlobalKey();
+  bool obsecureText = true;
+  bool obsecureTextConfirm = true;
+  IconData currentIcon = FontAwesomeIcons.eyeSlash;
+  IconData currentIconConfirm = FontAwesomeIcons.eyeSlash;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -22,18 +28,14 @@ class _RegisterFormState extends State<RegisterForm> {
               Expanded(
                 child: CustomTextFormField(
                   hintText: 'First name',
+                  textInputType: TextInputType.name,
                 ),
               ),
-              // SizedBox(width: 8),
-              // Expanded(
-              //   child: CustomTextFormField(
-              //     hintText: 'Middle name',
-              //   ),
-              // ),
               SizedBox(width: 8),
               Expanded(
                 child: CustomTextFormField(
                   hintText: 'Last name',
+                  textInputType: TextInputType.name,
                 ),
               ),
             ],
@@ -41,14 +43,25 @@ class _RegisterFormState extends State<RegisterForm> {
           const SizedBox(height: 16),
           const CustomTextFormField(
             hintText: 'Email',
+            textInputType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 16),
-          const CustomTextFormField(
+          CustomTextFormField(
             hintText: 'Password',
+            obsecureText: obsecureText,
+            suffixIcon: IconButton(
+              onPressed: toggleObsecureText,
+              icon: Icon(currentIcon),
+            ),
           ),
           const SizedBox(height: 16),
-          const CustomTextFormField(
+          CustomTextFormField(
             hintText: 'Confirm Password',
+            obsecureText: obsecureTextConfirm,
+            suffixIcon: IconButton(
+              onPressed: toggleObsecureTextConfirm,
+              icon: Icon(currentIconConfirm),
+            ),
           ),
           const SizedBox(height: 24),
           SizedBox(
@@ -61,5 +74,21 @@ class _RegisterFormState extends State<RegisterForm> {
         ],
       ),
     );
+  }
+
+  void toggleObsecureText() {
+    setState(() {
+      obsecureText = !obsecureText;
+    });
+    currentIcon =
+        obsecureText ? FontAwesomeIcons.eyeSlash : FontAwesomeIcons.eye;
+  }
+
+  void toggleObsecureTextConfirm() {
+    setState(() {
+      obsecureTextConfirm = !obsecureTextConfirm;
+    });
+    currentIconConfirm =
+        obsecureTextConfirm ? FontAwesomeIcons.eyeSlash : FontAwesomeIcons.eye;
   }
 }
