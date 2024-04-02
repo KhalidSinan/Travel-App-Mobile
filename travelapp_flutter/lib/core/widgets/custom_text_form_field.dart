@@ -9,10 +9,12 @@ class CustomTextFormField extends StatelessWidget {
     this.obsecureText,
     this.textInputType,
     this.suffixIcon,
+    this.onSaved,
   });
   final String hintText;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
+  final void Function(String?)? onSaved;
   final bool? obsecureText;
   final TextInputType? textInputType;
   final Widget? suffixIcon;
@@ -20,6 +22,7 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       onChanged: onChanged,
+      onSaved: onSaved,
       validator: validator,
       obscureText: obsecureText ?? false,
       keyboardType: textInputType,
@@ -28,6 +31,10 @@ class CustomTextFormField extends StatelessWidget {
         filled: true,
         fillColor: Colors.grey[300],
         hintText: hintText,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: const BorderSide(color: Colors.grey),
+        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: const BorderSide(color: Colors.grey),

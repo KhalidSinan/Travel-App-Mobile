@@ -7,11 +7,11 @@ class CustomButtonWithIcon extends StatelessWidget {
     required this.label,
     required this.onPressed,
     this.color,
-    required this.icon,
+    required this.suffix,
   });
-  //Tima 
+  //Tima
   final String label;
-  final IconData icon;
+  final Widget suffix;
   final VoidCallback onPressed;
   final Color? color;
   @override
@@ -31,7 +31,7 @@ class CustomButtonWithIcon extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon),
+          suffix,
           const SizedBox(width: 8),
           Text(
             label,

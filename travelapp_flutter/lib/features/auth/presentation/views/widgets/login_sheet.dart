@@ -39,6 +39,7 @@ class _LoginSheetState extends State<LoginSheet> {
             const LoginForm(),
             const SizedBox(height: 16),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text("Don't have an account?"),
                 CustomTextButton(
