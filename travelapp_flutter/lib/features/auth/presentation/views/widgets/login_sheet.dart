@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:local_auth/local_auth.dart';
+import 'package:travelapp_flutter/core/widgets/custom_button_with_icon.dart';
 import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/register_page.dart';
@@ -13,6 +17,21 @@ class LoginSheet extends StatefulWidget {
 }
 
 class _LoginSheetState extends State<LoginSheet> {
+  late final LocalAuthentication auth;
+  bool _supportState = false;
+  @override
+  void initState() {
+    super.initState();
+    auth = LocalAuthentication();
+    checkAvailablity();
+  }
+
+  void checkAvailablity() async {
+    auth.isDeviceSupported().then((bool isSupported) => setState(() {
+          _supportState = isSupported;
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomSheet(
@@ -37,7 +56,13 @@ class _LoginSheetState extends State<LoginSheet> {
             ),
             const SizedBox(height: 24),
             const LoginForm(),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
+            CustomButtonWithIcon(
+              label: 'Fingerprint',
+              onPressed: authenticate,
+              suffix: const Icon(FontAwesomeIcons.fingerprint),
+              color: Colors.white70,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -53,5 +78,22 @@ class _LoginSheetState extends State<LoginSheet> {
         ),
       ),
     );
+  }
+
+  void authenticate() async {
+    try {
+      bool authenticated = await auth.authenticate(
+        localizedReason: 'Sign in with your fingerprint',
+        options: const AuthenticationOptions(
+          biometricOnly: true,
+          stickyAuth: true,
+        ),
+      );
+      if (authenticated) {
+        print('login successfully');
+      }
+    } on PlatformException catch (e) {
+      print(e);
+    }
   }
 }
