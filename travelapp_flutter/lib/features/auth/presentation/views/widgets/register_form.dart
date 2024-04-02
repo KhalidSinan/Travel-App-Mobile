@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 
@@ -17,33 +18,42 @@ class _RegisterFormState extends State<RegisterForm> {
   bool obsecureTextConfirm = true;
   IconData currentIcon = FontAwesomeIcons.eyeSlash;
   IconData currentIconConfirm = FontAwesomeIcons.eyeSlash;
+  String? first, last, email, password, confirmPassword;
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   @override
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
+      autovalidateMode: autovalidateMode,
       child: Column(
         children: [
-          const Row(
+          Row(
             children: [
               Expanded(
                 child: CustomTextFormField(
                   hintText: 'First name',
                   textInputType: TextInputType.name,
+                  validator: validateName,
+                  onSaved: (value) => first = value,
                 ),
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Expanded(
                 child: CustomTextFormField(
                   hintText: 'Last name',
                   textInputType: TextInputType.name,
+                  validator: validateName,
+                  onSaved: (value) => last = value,
                 ),
               ),
             ],
           ),
           const SizedBox(height: 16),
-          const CustomTextFormField(
+          CustomTextFormField(
             hintText: 'Email',
             textInputType: TextInputType.emailAddress,
+            validator: validateEmail,
+            onSaved: (value) => email = value,
           ),
           const SizedBox(height: 16),
           CustomTextFormField(
@@ -53,6 +63,8 @@ class _RegisterFormState extends State<RegisterForm> {
               onPressed: toggleObsecureText,
               icon: Icon(currentIcon),
             ),
+            validator: validatePassword,
+            onSaved: (value) => password = value,
           ),
           const SizedBox(height: 16),
           CustomTextFormField(
@@ -62,18 +74,29 @@ class _RegisterFormState extends State<RegisterForm> {
               onPressed: toggleObsecureTextConfirm,
               icon: Icon(currentIconConfirm),
             ),
+            validator: validatePassword,
+            onSaved: (value) => confirmPassword = value,
           ),
           const SizedBox(height: 24),
           SizedBox(
             width: double.infinity,
             child: CustomButton(
-              onPressed: () {},
+              onPressed: register,
               label: 'Sign up',
             ),
           ),
         ],
       ),
     );
+  }
+
+  void register() async {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+    } else {
+      autovalidateMode = AutovalidateMode.always;
+      setState(() {});
+    }
   }
 
   void toggleObsecureText() {
