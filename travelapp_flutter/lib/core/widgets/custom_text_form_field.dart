@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/utils/constants.dart';
+import 'package:travelapp_flutter/core/utils/themes.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -26,22 +28,28 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       obscureText: obsecureText ?? false,
       keyboardType: textInputType,
-      cursorColor: Colors.black45,
+      cursorColor: Themes.primary,
+
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.grey[300],
+        fillColor: Colors.grey[100],
         hintText: hintText,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: Colors.grey),
+          borderRadius: BorderRadius.circular(radius),
+          // borderSide: const BorderSide(color: Colors.grey),
+          borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: Colors.grey),
+          borderRadius: BorderRadius.circular(radius),
+          // borderSide: const BorderSide(color: Colors.grey),
+          borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: Colors.grey),
+          borderRadius: BorderRadius.circular(radius),
+          borderSide: BorderSide(
+            color: Themes.primary,
+            width: 2,
+          ),
           // borderSide: BorderSide.none,
         ),
         suffixIcon: Padding(

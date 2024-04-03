@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/utils/themes.dart';
 
 class CustomCheckBox extends StatefulWidget {
   const CustomCheckBox({
@@ -18,21 +19,36 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
   bool? checked = false;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-          splashRadius: 0,
-          activeColor: const Color(0xff2d2e49),
-          value: widget.value,
-          onChanged: widget.onChanged,
-        ),
-        Text(
-          widget.label,
-          style: const TextStyle(
-            fontSize: 16,
-          ),
-        ),
-      ],
+    return CheckboxListTile(
+      value: checked,
+      onChanged: (value) {
+        setState(() {
+          checked = value;
+        });
+      },
+      activeColor: Themes.primary,
+      contentPadding: EdgeInsets.zero,
+      controlAffinity: ListTileControlAffinity.leading,
+      title: const Text(
+        'Remember me',
+      ),
     );
   }
 }
+
+    // return Row(
+    //   children: [
+    //     Checkbox(
+    //       splashRadius: 0,
+    //       activeColor: Themes.primary,
+    //       value: widget.value,
+    //       onChanged: widget.onChanged,
+    //     ),
+    //     Text(
+    //       widget.label,
+    //       style: const TextStyle(
+    //         fontSize: 16,
+    //       ),
+    //     ),
+    //   ],
+    // );

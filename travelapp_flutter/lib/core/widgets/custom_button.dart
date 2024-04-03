@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/utils/constants.dart';
+import 'package:travelapp_flutter/core/utils/themes.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -15,9 +17,9 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: color ?? const Color(0xff2d2e49),
+        backgroundColor: color ?? Themes.primary,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(radius),
         ),
         padding: const EdgeInsets.symmetric(
           horizontal: 8,

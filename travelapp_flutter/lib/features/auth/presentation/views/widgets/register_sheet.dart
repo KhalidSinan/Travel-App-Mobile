@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/assets.dart';
+import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button_with_icon.dart';
 import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/horizontal_divider_with_text.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/register_form.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RegisterSheet extends StatelessWidget {
   const RegisterSheet({super.key});
@@ -22,13 +24,18 @@ class RegisterSheet extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () => Get.back(),
-                  icon: const Icon(FontAwesomeIcons.arrowLeft),
+                  icon: Icon(
+                    FontAwesomeIcons.chevronLeft,
+                    size: 20,
+                    color: Themes.primary,
+                  ),
                 ),
-                const Text(
+                Text(
                   'Sign up',
-                  style: TextStyle(
+                  style: GoogleFonts.quattrocento().copyWith(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
+                    color: Themes.primary,
                   ),
                 ),
               ],
@@ -52,7 +59,6 @@ class RegisterSheet extends StatelessWidget {
                 width: 30,
                 height: 30,
               ),
-              color: Colors.white70,
               onPressed: () {},
             ),
           ],

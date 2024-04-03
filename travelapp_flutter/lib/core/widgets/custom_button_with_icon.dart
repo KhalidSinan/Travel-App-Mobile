@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/utils/constants.dart';
+import 'package:travelapp_flutter/core/utils/themes.dart';
 
 class CustomButtonWithIcon extends StatelessWidget {
   const CustomButtonWithIcon({
@@ -19,10 +21,11 @@ class CustomButtonWithIcon extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: color ?? const Color(0xff2d2e49),
+        backgroundColor: color ?? Colors.grey[100],
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(radius),
         ),
+        elevation: 0,
         padding: const EdgeInsets.symmetric(
           horizontal: 8,
           vertical: 16,
@@ -35,8 +38,8 @@ class CustomButtonWithIcon extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             label,
-            style: const TextStyle(
-              color: Color(0xff2d2e49),
+            style: TextStyle(
+              color: Themes.primary,
             ),
           ),
         ],

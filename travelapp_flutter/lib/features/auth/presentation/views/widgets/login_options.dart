@@ -18,14 +18,16 @@ class _LoginOptionsState extends State<LoginOptions> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CustomCheckBox(
-          label: 'Remember me',
-          value: checked,
-          onChanged: (value) {
-            setState(() {
-              checked = value!;
-            });
-          },
+        Expanded(
+          child: CustomCheckBox(
+            label: 'Remember me',
+            value: checked,
+            onChanged: (value) {
+              setState(() {
+                checked = value!;
+              });
+            },
+          ),
         ),
         CustomTextButton(
           onPressed: () {},
