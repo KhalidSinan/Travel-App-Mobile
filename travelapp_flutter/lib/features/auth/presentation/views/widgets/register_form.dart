@@ -61,7 +61,9 @@ class _RegisterFormState extends State<RegisterForm> {
             obsecureText: obsecureText,
             suffixIcon: IconButton(
               onPressed: toggleObsecureText,
-              icon: Icon(currentIcon),
+              icon: Icon(
+                currentIcon,
+              ),
             ),
             validator: validatePassword,
             onSaved: (value) => password = value,
@@ -72,7 +74,9 @@ class _RegisterFormState extends State<RegisterForm> {
             obsecureText: obsecureTextConfirm,
             suffixIcon: IconButton(
               onPressed: toggleObsecureTextConfirm,
-              icon: Icon(currentIconConfirm),
+              icon: Icon(
+                currentIconConfirm,
+              ),
             ),
             validator: validatePassword,
             onSaved: (value) => confirmPassword = value,
