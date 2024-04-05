@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/widgets/password_eye.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
@@ -16,8 +17,6 @@ class _RegisterFormState extends State<RegisterForm> {
   GlobalKey<FormState> formKey = GlobalKey();
   bool obsecureText = true;
   bool obsecureTextConfirm = true;
-  IconData currentIcon = FontAwesomeIcons.eyeSlash;
-  IconData currentIconConfirm = FontAwesomeIcons.eyeSlash;
   String? first, last, email, password, confirmPassword;
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   @override
@@ -59,12 +58,7 @@ class _RegisterFormState extends State<RegisterForm> {
           CustomTextFormField(
             hintText: 'Password',
             obsecureText: obsecureText,
-            suffixIcon: IconButton(
-              onPressed: toggleObsecureText,
-              icon: Icon(
-                currentIcon,
-              ),
-            ),
+            suffixIcon: PasswordEye(onToggle: toggleObsecureText),
             validator: validatePassword,
             onSaved: (value) => password = value,
           ),
@@ -72,12 +66,7 @@ class _RegisterFormState extends State<RegisterForm> {
           CustomTextFormField(
             hintText: 'Confirm Password',
             obsecureText: obsecureTextConfirm,
-            suffixIcon: IconButton(
-              onPressed: toggleObsecureTextConfirm,
-              icon: Icon(
-                currentIconConfirm,
-              ),
-            ),
+            suffixIcon: PasswordEye(onToggle: toggleObsecureTextConfirm),
             validator: validatePassword,
             onSaved: (value) => confirmPassword = value,
           ),
@@ -107,15 +96,11 @@ class _RegisterFormState extends State<RegisterForm> {
     setState(() {
       obsecureText = !obsecureText;
     });
-    currentIcon =
-        obsecureText ? FontAwesomeIcons.eyeSlash : FontAwesomeIcons.eye;
   }
 
   void toggleObsecureTextConfirm() {
     setState(() {
       obsecureTextConfirm = !obsecureTextConfirm;
     });
-    currentIconConfirm =
-        obsecureTextConfirm ? FontAwesomeIcons.eyeSlash : FontAwesomeIcons.eye;
   }
 }
