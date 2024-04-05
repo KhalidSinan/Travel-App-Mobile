@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
-import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/login_options.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/widgets/password_eye.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -15,11 +14,6 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   bool obsecureText = true;
-  Icon currentIcon = const Icon(
-    FontAwesomeIcons.eyeSlash,
-    size: 20,
-    color: Colors.grey,
-  );
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? email, password;
@@ -40,10 +34,7 @@ class _LoginFormState extends State<LoginForm> {
           CustomTextFormField(
             hintText: 'Password',
             obsecureText: obsecureText,
-            suffixIcon: IconButton(
-              onPressed: toggleObsecureText,
-              icon: currentIcon,
-            ),
+            suffixIcon: PasswordEye(onToggle: toggleObsecureText),
             validator: validatePassword,
             onSaved: (value) => password = value,
           ),
@@ -61,6 +52,12 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 
+  void toggleObsecureText() {
+    setState(() {
+      obsecureText = !obsecureText;
+    });
+  }
+
   void login() async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
@@ -68,20 +65,5 @@ class _LoginFormState extends State<LoginForm> {
       autovalidateMode = AutovalidateMode.always;
       setState(() {});
     }
-  }
-
-  void toggleObsecureText() {
-    setState(() {
-      obsecureText = !obsecureText;
-    });
-    currentIcon = obsecureText
-        ? const Icon(
-            FontAwesomeIcons.eyeSlash,
-            color: Colors.grey,
-          )
-        : Icon(
-            FontAwesomeIcons.eye,
-            color: Themes.primary,
-          );
   }
 }

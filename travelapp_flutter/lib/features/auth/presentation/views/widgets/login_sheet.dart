@@ -76,7 +76,7 @@ class _LoginSheetState extends State<LoginSheet> {
               children: [
                 const Text("Don't have an account?"),
                 CustomTextButton(
-                  onPressed: () => Get.to(const RegisterPage()),
+                  onPressed: () => Get.to(() => const RegisterPage()),
                   label: 'Sign up',
                   color: Themes.primary,
                 ),
