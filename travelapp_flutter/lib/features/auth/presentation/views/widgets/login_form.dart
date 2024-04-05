@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
+import 'package:travelapp_flutter/features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/login_options.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/password_eye.dart';
 
@@ -61,6 +63,10 @@ class _LoginFormState extends State<LoginForm> {
   void login() async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
+      await BlocProvider.of<AuthCubit>(context).login(
+        email: email!,
+        password: password!,
+      );
     } else {
       autovalidateMode = AutovalidateMode.always;
       setState(() {});
