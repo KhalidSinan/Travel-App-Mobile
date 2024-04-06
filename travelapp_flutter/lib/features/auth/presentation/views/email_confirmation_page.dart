@@ -6,7 +6,8 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/email_co
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/email_confirm_page_body.dart';
 
 class EmailConfirmationPage extends StatelessWidget {
-  const EmailConfirmationPage({super.key});
+  const EmailConfirmationPage({super.key, required this.email});
+  final String email;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +15,9 @@ class EmailConfirmationPage extends StatelessWidget {
       create: (context) => EmailConfirmCubit(
         getIt.get<AuthRepoImpl>(),
       ),
-      child: const Scaffold(
+      child: Scaffold(
         body: SafeArea(
-          child: EmailConfirmationPageBody(),
+          child: EmailConfirmationPageBody(email: email),
         ),
       ),
     );

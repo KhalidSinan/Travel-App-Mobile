@@ -9,7 +9,8 @@ import 'package:travelapp_flutter/features/auth/presentation/views/widgets/pin_c
 import 'package:google_fonts/google_fonts.dart';
 
 class EmailConfirmationPageBody extends StatefulWidget {
-  const EmailConfirmationPageBody({super.key});
+  const EmailConfirmationPageBody({super.key, required this.email});
+  final String email;
 
   @override
   State<EmailConfirmationPageBody> createState() =>
@@ -21,11 +22,7 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<EmailConfirmCubit, EmailConfirmStates>(
-      listener: (context, state) {
-        if (state is FailureEmailConfirmState) {
-          showCustomSnackBar(title: 'Verify Error', message: state.errMessage);
-        }
-      },
+      listener: emailConfirmListener,
       builder: (context, state) => Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
@@ -39,9 +36,9 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
                 color: Themes.primary,
               ),
             ),
-            const Text(
-              'We\'ve sent a code to your email address (email), please put the code here.',
-              style: TextStyle(
+            Text(
+              'We\'ve sent a code to your email address ${widget.email}, please put the code here.',
+              style: const TextStyle(
                 fontSize: 16,
                 color: Colors.grey,
               ),
@@ -86,6 +83,15 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
     );
   }
 
+  void emailConfirmListener(context, state) {
+    if (state is FailureEmailConfirmState) {
+      showCustomSnackBar(title: 'Verify Error', message: state.errMessage);
+    }
+    if (state is SuccessEmailConfirmState) {
+      showCustomSnackBar(title: 'Success', message: 'Registered successfully');
+    }
+  }
+
   bool isValidCode() {
     return code.every((element) => element >= 0);
   }
@@ -94,7 +100,7 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
     String newCode = code.map((e) => e.toString()).join('');
     if (isValidCode()) {
       await BlocProvider.of<EmailConfirmCubit>(context).emailConfirm(
-        email: 'khalid@gmail.com',
+        email: widget.email,
         code: newCode,
       );
     } else {

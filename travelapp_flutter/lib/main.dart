@@ -7,6 +7,7 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cu
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/email_confirmation_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/register_page.dart';
 
 void main() {
   setup();
@@ -32,7 +33,7 @@ class TravelApp extends StatelessWidget {
         theme: ThemeData(
           textTheme: GoogleFonts.aBeeZeeTextTheme(),
         ),
-        home: const EmailConfirmationPage(),
+        home: const RegisterPage(),
       ),
     );
   }
