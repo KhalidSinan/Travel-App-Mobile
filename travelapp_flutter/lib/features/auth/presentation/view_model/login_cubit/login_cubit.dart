@@ -1,18 +1,19 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/helpers/failure.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
-import 'package:travelapp_flutter/features/auth/presentation/view_model/auth_cubit/auth_states.dart';
+import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_states.dart';
 
-class AuthCubit extends Cubit<AuthStates> {
-  AuthCubit(this.authRepoImpl) : super(InitialAuthState());
+class LoginCubit extends Cubit<LoginStates> {
+  LoginCubit(this._authRepoImpl) : super(InitialLoginState());
 
-  AuthRepoImpl authRepoImpl;
+  final AuthRepoImpl _authRepoImpl;
+
   Future<void> login({
     required String email,
     required String password,
   }) async {
     emit(LoadingLoginState());
-    var response = await authRepoImpl.login(
+    var response = await _authRepoImpl.login(
       email: email,
       password: password,
     );
