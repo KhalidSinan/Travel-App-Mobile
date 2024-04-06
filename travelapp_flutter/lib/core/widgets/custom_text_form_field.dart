@@ -29,19 +29,16 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obsecureText ?? false,
       keyboardType: textInputType,
       cursorColor: Themes.primary,
-
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.grey[100],
+        fillColor: Themes.secondary,
         hintText: hintText,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
-          // borderSide: const BorderSide(color: Colors.grey),
           borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
-          // borderSide: const BorderSide(color: Colors.grey),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
@@ -50,7 +47,6 @@ class CustomTextFormField extends StatelessWidget {
             color: Themes.primary,
             width: 2,
           ),
-          // borderSide: BorderSide.none,
         ),
         suffixIcon: Padding(
           padding: const EdgeInsets.only(right: 8),

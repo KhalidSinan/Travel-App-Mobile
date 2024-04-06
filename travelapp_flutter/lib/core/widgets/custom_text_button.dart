@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/utils/themes.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
@@ -20,7 +21,7 @@ class CustomTextButton extends StatelessWidget {
       child: Text(
         label,
         style: TextStyle(
-          color: color ?? Colors.grey,
+          color: color ?? Themes.secondary,
         ),
       ),
     );
