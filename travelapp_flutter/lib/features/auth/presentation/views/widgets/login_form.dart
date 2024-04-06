@@ -24,14 +24,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
-      listener: (context, state) {
-        if (state is FailureLoginState) {
-          showCustomSnackBar(
-            title: state.errTitle ?? 'Error',
-            message: state.errMessage,
-          );
-        }
-      },
+      listener: loginListener,
       builder: (context, state) => Form(
         key: formKey,
         autovalidateMode: autovalidateMode,
@@ -67,6 +60,15 @@ class _LoginFormState extends State<LoginForm> {
       ),
     );
   }
+
+  void loginListener(context, state) {
+      if (state is FailureLoginState) {
+        showCustomSnackBar(
+          title: state.errTitle ?? 'Error',
+          message: state.errMessage,
+        );
+      }
+    }
 
   void toggleObsecureText() {
     setState(() {
