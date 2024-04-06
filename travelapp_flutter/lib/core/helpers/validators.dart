@@ -23,8 +23,5 @@ String? validateName(data) {
   if (data!.isEmpty) {
     return 'this field is required';
   }
-  if (data!.length < 3) {
-    return 'name must be at least 3 characters';
-  }
   return null;
 }

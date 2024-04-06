@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class Themes {
   static Color primary = const Color(0xff205E61);
-  static Color? secondary = Colors.grey[100];
 }
 
 

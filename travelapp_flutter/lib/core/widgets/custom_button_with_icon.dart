@@ -21,7 +21,7 @@ class CustomButtonWithIcon extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: color ?? Themes.secondary,
+        backgroundColor: color ?? Colors.grey[100],
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radius),
         ),
