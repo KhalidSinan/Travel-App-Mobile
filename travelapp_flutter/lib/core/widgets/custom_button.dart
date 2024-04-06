@@ -9,7 +9,7 @@ class CustomButton extends StatelessWidget {
     required this.label,
     this.color,
   });
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String label;
   final Color? color;
   @override
