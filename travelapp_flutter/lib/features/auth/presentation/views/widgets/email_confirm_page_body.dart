@@ -28,6 +28,7 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Spacer(flex: 1),
             Text(
               'Email Verification',
               style: GoogleFonts.quattrocento().copyWith(
