@@ -13,4 +13,8 @@ abstract class AuthRepo {
     required String password,
     required String confirmPassword,
   });
+  Future<Either<Failure, Map<String, dynamic>>> emailConfirm({
+    required String email,
+    required String code,
+  });
 }

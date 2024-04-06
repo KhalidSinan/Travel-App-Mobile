@@ -5,7 +5,7 @@ import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
-import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/email_confirmation_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -32,7 +32,7 @@ class TravelApp extends StatelessWidget {
         theme: ThemeData(
           textTheme: GoogleFonts.aBeeZeeTextTheme(),
         ),
-        home: const LoginPage(),
+        home: const EmailConfirmationPage(),
       ),
     );
   }

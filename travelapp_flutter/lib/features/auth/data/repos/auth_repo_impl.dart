@@ -58,4 +58,26 @@ class AuthRepoImpl extends AuthRepo {
       return left(RegisterFailure(errMessage: 'Something went wrong'));
     }
   }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> emailConfirm({
+    required String email,
+    required String code,
+  }) async {
+    try {
+      Map<String, dynamic> response = await apiService.post(
+        endPoint: '/auth/confirm-email',
+        body: {
+          "token": code,
+          "email": email,
+        },
+      );
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: 'Something went wrong'));
+    }
+  }
 }
