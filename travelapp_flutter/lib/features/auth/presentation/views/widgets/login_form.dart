@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
@@ -29,7 +26,10 @@ class _LoginFormState extends State<LoginForm> {
     return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) {
         if (state is FailureLoginState) {
-          showCustomSnackBar(title: 'Error', message: state.errMessage);
+          showCustomSnackBar(
+            title: state.errTitle ?? 'Error',
+            message: state.errMessage,
+          );
         }
       },
       builder: (context, state) => Form(

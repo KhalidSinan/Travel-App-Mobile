@@ -19,8 +19,11 @@ class LoginCubit extends Cubit<LoginStates> {
     );
     response.fold(
       (l) {
-        if (l is ServerFailure) {
-          emit(FailureLoginState(errMessage: l.errMessage));
+        if (l is LoginFailure) {
+          emit(FailureLoginState(
+            errMessage: l.errMessage,
+            errTitle: l.errTitle,
+          ));
         }
       },
       (r) => emit(SuccessLoginState()),

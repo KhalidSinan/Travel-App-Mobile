@@ -8,6 +8,7 @@ class LoadingLoginState extends LoginStates {}
 
 class FailureLoginState extends LoginStates {
   final String errMessage;
+  final String? errTitle;
 
-  FailureLoginState({required this.errMessage});
+  FailureLoginState({required this.errMessage, this.errTitle});
 }

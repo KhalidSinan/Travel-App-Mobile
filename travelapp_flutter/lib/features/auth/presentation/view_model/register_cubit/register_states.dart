@@ -8,6 +8,7 @@ class SuccessRegisterState extends RegistersStates {}
 
 class FailureRegisterState extends RegistersStates {
   final String errMessage;
+  final String? errTitle;
 
-  FailureRegisterState({required this.errMessage});
+  FailureRegisterState({required this.errMessage, this.errTitle});
 }

@@ -25,8 +25,11 @@ class RegisterCubit extends Cubit<RegistersStates> {
     );
     response.fold(
       (l) {
-        if (l is ServerFailure) {
-          emit(FailureRegisterState(errMessage: l.errMessage));
+        if (l is RegisterFailure) {
+          emit(FailureRegisterState(
+            errMessage: l.errMessage,
+            errTitle: l.errTitle,
+          ));
         }
       },
       (r) {
