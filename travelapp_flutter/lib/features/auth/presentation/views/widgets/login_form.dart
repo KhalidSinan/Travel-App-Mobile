@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
-import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
-import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_states.dart';
+import 'package:travelapp_flutter/features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/login_options.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/password_eye.dart';
 
@@ -23,6 +21,7 @@ class _LoginFormState extends State<LoginForm> {
   String? email, password;
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) {
         if (state is FailureLoginState) {
@@ -42,28 +41,37 @@ class _LoginFormState extends State<LoginForm> {
               textInputType: TextInputType.emailAddress,
               validator: validateEmail,
               onSaved: (value) => email = value,
+=======
+    return Form(
+      key: formKey,
+      autovalidateMode: autovalidateMode,
+      child: Column(
+        children: [
+          CustomTextFormField(
+            hintText: 'Email',
+            textInputType: TextInputType.emailAddress,
+            validator: validateEmail,
+            onSaved: (value) => email = value,
+          ),
+          const SizedBox(height: 16),
+          CustomTextFormField(
+            hintText: 'Password',
+            obsecureText: obsecureText,
+            suffixIcon: PasswordEye(onToggle: toggleObsecureText),
+            validator: validatePassword,
+            onSaved: (value) => password = value,
+          ),
+          const LoginOptions(),
+          const SizedBox(height: 24),
+          SizedBox(
+            width: double.infinity,
+            child: CustomButton(
+              label: 'Sign in',
+              onPressed: login,
+>>>>>>> e96e5cea87b21f6b75df79335107c8bc2bb9d17a
             ),
-            const SizedBox(height: 16),
-            CustomTextFormField(
-              hintText: 'Password',
-              obsecureText: obsecureText,
-              suffixIcon: PasswordEye(onToggle: toggleObsecureText),
-              validator: validatePassword,
-              onSaved: (value) => password = value,
-            ),
-            const LoginOptions(),
-            const SizedBox(height: 24),
-            (state is LoadingLoginState)
-                ? const CircularProgressIndicator()
-                : SizedBox(
-                    width: double.infinity,
-                    child: CustomButton(
-                      label: 'Sign in',
-                      onPressed: login,
-                    ),
-                  ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -77,7 +85,7 @@ class _LoginFormState extends State<LoginForm> {
   void login() async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      await BlocProvider.of<LoginCubit>(context).login(
+      await BlocProvider.of<AuthCubit>(context).login(
         email: email!,
         password: password!,
       );

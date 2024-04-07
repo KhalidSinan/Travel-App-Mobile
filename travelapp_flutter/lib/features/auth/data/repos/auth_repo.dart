@@ -6,15 +6,5 @@ abstract class AuthRepo {
     required String email,
     required String password,
   });
-  Future<Either<Failure, Map<String, dynamic>>> register({
-    required String firstName,
-    required String lastName,
-    required String email,
-    required String password,
-    required String confirmPassword,
-  });
-  Future<Either<Failure, Map<String, dynamic>>> emailConfirm({
-    required String email,
-    required String code,
-  });
+  //Future<Either<Failure, Map<String, dynamic>>> register();
 }

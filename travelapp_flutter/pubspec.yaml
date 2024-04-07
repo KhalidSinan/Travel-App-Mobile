@@ -36,7 +36,7 @@ dependencies:
   carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.6
   dio: ^5.4.2
-  firebase_core: ^2.27.1
+  firebase_core: ^2.28.0
   flutter:
     sdk: flutter
   flutter_animate: ^4.5.0
@@ -48,6 +48,8 @@ dependencies:
   dartz: ^0.10.1
   lottie: ^3.1.0
   get_it: ^7.6.8
+  firebase_auth: ^4.19.0
+  google_sign_in: ^6.2.1
 dev_dependencies:
   flutter_lints: ^3.0.0
   flutter_test:
