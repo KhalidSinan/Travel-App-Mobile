@@ -8,6 +8,10 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cu
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/email_confirmation_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+<<<<<<< HEAD
+=======
+import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
+>>>>>>> Khalid
 import 'package:travelapp_flutter/firebase_options.dart';
 
 void main() async {

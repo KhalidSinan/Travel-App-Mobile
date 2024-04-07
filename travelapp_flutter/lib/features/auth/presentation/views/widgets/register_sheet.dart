@@ -60,9 +60,14 @@ class RegisterSheet extends StatelessWidget {
                 width: 30,
                 height: 30,
               ),
+<<<<<<< HEAD
               onPressed: () {
                 AuthGoogle().signInWithGoogle();
                 print("Done");
+=======
+              onPressed: () async {
+                await AuthGoogle().signInWithGoogle();
+>>>>>>> Khalid
               },
             ),
           ],

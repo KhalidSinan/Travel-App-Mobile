@@ -7,7 +7,11 @@
 	<key>REVERSED_CLIENT_ID</key>
 	<string>com.googleusercontent.apps.666002737101-jc8laotdfmikanv8a55fdaee4cge3oga</string>
 	<key>ANDROID_CLIENT_ID</key>
+<<<<<<< HEAD
 	<string>666002737101-md4d2g1bdek5bga76iupt4rhrbbl2m2p.apps.googleusercontent.com</string>
+=======
+	<string>666002737101-amuemodd4qmc6gbds0172q9219sueuol.apps.googleusercontent.com</string>
+>>>>>>> Khalid
 	<key>API_KEY</key>
 	<string>AIzaSyAb6tGUgp3S4xqBOKJflEOdyxE1MM_WlnM</string>
 	<key>GCM_SENDER_ID</key>

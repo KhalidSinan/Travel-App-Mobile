@@ -14,6 +14,17 @@
       },
       "oauth_client": [
         {
+<<<<<<< HEAD
+=======
+          "client_id": "666002737101-amuemodd4qmc6gbds0172q9219sueuol.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.travelapp_flutter",
+            "certificate_hash": "aa5e20ff373b409c7240d862149a6bbcb4dce62c"
+          }
+        },
+        {
+>>>>>>> Khalid
           "client_id": "666002737101-md4d2g1bdek5bga76iupt4rhrbbl2m2p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

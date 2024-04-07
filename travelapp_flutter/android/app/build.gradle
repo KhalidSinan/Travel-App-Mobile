@@ -50,7 +50,11 @@ android {
         versionCode flutterVersionCode.toInteger()
         multiDexEnabled true
         versionName flutterVersionName
+<<<<<<< HEAD
         
+=======
+        multiDexEnabled true
+>>>>>>> Khalid
     }
 
     buildTypes {

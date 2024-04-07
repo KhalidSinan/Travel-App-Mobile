@@ -66,8 +66,15 @@ class DefaultFirebaseOptions {
     messagingSenderId: '666002737101',
     projectId: 'travelit-8d46c',
     storageBucket: 'travelit-8d46c.appspot.com',
+<<<<<<< HEAD
     androidClientId: '666002737101-md4d2g1bdek5bga76iupt4rhrbbl2m2p.apps.googleusercontent.com',
     iosClientId: '666002737101-403jb3cfi8h397b730sie2gdb3c7lt3f.apps.googleusercontent.com',
+=======
+    androidClientId:
+        '666002737101-amuemodd4qmc6gbds0172q9219sueuol.apps.googleusercontent.com',
+    iosClientId:
+        '666002737101-403jb3cfi8h397b730sie2gdb3c7lt3f.apps.googleusercontent.com',
+>>>>>>> Khalid
     iosBundleId: 'com.example.travelappFlutter',
   );
 
@@ -77,8 +84,15 @@ class DefaultFirebaseOptions {
     messagingSenderId: '666002737101',
     projectId: 'travelit-8d46c',
     storageBucket: 'travelit-8d46c.appspot.com',
+<<<<<<< HEAD
     androidClientId: '666002737101-md4d2g1bdek5bga76iupt4rhrbbl2m2p.apps.googleusercontent.com',
     iosClientId: '666002737101-jc8laotdfmikanv8a55fdaee4cge3oga.apps.googleusercontent.com',
+=======
+    androidClientId:
+        '666002737101-amuemodd4qmc6gbds0172q9219sueuol.apps.googleusercontent.com',
+    iosClientId:
+        '666002737101-jc8laotdfmikanv8a55fdaee4cge3oga.apps.googleusercontent.com',
+>>>>>>> Khalid
     iosBundleId: 'com.example.travelappFlutter.RunnerTests',
   );
 }
