@@ -8,7 +8,6 @@ import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_states.dart';
-import 'package:travelapp_flutter/features/auth/presentation/views/email_confirmation_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/password_eye.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -27,7 +26,14 @@ class _RegisterFormState extends State<RegisterForm> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterCubit, RegistersStates>(
-      listener: registerListener,
+      listener: (context, state) {
+        if (state is FailureRegisterState) {
+          showCustomSnackBar(
+            title: state.errTitle ?? 'Error',
+            message: state.errMessage,
+          );
+        }
+      },
       builder: (context, state) => Form(
         key: formKey,
         autovalidateMode: autovalidateMode,
@@ -92,18 +98,6 @@ class _RegisterFormState extends State<RegisterForm> {
       ),
     );
   }
-
-  void registerListener(context, state) {
-      if (state is FailureRegisterState) {
-        showCustomSnackBar(
-          title: state.errTitle ?? 'Error',
-          message: state.errMessage,
-        );
-      }
-      if (state is SuccessRegisterState) {
-        Get.to(() => EmailConfirmationPage(email: email!));
-      }
-    }
 
   void register() async {
     if (formKey.currentState!.validate()) {
