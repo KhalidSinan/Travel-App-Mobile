@@ -21,27 +21,6 @@ class _LoginFormState extends State<LoginForm> {
   String? email, password;
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return BlocConsumer<LoginCubit, LoginStates>(
-      listener: (context, state) {
-        if (state is FailureLoginState) {
-          showCustomSnackBar(
-            title: state.errTitle ?? 'Error',
-            message: state.errMessage,
-          );
-        }
-      },
-      builder: (context, state) => Form(
-        key: formKey,
-        autovalidateMode: autovalidateMode,
-        child: Column(
-          children: [
-            CustomTextFormField(
-              hintText: 'Email',
-              textInputType: TextInputType.emailAddress,
-              validator: validateEmail,
-              onSaved: (value) => email = value,
-=======
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,
@@ -68,7 +47,6 @@ class _LoginFormState extends State<LoginForm> {
             child: CustomButton(
               label: 'Sign in',
               onPressed: login,
->>>>>>> e96e5cea87b21f6b75df79335107c8bc2bb9d17a
             ),
           ),
         ],

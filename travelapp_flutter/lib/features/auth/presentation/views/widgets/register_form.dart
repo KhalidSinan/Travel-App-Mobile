@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
-<<<<<<< HEAD
-import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
-import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_states.dart';
-=======
->>>>>>> e96e5cea87b21f6b75df79335107c8bc2bb9d17a
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/password_eye.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -25,31 +20,6 @@ class _RegisterFormState extends State<RegisterForm> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return BlocConsumer<RegisterCubit, RegistersStates>(
-      listener: (context, state) {
-        if (state is FailureRegisterState) {
-          showCustomSnackBar(
-            title: state.errTitle ?? 'Error',
-            message: state.errMessage,
-          );
-        }
-      },
-      builder: (context, state) => Form(
-        key: formKey,
-        autovalidateMode: autovalidateMode,
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: CustomTextFormField(
-                    hintText: 'First name',
-                    textInputType: TextInputType.name,
-                    validator: validateName,
-                    onSaved: (value) => first = value,
-                  ),
-=======
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,
@@ -63,7 +33,6 @@ class _RegisterFormState extends State<RegisterForm> {
                   textInputType: TextInputType.name,
                   validator: validateName,
                   onSaved: (value) => first = value,
->>>>>>> e96e5cea87b21f6b75df79335107c8bc2bb9d17a
                 ),
               ),
               const SizedBox(width: 8),
