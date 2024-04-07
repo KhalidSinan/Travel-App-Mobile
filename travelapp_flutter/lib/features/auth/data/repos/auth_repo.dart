@@ -17,4 +17,10 @@ abstract class AuthRepo {
     required String email,
     required String code,
   });
+  Future<Either<Failure, Map<String, dynamic>>> googleAuth({
+    required String name,
+    required String email,
+    required String googleId,
+    required photoUrl,
+  });
 }
