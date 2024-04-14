@@ -26,7 +26,9 @@ class LoginCubit extends Cubit<LoginStates> {
           ));
         }
       },
-      (r) => emit(SuccessLoginState()),
+      (res) {
+        emit(SuccessLoginState());
+      },
     );
   }
 }

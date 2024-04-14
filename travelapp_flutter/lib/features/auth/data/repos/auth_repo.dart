@@ -23,4 +23,7 @@ abstract class AuthRepo {
     required String googleId,
     required photoUrl,
   });
+  Future<Either<Failure, Map<String, dynamic>>> getProfileData({
+    required String token,
+  });
 }
