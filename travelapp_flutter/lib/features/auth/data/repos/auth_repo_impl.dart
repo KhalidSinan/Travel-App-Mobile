@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:travelapp_flutter/core/helpers/api_service.dart';
 import 'package:travelapp_flutter/core/helpers/failure.dart';
+import 'package:travelapp_flutter/features/auth/data/models/profile_model.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
@@ -53,6 +54,7 @@ class AuthRepoImpl extends AuthRepo {
       return right(response);
     } catch (e) {
       if (e is DioException) {
+        print(e);
         return left(RegisterFailure.fromDioException(e));
       }
       return left(RegisterFailure(errMessage: 'Something went wrong'));
@@ -100,10 +102,32 @@ class AuthRepoImpl extends AuthRepo {
       );
       return right(response);
     } catch (e) {
+      print(e);
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       }
       return left(ServerFailure(errMessage: 'Something went wrong'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> getProfileData({
+    required String token,
+  }) async {
+    try {
+      Map<String, dynamic> response = await apiService.get(
+        endPoint: '/users/profile',
+        headers: {
+          "Authorization": 'Bearer $token',
+        },
+      );
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        return left(ServerFailure(errMessage: 'Something went wrong'));
+      }
     }
   }
 }

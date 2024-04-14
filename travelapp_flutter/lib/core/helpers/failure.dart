@@ -18,6 +18,7 @@ class ServerFailure extends Failure {
       case DioExceptionType.badCertificate:
         return ServerFailure(errMessage: 'Bad Certificate');
       case DioExceptionType.badResponse:
+        print(dioException.response!.data);
         return ServerFailure(
             errMessage: dioException.response!.data['message']);
       case DioExceptionType.cancel:
@@ -63,7 +64,6 @@ class RegisterFailure extends Failure {
     }
   }
   factory RegisterFailure.fromBadResponse(int? statusCode, dynamic data) {
-    print(data);
     Map<String, dynamic> errors = data['errors'];
     if (statusCode == 500) {
       return RegisterFailure(

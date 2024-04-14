@@ -22,8 +22,8 @@ class EmailConfirmCubit extends Cubit<EmailConfirmStates> {
           emit(FailureEmailConfirmState(errMessage: l.errMessage));
         }
       },
-      (r) {
-        emit(SuccessEmailConfirmState());
+      (res) {
+        emit(SuccessEmailConfirmState(token: res['token']));
       },
     );
   }
