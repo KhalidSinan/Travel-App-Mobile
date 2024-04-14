@@ -2,11 +2,11 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:travelapp_flutter/core/helpers/api_service.dart';
 import 'package:travelapp_flutter/core/helpers/failure.dart';
-import 'package:travelapp_flutter/features/auth/data/models/profile_model.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final ApiService apiService;
+  String? token;
 
   AuthRepoImpl(this.apiService);
   @override
@@ -22,6 +22,7 @@ class AuthRepoImpl extends AuthRepo {
           'password': password,
         },
       );
+      token = response['token'];
       return right(response);
     } catch (e) {
       if (e is DioException) {
@@ -74,6 +75,7 @@ class AuthRepoImpl extends AuthRepo {
           "email": email,
         },
       );
+      token = response['token'];
       return right(response);
     } catch (e) {
       if (e is DioException) {

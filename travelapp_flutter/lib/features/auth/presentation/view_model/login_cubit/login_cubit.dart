@@ -27,7 +27,7 @@ class LoginCubit extends Cubit<LoginStates> {
         }
       },
       (res) {
-        emit(SuccessLoginState(token: res['token']));
+        emit(SuccessLoginState());
       },
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
@@ -8,8 +7,6 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button_with_icon.dart';
 import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
-import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
-import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_states.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/register_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/login_form.dart';
 import 'package:google_fonts/google_fonts.dart';

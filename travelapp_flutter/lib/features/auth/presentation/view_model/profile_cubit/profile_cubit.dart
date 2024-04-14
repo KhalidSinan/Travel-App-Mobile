@@ -9,8 +9,10 @@ class ProfileCubit extends Cubit<ProfileStates> {
   final AuthRepoImpl _authRepoImpl;
   ProfileModel? profile;
 
-  Future<void> getProfileData({required String token}) async {
-    var response = await _authRepoImpl.getProfileData(token: token);
+  Future<void> getProfileData() async {
+    var response = await _authRepoImpl.getProfileData(
+      token: _authRepoImpl.token!,
+    );
     response.fold(
       (l) {
         if (l is ServerFailure) {

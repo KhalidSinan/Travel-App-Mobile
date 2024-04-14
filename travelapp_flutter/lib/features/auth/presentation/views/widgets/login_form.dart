@@ -67,9 +67,7 @@ class _LoginFormState extends State<LoginForm> {
       showCustomSnackBar(title: 'Error', message: state.errMessage);
     }
     if (state is SuccessLoginState) {
-      await BlocProvider.of<ProfileCubit>(context).getProfileData(
-        token: state.token,
-      );
+      await BlocProvider.of<ProfileCubit>(context).getProfileData();
     }
   }
 

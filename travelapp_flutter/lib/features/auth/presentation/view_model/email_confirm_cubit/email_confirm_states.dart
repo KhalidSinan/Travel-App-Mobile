@@ -4,11 +4,7 @@ class InitialEmailConfirmState extends EmailConfirmStates {}
 
 class LoadingEmailConfirmState extends EmailConfirmStates {}
 
-class SuccessEmailConfirmState extends EmailConfirmStates {
-  final String token;
-
-  SuccessEmailConfirmState({required this.token});
-}
+class SuccessEmailConfirmState extends EmailConfirmStates {}
 
 class FailureEmailConfirmState extends EmailConfirmStates {
   final String errMessage;

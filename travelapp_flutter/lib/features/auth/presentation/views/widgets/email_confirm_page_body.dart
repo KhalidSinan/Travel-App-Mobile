@@ -90,9 +90,7 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
       showCustomSnackBar(title: 'Verify Error', message: state.errMessage);
     }
     if (state is SuccessEmailConfirmState) {
-      await BlocProvider.of<ProfileCubit>(context).getProfileData(
-        token: state.token,
-      );
+      await BlocProvider.of<ProfileCubit>(context).getProfileData();
       showCustomSnackBar(title: 'Success', message: 'Registered successfully');
     }
   }

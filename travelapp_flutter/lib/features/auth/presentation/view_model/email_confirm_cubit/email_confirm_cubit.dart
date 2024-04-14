@@ -23,7 +23,7 @@ class EmailConfirmCubit extends Cubit<EmailConfirmStates> {
         }
       },
       (res) {
-        emit(SuccessEmailConfirmState(token: res['token']));
+        emit(SuccessEmailConfirmState());
       },
     );
   }
