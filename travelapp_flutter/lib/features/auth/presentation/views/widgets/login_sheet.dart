@@ -8,8 +8,8 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button_with_icon.dart';
 import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
-import 'package:travelapp_flutter/features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
-import 'package:travelapp_flutter/features/auth/presentation/view_model/auth_cubit/auth_states.dart';
+import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
+import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_states.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/register_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/login_form.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,7 +39,7 @@ class _LoginSheetState extends State<LoginSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthStates>(
+    return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) {
         if (state is FailureLoginState) {
           Get.snackbar(

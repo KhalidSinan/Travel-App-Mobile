@@ -7,8 +7,8 @@ import 'package:travelapp_flutter/core/widgets/custom_button_with_icon.dart';
 import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/google-auth.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/horizontal_divider_with_text.dart';
-import 'package:travelapp_flutter/features/auth/presentation/views/widgets/register_form.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/widgets/register_form.dart';
 
 class RegisterSheet extends StatelessWidget {
   const RegisterSheet({super.key});
@@ -60,14 +60,8 @@ class RegisterSheet extends StatelessWidget {
                 width: 30,
                 height: 30,
               ),
-<<<<<<< HEAD
-              onPressed: () {
-                AuthGoogle().signInWithGoogle();
-                print("Done");
-=======
               onPressed: () async {
                 await AuthGoogle().signInWithGoogle();
->>>>>>> Khalid
               },
             ),
           ],

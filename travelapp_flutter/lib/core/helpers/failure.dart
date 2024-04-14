@@ -63,6 +63,7 @@ class RegisterFailure extends Failure {
     }
   }
   factory RegisterFailure.fromBadResponse(int? statusCode, dynamic data) {
+    print(data);
     Map<String, dynamic> errors = data['errors'];
     if (statusCode == 500) {
       return RegisterFailure(
