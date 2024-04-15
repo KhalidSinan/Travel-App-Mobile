@@ -12,3 +12,9 @@ class FailureLoginState extends LoginStates {
 
   FailureLoginState({required this.errMessage, this.errTitle});
 }
+
+class LoadingFingerprintState extends LoginStates {}
+
+class SuccessFingerprintState extends LoginStates {}
+
+class FailureFingerprintState extends LoginStates {}

@@ -68,7 +68,6 @@ class _LoginSheetState extends State<LoginSheet> {
                       FontAwesomeIcons.fingerprint,
                       color: Themes.primary,
                     ),
-                    // color: Colors.white70,
                   )
                 : const SizedBox(),
             Row(
