@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
-import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/email_confirm_cubit/email_confirm_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/email_confirm_cubit/email_confirm_states.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/pin_code.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class EmailConfirmationPageBody extends StatefulWidget {
   const EmailConfirmationPageBody({super.key, required this.email});
@@ -32,11 +31,7 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
             const Spacer(flex: 1),
             Text(
               'Email Verification',
-              style: GoogleFonts.quattrocento().copyWith(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Themes.primary,
-              ),
+              style: Styles.heading,
             ),
             Text(
               'We\'ve sent a code to your email address ${widget.email}, please put the code here.',

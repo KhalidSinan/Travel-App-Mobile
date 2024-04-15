@@ -1,13 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelapp_flutter/core/helpers/api_service.dart';
 import 'package:travelapp_flutter/core/helpers/failure.dart';
+import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final ApiService apiService;
   String? token;
-
   AuthRepoImpl(this.apiService);
   @override
   Future<Either<Failure, Map<String, dynamic>>> login({
@@ -76,6 +77,8 @@ class AuthRepoImpl extends AuthRepo {
         },
       );
       token = response['token'];
+      final prefs = getIt.get<SharedPreferences>();
+      await prefs.setString('token', token!);
       return right(response);
     } catch (e) {
       if (e is DioException) {
@@ -130,6 +133,52 @@ class AuthRepoImpl extends AuthRepo {
       } else {
         return left(ServerFailure(errMessage: 'Something went wrong'));
       }
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> fogotPassword({
+    required String email,
+  }) async {
+    try {
+      Map<String, dynamic> response = await apiService.post(
+        endPoint: '/auth/forgot-password',
+        body: {
+          "email": email,
+        },
+      );
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: 'Something went wrong'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> resetPassword({
+    required String newPassword,
+    required String newPasswordConfirm,
+    required String code,
+    required String email,
+  }) async {
+    try {
+      Map<String, dynamic> response = await apiService.post(
+        endPoint: '/auth/reset-password',
+        body: {
+          "email": email,
+          "token": code,
+          "password": newPassword,
+          "confirm_password": newPasswordConfirm,
+        },
+      );
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: 'Something went wrong'));
     }
   }
 }
