@@ -36,63 +36,68 @@ class _ForgotPasswordPageBodyState extends State<ForgotPasswordPageBody> {
       listener: forgotPasswordListener,
       builder: (context, state) => Padding(
         padding: const EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Spacer(flex: 1),
-            Row(
-              children: [
-                const CustomBackButton(),
-                Text(
-                  'Forgot Password',
-                  style: Styles.heading,
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              const SizedBox(height: 40),
+              Row(
+                children: [
+                  const CustomBackButton(),
+                  Text(
+                    'Forgot Password',
+                    style: Styles.heading,
+                  ),
+                ],
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 48),
+                child: Text(
+                  'Enter the email address associated with your account and we\'ll send you a code to reset your password',
+                  style: Styles.subtitle,
                 ),
-              ],
-            ),
-            // subtitle
-            const Text(
-              'Enter the email address associated with your account and we\'ll send you a code to reset your password',
-              style: Styles.subtitle,
-            ),
-            const SizedBox(height: 20),
-            Stepper(
-              type: StepperType.vertical,
-              currentStep: currentStep,
-              onStepContinue: onStepContinue,
-              onStepCancel: onStepCancel,
-              connectorColor: getConnectorColor(),
-              connectorThickness: 2,
-              controlsBuilder: (context, details) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    (state is LoadingStepState)
-                        ? const CircularProgressIndicator()
-                        : Expanded(
-                            child: CustomButton(
-                              onPressed: details.onStepContinue,
-                              label: details.currentStep == 2
-                                  ? 'Reset'
-                                  : 'Continue',
+              ),
+              const SizedBox(height: 20),
+              Stepper(
+                type: StepperType.vertical,
+                currentStep: currentStep,
+                onStepContinue: onStepContinue,
+                onStepCancel: onStepCancel,
+                connectorColor: getConnectorColor(),
+                connectorThickness: 2,
+                physics: const NeverScrollableScrollPhysics(),
+                controlsBuilder: (context, details) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      (state is LoadingStepState)
+                          ? const CircularProgressIndicator()
+                          : Expanded(
+                              child: CustomButton(
+                                onPressed: details.onStepContinue,
+                                label: details.currentStep == 2
+                                    ? 'Reset'
+                                    : 'Continue',
+                              ),
                             ),
-                          ),
-                    const SizedBox(width: 16),
-                    details.currentStep >= 1
-                        ? Expanded(
-                            child: CustomButton(
-                              onPressed: details.onStepCancel,
-                              label: 'Back',
-                            ),
-                          )
-                        : const SizedBox(),
-                  ],
-                );
-              },
-              steps: getSteps,
-            ),
-            const Spacer(flex: 5),
-          ],
+                      const SizedBox(width: 16),
+                      details.currentStep >= 1
+                          ? Expanded(
+                              child: CustomButton(
+                                onPressed: details.onStepCancel,
+                                label: 'Back',
+                              ),
+                            )
+                          : const SizedBox(),
+                    ],
+                  );
+                },
+                steps: getSteps,
+              ),
+              // const Spacer(flex: 5),
+            ],
+          ),
         ),
       ),
     );

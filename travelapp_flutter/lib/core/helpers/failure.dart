@@ -33,7 +33,7 @@ class ServerFailure extends Failure {
 
   factory ServerFailure.fromBadResponse(int? statusCode, dynamic data) {
     if (statusCode == 404) {
-      return ServerFailure(errMessage: data['errors']['confirm_password'][0]);
+      return ServerFailure(errMessage: data);
     } else {
       return ServerFailure(errMessage: data['message']);
     }

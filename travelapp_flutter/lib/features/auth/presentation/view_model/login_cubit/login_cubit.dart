@@ -40,8 +40,8 @@ class LoginCubit extends Cubit<LoginStates> {
   Future<void> rememberUser() async {
     final prefs = getIt.get<SharedPreferences>();
     if (!rememberMe) {
-      await prefs.remove(kRememberMe);
+      await prefs.remove(rememberMeKey);
     }
-    await prefs.setBool(kRememberMe, rememberMe);
+    await prefs.setBool(rememberMeKey, rememberMe);
   }
 }
