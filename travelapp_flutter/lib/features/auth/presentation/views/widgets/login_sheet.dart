@@ -3,13 +3,18 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:travelapp_flutter/core/helpers/service_locator.dart';
+import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
+import 'package:travelapp_flutter/core/utils/constants.dart';
+import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button_with_icon.dart';
 import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/fetch_profile_data_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/register_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/login_form.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginSheet extends StatefulWidget {
   const LoginSheet({super.key});
@@ -44,18 +49,11 @@ class _LoginSheetState extends State<LoginSheet> {
           children: [
             Text(
               'Sign in',
-              style: GoogleFonts.quattrocento().copyWith(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                color: Themes.primary,
-              ),
+              style: Styles.heading.copyWith(fontSize: 40),
             ),
             const Text(
               'Welcome again, sign in to book your trip',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
-              ),
+              style: Styles.subtitle,
             ),
             const SizedBox(height: 24),
             const LoginForm(),
@@ -88,6 +86,15 @@ class _LoginSheetState extends State<LoginSheet> {
   }
 
   void authenticate() async {
+    final prefs = getIt.get<SharedPreferences>();
+    String? token = prefs.getString(tokenKey);
+    if (token == null) {
+      showCustomSnackBar(
+        title: "You're not registered yet",
+        message: "Make an account first to enable fingerprint",
+      );
+      return;
+    }
     try {
       bool authenticated = await auth.authenticate(
         localizedReason: 'Sign in with your fingerprint',
@@ -97,7 +104,7 @@ class _LoginSheetState extends State<LoginSheet> {
         ),
       );
       if (authenticated) {
-        print('login successfully');
+        Get.off(() => FetchProfileDataPage(token: token));
       }
     } on PlatformException catch (e) {
       print(e);

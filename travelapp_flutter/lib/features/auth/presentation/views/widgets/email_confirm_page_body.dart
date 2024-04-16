@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/email_confirm_cubit/email_confirm_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/email_confirm_cubit/email_confirm_states.dart';
-import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/fetch_profile_data_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/pin_code.dart';
 
 class EmailConfirmationPageBody extends StatefulWidget {
@@ -85,8 +86,8 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
       showCustomSnackBar(title: 'Verify Error', message: state.errMessage);
     }
     if (state is SuccessEmailConfirmState) {
-      await BlocProvider.of<ProfileCubit>(context).getProfileData();
-      showCustomSnackBar(title: 'Success', message: 'Registered successfully');
+      // showCustomSnackBar(title: 'Success', message: 'Registered successfully');
+      Get.off(() => const FetchProfileDataPage());
     }
   }
 

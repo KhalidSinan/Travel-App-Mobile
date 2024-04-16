@@ -25,3 +25,13 @@ String? validateName(data) {
   }
   return null;
 }
+
+String? validateCode(value) {
+  if (value!.isEmpty) {
+    return 'this field is required';
+  }
+  if (value.length != 6) {
+    return 'code must consist of 6 digits';
+  }
+  return null;
+}

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_states.dart';
-import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/fetch_profile_data_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/login_options.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/password_eye.dart';
 
@@ -67,7 +68,7 @@ class _LoginFormState extends State<LoginForm> {
       showCustomSnackBar(title: 'Error', message: state.errMessage);
     }
     if (state is SuccessLoginState) {
-      await BlocProvider.of<ProfileCubit>(context).getProfileData();
+      Get.off(() => const FetchProfileDataPage());
     }
   }
 

@@ -1,2 +1,3 @@
 double radius = 10;
-String kRememberMe = 'remember-me';
+String rememberMeKey = 'remember-me';
+String tokenKey = 'token';

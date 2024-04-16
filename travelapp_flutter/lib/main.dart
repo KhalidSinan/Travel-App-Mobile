@@ -10,8 +10,8 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cu
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/fetch_profile_data_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
-import 'package:travelapp_flutter/features/auth/presentation/views/register_page.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
 void main() async {
@@ -30,12 +30,13 @@ class TravelApp extends StatefulWidget {
 
 class _TravelAppState extends State<TravelApp> {
   bool? rememberMe;
+  String? token;
   @override
   void initState() {
     super.initState();
     final prefs = getIt.get<SharedPreferences>();
-    rememberMe = prefs.getBool(kRememberMe);
-    print(rememberMe);
+    rememberMe = prefs.getBool(rememberMeKey);
+    token = prefs.getString(tokenKey);
   }
 
   @override
@@ -57,7 +58,9 @@ class _TravelAppState extends State<TravelApp> {
         theme: ThemeData(
           textTheme: GoogleFonts.aBeeZeeTextTheme(),
         ),
-        home: rememberMe == true ? const RegisterPage() : const LoginPage(),
+        home: rememberMe == true
+            ? FetchProfileDataPage(token: token)
+            : const LoginPage(),
       ),
     );
   }

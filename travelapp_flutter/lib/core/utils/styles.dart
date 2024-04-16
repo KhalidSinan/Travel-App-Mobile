@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'dart:ui';
@@ -9,5 +10,9 @@ class Styles {
     fontSize: 32,
     fontWeight: FontWeight.bold,
     color: Themes.primary,
+  );
+  static const subtitle = TextStyle(
+    fontSize: 16,
+    color: Colors.grey,
   );
 }

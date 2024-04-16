@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/assets.dart';
-import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/core/utils/styles.dart';
+import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button_with_icon.dart';
 import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/google-auth.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/horizontal_divider_with_text.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/register_form.dart';
 
 class RegisterSheet extends StatelessWidget {
@@ -23,21 +21,10 @@ class RegisterSheet extends StatelessWidget {
           children: [
             Row(
               children: [
-                IconButton(
-                  onPressed: () => Get.back(),
-                  icon: Icon(
-                    FontAwesomeIcons.chevronLeft,
-                    size: 20,
-                    color: Themes.primary,
-                  ),
-                ),
+                const CustomBackButton(),
                 Text(
                   'Sign up',
-                  style: GoogleFonts.quattrocento().copyWith(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                    color: Themes.primary,
-                  ),
+                  style: Styles.heading.copyWith(fontSize: 40),
                 ),
               ],
             ),
