@@ -18,14 +18,24 @@ class ServerFailure extends Failure {
       case DioExceptionType.badCertificate:
         return ServerFailure(errMessage: 'Bad Certificate');
       case DioExceptionType.badResponse:
-        return ServerFailure(
-            errMessage: dioException.response!.data['message']);
+        return ServerFailure.fromBadResponse(
+          dioException.response!.statusCode,
+          dioException.response!.data,
+        );
       case DioExceptionType.cancel:
         return ServerFailure(errMessage: 'Request canceled');
       case DioExceptionType.connectionError:
         return ServerFailure(errMessage: 'No internet connection');
       case DioExceptionType.unknown:
         return ServerFailure(errMessage: 'No internet connection');
+    }
+  }
+
+  factory ServerFailure.fromBadResponse(int? statusCode, dynamic data) {
+    if (statusCode == 404) {
+      return ServerFailure(errMessage: data);
+    } else {
+      return ServerFailure(errMessage: data['message']);
     }
   }
 }
@@ -63,7 +73,6 @@ class RegisterFailure extends Failure {
     }
   }
   factory RegisterFailure.fromBadResponse(int? statusCode, dynamic data) {
-    print(data);
     Map<String, dynamic> errors = data['errors'];
     if (statusCode == 500) {
       return RegisterFailure(

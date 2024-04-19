@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:travelapp_flutter/core/helpers/service_locator.dart';
+import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
+import 'package:travelapp_flutter/core/utils/constants.dart';
+import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button_with_icon.dart';
 import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
-import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
-import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_states.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/fetch_profile_data_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/register_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/login_form.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginSheet extends StatefulWidget {
   const LoginSheet({super.key});
@@ -39,74 +41,60 @@ class _LoginSheetState extends State<LoginSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginStates>(
-      listener: (context, state) {
-        if (state is FailureLoginState) {
-          Get.snackbar(
-            'Error',
-            state.errMessage,
-            snackPosition: SnackPosition.BOTTOM,
-          );
-        }
-      },
-      builder: (context, state) {
-        return CustomSheet(
-          height: MediaQuery.sizeOf(context).height * .75,
-          child: SingleChildScrollView(
-            child: (state is LoadingLoginState)
-                ? const Center(child: CircularProgressIndicator())
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Sign in',
-                        style: GoogleFonts.quattrocento().copyWith(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                          color: Themes.primary,
-                        ),
-                      ),
-                      const Text(
-                        'Welcome again, sign in to book your trip',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      const SizedBox(height: 24),
-                      const LoginForm(),
-                      const SizedBox(height: 24),
-                      (_supportState)
-                          ? CustomButtonWithIcon(
-                              label: 'Fingerprint',
-                              onPressed: authenticate,
-                              suffix: Icon(
-                                FontAwesomeIcons.fingerprint,
-                                color: Themes.primary,
-                              ),
-                              // color: Colors.white70,
-                            )
-                          : const SizedBox(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text("Don't have an account?"),
-                          CustomTextButton(
-                            onPressed: () => Get.to(() => const RegisterPage()),
-                            label: 'Sign up',
-                            color: Themes.primary,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-          ),
-        );
-      },
+    return CustomSheet(
+      height: MediaQuery.sizeOf(context).height * .75,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Sign in',
+              style: Styles.heading.copyWith(fontSize: 40),
+            ),
+            const Text(
+              'Welcome again, sign in to book your trip',
+              style: Styles.subtitle,
+            ),
+            const SizedBox(height: 24),
+            const LoginForm(),
+            const SizedBox(height: 24),
+            (_supportState)
+                ? CustomButtonWithIcon(
+                    label: 'Fingerprint',
+                    onPressed: authenticate,
+                    suffix: Icon(
+                      FontAwesomeIcons.fingerprint,
+                      color: Themes.primary,
+                    ),
+                  )
+                : const SizedBox(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Don't have an account?"),
+                CustomTextButton(
+                  onPressed: () => Get.to(() => const RegisterPage()),
+                  label: 'Sign up',
+                  color: Themes.primary,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   void authenticate() async {
+    final prefs = getIt.get<SharedPreferences>();
+    String? token = prefs.getString(tokenKey);
+    if (token == null) {
+      showCustomSnackBar(
+        title: "You're not registered yet",
+        message: "Make an account first to enable fingerprint",
+      );
+      return;
+    }
     try {
       bool authenticated = await auth.authenticate(
         localizedReason: 'Sign in with your fingerprint',
@@ -116,7 +104,7 @@ class _LoginSheetState extends State<LoginSheet> {
         ),
       );
       if (authenticated) {
-        print('login successfully');
+        Get.off(() => FetchProfileDataPage(token: token));
       }
     } on PlatformException catch (e) {
       print(e);
