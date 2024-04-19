@@ -12,7 +12,7 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/register
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/fetch_profile_data_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
-import 'package:travelapp_flutter/features/ticket_booking/presentation/views/all_flights_page.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/all_flights_page.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
 void main() async {

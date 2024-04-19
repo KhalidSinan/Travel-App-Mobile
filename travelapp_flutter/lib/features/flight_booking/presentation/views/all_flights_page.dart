@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travelapp_flutter/features/ticket_booking/presentation/views/widgets/all_flights_page_body.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/all_flights_page_body.dart';
 
 class AllFlightsPage extends StatelessWidget {
   const AllFlightsPage({super.key});

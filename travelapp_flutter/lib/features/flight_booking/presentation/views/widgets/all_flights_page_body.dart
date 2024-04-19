@@ -5,8 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/features/ticket_booking/presentation/views/widgets/date_card.dart';
-import 'package:travelapp_flutter/features/ticket_booking/presentation/views/widgets/one_way_ticket.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/date_card.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/one_way_ticket.dart';
 
 import '../../../../../core/widgets/back_button.dart';
 
