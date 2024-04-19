@@ -42,6 +42,7 @@ class ConfirmFlightReservationPageBody extends StatelessWidget {
   // }
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return const Stack(children: [
       CustomScrollView(
         slivers: [
@@ -53,5 +54,20 @@ class ConfirmFlightReservationPageBody extends StatelessWidget {
       //if (_showButtons)
       ConfirmationStepButtons()
     ]);
+=======
+    return const Stack(
+      children: [
+        CustomScrollView(
+          slivers: [
+            AppBarDetailsCard(),
+            DetsailsHeader(),
+            PassengersList(),
+          ],
+        ),
+        //if (_showButtons)
+        ConfirmationStepButtons()
+      ],
+    );
+>>>>>>> Khalid
   }
 }
