@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-=======
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
->>>>>>> Khalid
 class CardTicket extends StatelessWidget {
   const CardTicket({
     super.key,
@@ -25,8 +20,7 @@ class CardTicket extends StatelessWidget {
       decoration: const BoxDecoration(
         image: DecorationImage(
             opacity: 0.8,
-            image: AssetImage(
-                "assets/images/greensky.png"),
+            image: AssetImage("assets/images/greensky.png"),
             fit: BoxFit.cover),
       ),
       child: Padding(
