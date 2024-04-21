@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:travelapp_flutter/core/utils/themes.dart';
 
 class AirlineInfo extends StatelessWidget {
   const AirlineInfo({

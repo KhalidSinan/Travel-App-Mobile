@@ -85,7 +85,7 @@ class TwoWayTicket extends StatelessWidget {
                   '900\$',
                   style: Styles.heading.copyWith(
                     fontSize: 24,
-                    color: const Color(0xffffb156),
+                    color: Themes.third,
                   ),
                 ),
               ],

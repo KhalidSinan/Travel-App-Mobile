@@ -23,40 +23,37 @@ class DateCard extends StatelessWidget {
       'Sat',
       'Sun',
     ];
-    return Expanded(
-      flex: isCurrent ? 2 : 1,
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8),
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: isCurrent ? Themes.primary : const Color(0xffffb156),
-          borderRadius: BorderRadius.circular(radius),
-          border: isCurrent
-              ? Border.all(
-                  color: const Color(0xffffb156),
-                  width: 3,
-                )
-              : null,
-        ),
-        child: Column(
-          children: [
-            Text(
-              weekDays[date.weekday - 1],
-              style: Styles.subtitle.copyWith(
-                color: Colors.white70,
-                fontSize: 14,
-              ),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: isCurrent ? Themes.primary : Themes.third,
+        borderRadius: BorderRadius.circular(radius),
+        border: isCurrent
+            ? Border.all(
+                color: Themes.third!,
+                width: 3,
+              )
+            : null,
+      ),
+      child: Column(
+        children: [
+          Text(
+            weekDays[date.weekday - 1],
+            style: Styles.subtitle.copyWith(
+              color: Colors.white70,
+              fontSize: 14,
             ),
-            Text(
-              '${date.day}',
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            )
-          ],
-        ),
+          ),
+          Text(
+            isCurrent ? '${date.month} / ${date.day}' : '${date.day}',
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          )
+        ],
       ),
     );
   }

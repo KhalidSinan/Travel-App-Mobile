@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:travelapp_flutter/core/utils/themes.dart';
 
 class AllFlightsOptions extends StatelessWidget {
   const AllFlightsOptions({
@@ -13,17 +14,17 @@ class AllFlightsOptions extends StatelessWidget {
         IconButton(
           onPressed: () {},
           style: IconButton.styleFrom(),
-          icon: const Icon(
+          icon: Icon(
             FontAwesomeIcons.filter,
-            color: Color(0xffffb156),
+            color: Themes.third,
           ),
         ),
         const SizedBox(width: 8),
         IconButton(
           onPressed: () {},
-          icon: const Icon(
+          icon: Icon(
             FontAwesomeIcons.sliders,
-            color: Color(0xffffb156),
+            color: Themes.third,
           ),
         ),
       ],
