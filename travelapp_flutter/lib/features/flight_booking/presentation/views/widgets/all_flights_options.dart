@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/filter_sheet.dart';
 
 class AllFlightsOptions extends StatelessWidget {
   const AllFlightsOptions({
@@ -12,7 +14,9 @@ class AllFlightsOptions extends StatelessWidget {
     return Row(
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.bottomSheet(const FilterSheet());
+          },
           style: IconButton.styleFrom(),
           icon: Icon(
             FontAwesomeIcons.filter,

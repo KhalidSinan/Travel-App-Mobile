@@ -32,7 +32,7 @@ class DateCard extends StatelessWidget {
         border: isCurrent
             ? Border.all(
                 color: Themes.third!,
-                width: 3,
+                width: 2,
               )
             : null,
       ),

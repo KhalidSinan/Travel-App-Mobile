@@ -4,6 +4,18 @@ class Themes {
   static Color primary = const Color(0xff205E61);
   static Color? secondary = Colors.grey[100];
   static Color? third = const Color(0xffffb156);
+  static ThemeData timePickerTheme = ThemeData.light().copyWith(
+    colorScheme: ColorScheme.light(
+      primary: Themes.primary,
+      onSurface: Themes.third!,
+    ),
+    // button colors
+    buttonTheme: ButtonThemeData(
+      colorScheme: ColorScheme.light(
+        primary: Themes.third!,
+      ),
+    ),
+  );
 }
 
 

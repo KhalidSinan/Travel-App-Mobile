@@ -48,7 +48,7 @@ class _AllFlightsPageBodyState extends State<AllFlightsPageBody> {
             child: Divider(
               color: Themes.secondary,
               thickness: 3,
-              height: 60,
+              height: 20,
             ),
           ),
           const SliverToBoxAdapter(
@@ -69,14 +69,16 @@ class _AllFlightsPageBodyState extends State<AllFlightsPageBody> {
           SliverToBoxAdapter(
             child: NumberPaginator(
               controller: _controller,
-              numberPages: 6,
+              numberPages: 10,
               onPageChange: (index) {
                 _controller.navigateToPage(index);
                 setState(() {});
               },
+              // showNextButton: false,
+              // showPrevButton: false,
               config: NumberPaginatorUIConfig(
                 buttonSelectedBackgroundColor: Themes.primary,
-                buttonUnselectedBackgroundColor: Themes.secondary,
+                // buttonUnselectedBackgroundColor: Themes.secondary,
                 buttonUnselectedForegroundColor: Themes.third,
               ),
             ),
