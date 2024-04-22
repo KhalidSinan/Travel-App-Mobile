@@ -74,11 +74,8 @@ class _AllFlightsPageBodyState extends State<AllFlightsPageBody> {
                 _controller.navigateToPage(index);
                 setState(() {});
               },
-              // showNextButton: false,
-              // showPrevButton: false,
               config: NumberPaginatorUIConfig(
                 buttonSelectedBackgroundColor: Themes.primary,
-                // buttonUnselectedBackgroundColor: Themes.secondary,
                 buttonUnselectedForegroundColor: Themes.third,
               ),
             ),

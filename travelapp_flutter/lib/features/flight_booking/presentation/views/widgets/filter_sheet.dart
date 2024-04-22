@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
+import 'package:travelapp_flutter/core/widgets/dash_line_divider.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/airline_filter.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/price_filter.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/time_filter.dart';
@@ -26,7 +27,11 @@ class _FilterSheetState extends State<FilterSheet> {
         children: [
           const PriceFilter(),
           const SizedBox(height: 16),
+          const DashLineDivider(),
+          const SizedBox(height: 16),
           const AirlineFilter(),
+          const SizedBox(height: 16),
+          const DashLineDivider(),
           const SizedBox(height: 16),
           const TimeFilter(),
           const Spacer(flex: 1),

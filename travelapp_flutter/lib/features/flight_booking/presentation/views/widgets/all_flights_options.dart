@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/filter_sheet.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/sort_sheet.dart';
 
 class AllFlightsOptions extends StatelessWidget {
   const AllFlightsOptions({
@@ -25,7 +28,9 @@ class AllFlightsOptions extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.bottomSheet(const SortSheet());
+          },
           icon: Icon(
             FontAwesomeIcons.sliders,
             color: Themes.third,
