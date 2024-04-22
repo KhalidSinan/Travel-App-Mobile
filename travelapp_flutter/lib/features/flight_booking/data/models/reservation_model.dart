@@ -15,10 +15,10 @@ class ReservationModel {
       required this.flightBack});
   factory ReservationModel.fromJson(jsonData) {
     return ReservationModel(
-        flight: jsonData['reservation']['flight'],
-        seat: jsonData['reservation']['num_of_reservations'],
-        reservationType: jsonData['reservation']['two_way'],
-        overallPrice: jsonData['reservation']['overall_price'],
-        flightBack: jsonData['reservation']['flight_back']);
+        flight: jsonData['flight'],
+        seat: jsonData['num_of_reservations'],
+        reservationType: jsonData['two_way'],
+        overallPrice: jsonData['overall_price'],
+        flightBack: jsonData['flight_back']);
   }
 }

@@ -47,7 +47,7 @@ class ConfirmFlightReservationPageBody extends StatelessWidget {
         CustomScrollView(
           slivers: [
             AppBarDetailsCard(),
-            DetailsHeader(),
+            //DetailsHeader(),
             PassengersList(),
           ],
         ),

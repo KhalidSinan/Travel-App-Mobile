@@ -6,9 +6,8 @@ import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_book
 
 class FlightBookingImp extends FlightBookingRepo {
   final ApiService apiService;
-  String? token;
 
-  FlightBookingImp({required this.apiService});
+  FlightBookingImp(this.apiService);
 
   @override
   Future<Either<Failure, Map<String, dynamic>>> getFlightReservationData(
@@ -16,9 +15,6 @@ class FlightBookingImp extends FlightBookingRepo {
     try {
       Map<String, dynamic> response = await apiService.get(
         endPoint: "/flights/reservation/6623902d1ead5ad33f574672",
-        headers: {
-          "Authorization": 'Bearer $token',
-        },
       );
       return right(response);
     } catch (e) {

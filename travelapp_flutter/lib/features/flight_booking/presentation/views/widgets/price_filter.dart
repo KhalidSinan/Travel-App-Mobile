@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
-import 'package:travelapp_flutter/core/utils/themes.dart';
 
 class PriceFilter extends StatefulWidget {
   const PriceFilter({super.key});
