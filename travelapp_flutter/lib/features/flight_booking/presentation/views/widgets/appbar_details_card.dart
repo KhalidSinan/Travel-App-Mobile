@@ -27,20 +27,13 @@ class AppBarDetailsCard extends StatelessWidget {
       expandedHeight: 290,
       flexibleSpace: FlexibleSpaceBar(
         background: CarouselSlider(
-          carouselController: CarouselController(),
-          options: CarouselOptions(
-              height: 450,
-              initialPage: 0,
-              viewportFraction: 1,
-              enableInfiniteScroll: false),
-          items: [0, 1].map(
-            (i) {
-              return Builder(
-                builder: (context) => const CardTicket(),
-              );
-            },
-          ).toList(),
-        ),
+            carouselController: CarouselController(),
+            options: CarouselOptions(
+                height: 450,
+                initialPage: 0,
+                viewportFraction: 1,
+                enableInfiniteScroll: false),
+            items: List.generate(2, (index) => const CardTicket())),
       ),
     );
   }

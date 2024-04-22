@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 
-class DetsailsHeader extends StatelessWidget {
-  const DetsailsHeader({
+class DetailsHeader extends StatelessWidget {
+  const DetailsHeader({
     super.key,
   });
 
