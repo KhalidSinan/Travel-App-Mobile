@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/core/widgets/dash_line_divider.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/airline_info.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/country_info.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/period_line.dart';
 import '../../../../../core/helpers/custom_ticket_shape.dart';
-import '../../../../../core/helpers/dashed_line_painter.dart';
-
 class OneWayTicket extends StatelessWidget {
   const OneWayTicket({
     super.key,
@@ -45,10 +44,7 @@ class OneWayTicket extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 32),
-            CustomPaint(
-              painter: DashedLinePainter(),
-              child: Container(),
-            ),
+            const DashLineDivider(),
             const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

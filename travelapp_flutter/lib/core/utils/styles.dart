@@ -15,4 +15,14 @@ class Styles {
     fontSize: 16,
     color: Colors.grey,
   );
+  static final heading2 = GoogleFonts.quattrocento().copyWith(
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+    color: Themes.primary,
+  );
+  static final content = TextStyle(
+    color: Themes.third,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
 }
