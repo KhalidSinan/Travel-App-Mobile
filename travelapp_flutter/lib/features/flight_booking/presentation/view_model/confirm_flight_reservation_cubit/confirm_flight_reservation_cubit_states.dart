@@ -16,5 +16,5 @@ class FailureConfirmFlightReservationState
   final String? errTitle;
 
   FailureConfirmFlightReservationState(
-      {required this.errMessage, required this.errTitle});
+      {required this.errMessage,  this.errTitle});
 }

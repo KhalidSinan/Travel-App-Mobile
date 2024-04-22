@@ -33,7 +33,7 @@ class AppBarDetailsCard extends StatelessWidget {
                 initialPage: 0,
                 viewportFraction: 1,
                 enableInfiniteScroll: false),
-            items: List.generate(2, (index) => const CardTicket())),
+            items: List.generate(2, (index) => const CardTicket(),),),
       ),
     );
   }
