@@ -15,6 +15,7 @@ import 'package:travelapp_flutter/features/auth/presentation/views/fetch_profile
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/all_flights_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/confirm_flight_reservation_page.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/plane_page.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
 void main() async {
@@ -64,7 +65,7 @@ class _TravelAppState extends State<TravelApp> {
         // home: rememberMe == true
         //     ? FetchProfileDataPage(token: token)
         //     : const LoginPage(),
-        home: const ConfirmFlightReservationPage(),
+        home: const PlanePage(),
       ),
     );
   }
