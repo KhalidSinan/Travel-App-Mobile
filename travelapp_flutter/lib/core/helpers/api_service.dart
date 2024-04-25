@@ -1,13 +1,19 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final String _baseUrl = 'https://10.0.2.2:5000';
+  final String _baseUrl = 'http://10.0.2.2:5000';
   final Dio _dio;
 
   ApiService(this._dio);
 
-  Future<Map<String, dynamic>> get({required String endPoint}) async {
-    var response = await _dio.get('$_baseUrl$endPoint');
+  Future<Map<String, dynamic>> get(
+      {required String endPoint, Map<String, dynamic>? headers}) async {
+    var response = await _dio.get(
+      '$_baseUrl$endPoint',
+      options: Options(
+        headers: headers,
+      ),
+    );
     return response.data;
   }
 

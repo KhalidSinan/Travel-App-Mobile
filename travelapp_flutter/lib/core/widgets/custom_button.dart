@@ -8,10 +8,12 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     required this.label,
     this.color,
+    this.isFlat,
   });
   final VoidCallback? onPressed;
   final String label;
   final Color? color;
+  final bool? isFlat;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -19,7 +21,9 @@ class CustomButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: color ?? Themes.primary,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(radius),
+          borderRadius: BorderRadius.circular(
+            (isFlat == null || isFlat == false) ? radius : 0,
+          ),
         ),
         padding: const EdgeInsets.symmetric(
           horizontal: 8,

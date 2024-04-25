@@ -16,16 +16,11 @@ class CustomCheckBox extends StatefulWidget {
 }
 
 class _CustomCheckBoxState extends State<CustomCheckBox> {
-  bool? checked = false;
   @override
   Widget build(BuildContext context) {
     return CheckboxListTile(
-      value: checked,
-      onChanged: (value) {
-        setState(() {
-          checked = value;
-        });
-      },
+      value: widget.value,
+      onChanged: widget.onChanged,
       activeColor: Themes.primary,
       contentPadding: EdgeInsets.zero,
       controlAffinity: ListTileControlAffinity.leading,
