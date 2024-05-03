@@ -9,7 +9,7 @@ class FlightModel {
   final DateInfo departure;
   final DateInfo arrival;
   final String duration;
-  final PassengersModel? reservations;
+  final List<PassengerModel>? reservations;
   final double flightPrice;
   FlightModel(
       {required this.airline,
@@ -22,6 +22,14 @@ class FlightModel {
       required this.flightPrice});
 
   factory FlightModel.fromJson(jsonData) {
+    List<PassengerModel>? reservations;
+    if (jsonData['reservations'] != null) {
+      reservations = [];
+      for (int i = 0; i < jsonData['reservations'].length; i++) {
+        reservations.add(PassengerModel.fromJson(jsonData['reservations'][i]));
+        print(reservations[i]);
+      }
+    }
     return FlightModel(
         airline: jsonData['airline'],
         source: CountryModel.fromJson(jsonData['source']),
@@ -29,30 +37,7 @@ class FlightModel {
         departure: DateInfo.fromJson(jsonData['departure_date']),
         arrival: DateInfo.fromJson(jsonData['arrival_date']),
         duration: jsonData['duration'],
-        reservations: PassengersModel.fromJson(jsonData['reservations']),
+        reservations: reservations,
         flightPrice: jsonData['flight_price']);
   }
 }
-
-
-
-
-
-
-
-
-
-  // factory TicketModel.fromJson(jsonData) {
-  //   return TicketModel(
-  //       airline: jsonData["reservation"]['flight']['airline'],
-  //       name: jsonData["reservation"]['flight']['source']['name'],
-  //       city: jsonData["reservation"]['flight']['city'],
-  //       country: jsonData["reservation"]['flight']['country'],
-  //       date: jsonData["reservation"]['flight']['destination'],
-  //       time: jsonData["reservation"]['flight'],
-  //       duration: jsonData["reservation"]['flight'],
-  //       reservations: jsonData["reservation"]['flight'],
-  //       numberOfReservation: jsonData["reservation"]['flight'],
-  //       reservationType: jsonData["reservation"]['flight'],
-  //       boolReservationType: jsonData["reservation"]['flight']);
-  // }

@@ -65,7 +65,7 @@ class _TravelAppState extends State<TravelApp> {
         // home: rememberMe == true
         //     ? FetchProfileDataPage(token: token)
         //     : const LoginPage(),
-        home: const PlanePage(),
+        home: const ConfirmFlightReservationPage(),
       ),
     );
   }

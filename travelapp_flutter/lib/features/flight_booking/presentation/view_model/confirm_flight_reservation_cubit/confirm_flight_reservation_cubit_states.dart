@@ -8,7 +8,9 @@ class SuccessConfirmFlightReservationState
     extends ConfirmFlightReservationState {}
 
 class LoadingConfirmFlightReservationState
-    extends ConfirmFlightReservationState {}
+    extends ConfirmFlightReservationState {
+     
+    }
 
 class FailureConfirmFlightReservationState
     extends ConfirmFlightReservationState {

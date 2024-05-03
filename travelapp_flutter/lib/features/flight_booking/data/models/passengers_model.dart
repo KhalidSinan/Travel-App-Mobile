@@ -1,23 +1,27 @@
-class PassengersModel {
+class PassengerModel {
   final String personName;
   final String seatClass;
   final String seatNumber;
-  final String price;
+  final double price;
+  final String personPassport;
   final String id;
 
-  PassengersModel(
-      {required this.personName,
-      required this.seatClass,
-      required this.seatNumber,
-      required this.price,
-      required this.id});
+  PassengerModel({
+    required this.personName,
+    required this.seatClass,
+    required this.seatNumber,
+    required this.price,
+    required this.personPassport,
+    required this.id,
+  });
 
-  factory PassengersModel.fromJson(jsonData) {
-    return PassengersModel(
+  factory PassengerModel.fromJson(jsonData) {
+    return PassengerModel(
+        id: jsonData['_id'],
         personName: jsonData['person_name'],
         seatClass: jsonData['seat_class'],
         seatNumber: jsonData['seat_number'],
         price: jsonData['price'],
-        id: jsonData['_id']);
+        personPassport: jsonData['person_passport']);
   }
 }
