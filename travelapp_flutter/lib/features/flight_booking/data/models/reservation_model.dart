@@ -2,23 +2,35 @@ import 'package:travelapp_flutter/features/flight_booking/data/models/flight_mod
 
 class ReservationModel {
   final FlightModel flight;
-  final int ?seat;
-  final bool reservationType;
+  final int? seat;
+  final bool isTwoWay;
   final double overallPrice;
   final FlightModel? flightBack;
-
-  ReservationModel(
-      {required this.flight,
-      required this.seat,
-      required this.reservationType,
-      required this.overallPrice,
-      required this.flightBack});
+  final int hours;
+  final int days;
+  final int minutes;
+  final int seconds;
+  ReservationModel({
+    required this.flight,
+    required this.seat,
+    required this.isTwoWay,
+    required this.overallPrice,
+    required this.flightBack,
+    required this.days,
+    required this.hours,
+    required this.minutes,
+    required this.seconds,
+  });
   factory ReservationModel.fromJson(jsonData) {
     return ReservationModel(
-        flight: jsonData['flight'],
+        flight: FlightModel.fromJson(jsonData['flight']),
         seat: jsonData['num_of_reservations'],
-        reservationType: jsonData['two_way'],
+        isTwoWay: jsonData['two_way'],
         overallPrice: jsonData['overall_price'],
-        flightBack: jsonData['flight_back']);
+        flightBack: FlightModel.fromJson(jsonData['flight_back']),
+        days: jsonData['remaining_time']['days'],
+        hours: jsonData['remaining_time']['hours'],
+        minutes: jsonData['remaining_time']['minutes'],
+        seconds: jsonData['remaining_time']['seconds']);
   }
 }
