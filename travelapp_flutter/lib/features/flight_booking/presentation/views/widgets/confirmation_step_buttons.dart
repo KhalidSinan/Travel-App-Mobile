@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -8,7 +10,7 @@ import 'package:slide_countdown/slide_countdown.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/reservation_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/confirm_flight_reservation_cubit/confirm_flight_reservation_cubit.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/confirm_flight_reservation_cubit/confirm_flight_reservation_cubit_states.dart';
-import 'package:dio/dio.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class ConfirmationStepButtons extends StatefulWidget {
   const ConfirmationStepButtons({
@@ -21,54 +23,6 @@ class ConfirmationStepButtons extends StatefulWidget {
 }
 
 class _ConfirmationStepButtonsState extends State<ConfirmationStepButtons> {
-  // Map<String, dynamic>? paymentIntent;
-  // createPaymentIntent() async {
-  //   try {
-  //     Map<String, dynamic> body = {
-  //       "amount": "1000",
-  //     };
-  //     dynamic response = Dio().post(
-  //       'https://05b6-169-150-196-84.ngrok-free.app/flights/payment-sheet',
-  //       options: Options(
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           // "Authorization":
-  //           //     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmY2OGMyMWZiMTU5ZjY4ZWZlNzg5ZiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTQ1NDUxODF9.XJAqvLxZYozqrus1Zjjk9OyA_RfoPZeuD4MhIMHhPO0",
-  //         },
-  //       ),
-  //       data: body,
-  //     );
-  //     return response.data;
-  //   } catch (e) {
-  //     throw Exception(e.toString());
-  //   }
-  // }
-
-  // void makePayment() async {
-  //   try {
-  //     paymentIntent = await createPaymentIntent();
-
-  //     var gpay = const PaymentSheetGooglePay(
-  //         merchantCountryCode: "US", currencyCode: "US", testEnv: true);
-  //     await Stripe.instance.initPaymentSheet(
-  //         paymentSheetParameters: SetupPaymentSheetParameters(
-  //             paymentIntentClientSecret: paymentIntent!['client_secret'],
-  //             style: ThemeMode.light,
-  //             merchantDisplayName: "Sabir",
-  //             googlePay: gpay));
-  //     displayPaymentSheet();
-  //   } catch (e) {}
-  // }
-
-  // void displayPaymentSheet() async {
-  //   try {
-  //     await Stripe.instance.presentPaymentSheet();
-  //     print("Done");
-  //   } catch (e) {
-  //     print("Failed");
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -80,7 +34,7 @@ class _ConfirmationStepButtonsState extends State<ConfirmationStepButtons> {
         ReservationModel? reservation =
             BlocProvider.of<ConfirmFlightReservationCubit>(context).reservation;
         return (state is LoadingConfirmFlightReservationState)
-            ? SizedBox()
+            ? const SizedBox()
             : Positioned(
                 bottom: 0,
                 left: 0,
@@ -126,8 +80,8 @@ class _ConfirmationStepButtonsState extends State<ConfirmationStepButtons> {
                           Expanded(
                             child: CustomTextButton(
                               onPressed: () {
-                               // makePayment();
-                                 Get.back();
+                              
+                                Get.back();
                               },
                               label: "Later",
                             ),

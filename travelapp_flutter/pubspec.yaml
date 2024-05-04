@@ -55,6 +55,7 @@ dependencies:
   shared_preferences: ^2.2.3
   shimmer: ^3.0.0
   slide_countdown: ^1.6.1
+  webview_flutter: ^3.0.4
 dev_dependencies:
   flutter_lints: ^3.0.0
   flutter_test:
