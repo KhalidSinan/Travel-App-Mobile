@@ -24,7 +24,7 @@ class FlightBookingImp extends FlightBookingRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        return left(ServerFailure(errMessage: 'Something went wrong'));
+        return left(ServerFailure(errMessage: 'Something went wrong', ));
       }
     }
   }
