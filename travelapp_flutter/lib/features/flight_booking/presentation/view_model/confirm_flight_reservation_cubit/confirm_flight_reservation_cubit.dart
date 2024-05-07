@@ -6,12 +6,10 @@ import 'package:travelapp_flutter/features/flight_booking/presentation/view_mode
 
 class ConfirmFlightReservationCubit
     extends Cubit<ConfirmFlightReservationState> {
-      
   ConfirmFlightReservationCubit(this.flightBookingImp)
       : super(InitialConfirmFlightReservationState());
 
   final FlightBookingImp flightBookingImp;
-
 
   ReservationModel? reservation;
 
@@ -20,12 +18,12 @@ class ConfirmFlightReservationCubit
 
     var response =
         await flightBookingImp.getFlightReservationData(id: idflight);
-        print(response);
+    print(response);
     response.fold(
-      (l) {
-        if (l is ServerFailure) {
+      (error) {
+        if (error is ServerFailure) {
           emit(FailureConfirmFlightReservationState(
-            errMessage: l.errMessage,
+          serverFailure: error
           ));
         }
       },
@@ -39,14 +37,12 @@ class ConfirmFlightReservationCubit
 
   Future<void> postRservationConfirmation({required String id}) async {
     emit(LoadingConfirmFlightReservationState());
-    var response = await flightBookingImp.postRservationConfirmation(id:id);
+    var response = await flightBookingImp.postRservationConfirmation(id: id);
     print(response);
     response.fold(
-      (l) {
-        if (l is ServerFailure) {
-          emit(FailureConfirmFlightReservationState(
-            errMessage: l.errMessage,
-          ));
+      (error) {
+        if (error is ServerFailure) {
+          emit(FailureConfirmFlightReservationState(serverFailure: error));
         }
       },
       (res) {
@@ -54,11 +50,4 @@ class ConfirmFlightReservationCubit
       },
     );
   }
-
-
-
-
-
-
 }
-
