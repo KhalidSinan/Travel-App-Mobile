@@ -7,8 +7,9 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 
 class FailurePage extends StatelessWidget {
-  const FailurePage({super.key, required this.error});
+  const FailurePage({super.key, required this.error, required this.onPressed});
   final ServerFailure error;
+  final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,9 +43,6 @@ class FailurePage extends StatelessWidget {
                   ),
                 ),
               ),
-
-              //There seems to be a probleme with your Network Connection.
-              //Aaah! Something went wrong \n Refresh the page or try again later
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Text(
@@ -58,7 +56,7 @@ class FailurePage extends StatelessWidget {
               ),
               SizedBox(
                   width: MediaQuery.sizeOf(context).width - 40,
-                  child: CustomButton(onPressed: () {}, label: "Restart")),
+                  child: CustomButton(onPressed: onPressed, label: "Restart")),
               const SizedBox(
                 height: 8,
               ),
