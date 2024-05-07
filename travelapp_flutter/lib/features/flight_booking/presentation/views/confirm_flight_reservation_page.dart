@@ -24,8 +24,13 @@ class ConfirmFlightReservationPage extends StatelessWidget {
               ConfirmFlightReservationState>(
             listener: (context, state) {
               if (state is FailureConfirmFlightReservationState) {
-                
-                Get.to( FailurePage(error: state.serverFailure));
+                Get.to(FailurePage(
+                  error: state.serverFailure,
+                  onPressed: () => ConfirmFlightReservationCubit(
+                      getIt.get<FlightBookingImp>())
+                    ..getFlightReservationData(
+                        idflight: "662f434518e13912586a8212"),
+                ));
               }
             },
             child: const ConfirmFlightReservationPageBody(),
