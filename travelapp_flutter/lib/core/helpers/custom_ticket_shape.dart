@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomOneWayTicketShape extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    int distance = 50;
+    int distance = 45;
     final path = Path()
       ..lineTo(0, (size.height / 2 + distance) - 30)
       ..quadraticBezierTo(size.width * 0.10, (size.height / 2 + distance), 0,
@@ -27,7 +27,7 @@ class CustomOneWayTicketShape extends CustomClipper<Path> {
 class CustomTwoWayTicketShape extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    int distance = 120;
+    int distance = 110;
     final path = Path()
       ..lineTo(0, (size.height / 2 + distance) - 30)
       ..quadraticBezierTo(size.width * 0.10, (size.height / 2 + distance), 0,

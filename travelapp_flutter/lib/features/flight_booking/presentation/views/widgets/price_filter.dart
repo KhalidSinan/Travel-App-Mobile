@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/all_flights_cubit/all_flights_cubit.dart';
 
 class PriceFilter extends StatefulWidget {
   const PriceFilter({super.key});
@@ -9,7 +11,13 @@ class PriceFilter extends StatefulWidget {
 }
 
 class _PriceFilterState extends State<PriceFilter> {
-  RangeValues prices = const RangeValues(0, 2000);
+  late RangeValues prices;
+  @override
+  void initState() {
+    super.initState();
+    prices = BlocProvider.of<AllFlightsCubit>(context).prices;
+  }
+
   @override
   Widget build(BuildContext context) {
     RangeLabels labels = RangeLabels(
@@ -36,12 +44,13 @@ class _PriceFilterState extends State<PriceFilter> {
           values: prices,
           labels: labels,
           min: 0,
-          max: 2000,
-          divisions: 20,
+          max: 3000,
+          divisions: 30,
           activeColor: Colors.grey,
           onChanged: (newValue) {
             setState(() {
               prices = newValue;
+              BlocProvider.of<AllFlightsCubit>(context).prices = prices;
             });
           },
         ),

@@ -1,27 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:number_paginator/number_paginator.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/all_flights_header.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/days_row.dart';
-import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/two_way_ticket.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/flights_list.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/flights_pagination.dart';
 import '../../../../../core/widgets/back_button.dart';
 
-class AllFlightsPageBody extends StatefulWidget {
+class AllFlightsPageBody extends StatelessWidget {
   const AllFlightsPageBody({
     super.key,
   });
-
-  @override
-  State<AllFlightsPageBody> createState() => _AllFlightsPageBodyState();
-}
-
-class _AllFlightsPageBodyState extends State<AllFlightsPageBody> {
-  late NumberPaginatorController _controller;
-  @override
-  void initState() {
-    super.initState();
-    _controller = NumberPaginatorController();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,29 +45,8 @@ class _AllFlightsPageBodyState extends State<AllFlightsPageBody> {
           const SliverToBoxAdapter(
             child: SizedBox(height: 16),
           ),
-          SliverList.builder(
-            itemBuilder: (context, index) {
-              return const Padding(
-                padding: EdgeInsets.only(bottom: 16),
-                child: TwoWayTicket(),
-              );
-            },
-            itemCount: 10,
-          ),
-          SliverToBoxAdapter(
-            child: NumberPaginator(
-              controller: _controller,
-              numberPages: 10,
-              onPageChange: (index) {
-                _controller.navigateToPage(index);
-                setState(() {});
-              },
-              config: NumberPaginatorUIConfig(
-                buttonSelectedBackgroundColor: Themes.primary,
-                buttonUnselectedForegroundColor: Themes.third,
-              ),
-            ),
-          )
+          const FlightsList(),
+          const FlightsPagination()
         ],
       ),
     );

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/helpers/time_picker.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
+import 'package:intl/intl.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/all_flights_cubit/all_flights_cubit.dart';
 
 class TimeFilter extends StatefulWidget {
   const TimeFilter({super.key});
@@ -10,16 +14,36 @@ class TimeFilter extends StatefulWidget {
 }
 
 class _TimeFilterState extends State<TimeFilter> {
-  TimeOfDay startTime = TimeOfDay.now();
-  TimeOfDay endTime = const TimeOfDay(hour: 12, minute: 30);
+  String? startTime;
+  String? endTime;
+
+  @override
+  void initState() {
+    super.initState();
+    startTime = BlocProvider.of<AllFlightsCubit>(context).timeStart;
+    endTime = BlocProvider.of<AllFlightsCubit>(context).timeEnd;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'By Time',
-          style: Styles.heading2,
+        Row(
+          children: [
+            Text(
+              'By Time',
+              style: Styles.heading2,
+            ),
+            IconButton(
+              onPressed: restartTime,
+              icon: const Icon(
+                FontAwesomeIcons.repeat,
+                size: 16,
+                color: Colors.grey,
+              ),
+            ),
+          ],
         ),
         const SizedBox(height: 8),
         Row(
@@ -28,16 +52,20 @@ class _TimeFilterState extends State<TimeFilter> {
               onTap: () async {
                 TimeOfDay? pickedTime = await showCustomTimePicker(
                   context: context,
-                  initialTime: startTime,
+                  initialTime: TimeOfDay.now(),
                 );
                 if (pickedTime != null) {
+                  String formattedTime = formatTime(pickedTime);
                   setState(() {
-                    startTime = pickedTime;
+                    startTime = formattedTime;
+                    BlocProvider.of<AllFlightsCubit>(context).timeStart =
+                        startTime;
                   });
                 }
               },
               child: Text(
-                '${startTime.hour}:${startTime.minute}',
+                // '${startTime.hour}:${startTime.minute}',
+                startTime ?? '00:00',
                 style: Styles.content.copyWith(fontSize: 24),
               ),
             ),
@@ -53,16 +81,19 @@ class _TimeFilterState extends State<TimeFilter> {
               onTap: () async {
                 TimeOfDay? pickedTime = await showCustomTimePicker(
                   context: context,
-                  initialTime: endTime,
+                  initialTime: const TimeOfDay(hour: 1, minute: 40),
                 );
                 if (pickedTime != null) {
+                  String formattedTime = formatTime(pickedTime);
                   setState(() {
-                    endTime = pickedTime;
+                    endTime = formattedTime;
+                    BlocProvider.of<AllFlightsCubit>(context).timeEnd = endTime;
                   });
                 }
               },
               child: Text(
-                '${startTime.hour}:${startTime.minute}',
+                // '${startTime.hour}:${startTime.minute}',
+                endTime ?? '00:00',
                 style: Styles.content.copyWith(fontSize: 24),
               ),
             ),
@@ -70,5 +101,26 @@ class _TimeFilterState extends State<TimeFilter> {
         ),
       ],
     );
+  }
+
+  String formatTime(TimeOfDay pickedTime) {
+    // format time from 24-hour clock to 12-hour clock
+    DateTime now = DateTime.now();
+    DateTime selectedDateTime = DateTime(
+      now.year,
+      now.month,
+      now.day,
+      pickedTime.hour,
+      pickedTime.minute,
+    );
+    return DateFormat('hh:mm a').format(selectedDateTime);
+  }
+
+  void restartTime() {
+    BlocProvider.of<AllFlightsCubit>(context).timeStart = null;
+    BlocProvider.of<AllFlightsCubit>(context).timeEnd = null;
+    startTime = null;
+    endTime = null;
+    setState(() {});
   }
 }

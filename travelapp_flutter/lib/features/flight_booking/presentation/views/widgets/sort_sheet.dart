@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/all_flights_cubit/all_flights_cubit.dart';
+
 class SortSheet extends StatefulWidget {
   const SortSheet({super.key});
 
@@ -12,20 +18,24 @@ class SortSheet extends StatefulWidget {
 
 class _SortSheetState extends State<SortSheet> {
   List<String> sortBy = [
-    'none',
     'time_asc',
     'time_desc',
     'price_asc',
-    'price_desc'
+    'price_desc',
   ];
   List<String> titles = [
-    'None',
     'Time: Close to Far',
     'Time: Far to Close',
     'Price: Low to High',
     'Price: High to Low',
   ];
-  String currentSortBy = 'none';
+  String? currentSortBy;
+  @override
+  void initState() {
+    super.initState();
+    currentSortBy = BlocProvider.of<AllFlightsCubit>(context).sortBy;
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomSheet(
@@ -33,11 +43,27 @@ class _SortSheetState extends State<SortSheet> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ...List.generate(5, (index) {
+          Row(
+            children: [
+              Text(
+                'Sort By',
+                style: Styles.heading2,
+              ),
+              IconButton(
+                onPressed: restartSorting,
+                icon: const Icon(
+                  FontAwesomeIcons.repeat,
+                  size: 16,
+                  color: Colors.grey,
+                ),
+              ),
+            ],
+          ),
+          ...List.generate(sortBy.length, (index) {
             return RadioListTile(
                 title: Text(
                   titles[index],
-                  style: Styles.content.copyWith(color: Themes.primary),
+                  style: Styles.content.copyWith(color: Colors.grey),
                 ),
                 selected: currentSortBy == sortBy[index],
                 activeColor: Themes.third,
@@ -46,6 +72,8 @@ class _SortSheetState extends State<SortSheet> {
                 onChanged: (value) {
                   setState(() {
                     currentSortBy = value.toString();
+                    BlocProvider.of<AllFlightsCubit>(context).sortBy =
+                        currentSortBy;
                   });
                 });
           }),
@@ -53,23 +81,41 @@ class _SortSheetState extends State<SortSheet> {
           SizedBox(
             width: double.infinity,
             child: CustomButton(
-              onPressed: () {},
+              onPressed: applySorting,
               label: 'Apply Sorting',
             ),
           ),
         ],
-        // const PriceSort(),
-        // const SizedBox(height: 24),
-        // const TimeSort(),
-        // const Spacer(flex: 1),
-        // SizedBox(
-        //   width: double.infinity,
-        //   child: CustomButton(
-        //     onPressed: () {},
-        //     label: 'Apply Sorting',
-        //   ),
-        // ),
       ),
     );
+  }
+
+  Future<void> applySorting() async {
+    Get.back();
+    final flightsCubit = BlocProvider.of<AllFlightsCubit>(context);
+    if (flightsCubit.isTwoWay) {
+      await flightsCubit.getAllTwoWayFlights(
+        source: 'Venezuela',
+        destination: 'Russia',
+        date: '06/05/2024',
+        seats: 1,
+        seatsClass: 'A',
+        dateEnd: '10/05/2024',
+      );
+    } else {
+      await flightsCubit.getAllOneWayFlights(
+        source: 'United States',
+        destination: 'Russia',
+        date: '09/05/2024',
+        seats: 1,
+        seatsClass: 'A',
+      );
+    }
+  }
+
+  void restartSorting() {
+    currentSortBy = null;
+    BlocProvider.of<AllFlightsCubit>(context).sortBy = null;
+    setState(() {});
   }
 }
