@@ -6,6 +6,7 @@ import 'package:travelapp_flutter/features/flight_booking/data/models/two_way_fl
 abstract class FlightBookingRepo {
   Future<Either<Failure, Map<String, dynamic>>> getFlightReservationData(
       {required String id});
+<<<<<<< HEAD
   Future<Either<Failure, List<OneWayFlightModel>>> getAllOneWayFlights({
     required String source,
     required String destination,
@@ -37,4 +38,11 @@ abstract class FlightBookingRepo {
     String? maxPrice,
     int? page,
   });
+=======
+
+  Future<Either<Failure, Map<String, dynamic>>> postRservationConfirmation(
+      {required String id});
+
+  
+>>>>>>> 8347de67f3f82d9510092df9382981cc1c16f338
 }

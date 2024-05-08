@@ -1,41 +1,58 @@
 import 'package:dio/dio.dart';
+import 'package:travelapp_flutter/core/utils/constants.dart';
 
 abstract class Failure {}
 
 class ServerFailure extends Failure {
   final String errMessage;
-
-  ServerFailure({required this.errMessage});
+  final DioExceptionType ?errType;
+  ServerFailure({required this.errMessage,  this.errType});
 
   factory ServerFailure.fromDioException(DioException dioException) {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
-        return ServerFailure(errMessage: 'Connection timeout');
+        return ServerFailure(
+            errMessage: kInternetMessage,
+            errType: DioExceptionType.connectionTimeout);
       case DioExceptionType.sendTimeout:
-        return ServerFailure(errMessage: 'Send timeout');
+        return ServerFailure(
+            errMessage: kInternetMessage,
+            errType: DioExceptionType.sendTimeout);
       case DioExceptionType.receiveTimeout:
-        return ServerFailure(errMessage: 'Receive timeout');
+        return ServerFailure(
+            errMessage: kInternetMessage,
+            errType: DioExceptionType.receiveTimeout);
       case DioExceptionType.badCertificate:
-        return ServerFailure(errMessage: 'Bad Certificate');
+        return ServerFailure(
+          errMessage: kWrongMessage,
+          errType: DioExceptionType.badCertificate,
+        );
       case DioExceptionType.badResponse:
         return ServerFailure.fromBadResponse(
           dioException.response!.statusCode,
           dioException.response!.data,
         );
       case DioExceptionType.cancel:
-        return ServerFailure(errMessage: 'Request canceled');
+        return ServerFailure(
+            errMessage: kWrongMessage, errType: DioExceptionType.cancel);
       case DioExceptionType.connectionError:
-        return ServerFailure(errMessage: 'No internet connection');
+        return ServerFailure(
+            errMessage: kInternetMessage,
+            errType: DioExceptionType.connectionError);
       case DioExceptionType.unknown:
-        return ServerFailure(errMessage: 'No internet connection');
+        return ServerFailure(
+            errMessage: kInternetMessage,
+            errType: DioExceptionType.connectionError);
     }
   }
 
   factory ServerFailure.fromBadResponse(int? statusCode, dynamic data) {
     if (statusCode == 404) {
-      return ServerFailure(errMessage: data);
+      return ServerFailure(
+          errMessage: data, errType: DioExceptionType.badResponse);
     } else {
-      return ServerFailure(errMessage: data['message']);
+      return ServerFailure(
+          errMessage: data['message'], errType: DioExceptionType.badResponse);
     }
   }
 }

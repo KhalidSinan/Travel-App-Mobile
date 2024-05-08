@@ -17,4 +17,6 @@ Future<void> setup() async {
   ));
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   getIt.registerSingleton<SharedPreferences>(prefs);
+  getIt.registerSingleton<FlightBookingImp>(
+      FlightBookingImp(getIt.get<ApiService>()));
 }

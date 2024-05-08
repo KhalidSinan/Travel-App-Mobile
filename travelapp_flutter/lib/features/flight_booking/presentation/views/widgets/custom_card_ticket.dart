@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+<<<<<<< HEAD
+=======
+import 'package:travelapp_flutter/features/flight_booking/data/models/flight_model.dart';
+
+>>>>>>> 8347de67f3f82d9510092df9382981cc1c16f338
 class CardTicket extends StatelessWidget {
   const CardTicket({
     super.key,
+    required this.flight,
   });
-
+  final FlightModel? flight;
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -27,10 +33,10 @@ class CardTicket extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Flexible(
+            Flexible(
               child: AutoSizeText(
-                "Syrian Airlines",
-                style: TextStyle(color: Colors.white),
+                ' ${flight!.airline}',
+                style: const TextStyle(color: Colors.white),
                 softWrap: true,
                 maxLines: 1,
                 minFontSize: 9,
@@ -45,10 +51,10 @@ class CardTicket extends StatelessWidget {
               "Departure",
               style: TextStyle(color: Colors.white54, fontSize: 12),
             ),
-            const Flexible(
+            Flexible(
               child: AutoSizeText(
-                "Aleppo International Airport",
-                style: TextStyle(color: Colors.white),
+                flight!.source.name,
+                style: const TextStyle(color: Colors.white),
                 softWrap: true,
                 maxLines: 1,
                 minFontSize: 9,
@@ -59,17 +65,17 @@ class CardTicket extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Syria",
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+                  flight!.source.country,
+                  style: const TextStyle(color: Colors.white, fontSize: 15),
                 ),
                 Text(
-                  "2023/12/31",
-                  style: TextStyle(fontSize: 15, color: Colors.white),
+                  flight!.departure.date,
+                  style: const TextStyle(fontSize: 15, color: Colors.white),
                 ),
               ],
             ),
@@ -86,10 +92,10 @@ class CardTicket extends StatelessWidget {
               "Arrival",
               style: TextStyle(color: Colors.white54, fontSize: 12),
             ),
-            const Flexible(
+            Flexible(
               child: AutoSizeText(
-                "jeju International Airport",
-                style: TextStyle(color: Colors.white),
+                flight!.destination.name,
+                style: const TextStyle(color: Colors.white),
                 softWrap: true,
                 maxLines: 1,
                 minFontSize: 9,
@@ -100,17 +106,17 @@ class CardTicket extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Korea",
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+                  flight!.destination.country,
+                  style: const TextStyle(color: Colors.white, fontSize: 15),
                 ),
                 Text(
-                  "2024/12/2",
-                  style: TextStyle(fontSize: 15, color: Colors.white),
+                  flight!.arrival.date,
+                  style: const TextStyle(fontSize: 15, color: Colors.white),
                 ),
               ],
             ),
@@ -123,9 +129,9 @@ class CardTicket extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                       children: [
-                        WidgetSpan(
+                        const WidgetSpan(
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 2.0),
                             child: Icon(
@@ -136,15 +142,15 @@ class CardTicket extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                            text: ' 3h ',
-                            style:
-                                TextStyle(fontSize: 20, color: Colors.white)),
+                            text: flight!.duration,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white)),
                       ],
                     ),
                   ),
-                  const Text(
-                    "3000 \$",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  Text(
+                    "${flight!.flightPrice}\$",
+                    style: const TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ],
               ),
@@ -155,138 +161,3 @@ class CardTicket extends StatelessWidget {
     );
   }
 }
-
-//Departure
-//Arrival
-
-// return SliverList.separated(
-//   separatorBuilder: (context, index) => const Padding(
-//     padding: EdgeInsets.symmetric(vertical: 8),
-//     child: Divider(
-//       thickness: 1,
-//       height: 700,
-//     ),
-//   ),
-//   itemCount: 2,
-//   itemBuilder: (context, index) =>
-
-//  Container(
-//   padding: const EdgeInsets.all(10),
-//   height: screenHeight * 0.3,
-//   width: screenWidth,
-//   decoration: const BoxDecoration(
-//     image: DecorationImage(
-//         opacity: 0.8,
-//         image: AssetImage("assets/images/skycloud.jpg"),
-//         fit: BoxFit.cover),
-//     borderRadius: BorderRadius.only(
-//         bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25)),
-//   ),
-//   child: const Padding(
-//     padding: EdgeInsets.all(16),
-//     child: Column(
-//       mainAxisAlignment: MainAxisAlignment.start,
-//       children: [
-//         Flexible(
-//           child: AutoSizeText(
-//             "Syrian Airlines",
-//             style: TextStyle(fontSize: 12, color: Colors.white),
-//             softWrap: true,
-//             maxLines: 3,
-//             minFontSize: 9,
-//             overflow: TextOverflow.ellipsis,
-//           ),
-//         ),
-//         Padding(
-//           padding: EdgeInsets.symmetric(vertical: 8),
-//           child: Column(
-//             children: [
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [
-//                   Text(
-//                     "src",
-//                     style: TextStyle(fontSize: 15, color: Colors.white54),
-//                   ),
-//                   Text(
-//                     "des",
-//                     style: TextStyle(fontSize: 15, color: Colors.white54),
-//                   ),
-//                 ],
-//               ),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [
-//                   Text(
-//                     "syria",
-//                     style: TextStyle(fontSize: 20, color: Colors.white),
-//                   ),
-//                   Text(
-//                     "korea",
-//                     style: TextStyle(fontSize: 20, color: Colors.white),
-//                   ),
-//                 ],
-//               ),
-//               SizedBox(
-//                 height: 8,
-//               ),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [
-//                   Flexible(
-//                     child: AutoSizeText(
-//                       "Aleppo International Airport",
-//                       maxFontSize: 11,
-//                       softWrap: true,
-//                       maxLines: 1,
-//                       minFontSize: 9,
-//                       overflow: TextOverflow.ellipsis,
-//                       style: TextStyle(color: Colors.white),
-//                     ),
-//                   ),
-//                   VerticalDivider(),
-//                   Flexible(
-//                     child: AutoSizeText(
-//                       "Jeju International Airport",
-//                       maxFontSize: 11,
-//                       softWrap: true,
-//                       maxLines: 1,
-//                       minFontSize: 9,
-//                       overflow: TextOverflow.ellipsis,
-//                       style: TextStyle(color: Colors.white),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               SizedBox(
-//                 height: 16,
-//               ),
-//               Divider(),
-//               SizedBox(
-//                 height: 24,
-//               ),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   Text(
-//                     "2023/12/31",
-//                     style: TextStyle(fontSize: 18, color: Colors.white),
-//                   ),
-//                   Text(
-//                     "5:30 am",
-//                     style: TextStyle(fontSize: 18, color: Colors.white),
-//                   ),
-//                 ],
-//               )
-//             ],
-//           ),
-//         )
-//       ],
-//     ),
-//   ),
-//   // ),
-// );

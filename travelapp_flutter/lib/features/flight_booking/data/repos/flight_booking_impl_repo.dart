@@ -16,20 +16,24 @@ class FlightBookingImp extends FlightBookingRepo {
   Future<Either<Failure, Map<String, dynamic>>> getFlightReservationData(
       {required String id}) async {
     try {
-      Map<String, dynamic> response = await apiService.get(
-        endPoint: "/flights/reservation/6623902d1ead5ad33f574672",
-      );
+      Map<String, dynamic> response =
+          await apiService.get(endPoint: "/flights/reservation/$id", headers: {
+        "Authorization":
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MWJhYTgwNGQ1NTA3MjE4YzA4MDBlNiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTMwOTk4NDZ9.y9k9h-gzNgpPSAxsu72SYC5LrOG0cJ8ACRG9P5ZiG4M",
+        "Content-Type": "application/json"
+      });
       return right(response);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        return left(ServerFailure(errMessage: 'Something went wrong'));
+        return left(ServerFailure(errMessage: 'Something went wrong', ));
       }
     }
   }
 
   @override
+<<<<<<< HEAD
   Future<Either<Failure, List<OneWayFlightModel>>> getAllOneWayFlights({
     required String source,
     required String destination,
@@ -72,16 +76,31 @@ class FlightBookingImp extends FlightBookingRepo {
         flights.add(OneWayFlightModel.fromJson(response['data'][i]['flight']));
       }
       return right(flights);
+=======
+  Future<Either<Failure, Map<String, dynamic>>> postRservationConfirmation(
+      {required String id}) async {
+    try {
+      Map<String, dynamic> response =
+          await apiService.post(endPoint: "/flights/confirm", body: {
+        "id": id,
+      });
+      return right(response);
+>>>>>>> 8347de67f3f82d9510092df9382981cc1c16f338
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
+<<<<<<< HEAD
         print(e.toString());
         return left(ServerFailure(errMessage: 'Something went wrong'));
+=======
+        return left(ServerFailure(errMessage: "Something went wrong"));
+>>>>>>> 8347de67f3f82d9510092df9382981cc1c16f338
       }
     }
   }
 
+<<<<<<< HEAD
   @override
   Future<Either<Failure, List<TwoWayFlightModel>>> getAllTwoWayFlights({
     required String source,
@@ -137,4 +156,11 @@ class FlightBookingImp extends FlightBookingRepo {
       }
     }
   }
+=======
+ 
+
+ 
+
+>>>>>>> 8347de67f3f82d9510092df9382981cc1c16f338
 }
+

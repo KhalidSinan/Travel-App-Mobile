@@ -8,24 +8,44 @@ class ConfirmFlightReservationCubit
     extends Cubit<ConfirmFlightReservationState> {
   ConfirmFlightReservationCubit(this.flightBookingImp)
       : super(InitialConfirmFlightReservationState());
+
   final FlightBookingImp flightBookingImp;
-  List<ReservationModel> reservation = [];
+
+  ReservationModel? reservation;
 
   Future<void> getFlightReservationData({required String idflight}) async {
     emit(LoadingConfirmFlightReservationState());
 
-    var response = await flightBookingImp.getFlightReservationData(
-        id: "6624c48b096e5ace72ea858f");
+    var response =
+        await flightBookingImp.getFlightReservationData(id: idflight);
+    print(response);
     response.fold(
-      (l) {
-        if (l is ServerFailure) {
+      (error) {
+        if (error is ServerFailure) {
           emit(FailureConfirmFlightReservationState(
-            errMessage: l.errMessage,
+          serverFailure: error
           ));
         }
       },
       (res) {
-        reservation.add(ReservationModel.fromJson(res['reservation']));
+        reservation = ReservationModel.fromJson(res['reservation']);
+        print(res['reservation']);
+        emit(SuccessConfirmFlightReservationState());
+      },
+    );
+  }
+
+  Future<void> postRservationConfirmation({required String id}) async {
+    emit(LoadingConfirmFlightReservationState());
+    var response = await flightBookingImp.postRservationConfirmation(id: id);
+    print(response);
+    response.fold(
+      (error) {
+        if (error is ServerFailure) {
+          emit(FailureConfirmFlightReservationState(serverFailure: error));
+        }
+      },
+      (res) {
         emit(SuccessConfirmFlightReservationState());
       },
     );
