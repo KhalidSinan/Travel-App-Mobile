@@ -1,9 +1,11 @@
+import 'package:travelapp_flutter/features/flight_booking/data/models/airline_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/country_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/passengers_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/trip_date_model.dart';
 
-class FlightModel {
-  final String airline;
+class OneWayFlightModel {
+  final String id;
+  final AirlineModel airline;
   final CountryModel source;
   final CountryModel destination;
   final DateInfo departure;
@@ -11,26 +13,31 @@ class FlightModel {
   final String duration;
   final PassengersModel? reservations;
   final double flightPrice;
-  FlightModel(
-      {required this.airline,
-      required this.source,
-      required this.destination,
-      required this.departure,
-      required this.arrival,
-      required this.duration,
-      required this.reservations,
-      required this.flightPrice});
+  OneWayFlightModel({
+    required this.id,
+    required this.airline,
+    required this.source,
+    required this.destination,
+    required this.departure,
+    required this.arrival,
+    required this.duration,
+    required this.reservations,
+    required this.flightPrice,
+  });
 
-  factory FlightModel.fromJson(jsonData) {
-    return FlightModel(
-        airline: jsonData['airline'],
+  factory OneWayFlightModel.fromJson(jsonData) {
+    return OneWayFlightModel(
+        id: jsonData['id'],
+        airline: AirlineModel.fromJson(jsonData['airline']),
         source: CountryModel.fromJson(jsonData['source']),
         destination: CountryModel.fromJson(jsonData['destination']),
         departure: DateInfo.fromJson(jsonData['departure_date']),
         arrival: DateInfo.fromJson(jsonData['arrival_date']),
         duration: jsonData['duration'],
-        reservations: PassengersModel.fromJson(jsonData['reservations']),
-        flightPrice: jsonData['flight_price']);
+        reservations: jsonData['reservations'] != null
+            ? PassengersModel.fromJson(jsonData['reservations'])
+            : null,
+        flightPrice: jsonData['price']);
   }
 }
 

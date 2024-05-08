@@ -29,12 +29,7 @@ class DateCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: isCurrent ? Themes.primary : Themes.third,
         borderRadius: BorderRadius.circular(radius),
-        border: isCurrent
-            ? Border.all(
-                color: Themes.third!,
-                width: 2,
-              )
-            : null,
+        border: getBorder(),
       ),
       child: Column(
         children: [
@@ -56,5 +51,14 @@ class DateCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Border? getBorder() {
+    return isCurrent
+        ? Border.all(
+            color: Themes.third!,
+            width: 2,
+          )
+        : null;
   }
 }

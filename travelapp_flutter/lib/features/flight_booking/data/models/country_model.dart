@@ -1,9 +1,7 @@
 class CountryModel {
-  final String name;
+  final String? name;
   final String city;
-  final String country;
-
-  CountryModel({required this.name, required this.city, required this.country});
+  final String? country;
 
   factory CountryModel.fromJson(jsonData) {
     return CountryModel(
@@ -11,4 +9,6 @@ class CountryModel {
         city: jsonData['city'],
         country: jsonData['country']);
   }
+
+  CountryModel({required this.name, required this.city, required this.country});
 }

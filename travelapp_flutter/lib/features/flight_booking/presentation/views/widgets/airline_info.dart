@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/features/flight_booking/data/models/airline_model.dart';
 
 class AirlineInfo extends StatelessWidget {
   const AirlineInfo({
     super.key,
-    required this.name,
+    required this.airline,
   });
-  final String name;
+  final AirlineModel airline;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CircleAvatar(
+        CircleAvatar(
           // backgroundColor: Colors.white,
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.transparent,
           radius: 20,
+          child: Image.network(airline.logo),
         ),
         const SizedBox(width: 8),
         Text(
-          name,
+          airline.name,
           style: const TextStyle(
             color: Colors.black,
           ),

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/all_flights_cubit/all_flights_cubit.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/all_flights_cubit/all_flights_states.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/all_flights_options.dart';
 
 class AllFlightsHeader extends StatelessWidget {
@@ -9,24 +12,30 @@ class AllFlightsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
+    return BlocBuilder<AllFlightsCubit, AllFlightsStates>(
+      builder: (context, state) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'All Flights',
-              style: Styles.heading,
+            Row(
+              children: [
+                Text(
+                  'All Flights',
+                  style: Styles.heading,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  '(${BlocProvider.of<AllFlightsCubit>(context).flights?.length ?? '??'})',
+                  style: Styles.subtitle,
+                ),
+              ],
             ),
-            const SizedBox(width: 8),
-            const Text(
-              '(14)',
-              style: Styles.subtitle,
-            ),
+            (state is LoadingGetAllFlightsState)
+                ? const SizedBox()
+                : const AllFlightsOptions()
           ],
-        ),
-        const AllFlightsOptions(),
-      ],
+        );
+      },
     );
   }
 }

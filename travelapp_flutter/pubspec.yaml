@@ -37,6 +37,7 @@ dependencies:
   dio: ^5.4.2
   firebase_auth: ^4.19.0
   firebase_core: ^2.28.0
+  firebase_messaging: ^14.9.1
   flutter:
     sdk: flutter
   flutter_animate: ^4.5.0
@@ -51,6 +52,7 @@ dependencies:
   lottie: ^3.1.0
   number_paginator: ^0.4.1
   shared_preferences: ^2.2.3
+  shimmer: ^3.0.0
 dev_dependencies:
   flutter_lints: ^3.0.0
   flutter_test:

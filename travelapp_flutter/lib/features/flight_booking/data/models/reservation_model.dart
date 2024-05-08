@@ -1,11 +1,11 @@
-import 'package:travelapp_flutter/features/flight_booking/data/models/flight_model.dart';
+import 'package:travelapp_flutter/features/flight_booking/data/models/one_way_flight_model.dart';
 
 class ReservationModel {
-  final FlightModel flight;
-  final int ?seat;
+  final OneWayFlightModel flight;
+  final int? seat;
   final bool reservationType;
   final double overallPrice;
-  final FlightModel? flightBack;
+  final OneWayFlightModel? flightBack;
 
   ReservationModel(
       {required this.flight,

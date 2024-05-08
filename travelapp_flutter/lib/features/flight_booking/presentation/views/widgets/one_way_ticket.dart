@@ -3,14 +3,17 @@ import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/dash_line_divider.dart';
+import 'package:travelapp_flutter/features/flight_booking/data/models/one_way_flight_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/airline_info.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/country_info.dart';
-import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/period_line.dart';
 import '../../../../../core/helpers/custom_ticket_shape.dart';
+
 class OneWayTicket extends StatelessWidget {
   const OneWayTicket({
     super.key,
+    required this.flight,
   });
+  final OneWayFlightModel flight;
 
   @override
   Widget build(BuildContext context) {
@@ -26,20 +29,43 @@ class OneWayTicket extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const AirlineInfo(name: 'Airline Name'),
-            const SizedBox(height: 16),
-            const Row(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CountryInfo(
-                  country: 'Khalid',
-                  date: '2024-5-12',
+                AirlineInfo(
+                  airline: flight.airline,
                 ),
-                PeriodLine(
-                  period: '2hr 30min',
+                Text(
+                  flight.duration,
+                  style: Styles.subtitle.copyWith(
+                    // color: Colors.white54,
+                    color: Colors.black54,
+                  ),
                 ),
-                CountryInfo(
-                  country: 'Home',
-                  date: '2024-5-13',
+              ],
+            ),
+            const SizedBox(height: 16),
+            CountryInfo(
+              source: flight.source.city,
+              destination: flight.destination.city,
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  flight.departure.date,
+                  style: Styles.subtitle.copyWith(
+                    // color: Colors.white54,
+                    color: Colors.black54,
+                  ),
+                ),
+                Text(
+                  flight.arrival.date,
+                  style: Styles.subtitle.copyWith(
+                    // color: Colors.white54,
+                    color: Colors.black54,
+                  ),
                 ),
               ],
             ),
@@ -50,15 +76,18 @@ class OneWayTicket extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '6:00PM',
+                  flight.departure.time!,
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.grey[700],
                   ),
                 ),
                 Text(
-                  '900\$',
-                  style: Styles.heading.copyWith(fontSize: 24),
+                  '${flight.flightPrice}\$',
+                  style: Styles.heading.copyWith(
+                    fontSize: 24,
+                    color: Themes.third,
+                  ),
                 ),
               ],
             )
