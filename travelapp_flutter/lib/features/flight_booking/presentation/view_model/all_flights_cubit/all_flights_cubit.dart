@@ -1,20 +1,177 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelapp_flutter/core/helpers/failure.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/all_flights_cubit/all_flights_states.dart';
 
 class AllFlightsCubit extends Cubit<AllFlightsStates> {
   AllFlightsCubit(this._flightBookingImp) : super(InitialAllFlightsState());
   final FlightBookingImp _flightBookingImp;
+
   List<dynamic>? flights;
-  bool isTwoWay = false;
+  bool? isTwoWay;
+  String? source;
+  String? destination;
+  int? seats;
+  String? seatsClass;
   String? departureDate;
+  String? dateEnd;
   String? sortBy; // eg. time_asc , price_desc
   String? timeStart;
   String? timeEnd;
   String? airline;
+  int page = 1;
+  late int totalFlights;
+  late List<dynamic> airlines;
   RangeValues prices = const RangeValues(0, 3000);
+
+  void initialize(
+    List<dynamic> flights,
+    List<dynamic> airlines,
+    bool isTwoWay,
+    String departureDate,
+    String source,
+    String destination,
+    int seats,
+    String seatsClass,
+    String? dateEnd,
+  ) {
+    this.flights = flights;
+    this.airlines = airlines;
+    this.isTwoWay = isTwoWay;
+    this.departureDate = departureDate;
+    this.source = source;
+    this.destination = destination;
+    this.seats = seats;
+    this.seatsClass = seatsClass;
+    this.dateEnd = dateEnd;
+    totalFlights = flights.length;
+    emit(SuccessGetAllFlightsState());
+  }
+
+  Future<void> changeDate(String sendDate) async {
+    departureDate = sendDate;
+    page = 1;
+    restartSortingAndFiltering();
+    if (isTwoWay!) {
+      await getAllTwoWayFlights(
+        source: source!,
+        destination: destination!,
+        date: sendDate,
+        seats: seats!,
+        seatsClass: seatsClass!,
+        dateEnd: dateEnd!,
+      );
+    } else {
+      await getAllOneWayFlights(
+        source: source!,
+        destination: destination!,
+        date: sendDate,
+        seats: seats!,
+        seatsClass: seatsClass!,
+      );
+    }
+  }
+
+  void restartSortingAndFiltering() {
+    sortBy = null;
+    timeStart = null;
+    timeEnd = null;
+    airline = null;
+    prices = const RangeValues(0, 3000);
+  }
+
+  Future<void> applySorting() async {
+    if (isTwoWay!) {
+      await getAllTwoWayFlights(
+        source: source!,
+        destination: destination!,
+        date: departureDate!,
+        seats: seats!,
+        seatsClass: seatsClass!,
+        dateEnd: dateEnd!,
+        page: page,
+      );
+    } else {
+      await getAllOneWayFlights(
+        source: source!,
+        destination: destination!,
+        date: departureDate!,
+        seats: seats!,
+        seatsClass: seatsClass!,
+        page: page,
+      );
+    }
+  }
+
+  Future<void> changePage(int page) async {
+    this.page = page;
+    if (isTwoWay!) {
+      await getAllTwoWayFlights(
+        source: source!,
+        destination: destination!,
+        date: departureDate!,
+        seats: seats!,
+        seatsClass: seatsClass!,
+        dateEnd: dateEnd!,
+        page: page,
+      );
+    } else {
+      await getAllOneWayFlights(
+        source: source!,
+        destination: destination!,
+        date: departureDate!,
+        seats: seats!,
+        seatsClass: seatsClass!,
+        page: page,
+      );
+    }
+  }
+
+  Future<void> applyFiltering() async {
+    if (isTwoWay!) {
+      await getAllTwoWayFlights(
+        source: source!,
+        destination: destination!,
+        date: departureDate!,
+        seats: seats!,
+        seatsClass: seatsClass!,
+        dateEnd: dateEnd!,
+        page: page,
+      );
+    } else {
+      await getAllOneWayFlights(
+        source: source!,
+        destination: destination!,
+        date: departureDate!,
+        seats: seats!,
+        seatsClass: seatsClass!,
+        page: page,
+        // dateEnd: '09/05/2024',
+      );
+    }
+  }
+
+  Future<void> retry() async {
+    if (isTwoWay!) {
+      await getAllTwoWayFlights(
+        source: source!,
+        destination: destination!,
+        date: departureDate!,
+        seats: seats!,
+        seatsClass: seatsClass!,
+        dateEnd: dateEnd!,
+        page: page,
+      );
+    } else {
+      await getAllOneWayFlights(
+        source: source!,
+        destination: destination!,
+        date: departureDate!,
+        seats: seats!,
+        seatsClass: seatsClass!,
+      );
+    }
+  }
 
   Future<void> getAllOneWayFlights({
     required String source,
@@ -24,7 +181,6 @@ class AllFlightsCubit extends Cubit<AllFlightsStates> {
     required String seatsClass,
     int? page,
   }) async {
-    isTwoWay = false;
     emit(LoadingGetAllFlightsState());
     var response = await _flightBookingImp.getAllOneWayFlights(
       source: source,
@@ -42,15 +198,16 @@ class AllFlightsCubit extends Cubit<AllFlightsStates> {
       page: page,
     );
     response.fold(
-      (l) {
-        if (l is ServerFailure) {
-          print(l.errMessage);
-          emit(FailureGetAllFlightsState(errMessage: l.errMessage));
-        }
+      (failure) {
+        print(failure.errMessage);
+        emit(FailureGetAllFlightsState(failure: failure));
       },
       (allFlights) {
         flights = allFlights;
-        departureDate = date;
+        if (page == null) {
+          totalFlights = flights!.length;
+        }
+        print(flights!.length);
         if (flights!.isEmpty) {
           emit(NoFlightsState());
         } else {
@@ -69,7 +226,6 @@ class AllFlightsCubit extends Cubit<AllFlightsStates> {
     required String dateEnd,
     int? page,
   }) async {
-    isTwoWay = true;
     emit(LoadingGetAllFlightsState());
     var response = await _flightBookingImp.getAllTwoWayFlights(
       source: source,
@@ -88,15 +244,15 @@ class AllFlightsCubit extends Cubit<AllFlightsStates> {
       page: page,
     );
     response.fold(
-      (l) {
-        if (l is ServerFailure) {
-          print(l.errMessage);
-          emit(FailureGetAllFlightsState(errMessage: l.errMessage));
-        }
+      (failure) {
+        print(failure.errMessage);
+        emit(FailureGetAllFlightsState(failure: failure));
       },
       (allFlights) {
         flights = allFlights;
-        departureDate = date;
+        if (page == null) {
+          totalFlights = flights!.length;
+        }
         if (flights!.isEmpty) {
           emit(NoFlightsState());
         } else {
