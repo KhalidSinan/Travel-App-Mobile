@@ -35,7 +35,7 @@ class _FetchProfileDataPageState extends State<FetchProfileDataPage> {
       body: BlocListener<ProfileCubit, ProfileStates>(
         listener: (context, state) {
           if (state is GetDataFailure) {
-            showCustomSnackBar(title: 'Error', message: state.errMessage);
+            showCustomSnackBar(title: 'Error', message: state.failure.errMessage);
             Get.off(() => const LoginPage());
           }
           if (state is GetDataSuccess) {

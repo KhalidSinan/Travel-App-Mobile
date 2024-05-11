@@ -3,4 +3,7 @@ class Assets {
   static String nature2 = 'assets/images/nature-2.jpg';
   static String nature3 = 'assets/images/nature-3.jpg';
   static String google = 'assets/images/google.png';
+  static String greenSky = "assets/images/green_sky.png";
+  static String noInterent = "assets/images/no-internet.jpg";
+  static String somethingWrong = "assets/images/something-wrong.jpg";
 }

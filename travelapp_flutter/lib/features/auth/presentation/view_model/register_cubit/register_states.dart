@@ -1,3 +1,5 @@
+import 'package:travelapp_flutter/core/helpers/failure.dart';
+
 abstract class RegistersStates {}
 
 class InitialRegisterState extends RegistersStates {}
@@ -7,8 +9,7 @@ class LoadingRegisterState extends RegistersStates {}
 class SuccessRegisterState extends RegistersStates {}
 
 class FailureRegisterState extends RegistersStates {
-  final String errMessage;
-  final String? errTitle;
+  final Failure failure;
 
-  FailureRegisterState({required this.errMessage, this.errTitle});
+  FailureRegisterState({required this.failure});
 }

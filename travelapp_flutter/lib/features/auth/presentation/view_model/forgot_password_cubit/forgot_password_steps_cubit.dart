@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelapp_flutter/core/helpers/failure.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/forgot_password_cubit/forgot_password_steps_states.dart';
 
@@ -11,10 +10,8 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordStepsState> {
     emit(LoadingStepState());
     var response = await _authRepoImpl.fogotPassword(email: email);
     response.fold(
-      (l) {
-        if (l is ServerFailure) {
-          emit(FailureStepState(errMessage: l.errMessage));
-        }
+      (failure) {
+        emit(FailureStepState(failure: failure));
       },
       (r) {
         emit(SuccessStepState());
@@ -36,10 +33,8 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordStepsState> {
       email: email,
     );
     response.fold(
-      (l) {
-        if (l is ServerFailure) {
-          emit(FailureStepState(errMessage: l.errMessage));
-        }
+      (failure) {
+        emit(FailureStepState(failure: failure));
       },
       (res) {
         emit(FinalStepState(message: res['message']));

@@ -16,6 +16,18 @@ class Themes {
       ),
     ),
   );
+  static ThemeData datePickerTheme = ThemeData.light().copyWith(
+    colorScheme: ColorScheme.light(
+      primary: Themes.primary,
+      onSurface: Themes.primary,
+    ),
+    // button colors
+    buttonTheme: ButtonThemeData(
+      colorScheme: ColorScheme.light(
+        primary: Themes.primary,
+      ),
+    ),
+  );
 }
 
 

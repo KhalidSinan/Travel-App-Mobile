@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelapp_flutter/core/helpers/failure.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_states.dart';
 
@@ -24,13 +23,8 @@ class RegisterCubit extends Cubit<RegistersStates> {
       confirmPassword: confirmPassword,
     );
     response.fold(
-      (l) {
-        if (l is RegisterFailure) {
-          emit(FailureRegisterState(
-            errMessage: l.errMessage,
-            errTitle: l.errTitle,
-          ));
-        }
+      (failure) {
+        emit(FailureRegisterState(failure: failure));
       },
       (r) {
         emit(SuccessRegisterState());

@@ -83,7 +83,8 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
 
   void emailConfirmListener(context, state) async {
     if (state is FailureEmailConfirmState) {
-      showCustomSnackBar(title: 'Verify Error', message: state.errMessage);
+      showCustomSnackBar(
+          title: 'Verify Error', message: state.failure.errMessage);
     }
     if (state is SuccessEmailConfirmState) {
       // showCustomSnackBar(title: 'Success', message: 'Registered successfully');

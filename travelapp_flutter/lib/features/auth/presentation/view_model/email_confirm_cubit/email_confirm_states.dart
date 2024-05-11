@@ -1,3 +1,5 @@
+import 'package:travelapp_flutter/core/helpers/failure.dart';
+
 abstract class EmailConfirmStates {}
 
 class InitialEmailConfirmState extends EmailConfirmStates {}
@@ -7,8 +9,7 @@ class LoadingEmailConfirmState extends EmailConfirmStates {}
 class SuccessEmailConfirmState extends EmailConfirmStates {}
 
 class FailureEmailConfirmState extends EmailConfirmStates {
-  final String errMessage;
-  final String? errTitle;
+  final Failure failure;
 
-  FailureEmailConfirmState({required this.errMessage, this.errTitle});
+  FailureEmailConfirmState({required this.failure});
 }
