@@ -37,4 +37,30 @@ abstract class FlightBookingRepo {
     String? maxPrice,
     int? page,
   });
+  Future<Either<Failure, Map<String, dynamic>>> getCountriesAndAirlines();
+
+  Future<Either<Failure, Map<String, dynamic>>> postSearchFlight(
+      {required String source,
+      required String destination,
+      required String date,
+      required String? dateEnd,
+      required bool twoWay,
+      required String classOfSeats,
+      required String numOfSeats});
+
+  Future<Either<Failure, Map<String, dynamic>>> getFlightDetails(
+      {required String id, required String classType, String? idback});
+
+  Future<Either<Failure, Map<String, dynamic>>> makeReservation(
+      {required List<String> flights,
+      required List<Map<String, String>> reservations,
+      required String reservationType});
+
+  Future<Either<Failure, Map<String, dynamic>>> postReservationConfirmation(
+      {required String id});
+
+  Future<Either<Failure, Map<String, dynamic>>> cancelReservation({
+    required String reserveId,
+    required String personId,
+  });
 }
