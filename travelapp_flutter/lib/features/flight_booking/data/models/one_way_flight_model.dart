@@ -1,10 +1,10 @@
 import 'package:travelapp_flutter/features/flight_booking/data/models/airline_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/country_model.dart';
-import 'package:travelapp_flutter/features/flight_booking/data/models/passengers_model.dart';
+import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/trip_date_model.dart';
 
 class OneWayFlightModel {
-  final String id;
+  final String? id;
   final AirlineModel airline;
   final CountryModel source;
   final CountryModel destination;
@@ -27,7 +27,16 @@ class OneWayFlightModel {
 
 <<<<<<< HEAD:travelapp_flutter/lib/features/flight_booking/data/models/one_way_flight_model.dart
   factory OneWayFlightModel.fromJson(jsonData) {
+    List<PassengerModel>? reservations;
+    if (jsonData['reservations'] != null) {
+      reservations = [];
+      for (int i = 0; i < jsonData['reservations'].length; i++) {
+        reservations.add(PassengerModel.fromJson(jsonData['reservations'][i]));
+        print(reservations[i]);
+      }
+    }
     return OneWayFlightModel(
+<<<<<<< HEAD
         id: jsonData['id'],
         airline: AirlineModel.fromJson(jsonData['airline']),
 =======
@@ -57,5 +66,17 @@ class OneWayFlightModel {
         reservations: reservations,
         flightPrice: jsonData['flight_price']);
 >>>>>>> 8347de67f3f82d9510092df9382981cc1c16f338:travelapp_flutter/lib/features/flight_booking/data/models/flight_model.dart
+=======
+      id: jsonData['id'],
+      airline: AirlineModel.fromJson(jsonData['airline']),
+      source: CountryModel.fromJson(jsonData['source']),
+      destination: CountryModel.fromJson(jsonData['destination']),
+      departure: DateInfo.fromJson(jsonData['departure_date']),
+      arrival: DateInfo.fromJson(jsonData['arrival_date']),
+      duration: jsonData['duration'],
+      reservations: reservations,
+      flightPrice: jsonData['price'] ?? jsonData['flight_price'],
+    );
+>>>>>>> Khalid
   }
 }

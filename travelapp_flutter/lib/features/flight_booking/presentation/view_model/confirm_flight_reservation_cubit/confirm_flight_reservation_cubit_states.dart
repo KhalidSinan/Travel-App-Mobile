@@ -1,3 +1,4 @@
+import 'package:travelapp_flutter/core/helpers/failure.dart';
 
 import 'package:travelapp_flutter/core/helpers/failure.dart';
 
@@ -16,7 +17,12 @@ class LoadingConfirmFlightReservationState
 
 class FailureConfirmFlightReservationState
     extends ConfirmFlightReservationState {
+<<<<<<< HEAD
  final ServerFailure serverFailure;
   FailureConfirmFlightReservationState(
       {required this.serverFailure});
+=======
+  final Failure failure;
+  FailureConfirmFlightReservationState({required this.failure});
+>>>>>>> Khalid
 }

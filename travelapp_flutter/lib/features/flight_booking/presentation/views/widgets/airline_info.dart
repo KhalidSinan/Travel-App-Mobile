@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/airline_model.dart';
 
 class AirlineInfo extends StatelessWidget {
@@ -14,15 +15,19 @@ class AirlineInfo extends StatelessWidget {
       children: [
         CircleAvatar(
           // backgroundColor: Colors.white,
-          backgroundColor: Colors.transparent,
+          // backgroundColor: Colors.transparent,
           radius: 20,
-          child: Image.network(airline.logo),
+          backgroundImage: NetworkImage(airline.logo!),
         ),
         const SizedBox(width: 8),
-        Text(
-          airline.name,
-          style: const TextStyle(
-            color: Colors.black,
+        SizedBox(
+          width: 200,
+          child: Text(
+            airline.name,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              color: Colors.black,
+            ),
           ),
         ),
       ],

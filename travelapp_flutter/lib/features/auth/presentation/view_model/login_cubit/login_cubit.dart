@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:travelapp_flutter/core/helpers/failure.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
@@ -22,13 +21,8 @@ class LoginCubit extends Cubit<LoginStates> {
       password: password,
     );
     response.fold(
-      (l) {
-        if (l is LoginFailure) {
-          emit(FailureLoginState(
-            errMessage: l.errMessage,
-            errTitle: l.errTitle,
-          ));
-        }
+      (failure) {
+        emit(FailureLoginState(failure: failure));
       },
       (res) async {
         await rememberUser();

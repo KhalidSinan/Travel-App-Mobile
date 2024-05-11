@@ -47,24 +47,6 @@ class _FilterSheetState extends State<FilterSheet> {
 
   Future<void> applyFilters() async {
     Get.back();
-    final flightsCubit = BlocProvider.of<AllFlightsCubit>(context);
-    if (flightsCubit.isTwoWay) {
-      await flightsCubit.getAllTwoWayFlights(
-        source: 'Venezuela',
-        destination: 'Russia',
-        date: '06/05/2024',
-        seats: 1,
-        seatsClass: 'A',
-        dateEnd: '10/05/2024',
-      );
-    } else {
-      await flightsCubit.getAllOneWayFlights(
-        source: 'United States',
-        destination: 'Russia',
-        date: '09/05/2024',
-        seats: 1,
-        seatsClass: 'A',
-      );
-    }
+    await BlocProvider.of<AllFlightsCubit>(context).applyFiltering();
   }
 }

@@ -122,7 +122,7 @@ class _ForgotPasswordPageBodyState extends State<ForgotPasswordPageBody> {
 
   void forgotPasswordListener(context, state) {
     if (state is FailureStepState) {
-      showCustomSnackBar(title: 'Error', message: state.errMessage);
+      showCustomSnackBar(title: 'Error', message: state.failure.errMessage);
     }
     if (state is SuccessStepState) {
       setState(() => currentStep++);

@@ -1,3 +1,5 @@
+import 'package:travelapp_flutter/core/helpers/failure.dart';
+
 abstract class ForgotPasswordStepsState {}
 
 class InitialStepState extends ForgotPasswordStepsState {}
@@ -13,7 +15,7 @@ class FinalStepState extends ForgotPasswordStepsState {
 }
 
 class FailureStepState extends ForgotPasswordStepsState {
-  final String errMessage;
+  final Failure failure;
 
-  FailureStepState({required this.errMessage});
+  FailureStepState({required this.failure});
 }

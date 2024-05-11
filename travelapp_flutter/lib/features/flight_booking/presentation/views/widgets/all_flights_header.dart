@@ -25,7 +25,7 @@ class AllFlightsHeader extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  '(${BlocProvider.of<AllFlightsCubit>(context).flights?.length ?? '??'})',
+                  '(${BlocProvider.of<AllFlightsCubit>(context).totalFlights})',
                   style: Styles.subtitle,
                 ),
               ],

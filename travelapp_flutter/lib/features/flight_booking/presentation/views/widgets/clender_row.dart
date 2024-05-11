@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/custom_text_and_text_form.dart';
+=======
+import 'package:travelapp_flutter/core/helpers/date_picker.dart';
+import 'package:travelapp_flutter/core/helpers/validators.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/custom_text_and_text_form.dart';
+import 'package:intl/intl.dart';
+>>>>>>> Khalid
 
 class ClenderRow extends StatefulWidget {
   const ClenderRow({
@@ -36,6 +43,7 @@ class ClenderRowState extends State<ClenderRow> {
               Icons.calendar_today_rounded,
             ),
             onTap: () async {
+<<<<<<< HEAD
               DateTime? pickeddate = await showDatePicker(
                   context: context,
                   initialDate: DateTime.now(),
@@ -48,6 +56,15 @@ class ClenderRowState extends State<ClenderRow> {
                     date.text = pickeddate.toString();
                   },
                 );
+=======
+              DateTime? pickeddate = await customDatePicker(context: context);
+
+              if (pickeddate != null) {
+                setState(() {
+                  DateFormat outputFormat = DateFormat('dd/MM/yyyy');
+                  date.text = outputFormat.format(pickeddate);
+                });
+>>>>>>> Khalid
               }
             }));
   }

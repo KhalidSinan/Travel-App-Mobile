@@ -11,6 +11,7 @@ import 'package:travelapp_flutter/features/flight_booking/presentation/views/wid
 class ConfirmFlightReservationPage extends StatelessWidget {
   const ConfirmFlightReservationPage({
     super.key,
+<<<<<<< HEAD
   });
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,18 @@ class ConfirmFlightReservationPage extends StatelessWidget {
       create: (context) =>
           ConfirmFlightReservationCubit(getIt.get<FlightBookingImp>())
             ..getFlightReservationData(idflight: "662f434518e13912586a8212"),
+=======
+    required this.reservationId,
+  });
+  final String reservationId;
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => ConfirmFlightReservationCubit(
+        getIt.get<FlightBookingImp>(),
+        reservationId: reservationId,
+      )..getFlightReservationData(idflight: reservationId),
+>>>>>>> Khalid
       child: SafeArea(
         child: Scaffold(
           body: BlocListener<ConfirmFlightReservationCubit,
@@ -25,11 +38,20 @@ class ConfirmFlightReservationPage extends StatelessWidget {
             listener: (context, state) {
               if (state is FailureConfirmFlightReservationState) {
                 Get.to(FailurePage(
+<<<<<<< HEAD
                   error: state.serverFailure,
                   onPressed: () => ConfirmFlightReservationCubit(
                       getIt.get<FlightBookingImp>())
                     ..getFlightReservationData(
                         idflight: "662f434518e13912586a8212"),
+=======
+                  error: state.failure,
+                  onPressed: () async {
+                    await BlocProvider.of<ConfirmFlightReservationCubit>(
+                            context)
+                        .getFlightReservationData(idflight: reservationId);
+                  },
+>>>>>>> Khalid
                 ));
               }
             },

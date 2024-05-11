@@ -18,10 +18,12 @@ import 'package:travelapp_flutter/features/auth/presentation/views/fetch_profile
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/all_flights_cubit/all_flights_cubit.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/form_cubit/form_cubit.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/all_flights_page.dart';
 =======
 >>>>>>> 8347de67f3f82d9510092df9382981cc1c16f338
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/confirm_flight_reservation_page.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/plane_page.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
 Future _firebaseBackgroundMessage(RemoteMessage message) async {
@@ -71,17 +73,6 @@ class _TravelAppState extends State<TravelApp> {
         BlocProvider(
           create: (context) => ProfileCubit(getIt.get<AuthRepoImpl>()),
         ),
-        BlocProvider(
-          create: (context) => AllFlightsCubit(getIt.get<FlightBookingImp>())
-            ..getAllOneWayFlights(
-              source: 'United States',
-              destination: 'Russia',
-              date: '09/05/2024',
-              seats: 1,
-              seatsClass: 'A',
-              // dateEnd: '10/05/2024',
-            ),
-        ),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -92,10 +83,14 @@ class _TravelAppState extends State<TravelApp> {
         //     ? FetchProfileDataPage(token: token)
         //     : const LoginPage(),
 <<<<<<< HEAD
+<<<<<<< HEAD
         home: const AllFlightsPage(),
 =======
         home: const FailurePage(),
 >>>>>>> 8347de67f3f82d9510092df9382981cc1c16f338
+=======
+        home: const PlanePage(),
+>>>>>>> Khalid
       ),
     );
   }

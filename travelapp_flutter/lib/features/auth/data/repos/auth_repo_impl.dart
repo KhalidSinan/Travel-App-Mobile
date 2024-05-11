@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelapp_flutter/core/helpers/api_service.dart';
 import 'package:travelapp_flutter/core/helpers/failure.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
+import 'package:travelapp_flutter/core/helpers/status_code_handlers.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo.dart';
 
@@ -28,9 +29,10 @@ class AuthRepoImpl extends AuthRepo {
       return right(response);
     } catch (e) {
       if (e is DioException) {
-        return left(LoginFailure.fromDioException(e));
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
       } else {
-        return left(LoginFailure(errMessage: 'something serious went wrong'));
+        return left(Failure(errMessage: 'something serious went wrong'));
       }
     }
   }
@@ -58,9 +60,9 @@ class AuthRepoImpl extends AuthRepo {
     } catch (e) {
       if (e is DioException) {
         print(e);
-        return left(RegisterFailure.fromDioException(e));
+        return left(Failure.fromDioException(e, RegisterStatusCodeHandler()));
       }
-      return left(RegisterFailure(errMessage: 'Something went wrong'));
+      return left(Failure(errMessage: 'Something went wrong'));
     }
   }
 
@@ -83,9 +85,10 @@ class AuthRepoImpl extends AuthRepo {
       return right(response);
     } catch (e) {
       if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
       }
-      return left(ServerFailure(errMessage: 'Something went wrong'));
+      return left(Failure(errMessage: 'Something went wrong'));
     }
   }
 
@@ -110,9 +113,10 @@ class AuthRepoImpl extends AuthRepo {
     } catch (e) {
       print(e);
       if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
       }
-      return left(ServerFailure(errMessage: 'Something went wrong'));
+      return left(Failure(errMessage: 'Something went wrong'));
     }
   }
 
@@ -130,9 +134,10 @@ class AuthRepoImpl extends AuthRepo {
       return right(response);
     } catch (e) {
       if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
       } else {
-        return left(ServerFailure(errMessage: 'Something went wrong'));
+        return left(Failure(errMessage: 'Something went wrong'));
       }
     }
   }
@@ -151,9 +156,10 @@ class AuthRepoImpl extends AuthRepo {
       return right(response);
     } catch (e) {
       if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
       }
-      return left(ServerFailure(errMessage: 'Something went wrong'));
+      return left(Failure(errMessage: 'Something went wrong'));
     }
   }
 
@@ -177,9 +183,10 @@ class AuthRepoImpl extends AuthRepo {
       return right(response);
     } catch (e) {
       if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
       }
-      return left(ServerFailure(errMessage: 'Something went wrong'));
+      return left(Failure(errMessage: 'Something went wrong'));
     }
   }
 }

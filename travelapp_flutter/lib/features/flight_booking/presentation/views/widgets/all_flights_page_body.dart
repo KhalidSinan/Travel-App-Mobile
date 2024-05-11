@@ -21,12 +21,12 @@ class AllFlightsPageBody extends StatelessWidget {
           const SliverAppBar(
             elevation: 0,
             expandedHeight: 135,
+            leading: CustomBackButton(),
             flexibleSpace: FlexibleSpaceBar(
               background: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomBackButton(),
-                  SizedBox(height: 8),
+                  SizedBox(height: 56),
                   DaysRow(),
                 ],
               ),

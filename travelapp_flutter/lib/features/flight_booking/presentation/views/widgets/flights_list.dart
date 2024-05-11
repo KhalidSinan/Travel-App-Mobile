@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
@@ -28,13 +30,16 @@ class FlightsList extends StatelessWidget {
           itemCount: 10,
         );
       } else if (state is SuccessGetAllFlightsState) {
-        bool isTwoWay = BlocProvider.of<AllFlightsCubit>(context).isTwoWay;
+        int flights = BlocProvider.of<AllFlightsCubit>(context).flights!.length;
+        bool isTwoWay = BlocProvider.of<AllFlightsCubit>(context).isTwoWay!;
         return SliverList.builder(
           itemBuilder: isTwoWay ? twoWayTicketBuilder : oneWayTicketBuilder,
-          itemCount: BlocProvider.of<AllFlightsCubit>(context).flights!.length,
+          itemCount: min(flightsInSinglePage, flights),
         );
       } else {
-        return const SizedBox();
+        return const SliverToBoxAdapter(
+          child: SizedBox(),
+        );
       }
     });
   }

@@ -65,7 +65,7 @@ class _LoginFormState extends State<LoginForm> {
 
   void loginListener(context, state) async {
     if (state is FailureLoginState) {
-      showCustomSnackBar(title: 'Error', message: state.errMessage);
+      showCustomSnackBar(title: 'Error', message: state.failure.errMessage);
     }
     if (state is SuccessLoginState) {
       Get.off(() => const FetchProfileDataPage());

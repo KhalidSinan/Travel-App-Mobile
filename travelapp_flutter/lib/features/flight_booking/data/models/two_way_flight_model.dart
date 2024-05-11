@@ -12,8 +12,6 @@ class TwoWayFlightModel {
   });
 
   factory TwoWayFlightModel.fromJson(jsonData) {
-    print(jsonData['flight']);
-    print(jsonData['flight_back']);
     return TwoWayFlightModel(
       flight: OneWayFlightModel.fromJson(jsonData['flight']),
       flightBack: OneWayFlightModel.fromJson(jsonData['flight_back']),

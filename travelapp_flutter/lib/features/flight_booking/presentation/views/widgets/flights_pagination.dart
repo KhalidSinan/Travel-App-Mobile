@@ -6,35 +6,20 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/all_flights_cubit/all_flights_cubit.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/all_flights_cubit/all_flights_states.dart';
 
-class FlightsPagination extends StatefulWidget {
+class FlightsPagination extends StatelessWidget {
   const FlightsPagination({
     super.key,
   });
 
-  @override
-  State<FlightsPagination> createState() => _FlightsPaginationState();
-}
-
-class _FlightsPaginationState extends State<FlightsPagination> {
-  late NumberPaginatorController _controller;
-  @override
-  void initState() {
-    super.initState();
-    _controller = NumberPaginatorController();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-  }
-
+  // late NumberPaginatorController _controller;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AllFlightsCubit, AllFlightsStates>(
       builder: (context, state) {
         if (state is SuccessGetAllFlightsState) {
-          int pages = getPages();
+          int totalFlights =
+              BlocProvider.of<AllFlightsCubit>(context).totalFlights;
+          int pages = (totalFlights / flightsInSinglePage).ceil();
           if (pages <= 1) {
             return const SliverToBoxAdapter(
               child: SizedBox(),
@@ -42,9 +27,13 @@ class _FlightsPaginationState extends State<FlightsPagination> {
           }
           return SliverToBoxAdapter(
             child: NumberPaginator(
-              controller: _controller,
+              // controller: _controller,
               numberPages: pages,
-              onPageChange: onPageChange,
+              initialPage: BlocProvider.of<AllFlightsCubit>(context).page - 1,
+              onPageChange: (index) async {
+                await BlocProvider.of<AllFlightsCubit>(context)
+                    .changePage(index + 1);
+              },
               config: NumberPaginatorUIConfig(
                 buttonSelectedBackgroundColor: Themes.primary,
                 buttonUnselectedForegroundColor: Themes.third,
@@ -56,37 +45,5 @@ class _FlightsPaginationState extends State<FlightsPagination> {
         }
       },
     );
-  }
-
-  int getPages() {
-    int flightsNumber =
-        BlocProvider.of<AllFlightsCubit>(context).flights!.length;
-    return (flightsNumber / flightsInSinglePage).ceil();
-  }
-
-  onPageChange(index) async {
-    final flightsCubit = BlocProvider.of<AllFlightsCubit>(context);
-    _controller.navigateToPage(index);
-    setState(() {});
-    if (flightsCubit.isTwoWay) {
-      await flightsCubit.getAllTwoWayFlights(
-        source: 'Venezuela',
-        destination: 'Russia',
-        date: '06/05/2024',
-        seats: 1,
-        seatsClass: 'A',
-        dateEnd: '10/05/2024',
-        page: index,
-      );
-    } else {
-      await flightsCubit.getAllOneWayFlights(
-        source: 'United States',
-        destination: 'Russia',
-        date: '09/05/2024',
-        seats: 1,
-        seatsClass: 'A',
-        page: index,
-      );
-    }
   }
 }

@@ -94,16 +94,16 @@ class _RegisterFormState extends State<RegisterForm> {
   }
 
   void registerListener(context, state) {
-      if (state is FailureRegisterState) {
-        showCustomSnackBar(
-          title: state.errTitle ?? 'Error',
-          message: state.errMessage,
-        );
-      }
-      if (state is SuccessRegisterState) {
-        Get.to(() => EmailConfirmationPage(email: email!));
-      }
+    if (state is FailureRegisterState) {
+      showCustomSnackBar(
+        title: state.failure.errTitle ?? 'Error',
+        message: state.failure.errMessage,
+      );
     }
+    if (state is SuccessRegisterState) {
+      Get.to(() => EmailConfirmationPage(email: email!));
+    }
+  }
 
   void register() async {
     if (formKey.currentState!.validate()) {

@@ -3,12 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/failure.dart';
+<<<<<<< HEAD
+=======
+import 'package:travelapp_flutter/core/utils/assets.dart';
+>>>>>>> Khalid
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 
 class FailurePage extends StatelessWidget {
+<<<<<<< HEAD
   const FailurePage({super.key, required this.error, required this.onPressed});
   final ServerFailure error;
+=======
+  const FailurePage({
+    super.key,
+    required this.error,
+    required this.onPressed,
+  });
+  final Failure error;
+>>>>>>> Khalid
   final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
@@ -63,7 +76,11 @@ class FailurePage extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.sizeOf(context).width - 40,
                 child: ElevatedButton(
+<<<<<<< HEAD
                   onPressed: () {},
+=======
+                  onPressed: () => Get.back(),
+>>>>>>> Khalid
                   style: ElevatedButton.styleFrom(
                     shadowColor: Colors.transparent,
                     foregroundColor: Colors.transparent,
@@ -97,14 +114,24 @@ class FailurePage extends StatelessWidget {
   }
 }
 
+<<<<<<< HEAD
 String imageError({required ServerFailure error}) {
+=======
+String imageError({required Failure error}) {
+>>>>>>> Khalid
   switch (error.errType) {
     case DioExceptionType.connectionError:
     case DioExceptionType.connectionTimeout:
     case DioExceptionType.receiveTimeout:
     case DioExceptionType.sendTimeout:
+<<<<<<< HEAD
       return "There seems to be a problem with your network connection.";
     default:
       return "Aaah! Something went wrong. Refresh the page or try again later.";
+=======
+      return Assets.noInterent;
+    default:
+      return Assets.somethingWrong;
+>>>>>>> Khalid
   }
 }

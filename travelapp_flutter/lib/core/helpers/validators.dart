@@ -19,6 +19,15 @@ String? validateEmail(data) {
   return null;
 }
 
+String? validatePassportNumber(passportNum) {
+  if (passportNum.isEmpty) {
+    return 'this field is required';
+  } else if (passportNum.length < 6 || passportNum.length > 9) {
+    return 'passport number must be between 6 and 9';
+  }
+  return null;
+}
+
 String? validateName(data) {
   if (data!.isEmpty) {
     return 'this field is required';

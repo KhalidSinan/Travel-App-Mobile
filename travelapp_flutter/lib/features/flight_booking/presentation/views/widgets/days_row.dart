@@ -66,7 +66,8 @@ class DaysRow extends StatelessWidget {
                             if (index == 1) return;
                             DateFormat sendFormat = DateFormat('dd/MM/yyyy');
                             String sendDate = sendFormat.format(days[index]);
-                            await getAllFlightsIn(context, sendDate);
+                            await BlocProvider.of<AllFlightsCubit>(context)
+                                .changeDate(sendDate);
                           },
                           child: DateCard(
                             date: days[index],
@@ -83,30 +84,6 @@ class DaysRow extends StatelessWidget {
         }
       },
     );
-  }
-
-  Future<void> getAllFlightsIn(context, sendDate) async {
-    bool isTwoWay = BlocProvider.of<AllFlightsCubit>(context).isTwoWay;
-    // here you've to restart the sorting and filtering things
-    // or you should make a separate requets for switching dates.
-    if (isTwoWay) {
-      await BlocProvider.of<AllFlightsCubit>(context).getAllTwoWayFlights(
-        source: 'Venezuela',
-        destination: 'Russia',
-        date: sendDate,
-        seats: 1,
-        seatsClass: 'A',
-        dateEnd: '10/05/2024',
-      );
-    } else {
-      await BlocProvider.of<AllFlightsCubit>(context).getAllOneWayFlights(
-        source: 'United States',
-        destination: 'Russia',
-        date: sendDate,
-        seats: 1,
-        seatsClass: 'A',
-      );
-    }
   }
 
   DateTime convertDateFormat(String departureDate) {

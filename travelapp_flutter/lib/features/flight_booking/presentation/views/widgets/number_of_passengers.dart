@@ -13,6 +13,7 @@ class NumberOfPassengers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return  Padding(
         padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
         child: CustomTextAndTextForm(
@@ -23,6 +24,18 @@ class NumberOfPassengers extends StatelessWidget {
           validator: validateName,
           textInputType: TextInputType.number,
           prefixIcon: Icon(Icons.person),
+=======
+    return Padding(
+        padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+        child: CustomTextAndTextForm(
+          hintText: 'number ?',
+          text: 'passengers',
+          readOnly: false,
+          validator: validateName,
+          textInputType: TextInputType.number,
+          prefixIcon: const Icon(Icons.person),
+          onSaved: onSaved,
+>>>>>>> Khalid
         ));
   }
 }

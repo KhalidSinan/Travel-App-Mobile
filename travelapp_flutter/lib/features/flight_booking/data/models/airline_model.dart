@@ -1,6 +1,6 @@
 class AirlineModel {
   final String name;
-  final String logo;
+  final String? logo;
 
   AirlineModel({required this.name, required this.logo});
   factory AirlineModel.fromJson(jsonData) {
