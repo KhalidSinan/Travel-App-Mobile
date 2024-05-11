@@ -1,3 +1,4 @@
+import 'package:travelapp_flutter/core/helpers/failure.dart';
 
 abstract class ConfirmFlightReservationState {}
 
@@ -12,9 +13,6 @@ class LoadingConfirmFlightReservationState
 
 class FailureConfirmFlightReservationState
     extends ConfirmFlightReservationState {
-  final String errMessage;
-  final String? errTitle;
-
-  FailureConfirmFlightReservationState(
-      {required this.errMessage,  this.errTitle});
+  final Failure failure;
+  FailureConfirmFlightReservationState({required this.failure});
 }
