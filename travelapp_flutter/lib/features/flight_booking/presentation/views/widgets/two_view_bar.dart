@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:travelapp_flutter/core/helpers/validators.dart';
-import 'package:travelapp_flutter/core/widgets/custom_button.dart';
-=======
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -12,7 +8,6 @@ import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/reservation_ticket_cubit/reservation_ticket_cubit.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/reservation_ticket_cubit/reservation_ticket_cubit_states.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/all_flights_page.dart';
->>>>>>> Khalid
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/clender_row.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/custom_search.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/custom_text_and_text_form.dart';
@@ -65,17 +60,6 @@ class _TwoViewBarState extends State<TwoViewBar> {
                 ),
                 Row(
                   children: [
-<<<<<<< HEAD
-                    ClenderRow(
-                      text: 'Depart',
-                      width: 170,
-                      onSaved: (value) => depart = value,
-                    ),
-                    ClenderRow(
-                      text: 'return',
-                      width: 170,
-                      onSaved: (value) => retur = value,
-=======
                     Expanded(
                       child: ClenderRow(
                         text: 'Depart',
@@ -89,26 +73,11 @@ class _TwoViewBarState extends State<TwoViewBar> {
                         width: 170,
                         onSaved: (value) => retur = value,
                       ),
->>>>>>> Khalid
                     )
                   ],
                 ),
                 Row(
                   children: [
-<<<<<<< HEAD
-                    NumberOfPassengers(
-                      onSaved: (value) => numOfPassengers = value,
-                    ),
-                    const DropSelectClass(),
-                  ],
-                ),
-                Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: SizedBox(
-                        width: 350,
-                        child: CustomButton(
-                            onPressed: searchFlight, label: 'Search Flights')))
-=======
                     Expanded(
                       child: NumberOfPassengers(
                         onSaved: (value) => numOfPassengers = value,
@@ -148,18 +117,12 @@ class _TwoViewBarState extends State<TwoViewBar> {
                           );
                   },
                 )
->>>>>>> Khalid
               ],
             ),
           ),
         ));
   }
 
-<<<<<<< HEAD
-  void searchFlight() {
-    if (formKey.currentState!.validate()) {
-      formKey.currentState!.save();
-=======
   void searchFlight() async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
@@ -173,7 +136,6 @@ class _TwoViewBarState extends State<TwoViewBar> {
           twoWay: true,
           classOfSeats: seatClass!,
           numOfSeats: numOfPassengers!);
->>>>>>> Khalid
     } else {
       autovalidateMode = AutovalidateMode.always;
       setState(() {});
@@ -181,10 +143,6 @@ class _TwoViewBarState extends State<TwoViewBar> {
   }
 
   void searchFunction1() async {
-<<<<<<< HEAD
-    var searchResult =
-        await showSearch(context: context, delegate: CustomSearch());
-=======
     var searchResult = await showSearch(
         context: context,
         delegate: CustomSearch(
@@ -192,7 +150,6 @@ class _TwoViewBarState extends State<TwoViewBar> {
                 BlocProvider.of<ReservationTicketCubit>(context).countries,
             airLines:
                 BlocProvider.of<ReservationTicketCubit>(context).airlines));
->>>>>>> Khalid
     if (searchResult != null) {
       setState(() {
         searchcontroller1.text = searchResult.toString();
@@ -201,10 +158,6 @@ class _TwoViewBarState extends State<TwoViewBar> {
   }
 
   void searchFunction2() async {
-<<<<<<< HEAD
-    var searchResult =
-        await showSearch(context: context, delegate: CustomSearch());
-=======
     var searchResult = await showSearch(
         context: context,
         delegate: CustomSearch(
@@ -212,7 +165,6 @@ class _TwoViewBarState extends State<TwoViewBar> {
                 BlocProvider.of<ReservationTicketCubit>(context).countries,
             airLines:
                 BlocProvider.of<ReservationTicketCubit>(context).airlines));
->>>>>>> Khalid
     if (searchResult != null) {
       setState(() {
         searchcontroller2.text = searchResult.toString();

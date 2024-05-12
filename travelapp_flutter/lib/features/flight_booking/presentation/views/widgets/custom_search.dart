@@ -1,25 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomSearch extends SearchDelegate {
-<<<<<<< HEAD
-  List cities = [
-    "Damascus",
-    'Paris',
-    "London",
-    "Barcelona",
-    "Roma",
-    "Abu Dhabi",
-    "Cairo"
-  ];
-
-  List? filterList = [];
-
-  static String? test;
-=======
   List<dynamic> countries = [];
-    List<dynamic> airLines = [];
+  List<dynamic> airLines = [];
 
-  CustomSearch({required this.countries , required this.airLines});
+  CustomSearch({required this.countries, required this.airLines});
   // [
   //   "Damascus",
   //   'Paris',
@@ -31,7 +16,6 @@ class CustomSearch extends SearchDelegate {
   // ];
 
   // List? filterList = [];
->>>>>>> Khalid
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -60,15 +44,6 @@ class CustomSearch extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-<<<<<<< HEAD
-    if (query == "") {
-      return ListView.builder(
-          itemCount: cities.length,
-          itemBuilder: (context, i) {
-            return InkWell(
-                onTap: () {
-                  close(context, cities[i]);
-=======
     List? filterList = [];
 
     if (query == "") {
@@ -78,7 +53,6 @@ class CustomSearch extends SearchDelegate {
             return InkWell(
                 onTap: () {
                   close(context, countries[i]);
->>>>>>> Khalid
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 24),
@@ -86,11 +60,7 @@ class CustomSearch extends SearchDelegate {
                     children: [
                       ListTile(
                         title: Text(
-<<<<<<< HEAD
-                          cities[i],
-=======
                           '${countries[i]}',
->>>>>>> Khalid
                           style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
@@ -106,20 +76,12 @@ class CustomSearch extends SearchDelegate {
                 ));
           });
     } else {
-<<<<<<< HEAD
-      filterList = cities
-=======
       filterList = countries
->>>>>>> Khalid
           .where(
               (element) => element.toLowerCase().contains(query.toLowerCase()))
           .toList();
       return ListView.builder(
-<<<<<<< HEAD
-          itemCount: filterList!.length,
-=======
           itemCount: filterList.length,
->>>>>>> Khalid
           itemBuilder: (context, i) {
             return InkWell(
                 onTap: () {

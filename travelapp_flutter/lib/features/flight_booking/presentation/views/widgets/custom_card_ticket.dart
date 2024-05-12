@@ -1,25 +1,15 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import 'package:travelapp_flutter/features/flight_booking/data/models/flight_model.dart';
-=======
 import 'package:travelapp_flutter/core/utils/assets.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/one_way_flight_model.dart';
->>>>>>> Khalid
 
->>>>>>> 8347de67f3f82d9510092df9382981cc1c16f338
 class CardTicket extends StatelessWidget {
   const CardTicket({
     super.key,
     required this.flight,
   });
-<<<<<<< HEAD
-  final FlightModel? flight;
-=======
   final OneWayFlightModel flight;
->>>>>>> Khalid
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -45,11 +35,7 @@ class CardTicket extends StatelessWidget {
           children: [
             Flexible(
               child: AutoSizeText(
-<<<<<<< HEAD
-                ' ${flight!.airline}',
-=======
                 flight.airline.name,
->>>>>>> Khalid
                 style: const TextStyle(color: Colors.white),
                 softWrap: true,
                 maxLines: 1,
@@ -67,11 +53,7 @@ class CardTicket extends StatelessWidget {
             ),
             Flexible(
               child: AutoSizeText(
-<<<<<<< HEAD
-                flight!.source.name,
-=======
                 flight.source.name!,
->>>>>>> Khalid
                 style: const TextStyle(color: Colors.white),
                 softWrap: true,
                 maxLines: 1,
@@ -88,14 +70,6 @@ class CardTicket extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-<<<<<<< HEAD
-                  flight!.source.country,
-                  style: const TextStyle(color: Colors.white, fontSize: 15),
-                ),
-                Text(
-                  flight!.departure.date,
-                  style: const TextStyle(fontSize: 15, color: Colors.white),
-=======
                   flight.source.country!,
                   style: const TextStyle(color: Colors.white, fontSize: 15),
                 ),
@@ -111,7 +85,6 @@ class CardTicket extends StatelessWidget {
                       style: const TextStyle(fontSize: 10, color: Colors.white),
                     ),
                   ],
->>>>>>> Khalid
                 ),
               ],
             ),
@@ -130,11 +103,7 @@ class CardTicket extends StatelessWidget {
             ),
             Flexible(
               child: AutoSizeText(
-<<<<<<< HEAD
-                flight!.destination.name,
-=======
                 flight.destination.name!,
->>>>>>> Khalid
                 style: const TextStyle(color: Colors.white),
                 softWrap: true,
                 maxLines: 1,
@@ -151,14 +120,6 @@ class CardTicket extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-<<<<<<< HEAD
-                  flight!.destination.country,
-                  style: const TextStyle(color: Colors.white, fontSize: 15),
-                ),
-                Text(
-                  flight!.arrival.date,
-                  style: const TextStyle(fontSize: 15, color: Colors.white),
-=======
                   flight.destination.country!,
                   style: const TextStyle(color: Colors.white, fontSize: 15),
                 ),
@@ -174,7 +135,6 @@ class CardTicket extends StatelessWidget {
                       style: const TextStyle(fontSize: 10, color: Colors.white),
                     ),
                   ],
->>>>>>> Khalid
                 ),
               ],
             ),
@@ -200,22 +160,14 @@ class CardTicket extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-<<<<<<< HEAD
-                            text: flight!.duration,
-=======
                             text: flight.duration,
->>>>>>> Khalid
                             style: const TextStyle(
                                 fontSize: 20, color: Colors.white)),
                       ],
                     ),
                   ),
                   Text(
-<<<<<<< HEAD
-                    "${flight!.flightPrice}\$",
-=======
                     "${flight.flightPrice}\$",
->>>>>>> Khalid
                     style: const TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ],

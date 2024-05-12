@@ -56,17 +56,10 @@ class AppBarDetailsCard extends StatelessWidget {
                         viewportFraction: 1,
                         enableInfiniteScroll: false),
                     items: List.generate(
-<<<<<<< HEAD
-                      reservation!.isTwoWay ? 2 : 1,
-                      (index) => index == 0
-                          ? CardTicket(flight: reservation.flight)
-                          : CardTicket(flight: reservation.flightBack),
-=======
                       reservation!.reservationType ? 2 : 1,
                       (index) => index == 0
                           ? CardTicket(flight: reservation.flight)
                           : CardTicket(flight: reservation.flightBack!),
->>>>>>> Khalid
                     ),
                   ),
                 ),

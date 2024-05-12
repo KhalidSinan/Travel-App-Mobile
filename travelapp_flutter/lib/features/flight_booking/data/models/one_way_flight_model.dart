@@ -25,7 +25,6 @@ class OneWayFlightModel {
     required this.flightPrice,
   });
 
-<<<<<<< HEAD:travelapp_flutter/lib/features/flight_booking/data/models/one_way_flight_model.dart
   factory OneWayFlightModel.fromJson(jsonData) {
     List<PassengerModel>? reservations;
     if (jsonData['reservations'] != null) {
@@ -36,37 +35,6 @@ class OneWayFlightModel {
       }
     }
     return OneWayFlightModel(
-<<<<<<< HEAD
-        id: jsonData['id'],
-        airline: AirlineModel.fromJson(jsonData['airline']),
-=======
-  factory FlightModel.fromJson(jsonData) {
-    List<PassengerModel>? reservations;
-    if (jsonData['reservations'] != null) {
-      reservations = [];
-      for (int i = 0; i < jsonData['reservations'].length; i++) {
-        reservations.add(PassengerModel.fromJson(jsonData['reservations'][i]));
-        print(reservations[i]);
-      }
-    }
-    return FlightModel(
-        airline: jsonData['airline'],
->>>>>>> 8347de67f3f82d9510092df9382981cc1c16f338:travelapp_flutter/lib/features/flight_booking/data/models/flight_model.dart
-        source: CountryModel.fromJson(jsonData['source']),
-        destination: CountryModel.fromJson(jsonData['destination']),
-        departure: DateInfo.fromJson(jsonData['departure_date']),
-        arrival: DateInfo.fromJson(jsonData['arrival_date']),
-        duration: jsonData['duration'],
-<<<<<<< HEAD:travelapp_flutter/lib/features/flight_booking/data/models/one_way_flight_model.dart
-        reservations: jsonData['reservations'] != null
-            ? PassengersModel.fromJson(jsonData['reservations'])
-            : null,
-        flightPrice: jsonData['price']);
-=======
-        reservations: reservations,
-        flightPrice: jsonData['flight_price']);
->>>>>>> 8347de67f3f82d9510092df9382981cc1c16f338:travelapp_flutter/lib/features/flight_booking/data/models/flight_model.dart
-=======
       id: jsonData['id'],
       airline: AirlineModel.fromJson(jsonData['airline']),
       source: CountryModel.fromJson(jsonData['source']),
@@ -77,6 +45,28 @@ class OneWayFlightModel {
       reservations: reservations,
       flightPrice: jsonData['price'] ?? jsonData['flight_price'],
     );
->>>>>>> Khalid
   }
 }
+
+
+
+
+
+
+
+
+
+  // factory TicketModel.fromJson(jsonData) {
+  //   return TicketModel(
+  //       airline: jsonData["reservation"]['flight']['airline'],
+  //       name: jsonData["reservation"]['flight']['source']['name'],
+  //       city: jsonData["reservation"]['flight']['city'],
+  //       country: jsonData["reservation"]['flight']['country'],
+  //       date: jsonData["reservation"]['flight']['destination'],
+  //       time: jsonData["reservation"]['flight'],
+  //       duration: jsonData["reservation"]['flight'],
+  //       reservations: jsonData["reservation"]['flight'],
+  //       numberOfReservation: jsonData["reservation"]['flight'],
+  //       reservationType: jsonData["reservation"]['flight'],
+  //       boolReservationType: jsonData["reservation"]['flight']);
+  // }

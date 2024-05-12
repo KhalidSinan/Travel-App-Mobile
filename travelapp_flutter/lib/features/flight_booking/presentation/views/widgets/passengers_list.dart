@@ -70,11 +70,7 @@ class PassengersList extends StatelessWidget {
                             ),
                             TextSpan(
                               text:
-<<<<<<< HEAD
-                                  ' ${reservation.flight.reservations![index].personName} ',
-=======
                                   ' ${reservation.flight.reservations![index].personName.toUpperCase()} ',
->>>>>>> Khalid
                               style: const TextStyle(
                                   fontSize: 18, color: Colors.black54),
                             ),
@@ -107,16 +103,6 @@ String getPassengerData(ReservationModel passenger, int index) {
 
   StringBuffer infoText = StringBuffer()
     ..writeln('Name: ${reservations![index].personName}')
-<<<<<<< HEAD
-    ..writeln('Passport: ${reservations[index].personPassport}')
-    ..writeln('Seat Number: ${reservations[index].seatNumber}')
-    ..writeln('Seat Price: ${reservations[index].price}');
-
-  if (passenger.isTwoWay) {
-    infoText
-      ..writeln('Flight Back Info')
-      ..writeln('Seat Number: ${backReservations![index].seatNumber}')
-=======
     ..writeln('Passport: ${reservations[index].passport}')
     ..writeln('Seat Number: ${reservations[index].seatNumber}')
     ..writeln('Seat Price: ${reservations[index].price}');
@@ -125,7 +111,6 @@ String getPassengerData(ReservationModel passenger, int index) {
     infoText
       ..writeln('Flight Back Info')
       ..writeln('Seat Number: ${backReservations[index].seatNumber}')
->>>>>>> Khalid
       ..writeln('Seat Price: ${backReservations[index].price}');
   }
 

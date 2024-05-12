@@ -19,6 +19,4 @@ Future<void> setup() async {
   getIt.registerSingleton<DefaultStatusCodeHandler>(DefaultStatusCodeHandler());
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   getIt.registerSingleton<SharedPreferences>(prefs);
-  getIt.registerSingleton<FlightBookingImp>(
-      FlightBookingImp(getIt.get<ApiService>()));
 }

@@ -10,34 +10,18 @@ class ConfirmFlightReservationCubit
       : super(InitialConfirmFlightReservationState());
 
   final FlightBookingImp flightBookingImp;
-<<<<<<< HEAD
-
-=======
   final String reservationId;
   bool isConfirmed = false;
->>>>>>> Khalid
   ReservationModel? reservation;
 
   Future<void> getFlightReservationData({required String idflight}) async {
     emit(LoadingConfirmFlightReservationState());
-<<<<<<< HEAD
-
-=======
->>>>>>> Khalid
     var response =
         await flightBookingImp.getFlightReservationData(id: idflight);
     print(response);
     response.fold(
       (error) {
-<<<<<<< HEAD
-        if (error is ServerFailure) {
-          emit(FailureConfirmFlightReservationState(
-          serverFailure: error
-          ));
-        }
-=======
         emit(FailureConfirmFlightReservationState(failure: error));
->>>>>>> Khalid
       },
       (res) {
         reservation = ReservationModel.fromJson(res['reservation']);
@@ -47,19 +31,6 @@ class ConfirmFlightReservationCubit
     );
   }
 
-<<<<<<< HEAD
-  Future<void> postRservationConfirmation({required String id}) async {
-    emit(LoadingConfirmFlightReservationState());
-    var response = await flightBookingImp.postRservationConfirmation(id: id);
-    print(response);
-    response.fold(
-      (error) {
-        if (error is ServerFailure) {
-          emit(FailureConfirmFlightReservationState(serverFailure: error));
-        }
-      },
-      (res) {
-=======
   Future<void> postReservationConfirmation({required String id}) async {
     emit(LoadingConfirmFlightReservationState());
     var response = await flightBookingImp.postReservationConfirmation(id: id);
@@ -70,7 +41,6 @@ class ConfirmFlightReservationCubit
       },
       (res) {
         isConfirmed = true;
->>>>>>> Khalid
         emit(SuccessConfirmFlightReservationState());
       },
     );

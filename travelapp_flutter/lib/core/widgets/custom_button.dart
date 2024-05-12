@@ -22,11 +22,7 @@ class CustomButton extends StatelessWidget {
         backgroundColor: color ?? Themes.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
-<<<<<<< Updated upstream
             (isFlat == null || isFlat == false) ? radius : 0,
-=======
-            (isFlat == null || isFlat == false) ? 0 : radius,
->>>>>>> Stashed changes
           ),
         ),
         padding: const EdgeInsets.symmetric(

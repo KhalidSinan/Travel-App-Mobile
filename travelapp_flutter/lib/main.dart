@@ -7,22 +7,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelapp_flutter/core/helpers/notification_service.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
-import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:google_fonts/google_fonts.dart';
-<<<<<<< HEAD
-import 'package:travelapp_flutter/features/auth/presentation/views/fetch_profile_data_page.dart';
-import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
-import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
-import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/all_flights_cubit/all_flights_cubit.dart';
-import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/form_cubit/form_cubit.dart';
-import 'package:travelapp_flutter/features/flight_booking/presentation/views/all_flights_page.dart';
-=======
->>>>>>> 8347de67f3f82d9510092df9382981cc1c16f338
-import 'package:travelapp_flutter/features/flight_booking/presentation/views/confirm_flight_reservation_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/plane_page.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
@@ -82,15 +71,7 @@ class _TravelAppState extends State<TravelApp> {
         // home: rememberMe == true
         //     ? FetchProfileDataPage(token: token)
         //     : const LoginPage(),
-<<<<<<< HEAD
-<<<<<<< HEAD
-        home: const AllFlightsPage(),
-=======
-        home: const FailurePage(),
->>>>>>> 8347de67f3f82d9510092df9382981cc1c16f338
-=======
         home: const PlanePage(),
->>>>>>> Khalid
       ),
     );
   }
