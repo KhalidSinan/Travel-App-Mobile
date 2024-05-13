@@ -100,6 +100,7 @@ class _TwoViewBarState extends State<TwoViewBar> {
                             seatsClass: state.seatsClass,
                             dateEnd: state.dateEnd,
                             airlines: state.airlines,
+                            totalFlights: state.totalFlights,
                           ));
                     } else if (state is FailureSearchFlightState) {
                       showCustomSnackBar(

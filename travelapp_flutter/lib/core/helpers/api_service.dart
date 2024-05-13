@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final String _baseUrl = 'http://10.0.2.2:5000';
+  final String _baseUrl = 'https://9f98-46-53-13-33.ngrok-free.app';
   final Dio _dio;
 
   ApiService(this._dio);
@@ -30,7 +30,7 @@ class ApiService {
         headers: {
           'Content-Type': 'application/json',
           'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmI0MjQxYmEyOGM4MzM3ZjJmYjMyNiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTUyNTExMjl9.y-tbQapdv7HvCOWY24xkDDSYhNy_rcKkaOKaucj58t8',
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDFkNGExZTQwYmZmNzM5N2M0NmU5MiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTU1OTY0MTl9.vEbH-nGvX94KmgMBX3k3k1yFypB-lQU8KnYbZeq5ouw',
         },
       ),
     );

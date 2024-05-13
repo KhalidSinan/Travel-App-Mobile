@@ -18,6 +18,7 @@ class AllFlightsPage extends StatelessWidget {
     required this.destination,
     required this.seats,
     required this.seatsClass,
+    required this.totalFlights,
     this.dateEnd,
     required this.airlines,
   });
@@ -30,6 +31,7 @@ class AllFlightsPage extends StatelessWidget {
   final String seatsClass;
   final String? dateEnd;
   final List<dynamic> airlines;
+  final int totalFlights;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +57,7 @@ class AllFlightsPage extends StatelessWidget {
           seats,
           seatsClass,
           dateEnd,
+          totalFlights,
         ),
       child: Scaffold(
         body: SafeArea(

@@ -14,11 +14,11 @@ class FlightDetailsModel {
   factory FlightDetailsModel.fromJson(jsonData) {
     print(jsonData);
     return FlightDetailsModel(
-      twoWay: jsonData['two_way'] ?? false,
-      flight: FlightInfoModel.fromJson(jsonData['flight']),
-      flightback: jsonData['flight_back'] == null
+      twoWay: jsonData['two_way'],
+      flight: FlightInfoModel.fromJson(jsonData['data']['flight']),
+      flightback: jsonData['data']['flight_back'] == null
           ? null
-          : FlightInfoModel.fromJson(jsonData['flight_back']),
+          : FlightInfoModel.fromJson(jsonData['data']['flight_back']),
     );
   }
 }

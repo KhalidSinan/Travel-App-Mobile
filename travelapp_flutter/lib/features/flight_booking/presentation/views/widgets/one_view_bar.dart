@@ -90,6 +90,7 @@ class _OneViewBarState extends State<OneViewBar> {
                             seats: state.seats,
                             seatsClass: state.seatsClass,
                             airlines: state.airlines,
+                            totalFlights: state.totalFlights,
                           ));
                     } else if (state is FailureSearchFlightState) {
                       showCustomSnackBar(

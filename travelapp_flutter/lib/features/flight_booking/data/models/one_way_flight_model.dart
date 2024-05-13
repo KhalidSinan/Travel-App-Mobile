@@ -26,6 +26,7 @@ class OneWayFlightModel {
   });
 
   factory OneWayFlightModel.fromJson(jsonData) {
+    print(jsonData);
     List<PassengerModel>? reservations;
     if (jsonData['reservations'] != null) {
       reservations = [];

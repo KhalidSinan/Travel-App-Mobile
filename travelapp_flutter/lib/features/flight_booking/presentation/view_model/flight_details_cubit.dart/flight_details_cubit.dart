@@ -27,7 +27,7 @@ class FlightDetailsCubit extends Cubit<FlightDetailsState> {
         emit(FlightDetailsFailure(failure: failure));
       },
       (flight) {
-        flightdetails = FlightDetailsModel.fromJson(flight['data']);
+        flightdetails = FlightDetailsModel.fromJson(flight);
         emit(FlightDetailsSuccess());
       },
     );

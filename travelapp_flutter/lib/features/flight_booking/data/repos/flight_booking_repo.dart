@@ -1,12 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:travelapp_flutter/core/helpers/failure.dart';
-import 'package:travelapp_flutter/features/flight_booking/data/models/one_way_flight_model.dart';
-import 'package:travelapp_flutter/features/flight_booking/data/models/two_way_flight_model.dart';
 
 abstract class FlightBookingRepo {
   Future<Either<Failure, Map<String, dynamic>>> getFlightReservationData(
       {required String id});
-  Future<Either<Failure, List<OneWayFlightModel>>> getAllOneWayFlights({
+  Future<Either<Failure, Map<String, dynamic>>> getAllOneWayFlights({
     required String source,
     required String destination,
     required String date,
@@ -21,7 +19,7 @@ abstract class FlightBookingRepo {
     String? maxPrice,
     int? page,
   });
-  Future<Either<Failure, List<TwoWayFlightModel>>> getAllTwoWayFlights({
+  Future<Either<Failure, Map<String, dynamic>>> getAllTwoWayFlights({
     required String source,
     required String destination,
     required String date,

@@ -174,6 +174,7 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                               print(getReservationType(flightdetails!.twoWay));
                               print(getClassType(
                                   flightdetails!.flight.classType.className));
+                              print(flightdetails!.twoWay);
                               Get.to(() => FormPage(
                                     flightsId: flightsId,
                                     reservationType: getReservationType(
@@ -191,7 +192,11 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                   ),
                 );
               } else {
-                return const Center(child: CircularProgressIndicator());
+                return const Column(
+                  children: [
+                    Center(child: CircularProgressIndicator()),
+                  ],
+                );
               }
             },
           ),

@@ -76,6 +76,7 @@ class ReservationTicketCubit extends Cubit<ReservationTicketState> {
           seatsClass: classOfSeats,
           dateEnd: dateEnd,
           airlines: airlines,
+          totalFlights: res['count'],
         ));
       },
     );

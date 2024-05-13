@@ -26,6 +26,7 @@ class SuccessSearchFlightState extends ReservationTicketState {
   final String seatsClass;
   final String? dateEnd;
   final List<dynamic> airlines;
+  final int totalFlights;
 
   SuccessSearchFlightState({
     required this.flights,
@@ -37,6 +38,7 @@ class SuccessSearchFlightState extends ReservationTicketState {
     required this.seatsClass,
     required this.dateEnd,
     required this.airlines,
+    required this.totalFlights,
   });
 }
 

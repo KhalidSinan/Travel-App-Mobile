@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelapp_flutter/features/flight_booking/data/models/one_way_flight_model.dart';
+import 'package:travelapp_flutter/features/flight_booking/data/models/two_way_flight_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/all_flights_cubit/all_flights_states.dart';
 
@@ -34,6 +36,7 @@ class AllFlightsCubit extends Cubit<AllFlightsStates> {
     int seats,
     String seatsClass,
     String? dateEnd,
+    int totalFlights,
   ) {
     this.flights = flights;
     this.airlines = airlines;
@@ -44,7 +47,7 @@ class AllFlightsCubit extends Cubit<AllFlightsStates> {
     this.seats = seats;
     this.seatsClass = seatsClass;
     this.dateEnd = dateEnd;
-    totalFlights = flights.length;
+    this.totalFlights = totalFlights;
     emit(SuccessGetAllFlightsState());
   }
 
@@ -202,12 +205,13 @@ class AllFlightsCubit extends Cubit<AllFlightsStates> {
         print(failure.errMessage);
         emit(FailureGetAllFlightsState(failure: failure));
       },
-      (allFlights) {
-        flights = allFlights;
-        if (page == null) {
-          totalFlights = flights!.length;
+      (res) {
+        List<OneWayFlightModel> allFlights = [];
+        for (int i = 0; i < res['data'].length; i++) {
+          allFlights.add(OneWayFlightModel.fromJson(res['data'][i]['flight']));
         }
-        print(flights!.length);
+        flights = allFlights;
+        totalFlights = res['count'];
         if (flights!.isEmpty) {
           emit(NoFlightsState());
         } else {
@@ -248,11 +252,13 @@ class AllFlightsCubit extends Cubit<AllFlightsStates> {
         print(failure.errMessage);
         emit(FailureGetAllFlightsState(failure: failure));
       },
-      (allFlights) {
-        flights = allFlights;
-        if (page == null) {
-          totalFlights = flights!.length;
+      (res) {
+        List<TwoWayFlightModel> allFlights = [];
+        for (int i = 0; i < res['data'].length; i++) {
+          allFlights.add(TwoWayFlightModel.fromJson(res['data'][i]));
         }
+        flights = allFlights;
+        totalFlights = res['count'];
         if (flights!.isEmpty) {
           emit(NoFlightsState());
         } else {
