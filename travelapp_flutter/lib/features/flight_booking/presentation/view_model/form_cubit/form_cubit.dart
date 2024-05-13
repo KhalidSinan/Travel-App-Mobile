@@ -48,7 +48,7 @@ class FormCubit extends Cubit<FormCubitState> {
     var response = await flightBookingImp.makeReservation(
       flights: flights,
       reservations: reservations,
-      reservationType: getClassType(reservationType),
+      reservationType: reservationType,
     );
     //emit(FormInitial());
     response.fold(

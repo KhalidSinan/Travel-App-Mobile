@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
@@ -32,19 +33,22 @@ class _MainContainerState extends State<MainContainer>
               color: Colors.white,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(32), topRight: Radius.circular(32))),
-          child: BlocBuilder<ReservationTicketCubit, ReservationTicketState>(
+          child: BlocConsumer<ReservationTicketCubit, ReservationTicketState>(
+            listener: (context, state) {
+              if (state is FailureReservationTicketState) {
+                Get.to(() => FailurePage(
+                      error: state.failure,
+                      onPressed: () async {
+                        await BlocProvider.of<ReservationTicketCubit>(context)
+                            .getCountriesAndAirlines();
+                      },
+                    ));
+              }
+            },
             builder: (context, state) {
               if (state is LoadingReservationTicketState) {
                 return const Center(
                   child: CircularProgressIndicator(),
-                );
-              } else if (state is FailureReservationTicketState) {
-                return FailurePage(
-                  error: state.failure,
-                  onPressed: () async {
-                    await BlocProvider.of<ReservationTicketCubit>(context)
-                        .getCountriesAndAirlines();
-                  },
                 );
               } else {
                 return Column(

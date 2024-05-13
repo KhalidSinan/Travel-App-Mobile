@@ -58,6 +58,7 @@ class FlightDetailsCard extends StatelessWidget {
             const SizedBox(width: 16),
             Text(
               airline!,
+              overflow: TextOverflow.ellipsis,
               style: Styles.heading.copyWith(
                 fontSize: 25,
                 color: Colors.black,
@@ -90,6 +91,7 @@ class FlightDetailsCard extends StatelessWidget {
             ),
             Text(
               srcairport!,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontSize: 20,
               ),
@@ -103,6 +105,7 @@ class FlightDetailsCard extends StatelessWidget {
             ),
             Text(
               desairport!,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontSize: 20,
               ),

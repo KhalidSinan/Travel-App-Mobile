@@ -39,6 +39,7 @@ class ReservationTicketCubit extends Cubit<ReservationTicketState> {
     required String classOfSeats,
     required String numOfSeats,
   }) async {
+    print(classOfSeats);
     emit(LoadingSearchFlightState());
     var response = await flightBookingImp.postSearchFlight(
       source: source,
@@ -84,11 +85,10 @@ class ReservationTicketCubit extends Cubit<ReservationTicketState> {
     switch (selectedClass) {
       case 'First':
         seatClass = 'A';
-      case 'Bussiness':
+      case 'Business':
         seatClass = 'B';
       case 'Economy':
         seatClass = 'C';
     }
-    print("---------$seatClass");
   }
 }

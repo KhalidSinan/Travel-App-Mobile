@@ -120,12 +120,13 @@ class _OneViewBarState extends State<OneViewBar> {
       String? seatClass =
           BlocProvider.of<ReservationTicketCubit>(context).seatClass;
       await BlocProvider.of<ReservationTicketCubit>(context).postSearchFlight(
-          source: src!,
-          destination: des!,
-          date: depart!,
-          twoWay: false,
-          classOfSeats: seatClass!,
-          numOfSeats: numOfPassengers!);
+        source: src!,
+        destination: des!,
+        date: depart!,
+        twoWay: false,
+        classOfSeats: seatClass!,
+        numOfSeats: numOfPassengers!,
+      );
     } else {
       autovalidateMode = AutovalidateMode.always;
       setState(() {});

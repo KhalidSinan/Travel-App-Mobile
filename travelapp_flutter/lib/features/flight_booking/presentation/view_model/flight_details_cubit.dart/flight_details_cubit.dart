@@ -17,7 +17,10 @@ class FlightDetailsCubit extends Cubit<FlightDetailsState> {
       String? idback}) async {
     emit(FlightDetailsLoading());
     var data = await flightBookingImp.getFlightDetails(
-        id: flightid, classType: classType, idback: idback);
+      id: flightid,
+      classType: classType,
+      idback: idback,
+    );
     print(data);
     data.fold(
       (failure) {

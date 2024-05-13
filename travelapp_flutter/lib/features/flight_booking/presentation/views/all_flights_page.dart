@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
@@ -57,19 +58,20 @@ class AllFlightsPage extends StatelessWidget {
         ),
       child: Scaffold(
         body: SafeArea(
-          child: BlocBuilder<AllFlightsCubit, AllFlightsStates>(
-            builder: (context, state) {
+          child: BlocListener<AllFlightsCubit, AllFlightsStates>(
+            listener: (context, state) {
               if (state is FailureGetAllFlightsState) {
-                return FailurePage(
-                  error: state.failure,
-                  onPressed: () async {
-                    await BlocProvider.of<AllFlightsCubit>(context).retry();
-                  },
+                Get.to(
+                  () => FailurePage(
+                    error: state.failure,
+                    onPressed: () async {
+                      await BlocProvider.of<AllFlightsCubit>(context).retry();
+                    },
+                  ),
                 );
-              } else {
-                return const AllFlightsPageBody();
               }
             },
+            child: const AllFlightsPageBody(),
           ),
         ),
       ),

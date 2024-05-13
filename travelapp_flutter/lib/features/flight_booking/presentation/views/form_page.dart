@@ -55,15 +55,7 @@ class _FormPageState extends State<FormPage> {
         body: BlocConsumer<FormCubit, FormCubitState>(
           listener: formListener,
           builder: (context, state) {
-            if (state is FormFailure) {
-              return FailurePage(
-                error: state.failure,
-                onPressed: () {
-                  BlocProvider.of<FormCubit>(context)
-                      .initialize(seats: widget.seats);
-                },
-              );
-            } else if (state is FormLoading) {
+            if (state is FormLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
@@ -104,6 +96,15 @@ class _FormPageState extends State<FormPage> {
       print(state.reservationId);
       Get.to(() => ConfirmFlightReservationPage(
             reservationId: state.reservationId,
+          ));
+    }
+    if (state is FormFailure) {
+      Get.to(() => FailurePage(
+            error: state.failure,
+            onPressed: () {
+              BlocProvider.of<FormCubit>(context)
+                  .initialize(seats: widget.seats);
+            },
           ));
     }
     if (state is FormNotFilled) {

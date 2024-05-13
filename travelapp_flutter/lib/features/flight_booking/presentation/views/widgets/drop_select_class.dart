@@ -34,7 +34,7 @@ class _DropState extends State<DropSelectClass> {
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: DropdownButtonFormField(
                     // hint: const Text('select class'),
-                    items: ["First", "Bussiness", "Economy"]
+                    items: ["First", "Business", "Economy"]
                         .map((e) => DropdownMenuItem(
                               value: e,
                               child: Text(e),
