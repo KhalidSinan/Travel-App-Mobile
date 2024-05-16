@@ -5,8 +5,6 @@ import 'package:travelapp_flutter/core/helpers/failure.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/helpers/status_code_handlers.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
-import 'package:travelapp_flutter/features/flight_booking/data/models/one_way_flight_model.dart';
-import 'package:travelapp_flutter/features/flight_booking/data/models/two_way_flight_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_repo.dart';
 
 class FlightBookingImp extends FlightBookingRepo {
@@ -23,7 +21,7 @@ class FlightBookingImp extends FlightBookingRepo {
         headers: {
           'Content-Type': 'application/json',
           'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDFkNGExZTQwYmZmNzM5N2M0NmU5MiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTU1OTY0MTl9.vEbH-nGvX94KmgMBX3k3k1yFypB-lQU8KnYbZeq5ouw',
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmQyNDkzOTc2MjUxMWQ0ZTZjYTg2OCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTU3MDExODB9.QJ-iLnUppgCadjgO4qJLi5RuLGfo8HEKSjH3zES3D8w',
         },
       );
       return right(response);
@@ -206,7 +204,7 @@ class FlightBookingImp extends FlightBookingRepo {
   Future<Either<Failure, Map<String, dynamic>>>
       getCountriesAndAirlines() async {
     String token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDFkNGExZTQwYmZmNzM5N2M0NmU5MiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTU1OTY0MTl9.vEbH-nGvX94KmgMBX3k3k1yFypB-lQU8KnYbZeq5ouw";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmQyNDkzOTc2MjUxMWQ0ZTZjYTg2OCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTU3MDExODB9.QJ-iLnUppgCadjgO4qJLi5RuLGfo8HEKSjH3zES3D8w";
 
     try {
       Map<String, dynamic> response = await apiService.get(
@@ -274,7 +272,7 @@ class FlightBookingImp extends FlightBookingRepo {
             : "/flights/$id?id_back=$idback&class=$classType",
         headers: {
           'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDFkNGExZTQwYmZmNzM5N2M0NmU5MiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTU1OTY0MTl9.vEbH-nGvX94KmgMBX3k3k1yFypB-lQU8KnYbZeq5ouw',
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmQyNDkzOTc2MjUxMWQ0ZTZjYTg2OCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTU3MDExODB9.QJ-iLnUppgCadjgO4qJLi5RuLGfo8HEKSjH3zES3D8w',
         },
       );
       return right(response);

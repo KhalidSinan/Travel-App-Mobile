@@ -4,7 +4,7 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/form_cubit/form_cubit.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/form_card.dart';
 
-class TileContent extends StatelessWidget {
+class TileContent extends StatefulWidget {
   const TileContent({
     super.key,
     required this.index,
@@ -15,17 +15,20 @@ class TileContent extends StatelessWidget {
   });
   final int index;
   final String classType;
-  // final List<String> flightsId;
-  // final String reservationType;
-  // final int seats;
 
+  @override
+  State<TileContent> createState() => _TileContentState();
+}
+
+class _TileContentState extends State<TileContent> {
+  // final List<String> flightsId;
   @override
   Widget build(BuildContext context) {
     bool isForm = BlocProvider.of<FormCubit>(context).isForm;
-    return BlocProvider.of<FormCubit>(context).passengers[index] == null
+    return BlocProvider.of<FormCubit>(context).passengers[widget.index] == null
         ? FormCard(
-            index: index,
-            classType: classType,
+            index: widget.index,
+            classType: widget.classType,
           )
         : BlocBuilder<FormCubit, FormCubitState>(
             builder: (context, state) {
@@ -38,17 +41,58 @@ class TileContent extends StatelessWidget {
                   height: 50,
                   width: 120,
                   child: ElevatedButton(
-                    onPressed: () async {
+                    onPressed: () {
                       final formCubit = BlocProvider.of<FormCubit>(context);
-                      if (isForm) {
-                        formCubit.removePassenger(index);
-                      } else {
-                        await formCubit.cancleReservation(
-                          personId: formCubit.passengers[index]!.id!,
-                          reserveId: formCubit.reservationId!,
-                          index: index,
-                        );
-                      }
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return BlocProvider.value(
+                            value: formCubit,
+                            child: AlertDialog(
+                              title: const Text('Warning !'),
+                              content: const Text(
+                                'Are you sure you want to delete this person',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              actions: [
+                                MaterialButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    'back',
+                                    style: TextStyle(
+                                      color: Themes.primary,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                                MaterialButton(
+                                  onPressed: () async {
+                                    if (isForm) {
+                                      formCubit.removePassenger(widget.index);
+                                    } else {
+                                      await formCubit.cancleReservation(
+                                        personId: formCubit
+                                            .passengers[widget.index]!.id!,
+                                        reserveId: formCubit.reservationId!,
+                                        index: widget.index,
+                                      );
+                                    }
+                                  },
+                                  child: Text(
+                                    'delete',
+                                    style: TextStyle(
+                                      color: Themes.third,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 0,

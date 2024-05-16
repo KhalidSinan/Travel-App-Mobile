@@ -77,6 +77,7 @@ class _TwoViewBarState extends State<TwoViewBar> {
                   ],
                 ),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Expanded(
                       child: NumberOfPassengers(

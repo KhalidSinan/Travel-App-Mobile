@@ -50,7 +50,7 @@ class _CustomTextAndTextFormState extends State<CustomTextAndTextForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 10.0),
+            padding: const EdgeInsets.only(left: 10.0, bottom: 5),
             child: Text(
               widget.text!,
               style: const TextStyle(fontWeight: FontWeight.bold),

@@ -66,6 +66,7 @@ class _OneViewBarState extends State<OneViewBar> {
                   onSaved: (vlaue) => depart = vlaue,
                 ),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Expanded(
                       child: NumberOfPassengers(

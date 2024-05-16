@@ -31,11 +31,13 @@ class Failure {
       case DioExceptionType.receiveTimeout:
       case DioExceptionType.connectionError:
       case DioExceptionType.unknown:
+        print(dioException.error.toString());
         return Failure(
           errTitle: 'Error',
           errMessage: kInternetMessage,
           errType: dioException.type,
         );
+
       case DioExceptionType.badCertificate:
       case DioExceptionType.cancel:
         return Failure(
