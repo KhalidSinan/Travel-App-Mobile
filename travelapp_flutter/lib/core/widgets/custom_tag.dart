@@ -19,8 +19,8 @@ class CustomTag extends StatelessWidget {
             color: Colors.white,
           ),
           child: Icon(
-            text == 'Nothing' ? Icons.priority_high : icon,
-            color: Themes.third!.withOpacity(0.6),
+            icon,
+            color: Themes.third,
           ),
         ),
         Text(

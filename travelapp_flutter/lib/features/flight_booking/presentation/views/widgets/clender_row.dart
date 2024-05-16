@@ -25,7 +25,7 @@ class ClenderRowState extends State<ClenderRow> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
         child: CustomTextAndTextForm(
             text: widget.text,
             hintText: 'select date',

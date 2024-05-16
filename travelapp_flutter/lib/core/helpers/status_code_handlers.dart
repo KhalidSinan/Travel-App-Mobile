@@ -9,6 +9,8 @@ class DefaultStatusCodeHandler extends StatusCodeHandler {
   @override
   Failure handleError(int statusCode, data) {
     if (statusCode == 404) {
+      print(statusCode);
+      print(data.toString());
       return Failure(
         errTitle: 'Error',
         errMessage: data,
