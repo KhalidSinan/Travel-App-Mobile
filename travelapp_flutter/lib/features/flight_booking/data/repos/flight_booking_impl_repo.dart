@@ -70,7 +70,6 @@ class FlightBookingImp extends FlightBookingRepo {
       );
       return right(response);
     } catch (e) {
-      print(e);
       if (e is DioException) {
         return left(
             Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
@@ -194,7 +193,6 @@ class FlightBookingImp extends FlightBookingRepo {
         return left(
             Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
       } else {
-        print(e.toString());
         return left(Failure(errMessage: 'Something went wrong'));
       }
     }
@@ -305,7 +303,6 @@ class FlightBookingImp extends FlightBookingRepo {
       print(response);
       return right(response);
     } catch (e) {
-      print(e);
       if (e is DioException) {
         return left(
             Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
