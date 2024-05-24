@@ -11,10 +11,7 @@ class HotelModel {
   final int roomsNumber;
   final double distanceFromCityCenter;
   final List<String> images;
-
-  
   final int v;
-
   HotelModel(
       {required this.id,
       required this.name,
@@ -37,13 +34,13 @@ class HotelModel {
     return HotelModel(
         id: jsonData["_id"],
         name: jsonData["name"],
-        location: jsonData["location"],
+        location: LocationModel.fromJson(jsonData["location"]),
         stars: jsonData["stars"],
         description: jsonData["description"],
         roomType: roomTypes!,
         roomsNumber: jsonData["rooms_number"],
         distanceFromCityCenter: jsonData["distance_from_city_center"],
-        images: jsonData["images"],
+        images: List<String>.from(jsonData["images"]),
         v: jsonData["__v"]);
   }
 }
