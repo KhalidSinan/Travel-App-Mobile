@@ -1,6 +1,5 @@
 import 'package:travelapp_flutter/features/hotel_booking/data/models/locationModel.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/roomModel.dart';
-
 class HotelModel {
   final String id;
   final String name;
