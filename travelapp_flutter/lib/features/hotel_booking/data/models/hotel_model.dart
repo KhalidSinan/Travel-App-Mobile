@@ -1,5 +1,5 @@
-import 'package:travelapp_flutter/features/hotel_booking/data/models/locationModel.dart';
-import 'package:travelapp_flutter/features/hotel_booking/data/models/roomModel.dart';
+import 'package:travelapp_flutter/features/hotel_booking/data/models/location_model.dart';
+import 'package:travelapp_flutter/features/hotel_booking/data/models/room_model.dart';
 class HotelModel {
   final String id;
   final String name;
@@ -11,6 +11,7 @@ class HotelModel {
   final double distanceFromCityCenter;
   final List<String> images;
   final int v;
+
   HotelModel(
       {required this.id,
       required this.name,
@@ -21,7 +22,9 @@ class HotelModel {
       required this.roomsNumber,
       required this.distanceFromCityCenter,
       required this.images,
-      required this.v});
+      required this.v,
+      });
+      
   factory HotelModel.fromJson(jsonData) {
     List<RoomTypeModel>? roomTypes;
     if (jsonData['room_types'] != null) {
