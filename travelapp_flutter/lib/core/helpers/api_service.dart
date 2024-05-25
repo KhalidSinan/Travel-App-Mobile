@@ -7,11 +7,14 @@ class ApiService {
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get(
-      {required String endPoint, Map<String, dynamic>? headers}) async {
+      {required String endPoint,
+      Map<String, dynamic>? headers,
+      Map<String, dynamic>? extra}) async {
     var response = await _dio.get(
       '$_baseUrl$endPoint',
       options: Options(
         headers: headers,
+        extra: extra,
       ),
     );
     return response.data;
