@@ -63,6 +63,7 @@ class _TravelAppState extends State<TravelApp> {
         BlocProvider(
           create: (context) => ProfileCubit(getIt.get<AuthRepoImpl>()),
         ),
+        
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

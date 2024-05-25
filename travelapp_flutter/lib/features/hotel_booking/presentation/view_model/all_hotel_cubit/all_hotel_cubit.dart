@@ -6,4 +6,9 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
   AllHotelsCubit(this._hotelBookingImp) : super(InitialAllHotelStates());
 
   final HotelBookingImp _hotelBookingImp;
+
+  Future<void> getAllHotelData({required String nameHotelOrCity}) async {
+
+    emit(LoadingAllHotelStates());
+  }
 }

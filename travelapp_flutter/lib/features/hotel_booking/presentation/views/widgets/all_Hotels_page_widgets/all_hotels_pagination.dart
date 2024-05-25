@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:number_paginator/number_paginator.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
 
 class HotelsPagination extends StatelessWidget {
   const HotelsPagination({
@@ -9,18 +12,25 @@ class HotelsPagination extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: NumberPaginator(
-        numberPages: 5,
-        initialPage: 1,
-        // onPageChange: (index) async {
-        //   await BlocProvider.of<AllFlightsCubit>(context).changePage(index + 1);
-        // },
-        config: NumberPaginatorUIConfig(
-          buttonSelectedBackgroundColor: Themes.primary,
-          buttonUnselectedForegroundColor: Themes.third,
-        ),
-      ),
+    return BlocBuilder<AllHotelsCubit, AllHotelStates>(
+      builder: (context, state) {
+        if (state is SuccessAllHotelStates) {
+          
+        }
+        return SliverToBoxAdapter(
+          child: NumberPaginator(
+            numberPages: 5,
+            initialPage: 1,
+            // onPageChange: (index) async {
+            //   await BlocProvider.of<AllFlightsCubit>(context).changePage(index + 1);
+            // },
+            config: NumberPaginatorUIConfig(
+              buttonSelectedBackgroundColor: Themes.primary,
+              buttonUnselectedForegroundColor: Themes.third,
+            ),
+          ),
+        );
+      },
     );
   }
 }

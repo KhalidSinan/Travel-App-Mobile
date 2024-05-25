@@ -40,7 +40,6 @@ class AllHotelsPageBody extends StatelessWidget {
                       color: Colors.black),
                 ),
               ),
-              //padding: <-- Using to shift text position a little bit for your requirement
             ),
           ),
         ),
