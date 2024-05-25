@@ -6,10 +6,12 @@ class CustomTextButton extends StatelessWidget {
     required this.onPressed,
     required this.label,
     this.color,
+    this.size,
   });
   final VoidCallback onPressed;
   final String label;
   final Color? color;
+  final double? size;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -21,6 +23,7 @@ class CustomTextButton extends StatelessWidget {
         label,
         style: TextStyle(
           color: color ?? Colors.grey,
+          fontSize: size,
         ),
       ),
     );

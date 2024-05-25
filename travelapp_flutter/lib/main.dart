@@ -13,6 +13,7 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/plane_page.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/hotel_details_page.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
 Future _firebaseBackgroundMessage(RemoteMessage message) async {
@@ -71,7 +72,7 @@ class _TravelAppState extends State<TravelApp> {
         // home: rememberMe == true
         //     ? FetchProfileDataPage(token: token)
         //     : const LoginPage(),
-        home: const PlanePage(),
+        home: const HotelDetailsPage(),
       ),
     );
   }
