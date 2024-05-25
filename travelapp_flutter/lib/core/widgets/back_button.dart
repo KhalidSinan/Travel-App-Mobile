@@ -6,8 +6,9 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({
     super.key,
+    this.color,
   });
-
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -15,7 +16,7 @@ class CustomBackButton extends StatelessWidget {
       icon: Icon(
         FontAwesomeIcons.chevronLeft,
         size: 20,
-        color: Themes.primary,
+        color: color ?? Themes.primary,
       ),
     );
   }

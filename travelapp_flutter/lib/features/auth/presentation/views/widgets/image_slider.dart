@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/assets.dart';
 
 class ImageSlider extends StatelessWidget {
-  const ImageSlider({super.key});
+  const ImageSlider({
+    super.key,
+    required this.images,
+  });
+
+  final List<String> images;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +21,10 @@ class ImageSlider extends StatelessWidget {
         autoPlayInterval: const Duration(seconds: 15),
         scrollPhysics: const NeverScrollableScrollPhysics(),
       ),
-      items: [
-        buildImage(Assets.nature1),
-        buildImage(Assets.nature2),
-        buildImage(Assets.nature3),
-      ],
+      items: List.generate(
+        images.length,
+        (index) => buildImage(images[index]),
+      ),
     );
   }
 
