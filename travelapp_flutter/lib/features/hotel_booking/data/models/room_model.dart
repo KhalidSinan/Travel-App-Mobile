@@ -1,4 +1,5 @@
 class RoomTypeModel {
+  final List<String> images;
   final String code;
   final String description;
   final double price;
@@ -12,7 +13,8 @@ class RoomTypeModel {
   final String id;
 
   RoomTypeModel(
-      {required this.code,
+      {required this.images,
+      required this.code,
       required this.description,
       required this.price,
       required this.bedOptions,
@@ -25,6 +27,7 @@ class RoomTypeModel {
       required this.id});
   factory RoomTypeModel.fromJson(jsonData) {
     return RoomTypeModel(
+        images: List<String>.from(jsonData["images"]),
         code: jsonData['code'],
         description: jsonData['description'],
         price: jsonData['price'],
