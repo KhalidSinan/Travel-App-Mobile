@@ -6,7 +6,6 @@ import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/country_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/trip_date_model.dart';
-
 // ignore: must_be_immutable
 class FlightDetailsCard extends StatelessWidget {
   FlightDetailsCard(
@@ -40,21 +39,9 @@ class FlightDetailsCard extends StatelessWidget {
         Row(
           children: [
             SizedBox(
-                // clipBehavior: Clip.hardEdge,
-                height: 50,
-                width: 50,
-                // decoration: BoxDecoration(
-                //   borderRadius: BorderRadius.circular(30),
-                // ),
-                child: Image.network(logo!)
-                // CachedNetworkImage(
-                //   imageUrl: logo!,
-                //   progressIndicatorBuilder: (context, url, progress) =>
-                //       CircularProgressIndicator(
-                //     color: Themes.primary,
-                //   ),
-                // ),
-                ),
+              height: 50, width: 50, child: Image.network(logo!),
+              //CustomImage(image:logo!);
+            ),
             const SizedBox(width: 16),
             Text(
               airline!,
@@ -131,9 +118,9 @@ class FlightDetailsCard extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 25),
         SizedBox(
-          height: 70,
+          height: 80,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -210,7 +197,7 @@ class FlightDetailsCard extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 15),
         Row(
           children: [
             const Spacer(
@@ -220,7 +207,7 @@ class FlightDetailsCard extends StatelessWidget {
               padding: const EdgeInsets.only(right: 10),
               child: Icon(
                 FontAwesomeIcons.moneyCheckDollar,
-                color: Themes.primary,
+                color: Themes.third,
                 size: 25,
               ),
             ),
@@ -237,7 +224,7 @@ class FlightDetailsCard extends StatelessWidget {
               padding: const EdgeInsets.only(right: 5),
               child: Icon(
                 Icons.timelapse,
-                color: Themes.primary,
+                color: Themes.third,
                 size: 30,
               ),
             ),

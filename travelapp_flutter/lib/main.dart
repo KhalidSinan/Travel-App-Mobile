@@ -12,8 +12,13 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cu
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:google_fonts/google_fonts.dart';
+<<<<<<< HEAD
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/plane_page.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/hotel_details_page.dart';
+=======
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/all_hotel_page.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/search_page.dart';
+>>>>>>> 06bc957fbead50dbacf08dbf3df502b4af8bae9a
 import 'package:travelapp_flutter/firebase_options.dart';
 
 Future _firebaseBackgroundMessage(RemoteMessage message) async {
@@ -68,11 +73,17 @@ class _TravelAppState extends State<TravelApp> {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           textTheme: GoogleFonts.aBeeZeeTextTheme(),
+         
         ),
         // home: rememberMe == true
         //     ? FetchProfileDataPage(token: token)
         //     : const LoginPage(),
+<<<<<<< HEAD
         home: const HotelDetailsPage(),
+=======
+        home: const SearchPage()
+        //AllHotelsPage(),
+>>>>>>> 06bc957fbead50dbacf08dbf3df502b4af8bae9a
       ),
     );
   }

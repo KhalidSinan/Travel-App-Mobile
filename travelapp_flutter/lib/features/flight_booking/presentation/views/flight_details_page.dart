@@ -96,7 +96,7 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 450,
+                        height: 460,
                         child: PageView(
                           controller: controller,
                           physics: const PageScrollPhysics(),

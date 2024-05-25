@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:travelapp_flutter/core/helpers/convert_class_type.dart';
 import 'package:travelapp_flutter/core/helpers/failure.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/form_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';

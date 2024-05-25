@@ -115,8 +115,49 @@ class _FormCardState extends State<FormCard> {
                   width: 120,
                   child: ElevatedButton(
                     onPressed: () {
-                      BlocProvider.of<FormCubit>(context)
-                          .removePassenger(widget.index);
+                      final formCubit = BlocProvider.of<FormCubit>(context);
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return BlocProvider.value(
+                            value: formCubit,
+                            child: AlertDialog(
+                              title: const Text('Warning !'),
+                              content: const Text(
+                                'Are you sure you want to delete this person',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              actions: [
+                                MaterialButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    'back',
+                                    style: TextStyle(
+                                      color: Themes.primary,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                                MaterialButton(
+                                  onPressed: () {
+                                    formCubit.removePassenger(widget.index);
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    'delete',
+                                    style: TextStyle(
+                                      color: Themes.third,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
