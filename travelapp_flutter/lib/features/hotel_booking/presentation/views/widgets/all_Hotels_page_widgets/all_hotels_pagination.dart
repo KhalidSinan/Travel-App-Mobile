@@ -16,28 +16,31 @@ class HotelsPagination extends StatelessWidget {
     return BlocBuilder<AllHotelsCubit, AllHotelStates>(
       builder: (context, state) {
         if (state is SuccessAllHotelStates) {
-          //  int totalHotels =
-          //     BlocProvider.of<AllHotelsCubit>(context).totalHotels;
-          // int numberPages = (totalHotels / flightsInSinglePage).ceil();
-          // if (numberPages <= 1) {
-          //   return const SliverToBoxAdapter(
-          //     child: SizedBox(),
-          //   );
-          // }
-        }
-        return SliverToBoxAdapter(
-          child: NumberPaginator(
-            numberPages:1 ,
-            initialPage: 1,
-            // onPageChange: (index) async {
-            //   await BlocProvider.of<AllFlightsCubit>(context).changePage(index + 1);
-            // },
-            config: NumberPaginatorUIConfig(
-              buttonSelectedBackgroundColor: Themes.primary,
-              buttonUnselectedForegroundColor: Themes.third,
+          int totalHotels =
+              BlocProvider.of<AllHotelsCubit>(context).allhotels!.totalHotels;
+          int numberPages = (totalHotels / flightsInSinglePage).ceil();
+          if (numberPages <= 1) {
+            return const SliverToBoxAdapter(
+              child: SizedBox(),
+            );
+          }
+          return SliverToBoxAdapter(
+            child: NumberPaginator(
+              numberPages: numberPages,
+              initialPage: BlocProvider.of<AllHotelsCubit>(context).page - 1,
+              onPageChange: (index) async {
+                await BlocProvider.of<AllHotelsCubit>(context)
+                    .changePage(index + 1);
+              },
+              config: NumberPaginatorUIConfig(
+                buttonSelectedBackgroundColor: Themes.primary,
+                buttonUnselectedForegroundColor: Themes.third,
+              ),
             ),
-          ),
-        );
+          );
+        } else {
+          return const SliverToBoxAdapter(child: SizedBox());
+        }
       },
     );
   }
