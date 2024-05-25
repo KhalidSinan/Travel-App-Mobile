@@ -18,7 +18,7 @@ class Styles {
   static final heading2 = GoogleFonts.quattrocento().copyWith(
     fontSize: 28,
     fontWeight: FontWeight.bold,
-    color: Themes.primary,
+    color: Themes.third,
   );
   static final content = TextStyle(
     color: Themes.third,
