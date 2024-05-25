@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
-import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/all_flights_cubit/all_flights_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/repos/hotel_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
-
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_Hotels_page_widgets/all_hotels_page_body.dart';
 
 class AllHotelsPage extends StatelessWidget {
@@ -29,7 +26,7 @@ class AllHotelsPage extends StatelessWidget {
                   () => FailurePage(
                     error: state.failure,
                     onPressed: () async {
-                      //  await BlocProvider.of<AllHotelsCubit>(context).retry();
+                        await BlocProvider.of<AllHotelsCubit>(context).retry();
                     },
                   ),
                 );
