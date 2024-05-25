@@ -29,9 +29,9 @@ class HotelBookingImp extends HotelBookingRepo {
         "numDays": 3,
         "numRooms": 44,
         "page": 1,
-        // "sortField": 2,
-        // "order": 2,
-        // "stars": 2,
+        "sortField": sortField,
+        "order": order,
+        "stars": starsNumber,
       });
       return right(response);
     } catch (e) {
