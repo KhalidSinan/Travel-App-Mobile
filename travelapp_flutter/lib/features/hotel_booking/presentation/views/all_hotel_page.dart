@@ -16,7 +16,8 @@ class AllHotelsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AllHotelsCubit(getIt.get<HotelBookingImp>()),
+      create: (context) => AllHotelsCubit(getIt.get<HotelBookingImp>())
+        ..getAllHotelData(nameHotelOrCity: "Berlin"),
       child: Scaffold(
         body: SafeArea(
           child: BlocListener<AllHotelsCubit, AllHotelStates>(
@@ -26,7 +27,7 @@ class AllHotelsPage extends StatelessWidget {
                   () => FailurePage(
                     error: state.failure,
                     onPressed: () async {
-                        await BlocProvider.of<AllHotelsCubit>(context).retry();
+                      await BlocProvider.of<AllHotelsCubit>(context).retry();
                     },
                   ),
                 );

@@ -7,7 +7,7 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
   AllHotelsCubit(this._hotelBookingImp) : super(InitialAllHotelStates());
 
   int page = 1;
-  int? stars;
+  double? stars;
   String? order;
   String? sortField;
   String? startDate;
@@ -51,14 +51,14 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
   Future<void> changePage(int page) async {
     this.page = page;
     await getAllHotelData(
-        nameHotelOrCity: "Berlin",
-        page: page,
-        startDate: startDate,
-        numDays: numDays,
-        numRooms: numRooms,
-        sortField: sortField,
-        order: order,
-        );
+      nameHotelOrCity: "Berlin",
+      page: page,
+      startDate: startDate,
+      numDays: numDays,
+      numRooms: numRooms,
+      sortField: sortField,
+      order: order,
+    );
   }
 
   Future<void> retry() async {
@@ -70,9 +70,10 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
         numRooms: numRooms);
   }
 
-  Future<void> applyFilteringbyStars(int stars) async {
+  Future<void> applyFilteringbyStars(double stars) async {
     this.stars = stars;
-    await getAllHotelData(nameHotelOrCity: "Berlin", starsNumber: stars);
+    await getAllHotelData(
+        nameHotelOrCity: "Berlin", starsNumber: int.parse(stars.toString()));
   }
 
   Future<void> applySorting(String sortField, String order) async {
