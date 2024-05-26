@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
 
 class SortHotelSheet extends StatefulWidget {
   const SortHotelSheet({super.key});
@@ -27,8 +31,14 @@ class _SortHotelSheetState extends State<SortHotelSheet> {
   ];
   String? currentSortBy;
   @override
+  void initState() {
+    super.initState();
+
+    currentSortBy = BlocProvider.of<AllHotelsCubit>(context).order;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    double rating;
     return CustomSheet(
       height: 500,
       child: Column(
@@ -41,7 +51,11 @@ class _SortHotelSheetState extends State<SortHotelSheet> {
                 style: Styles.heading2,
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.back();
+                  BlocProvider.of<AllHotelsCubit>(context).applySorting(
+                      sortField(order: "price"), order(order: "asc"));
+                },
                 icon: const Icon(
                   FontAwesomeIcons.repeat,
                   size: 16,
@@ -66,50 +80,53 @@ class _SortHotelSheetState extends State<SortHotelSheet> {
                   });
                 });
           }),
-          // Row(
-          //   children: [
-          //     Text(
-          //       'Sort By Stars',
-          //       style: Styles.heading2,
-          //     ),
-          //     IconButton(
-          //       onPressed: () {},
-          //       icon: const Icon(
-          //         FontAwesomeIcons.repeat,
-          //         size: 16,
-          //         color: Colors.grey,
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          // CustomSheet(
-          //     height: 100,
-          //     child: Center(
-          //       child: RatingBar.builder(
-          //         itemPadding: const EdgeInsets.symmetric(horizontal: 4),
-          //         itemSize: 46,
-          //         minRating: 1,
-          //         itemBuilder: (BuildContext context, int index) => const Icon(
-          //           Icons.star,
-          //           color: Colors.amber,
-          //         ),
-          //         onRatingUpdate: (double value) {
-          //           setState(() {
-          //             rating = value;
-          //           });
-          //         },
-          //       ),
-          //     )),
           const Spacer(flex: 1),
           SizedBox(
             width: double.infinity,
             child: CustomButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+                BlocProvider.of<AllHotelsCubit>(context).applySorting(
+                    sortField(order: currentSortBy!),
+                    order(order: currentSortBy!));
+              },
               label: 'Apply Sorting',
             ),
           ),
         ],
       ),
     );
+  }
+}
+
+String sortField({required String order}) {
+  switch (order) {
+    case "price_asc":
+    case "price_desc":
+      return "price";
+
+    case "Least rated":
+    case "Most rated":
+      return "stars";
+
+    default:
+      return "price";
+  }
+}
+
+String order({required String order}) {
+  switch (order) {
+    case "price_asc":
+      return "asc";
+    case "price_desc":
+      return "desc";
+
+    case "Least rated":
+      return "asc";
+    case "Most rated":
+      return "desc";
+
+    default:
+      return "asc";
   }
 }

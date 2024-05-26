@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/hotel_booking/data/models/all_hotelModel.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
 
@@ -11,7 +12,7 @@ class HotelsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double rating = 3.5;
+
     return BlocBuilder<AllHotelsCubit, AllHotelStates>(
         builder: (context, state) {
       if (state is NoHotelsState) {
@@ -26,8 +27,10 @@ class HotelsList extends StatelessWidget {
           itemCount: 10,
         );
       } else {
+        AllHotelModel hotels =
+            BlocProvider.of<AllHotelsCubit>(context).allhotels!;
         return SliverList.builder(
-            itemCount: 5,
+            itemCount: hotels.totalHotels,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -64,9 +67,9 @@ class HotelsList extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Flexible(
+                            Flexible(
                               child: AutoSizeText(
-                                "Chillax Heritage",
+                                hotels.hotels[index].name,
                                 softWrap: true,
                                 maxLines: 1,
                                 minFontSize: 10,
@@ -74,9 +77,9 @@ class HotelsList extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            const Flexible(
+                            Flexible(
                               child: AutoSizeText(
-                                "Baramkeh Road | 4.5 Km from center",
+                                "${hotels.hotels[index].location} |${hotels.hotels[index].distanceFromCityCenter} Km from center",
                                 softWrap: true,
                                 maxLines: 1,
                                 minFontSize: 7,
@@ -91,10 +94,10 @@ class HotelsList extends StatelessWidget {
                               children: List.generate(
                                 5,
                                 (index) => Icon(
-                                  index < rating
+                                  index < hotels.hotels[index].stars
                                       ? Icons.star
                                       : Icons.star_border,
-                                  color: index < rating
+                                  color: index <  hotels.hotels[index].stars
                                       ? Colors.yellow
                                       : Colors.grey,
                                 ),
@@ -110,7 +113,8 @@ class HotelsList extends StatelessWidget {
                                   style: TextStyle(fontSize: 11),
                                 ),
                                 Text(
-                                  "US \$304",
+                                  "price",
+                                 // hotels.hotels[index].price;
                                   style: TextStyle(fontSize: 18),
                                 ),
                               ],
