@@ -30,6 +30,7 @@ class _LoginOptionsState extends State<LoginOptions> {
                 BlocProvider.of<LoginCubit>(context).rememberMe = value!;
               });
             },
+           listTileControlAffinity: ListTileControlAffinity.leading, 
           ),
         ),
         CustomTextButton(

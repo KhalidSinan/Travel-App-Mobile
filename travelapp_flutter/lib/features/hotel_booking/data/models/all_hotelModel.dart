@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> Hamzatii
 import 'package:travelapp_flutter/features/hotel_booking/data/models/hotel_model.dart';
 
 class AllHotelModel {

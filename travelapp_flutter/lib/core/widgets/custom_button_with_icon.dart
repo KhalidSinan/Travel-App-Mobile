@@ -9,13 +9,14 @@ class CustomButtonWithIcon extends StatelessWidget {
     required this.label,
     required this.onPressed,
     this.color,
-    required this.suffix,
+    required this.suffix, this.colorText,
   });
   //Tima
   final String label;
   final Widget suffix;
   final VoidCallback onPressed;
   final Color? color;
+  final Color? colorText;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -39,7 +40,7 @@ class CustomButtonWithIcon extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              color: Themes.primary,
+              color: colorText?? Themes.primary,
             ),
           ),
         ],

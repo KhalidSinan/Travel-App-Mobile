@@ -8,11 +8,13 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     required this.label,
     this.color,
-    this.isFlat,
+    this.isFlat, this.colorText,
   });
   final VoidCallback? onPressed;
   final String label;
   final Color? color;
+    final Color? colorText;
+
   final bool? isFlat;
   @override
   Widget build(BuildContext context) {
@@ -32,8 +34,8 @@ class CustomButton extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: const TextStyle(
-          color: Colors.white,
+        style:  TextStyle(
+          color: colorText ?? Colors.white,
           fontSize: 16,
           fontWeight: FontWeight.bold,
         ),

@@ -10,7 +10,7 @@ import 'package:travelapp_flutter/core/utils/constants.dart';
 
 class Failure {
   final String? errTitle;
-  final String errMessage;
+  final dynamic errMessage;
   final DioExceptionType? errType;
   final StatusCodeHandler? handler;
 
