@@ -19,7 +19,7 @@ class CustomTextAndTextForm extends StatefulWidget {
       this.controller,
       this.width,
       this.labelText,
-      this.hight});
+      this.hight, this.outlineInputBorder});
   final String? hintText;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
@@ -34,7 +34,7 @@ class CustomTextAndTextForm extends StatefulWidget {
   final TextEditingController? controller;
   final double? width;
   final double? hight;
-
+  final OutlineInputBorder? outlineInputBorder;
   final String? labelText;
 
   @override
@@ -61,7 +61,7 @@ class _CustomTextAndTextFormState extends State<CustomTextAndTextForm> {
             height: widget.hight ?? 60,
             child: CustomTextFormField(
               labeltext: widget.labelText,
-              hintText: widget.hintText!,
+              hintText: widget.hintText,
               suffixIcon: widget.suffixIcon,
               prefixIcon: widget.prefixIcon,
               readOnly: widget.readOnly,
@@ -71,6 +71,7 @@ class _CustomTextAndTextFormState extends State<CustomTextAndTextForm> {
               controller: widget.controller,
               validator: validateName,
               onTap: widget.onTap,
+              outlineInputBorder: widget.outlineInputBorder,
             ),
           ),
         ],

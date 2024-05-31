@@ -5,7 +5,7 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
-    required this.hintText,
+     this.hintText,
     this.validator,
     this.onChanged,
     this.obsecureText,
@@ -16,9 +16,9 @@ class CustomTextFormField extends StatelessWidget {
     this.readOnly,
     this.onTap,
     this.controller,
-    this.labeltext,
+    this.labeltext, this.outlineInputBorder,
   });
-  final String hintText;
+  final String ?hintText;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
   final void Function(String?)? onSaved;
@@ -30,6 +30,7 @@ class CustomTextFormField extends StatelessWidget {
   final VoidCallback? onTap;
   final TextEditingController? controller;
   final String? labeltext;
+  final OutlineInputBorder? outlineInputBorder;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -52,7 +53,7 @@ class CustomTextFormField extends StatelessWidget {
           // borderSide: const BorderSide(color: Colors.grey),
           borderSide: BorderSide.none,
         ),
-        enabledBorder: OutlineInputBorder(
+        enabledBorder: outlineInputBorder?? OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
           // borderSide: const BorderSide(color: Colors.grey),
           borderSide: BorderSide.none,

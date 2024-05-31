@@ -1,4 +1,4 @@
-import 'package:travelapp_flutter/features/hotel_booking/data/models/hotelModel.dart';
+import 'package:travelapp_flutter/features/hotel_booking/data/models/hotel_model.dart';
 
 class AllHotelModel {
   final int totalHotels;

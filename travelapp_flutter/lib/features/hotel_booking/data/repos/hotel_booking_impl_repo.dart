@@ -44,4 +44,33 @@ class HotelBookingImp extends HotelBookingRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> makeHotelReservation(
+      {required String hotelId,
+      required List<Map<String, dynamic>> roomCodes,
+      required String startDate,
+      required String numDays}) async {
+    try {
+      Map<String, dynamic> response = await apiService.post(
+        endPoint: "/hotels/reserve",
+        body: {
+          "hotelId": hotelId,
+          "roomCodes": roomCodes,
+          "startDate": startDate,
+          "numDays": numDays,
+        },
+      );
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, ReservationHotelStatusCodeHandler()));
+      } else {
+        return left(Failure(errMessage: 'Something went wrong'));
+      }
+    }
+  }
+
+  
 }
