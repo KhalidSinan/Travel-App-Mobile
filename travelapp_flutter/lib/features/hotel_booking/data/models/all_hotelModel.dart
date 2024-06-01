@@ -3,9 +3,10 @@ import 'package:travelapp_flutter/features/hotel_booking/data/models/hotel_model
 
 class AllHotelModel {
   final int totalHotels;
+  final int currentPage;
   final List<HotelModel> hotels;
 
-  AllHotelModel({required this.totalHotels, required this.hotels});
+  AllHotelModel( {required this.totalHotels, required this.hotels,required this.currentPage,});
 
   factory AllHotelModel.fromJson(jsonData) {
     List<HotelModel>? hotels;
@@ -16,6 +17,6 @@ class AllHotelModel {
       }
     }
     return AllHotelModel(
-        totalHotels: jsonData['totalHotelsFound'], hotels: hotels!);
+        totalHotels: jsonData['totalHotelsFound'], hotels: hotels!, currentPage: jsonData['current_page']);
   }
 }

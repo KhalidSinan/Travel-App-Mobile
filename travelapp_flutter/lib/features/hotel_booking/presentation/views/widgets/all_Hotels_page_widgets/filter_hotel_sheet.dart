@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -20,7 +18,16 @@ class FilterHotelSheet extends StatefulWidget {
   State<FilterHotelSheet> createState() => _FilterHotelSheetState();
 }
 
+@override
 class _FilterHotelSheetState extends State<FilterHotelSheet> {
+  double? stars;
+  void initState() {
+    super.initState();
+
+    stars = BlocProvider.of<AllHotelsCubit>(context).stars;
+    print(stars);
+  }
+
   double rating = 1;
   @override
   Widget build(BuildContext context) {
@@ -38,7 +45,7 @@ class _FilterHotelSheetState extends State<FilterHotelSheet> {
                 onPressed: () {
                   rating = 0;
                   BlocProvider.of<AllHotelsCubit>(context)
-                      .applyFilteringbyStars(0); //  question remember
+                      .applyFilteringStars(0); //  question remember
                 },
                 icon: const Icon(
                   FontAwesomeIcons.repeat,
@@ -55,7 +62,9 @@ class _FilterHotelSheetState extends State<FilterHotelSheet> {
             child: RatingBar.builder(
               itemPadding: const EdgeInsets.symmetric(horizontal: 4),
               itemSize: 46,
-              minRating: rating,
+              glowColor: Colors.transparent,
+              minRating: stars!,
+              initialRating: stars!,
               itemBuilder: (BuildContext context, int index) => const Icon(
                 Icons.star,
                 color: Colors.amber,
@@ -76,7 +85,7 @@ class _FilterHotelSheetState extends State<FilterHotelSheet> {
               onPressed: () async {
                 Get.back();
                 await BlocProvider.of<AllHotelsCubit>(context)
-                    .applyFilteringbyStars(rating);
+                    .applyFilteringStars(rating);
               },
               label: 'Apply Filtering',
             ),

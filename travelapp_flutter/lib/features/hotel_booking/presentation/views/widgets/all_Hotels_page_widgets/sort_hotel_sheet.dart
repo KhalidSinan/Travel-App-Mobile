@@ -20,8 +20,8 @@ class _SortHotelSheetState extends State<SortHotelSheet> {
   List<String> sortBy = [
     'price_asc',
     'price_desc',
-    'Least rated',
-    'Most rated',
+    'stars_asc',
+    'stars_desc',
   ];
   List<String> titles = [
     ' Price Low to High',
@@ -29,12 +29,18 @@ class _SortHotelSheetState extends State<SortHotelSheet> {
     ' Least rated',
     ' Most rated',
   ];
+  String? currentorder;
+  String? currentfield;
   String? currentSortBy;
+  List<String>? splitValues;
   @override
   void initState() {
     super.initState();
 
-    currentSortBy = BlocProvider.of<AllHotelsCubit>(context).order;
+    currentorder = BlocProvider.of<AllHotelsCubit>(context).order;
+    currentfield = BlocProvider.of<AllHotelsCubit>(context).sortField;
+    print(currentorder);
+    print(currentfield);
   }
 
   @override
@@ -53,8 +59,8 @@ class _SortHotelSheetState extends State<SortHotelSheet> {
               IconButton(
                 onPressed: () {
                   Get.back();
-                  BlocProvider.of<AllHotelsCubit>(context).applySorting(
-                      sortField(order: "price"), order(order: "asc"));
+                  BlocProvider.of<AllHotelsCubit>(context)
+                      .applySorting(currentfield!, currentorder!);
                 },
                 icon: const Icon(
                   FontAwesomeIcons.repeat,
@@ -65,6 +71,8 @@ class _SortHotelSheetState extends State<SortHotelSheet> {
             ],
           ),
           ...List.generate(sortBy.length, (index) {
+            print(currentGroupValue(
+                order: currentorder!, orderField: currentfield!));
             return RadioListTile(
                 title: Text(
                   titles[index],
@@ -76,7 +84,16 @@ class _SortHotelSheetState extends State<SortHotelSheet> {
                 groupValue: currentSortBy,
                 onChanged: (value) {
                   setState(() {
-                    currentSortBy = value.toString();
+                    if (value != null) {
+                      splitValues = value.toString().split('_');
+                      print(splitValues);
+                      currentorder = splitValues![1].toString();
+                      currentfield = splitValues![0].toString();
+                      currentSortBy = "${currentfield}_$currentorder";
+                      print(currentorder == splitValues![0]);
+                      print(currentfield == splitValues![1]);
+                      print(currentSortBy);
+                    }
                   });
                 });
           }),
@@ -86,9 +103,10 @@ class _SortHotelSheetState extends State<SortHotelSheet> {
             child: CustomButton(
               onPressed: () {
                 Get.back();
-                BlocProvider.of<AllHotelsCubit>(context).applySorting(
-                    sortField(order: currentSortBy!),
-                    order(order: currentSortBy!));
+                print(currentorder);
+                print(currentfield);
+                BlocProvider.of<AllHotelsCubit>(context)
+                    .applySorting(currentfield!, currentorder!);
               },
               label: 'Apply Sorting',
             ),
@@ -99,34 +117,17 @@ class _SortHotelSheetState extends State<SortHotelSheet> {
   }
 }
 
-String sortField({required String order}) {
-  switch (order) {
-    case "price_asc":
-    case "price_desc":
-      return "price";
-
-    case "Least rated":
-    case "Most rated":
-      return "stars";
-
+int currentGroupValue({required String order, required String orderField}) {
+  switch ("$order-$orderField") {
+    case "asc-price":
+      return 0;
+    case "desc-price":
+      return 1;
+    case "asc-stars":
+      return 2;
+    case "desc-stars":
+      return 3;
     default:
-      return "price";
-  }
-}
-
-String order({required String order}) {
-  switch (order) {
-    case "price_asc":
-      return "asc";
-    case "price_desc":
-      return "desc";
-
-    case "Least rated":
-      return "asc";
-    case "Most rated":
-      return "desc";
-
-    default:
-      return "asc";
+      return 0;
   }
 }
