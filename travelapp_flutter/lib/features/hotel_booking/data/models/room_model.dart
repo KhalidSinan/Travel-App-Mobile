@@ -2,7 +2,7 @@ class RoomTypeModel {
   final List<String> images;
   final String code;
   final String description;
-  final double price;
+  final dynamic price;
   final String bedOptions;
   final int sleepsCount;
   final bool smokingAllowed;

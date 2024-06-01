@@ -1,4 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/all_hotelModel.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/repos/hotel_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
@@ -7,10 +9,11 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
   AllHotelsCubit(this._hotelBookingImp) : super(InitialAllHotelStates());
 
   int page = 1;
-  double? stars;
-  String? order;
-  String? sortField;
-  String? startDate;
+  String namecityOrhotelName ="Berlin";
+  double stars=0;
+  String order ="asc" ;
+  String sortField ="price";
+  String ?startDate ;
   int? numDays;
   int? numRooms;
   final HotelBookingImp _hotelBookingImp;
@@ -19,7 +22,7 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
   Future<void> getAllHotelData({
     required String nameHotelOrCity,
     int? page,
-    int? starsNumber,
+    double? starsNumber,
     String? startDate,
     int? numDays,
     int? numRooms,
@@ -28,14 +31,14 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
   }) async {
     emit(LoadingAllHotelStates());
     var response = await _hotelBookingImp.getAllHotelData(
-        namecityOrhotelName: "Berlin",
-        order: order,
-        starsNumber: starsNumber,
-        numDays: numDays,
-        numRooms: numRooms,
-        sortField: sortField,
+        namecityOrhotelName: nameHotelOrCity,
+        order: order?? "asc",
+        starsNumber: starsNumber??0,
+        numDays: numDays??1,
+        numRooms: numRooms??1,
+        sortField: sortField??"nothing",
         page: page,
-        startdate: startDate);
+        startdate: startDate?? '');
     response.fold(
       (error) {
         emit(FailureGetAllHotelsState(failure: error));
@@ -51,7 +54,7 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
   Future<void> changePage(int page) async {
     this.page = page;
     await getAllHotelData(
-      nameHotelOrCity: "Berlin",
+      nameHotelOrCity: namecityOrhotelName,
       page: page,
       startDate: startDate,
       numDays: numDays,
@@ -63,29 +66,31 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
 
   Future<void> retry() async {
     await getAllHotelData(
-        nameHotelOrCity: "Berlin",
+        nameHotelOrCity: namecityOrhotelName,
         page: page,
         startDate: startDate,
         numDays: numDays,
         numRooms: numRooms);
   }
 
-  Future<void> applyFilteringbyStars(double stars) async {
+  Future<void> applyFilteringStars(double stars) async {
     this.stars = stars;
+    Get.back();
     await getAllHotelData(
-        nameHotelOrCity: "Berlin", starsNumber: int.parse(stars.toString()));
+        nameHotelOrCity: namecityOrhotelName, starsNumber: stars);
   }
 
   Future<void> applySorting(String sortField, String order) async {
     this.order = order;
     this.sortField = sortField;
+     Get.back();
     await getAllHotelData(
-        nameHotelOrCity: "Berlin", sortField: sortField, order: order);
+        nameHotelOrCity: namecityOrhotelName, sortField: sortField, order: order);
   }
 
   void restartSortingAndFiltering() {
     order = 'asc';
-    sortField = 'price';
-    stars = null;
+    sortField = 'nothing';
+    stars = 0;
   }
 }

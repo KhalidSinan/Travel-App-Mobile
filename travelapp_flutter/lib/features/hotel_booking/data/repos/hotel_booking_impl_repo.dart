@@ -14,25 +14,27 @@ class HotelBookingImp extends HotelBookingRepo {
   @override
   Future<Either<Failure, Map<String, dynamic>>> getAllHotelData(
       {required String namecityOrhotelName,
-      String? startdate,
+      String ?startdate,
       int? numDays,
       int? numRooms,
       int? page,
       String? sortField,
       String? order,
-      int? starsNumber}) async {
+      double? starsNumber}) async {
     try {
+      print(starsNumber);
       Map<String, dynamic> response =
-          await apiService.get(endPoint: "/hotels/search", extra: {
-        "nameOrCity": "Berlin",
-        "startData": "22/5/2024",
-        "numDays": 3,
-        "numRooms": 44,
-        "page": 1,
+          await apiService.post(endPoint: "/hotels/search", body: {
+        "nameOrCity": namecityOrhotelName,
+        "startDate": startdate,
+        "numDays": 1,
+        "numRooms": 1,
+        "page": page??1,
         "sortField": sortField,
         "order": order,
         "stars": starsNumber,
-      });
+      }, );
+      print(response);
       return right(response);
     } catch (e) {
       print(e);

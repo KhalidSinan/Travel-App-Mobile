@@ -10,7 +10,7 @@ class HotelModel {
   final int roomsNumber;
   final double distanceFromCityCenter;
   final List<String> images;
-  final int v;
+  final dynamic startsFrom;
 
   HotelModel(
       {required this.id,
@@ -22,7 +22,7 @@ class HotelModel {
       required this.roomsNumber,
       required this.distanceFromCityCenter,
       required this.images,
-      required this.v,
+      required this.startsFrom,
       });
       
   factory HotelModel.fromJson(jsonData) {
@@ -43,6 +43,6 @@ class HotelModel {
         roomsNumber: jsonData["rooms_number"],
         distanceFromCityCenter: jsonData["distance_from_city_center"],
         images: List<String>.from(jsonData["images"]),
-        v: jsonData["__v"]);
+        startsFrom: jsonData["starts_from"]);
   }
 }

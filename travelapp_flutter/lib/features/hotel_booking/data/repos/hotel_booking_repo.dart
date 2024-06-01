@@ -10,6 +10,6 @@ abstract class HotelBookingRepo {
     int? page,
     String? sortField,
     String? order,
-    int? starsNumber,
+    double? starsNumber,
   });
 }

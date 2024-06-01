@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final String _baseUrl = 'http://10.0.2.2:5000';
+  final String _baseUrl = 'http://192.168.1.7:5000';
   final Dio _dio;
-
+//http://10.0.2.2:5000
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get(
@@ -33,7 +33,7 @@ class ApiService {
         headers: {
           'Content-Type': 'application/json',
           'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmQyNDkzOTc2MjUxMWQ0ZTZjYTg2OCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTU3MDExODB9.QJ-iLnUppgCadjgO4qJLi5RuLGfo8HEKSjH3zES3D8w',
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTVjNzc5MjI2NzY1Y2VjYzVlNzZiMCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6InRpbWEiLCJsYXN0X25hbWUiOiJkYXdhYSJ9LCJpYXQiOjE3MTcyMzI0NjF9.1O2pEyIztv5ddmUt9VUnc3fVRqQ4JCcofvzK8CijHb0',
         },
       ),
     );
