@@ -45,3 +45,17 @@ class RegisterStatusCodeHandler extends StatusCodeHandler {
     }
   }
 }
+
+class ReservationHotelStatusCodeHandler extends StatusCodeHandler {
+  @override
+  Failure handleError(int statusCode, data) {
+    List<Map<String, dynamic>> problems = data['problems'];
+    String message = data['message'];
+
+    return Failure(
+      errMessage: problems,
+      errTitle: message,
+      errType: DioExceptionType.badResponse,
+    );
+  }
+}
