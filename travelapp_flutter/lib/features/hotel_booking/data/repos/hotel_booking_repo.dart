@@ -13,5 +13,10 @@ abstract class HotelBookingRepo {
     double? starsNumber,
   });
 
-  Future<Either<Failure, Map<String, dynamic>>> makeHotelReservation({required String hotelId , required List<Map<String,dynamic>>roomCodes , required String startDate , required String numDays});
+  Future<Either<Failure, Map<String, dynamic>>> makeHotelReservation({
+    required String hotelId,
+    required List<Map<String, dynamic>> roomCodes,
+    required String startDate,
+    required String numDays,
+  });
 }

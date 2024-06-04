@@ -35,7 +35,11 @@ class ApiService {
         headers: {
           'Content-Type': 'application/json',
           'Authorization':
+<<<<<<< Updated upstream
               'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmQyNDkzOTc2MjUxMWQ0ZTZjYTg2OCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTcyNzA3NDB9.qpz2IipqrCzlRDFgn0q0ET_lnPAYCv5F5F7OiwCxDPk',
+=======
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NWVjNmEwNGE3NDcyN2E0ZWIxYjFlNiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTc0ODczMTJ9.aV_SZti2MQkLD76c8Ndbt3a-vY2JcL2A58W4SPsmv6E',
+>>>>>>> Stashed changes
         },
       ),
     );

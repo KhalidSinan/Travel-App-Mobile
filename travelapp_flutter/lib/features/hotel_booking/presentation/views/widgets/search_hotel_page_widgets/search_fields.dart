@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream:travelapp_flutter/lib/features/hotel_booking/presentation/views/widgets/search_page_widgets/search_fields.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
+=======
+>>>>>>> Stashed changes:travelapp_flutter/lib/features/hotel_booking/presentation/views/widgets/search_hotel_page_widgets/search_fields.dart
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:travelapp_flutter/core/helpers/date_picker.dart';
@@ -53,6 +56,7 @@ class _SearchFieldsState extends State<SearchFields> {
                 name = value;
               },
             ),
+            readOnly: false,
           ),
           const SizedBox(height: 16),
           CustomTextFormField(
@@ -85,7 +89,6 @@ class _SearchFieldsState extends State<SearchFields> {
                 width: MediaQuery.of(context).size.width * 0.43,
                 child: CustomTextFormField(
                   textInputType: TextInputType.number,
-                  readOnly: false,
                   hintText: 'Days',
                   prefixIcon: Icon(
                     Icons.view_day_outlined,
@@ -99,7 +102,6 @@ class _SearchFieldsState extends State<SearchFields> {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.43,
                 child: CustomTextFormField(
-                  readOnly: false,
                   textInputType: TextInputType.number,
                   hintText: 'Rooms',
                   prefixIcon: Icon(

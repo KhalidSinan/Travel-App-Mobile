@@ -5,7 +5,7 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
-     this.hintText,
+    this.hintText,
     this.validator,
     this.onChanged,
     this.obsecureText,
@@ -16,9 +16,10 @@ class CustomTextFormField extends StatelessWidget {
     this.readOnly,
     this.onTap,
     this.controller,
-    this.labeltext, this.outlineInputBorder,
+    this.labeltext,
+    this.outlineInputBorder,
   });
-  final String ?hintText;
+  final String? hintText;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
   final void Function(String?)? onSaved;
@@ -36,7 +37,7 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       onTap: onTap,
-      readOnly: readOnly ?? true,
+      readOnly: readOnly ?? false,
       onChanged: onChanged,
       onSaved: onSaved,
       validator: validator,
@@ -53,11 +54,12 @@ class CustomTextFormField extends StatelessWidget {
           // borderSide: const BorderSide(color: Colors.grey),
           borderSide: BorderSide.none,
         ),
-        enabledBorder: outlineInputBorder?? OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius),
-          // borderSide: const BorderSide(color: Colors.grey),
-          borderSide: BorderSide.none,
-        ),
+        enabledBorder: outlineInputBorder ??
+            OutlineInputBorder(
+              borderRadius: BorderRadius.circular(radius),
+              // borderSide: const BorderSide(color: Colors.grey),
+              borderSide: BorderSide.none,
+            ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
           borderSide: BorderSide(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/search_page_widgets/search_page_body.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/search_hotel_page_widgets/search_hotel_page_body.dart';
 
-class SearchPage extends StatelessWidget {
-  const SearchPage({super.key});
+class SearchHotelPage extends StatelessWidget {
+  const SearchHotelPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class SearchPage extends StatelessWidget {
             ),
           ),
           const SliverToBoxAdapter(
-            child: SearchPageBody(),
+            child: SearchHotelPageBody(),
           ),
         ],
       ),

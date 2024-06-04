@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/search_page_widgets/custom_popular_places.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/search_hotel_page_widgets/custom_popular_places.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SearchCitys extends StatelessWidget {
