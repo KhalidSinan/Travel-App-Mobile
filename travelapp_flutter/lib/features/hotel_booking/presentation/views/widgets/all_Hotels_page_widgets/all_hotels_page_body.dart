@@ -7,15 +7,15 @@ import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widg
 
 class AllHotelsPageBody extends StatelessWidget {
   const AllHotelsPageBody({
-    super.key,
+    super.key, required this.city,
   });
-
+ final String city ;
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
-        const AppBarAllHotel(),
+        AppBarAllHotel(city: city),
         SliverToBoxAdapter(
           child: Divider(
             color: Themes.secondary,

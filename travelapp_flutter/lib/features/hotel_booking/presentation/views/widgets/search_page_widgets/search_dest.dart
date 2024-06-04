@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/all_hotel_page.dart';
 
 class SearchDest extends StatelessWidget {
   const SearchDest(
@@ -11,7 +13,7 @@ class SearchDest extends StatelessWidget {
       required this.duration});
   final String destination;
   final String date;
-  final String duration;
+  final int duration;
 
   @override
   Widget build(BuildContext context) {
@@ -29,66 +31,83 @@ class SearchDest extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-            child: Card(
-              shadowColor: Themes.primary,
-              color: Colors.white,
-              elevation: 0.5,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.location_city,
-                          color: Colors.grey[600],
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          destination,
-                          style: const TextStyle(
-                            fontSize: 20,
+          GestureDetector(
+            onTap: () {
+              Get.to(
+                () => AllHotelsPage(
+                  nameHotelOrCity: destination,
+                  startDate: date,
+                  numDays: duration,
+                ),
+              );
+              // BlocProvider.of<AllHotelsCubit>(context).getAllHotelData(
+              //   nameHotelOrCity: destination,
+              //   startDate: date,
+              //   numDays: int.parse(duration),
+              // );
+            },
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
+              child: Card(
+                shadowColor: Themes.primary,
+                color: Colors.white,
+                elevation: 0.5,
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.location_city,
+                            color: Colors.grey[600],
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.calendarDay,
-                          color: Colors.grey[600],
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          date,
-                          style: const TextStyle(
-                            fontSize: 20,
+                          const SizedBox(width: 10),
+                          Text(
+                            destination,
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.view_day_outlined,
-                          color: Colors.grey[600],
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          duration,
-                          style: const TextStyle(
-                            fontSize: 20,
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.calendarDay,
+                            color: Colors.grey[600],
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                          const SizedBox(width: 10),
+                          Text(
+                            date,
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.view_day_outlined,
+                            color: Colors.grey[600],
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            'For $duration days',
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

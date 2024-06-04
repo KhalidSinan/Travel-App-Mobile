@@ -6,29 +6,15 @@ import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/repos/hotel_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_Hotels_page_widgets/all_hotels_page_body.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/search_page_widgets/search_page_body.dart';
 
-class AllHotelsPage extends StatelessWidget {
-  const AllHotelsPage({
-    super.key,
-    this.nameHotelOrCity,
-    this.startDate,
-    this.numDays,
-    this.numRooms,
-  });
+class HotelSearchPage extends StatelessWidget {
+  const HotelSearchPage({super.key});
 
-  final String? nameHotelOrCity;
-  final String? startDate;
-  final int? numDays, numRooms;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AllHotelsCubit(getIt.get<HotelBookingImp>())
-        ..getAllHotelData(
-            nameHotelOrCity: nameHotelOrCity!,
-            startDate: startDate,
-            numDays: numDays,
-            numRooms: numRooms),
+      create: (context) => AllHotelsCubit(getIt.get<HotelBookingImp>()),
       child: Scaffold(
         body: SafeArea(
           child: BlocListener<AllHotelsCubit, AllHotelStates>(
@@ -37,14 +23,12 @@ class AllHotelsPage extends StatelessWidget {
                 Get.to(
                   () => FailurePage(
                     error: state.failure,
-                    onPressed: () async {
-                      await BlocProvider.of<AllHotelsCubit>(context).retry();
-                    },
+                    onPressed: () {},
                   ),
                 );
               }
             },
-            child: AllHotelsPageBody(city: nameHotelOrCity!),
+            child: const SearchPageBody(),
           ),
         ),
       ),

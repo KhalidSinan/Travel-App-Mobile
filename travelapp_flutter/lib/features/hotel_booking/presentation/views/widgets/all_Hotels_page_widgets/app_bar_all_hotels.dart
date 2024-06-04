@@ -8,8 +8,9 @@ import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model
 class AppBarAllHotel extends StatelessWidget {
   const AppBarAllHotel({
     super.key,
+    required this.city,
   });
-
+  final String city;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AllHotelsCubit, AllHotelStates>(
@@ -36,16 +37,16 @@ class AppBarAllHotel extends StatelessWidget {
                       color: Colors.white,
                       image: DecorationImage(
                         image: AssetImage(
-                            "assets/images/blurred-illuminated-wooden-hall_1203-1265.avif"),
+                            "assets/images/all hotels header.jpg"),
                         fit: BoxFit.cover,
                       ),
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.only(left: 47, top: 16),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 47, top: 16),
                       child: Text(
-                        'Korea Hotels',
-                        style: TextStyle(
-                            fontSize: 18,
+                        '$city Hotels',
+                        style: const TextStyle(
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),

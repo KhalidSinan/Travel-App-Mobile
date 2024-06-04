@@ -22,7 +22,7 @@ class HotelBookingImp extends HotelBookingRepo {
       String? order,
       double? starsNumber}) async {
     try {
-      print(starsNumber);
+      //print(starsNumber);
       Map<String, dynamic> response =
           await apiService.post(endPoint: "/hotels/search", body: {
         "nameOrCity": namecityOrhotelName,
@@ -34,10 +34,10 @@ class HotelBookingImp extends HotelBookingRepo {
         "order": order,
         "stars": starsNumber,
       }, );
-      print(response);
+      print('response is : $response');
       return right(response);
     } catch (e) {
-      print(e);
+      print('e : $e');
       if (e is DioException) {
         return left(
             Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));

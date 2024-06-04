@@ -1,8 +1,8 @@
 class LocationModel {
-  final String name;
-  final String city;
-  final String country;
-  final String id;
+  final String? name;
+  final String? city;
+  final String? country;
+  final String? id;
 
   LocationModel(
       {required this.name,

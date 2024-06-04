@@ -13,7 +13,7 @@ class DefaultStatusCodeHandler extends StatusCodeHandler {
       print(data.toString());
       return Failure(
         errTitle: 'Error',
-        errMessage: data,
+        errMessage: data.toString(),
         errType: DioExceptionType.badResponse,
       );
     } else {
