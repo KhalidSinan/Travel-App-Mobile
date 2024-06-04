@@ -31,7 +31,7 @@ class Failure {
       case DioExceptionType.receiveTimeout:
       case DioExceptionType.connectionError:
       case DioExceptionType.unknown:
-        print(dioException.error.toString());
+        print('dio exc error is : ${dioException..error.toString()}');
         return Failure(
           errTitle: 'Error',
           errMessage: kInternetMessage,

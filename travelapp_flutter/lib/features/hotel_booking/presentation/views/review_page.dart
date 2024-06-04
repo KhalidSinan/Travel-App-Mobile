@@ -57,22 +57,22 @@ class ReviewPage extends StatelessWidget {
                         width: double.infinity,
                         child: CustomButton(
                           onPressed: () async{
-                            String? startDate =
-                                BlocProvider.of<MakeHotelReservationCubit>(
-                                        context)
-                                    .starDate;
-                            String? numOfDays =
-                                BlocProvider.of<MakeHotelReservationCubit>(
-                                        context)
-                                    .numOfDays;
+                            // String? startDate =
+                            //     BlocProvider.of<MakeHotelReservationCubit>(
+                            //             context)
+                            //         .starDate;
+                            // String? numOfDays =
+                            //     BlocProvider.of<MakeHotelReservationCubit>(
+                            //             context)
+                            //         .numOfDays;
                                     
-                            await  BlocProvider.of<MakeHotelReservationCubit>(
-                                        context)
-                                    .makeHotelReservation(
-                                    hotelId: hotelId, 
-                                    roomCodes: ,
-                                     startDate: startDate!, 
-                                     numDays: numOfDays!);
+                            // await  BlocProvider.of<MakeHotelReservationCubit>(
+                            //             context)
+                            //         .makeHotelReservation(
+                            //         hotelId: hotelId, 
+                            //         roomCodes: ,
+                            //          startDate: startDate!, 
+                            //          numDays: numOfDays!);
                                     
                           },
                           label: 'Payement',

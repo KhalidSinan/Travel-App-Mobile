@@ -14,12 +14,12 @@ class SilverListBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, bool> availableRooms =
-        BlocProvider.of<MakeHotelReservationCubit>(context).availableRooms;
+    // Map<String, bool> availableRooms =
+    //     BlocProvider.of<MakeHotelReservationCubit>(context).availableRooms;
 
-    notAvailableRoom.forEach(
-      (room) => if(room.code != availableRooms),  
-    );
+    // notAvailableRoom.forEach(
+    //   (room) => if(room.code != availableRooms),  
+    // );
 
     return SliverList(
       delegate: SliverChildBuilderDelegate(

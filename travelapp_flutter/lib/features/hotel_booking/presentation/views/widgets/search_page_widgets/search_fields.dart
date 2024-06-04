@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:travelapp_flutter/core/helpers/date_picker.dart';
+import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/all_hotel_page.dart';
 
 class SearchFields extends StatefulWidget {
   const SearchFields({super.key});
@@ -13,8 +19,12 @@ class SearchFields extends StatefulWidget {
 }
 
 class _SearchFieldsState extends State<SearchFields> {
-  TextEditingController date = TextEditingController();
-
+  TextEditingController dateController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  GlobalKey<FormState> key = GlobalKey();
+  DateTime now = DateTime.now();
+  String? name, days, rooms, date;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,12 +37,21 @@ class _SearchFieldsState extends State<SearchFields> {
             style: Styles.heading2,
           ),
           const SizedBox(height: 16),
-          CustomTextFormField(
-            textInputType: TextInputType.text,
-            hintText: 'Search by a hotel name or a city',
-            prefixIcon: Icon(
-              Icons.search,
-              color: Colors.grey[600],
+          Form(
+            key: key,
+            autovalidateMode: autovalidateMode,
+            child: CustomTextFormField(
+              textInputType: TextInputType.text,
+              readOnly: false,
+              hintText: 'Search by a hotel name or a city',
+              prefixIcon: Icon(
+                Icons.search,
+                color: Colors.grey[600],
+              ),
+              validator: validateName,
+              onSaved: (value) {
+                name = value;
+              },
             ),
           ),
           const SizedBox(height: 16),
@@ -42,14 +61,17 @@ class _SearchFieldsState extends State<SearchFields> {
               Icons.calendar_month,
               color: Colors.grey[600],
             ),
-            controller: date,
+            controller: dateController,
+            onSaved: (value) {
+              date = value;
+            },
             onTap: () async {
               DateTime? pickeddate = await customDatePicker(context: context);
               if (pickeddate != null) {
                 setState(
                   () {
                     DateFormat outputFormat = DateFormat('dd/MM/yyyy');
-                    date.text = outputFormat.format(pickeddate);
+                    dateController.text = outputFormat.format(pickeddate);
                   },
                 );
               }
@@ -69,6 +91,9 @@ class _SearchFieldsState extends State<SearchFields> {
                     Icons.view_day_outlined,
                     color: Colors.grey[600],
                   ),
+                  onSaved: (value) {
+                    days = value;
+                  },
                 ),
               ),
               SizedBox(
@@ -81,21 +106,55 @@ class _SearchFieldsState extends State<SearchFields> {
                     Icons.meeting_room,
                     color: Colors.grey[600],
                   ),
+                  onSaved: (value) {
+                    rooms = value;
+                  },
                 ),
               ),
             ],
           ),
           const SizedBox(height: 25),
-          SizedBox(
-            width: double.infinity,
-            child: CustomButton(
-              onPressed: () {},
-              label: 'Check',
-            ),
+          BlocBuilder<AllHotelsCubit, AllHotelStates>(
+            builder: (context, state) {
+              if (state is LoadingAllHotelStates) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                return SizedBox(
+                  width: double.infinity,
+                  child: CustomButton(
+                    label: 'Check',
+                    onPressed: searchHotels,
+                  ),
+                );
+              }
+            },
           ),
           const SizedBox(height: 28),
         ],
       ),
     );
+  }
+
+  void searchHotels() async {
+    if (key.currentState!.validate()) {
+      key.currentState!.save();
+      // await BlocProvider.of<AllHotelsCubit>(context).getAllHotelData(
+      //   nameHotelOrCity: name!,
+      //   startDate: date,
+      //   numDays: int.parse(days ?? '1'),
+      //   numRooms: int.parse(rooms ?? '1'),
+      // );
+      Get.to(
+        () => AllHotelsPage(
+          nameHotelOrCity: name!,
+          startDate: date,
+          numDays: int.parse(days ?? '1'),
+          numRooms: int.parse(rooms ?? '1'),
+        ),
+      );
+    } else {
+      autovalidateMode = AutovalidateMode.always;
+      setState(() {});
+    }
   }
 }

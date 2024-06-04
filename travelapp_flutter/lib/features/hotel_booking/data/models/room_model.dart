@@ -1,16 +1,16 @@
 class RoomTypeModel {
-  final List<String> images;
-  final String code;
-  final String description;
+  final List<String>? images;
+  final String? code;
+  final String? description;
   final dynamic price;
-  final String bedOptions;
-  final int sleepsCount;
-  final bool smokingAllowed;
-  final int availableRooms;
-  final int totalRooms;
-  final String view;
-  final List<String> amenities;
-  final String id;
+  final String? bedOptions;
+  final int? sleepsCount;
+  final bool? smokingAllowed;
+  final int? availableRooms;
+  final int? totalRooms;
+  final String? view;
+  final List<String>? amenities;
+  final String? id;
 
   RoomTypeModel(
       {required this.images,

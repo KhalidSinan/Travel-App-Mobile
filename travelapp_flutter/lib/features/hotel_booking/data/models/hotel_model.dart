@@ -8,7 +8,7 @@ class HotelModel {
   final String description;
   final List<RoomTypeModel> roomType;
   final int roomsNumber;
-  final double distanceFromCityCenter;
+  final double? distanceFromCityCenter;
   final List<String> images;
   final dynamic startsFrom;
 

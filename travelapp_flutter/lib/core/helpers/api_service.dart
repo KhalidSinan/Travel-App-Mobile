@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final String _baseUrl = 'http://192.168.1.7:5000';
+  final String _baseUrl = 'http://192.168.1.117:5000';
   final Dio _dio;
 //http://10.0.2.2:5000
   ApiService(this._dio);
@@ -17,6 +17,8 @@ class ApiService {
         extra: extra,
       ),
     );
+    print(response.statusCode);
+    print(response);
     return response.data;
   }
 
@@ -33,10 +35,12 @@ class ApiService {
         headers: {
           'Content-Type': 'application/json',
           'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTVjNzc5MjI2NzY1Y2VjYzVlNzZiMCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6InRpbWEiLCJsYXN0X25hbWUiOiJkYXdhYSJ9LCJpYXQiOjE3MTcyMzI0NjF9.1O2pEyIztv5ddmUt9VUnc3fVRqQ4JCcofvzK8CijHb0',
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmQyNDkzOTc2MjUxMWQ0ZTZjYTg2OCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTcyNzA3NDB9.qpz2IipqrCzlRDFgn0q0ET_lnPAYCv5F5F7OiwCxDPk',
         },
       ),
     );
+    print(response.statusCode);
+    print(response);
     return response.data;
   }
 
