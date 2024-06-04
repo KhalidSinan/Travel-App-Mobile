@@ -37,7 +37,6 @@ class Failure {
           errMessage: kInternetMessage,
           errType: dioException.type,
         );
-
       case DioExceptionType.badCertificate:
       case DioExceptionType.cancel:
         return Failure(

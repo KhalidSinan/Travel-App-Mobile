@@ -1,14 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:travelapp_flutter/core/utils/assets.dart';
 
 class ImageSlider extends StatelessWidget {
   const ImageSlider({
     super.key,
     required this.images,
+    this.network = false,
   });
 
   final List<String> images;
+  final bool network;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,15 @@ class ImageSlider extends StatelessWidget {
   Widget buildImage(String imageUrl) {
     return SizedBox(
       width: double.infinity,
-      child: Image.asset(
-        imageUrl,
-        fit: BoxFit.fill,
-      ),
+      child: network
+          ? Image.network(
+              imageUrl,
+              fit: BoxFit.fill,
+            )
+          : Image.asset(
+              imageUrl,
+              fit: BoxFit.fill,
+            ),
     );
   }
 }

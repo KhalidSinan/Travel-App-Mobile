@@ -28,6 +28,7 @@ class DefaultStatusCodeHandler extends StatusCodeHandler {
   }
 }
 
+
 class RegisterStatusCodeHandler extends StatusCodeHandler {
   @override
   Failure handleError(int statusCode, data) {
