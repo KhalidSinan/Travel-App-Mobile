@@ -6,14 +6,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/all_hotel_page.dart';
 
 class SearchDest extends StatelessWidget {
-  const SearchDest(
-      {super.key,
-      required this.destination,
-      required this.date,
-      required this.duration});
+  const SearchDest({
+    super.key,
+    required this.destination,
+    required this.date,
+  });
   final String destination;
   final String date;
-  final int duration;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,6 @@ class SearchDest extends StatelessWidget {
                 () => AllHotelsPage(
                   nameHotelOrCity: destination,
                   startDate: date,
-                  numDays: duration,
                 ),
               );
               // BlocProvider.of<AllHotelsCubit>(context).getAllHotelData(
@@ -90,29 +88,13 @@ class SearchDest extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.view_day_outlined,
-                            color: Colors.grey[600],
-                          ),
-                          const SizedBox(width: 10),
-                          Text(
-                            'For $duration days',
-                            style: const TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                        ],
-                      )
                     ],
                   ),
                 ),
               ),
             ),
           ),
-          const SizedBox(height: 28),
+          const SizedBox(height: 10),
         ],
       ),
     );

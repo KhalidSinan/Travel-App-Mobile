@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/features_list.dart';
+import 'package:travelapp_flutter/features/hotel_booking/data/models/room_cart_model.dart';
+import 'package:travelapp_flutter/features/hotel_booking/data/models/room_model.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_cubit.dart';
 
-class RoomCard2 extends StatelessWidget {
-  const RoomCard2({super.key});
-
+class RoomCartCard extends StatelessWidget {
+  const RoomCartCard({
+    super.key,
+    this.color,
+    required this.roomCart,
+    this.isNotDecreasable,
+  });
+  final Color? color;
+  final RoomCartModel roomCart;
+  final bool? isNotDecreasable;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +34,7 @@ class RoomCard2 extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Room name',
+                  roomCart.room.bedOptions!,
                   style: Styles.heading.copyWith(fontSize: 20),
                 ),
                 Row(
@@ -43,7 +56,7 @@ class RoomCard2 extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          '4',
+                          '${roomCart.room.sleepsCount}',
                           style: TextStyle(
                             color: Themes.third,
                             fontWeight: FontWeight.bold,
@@ -70,31 +83,29 @@ class RoomCard2 extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16),
-                Row(
-                  children: [
-                    const CircleAvatar(
-                      backgroundColor: Colors.grey,
-                      child: Icon(
-                        FontAwesomeIcons.bugSlash,
-                        size: 16,
-                        color: Colors.white54,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    CircleAvatar(
-                      backgroundColor: Themes.third,
-                      child: const Icon(
-                        FontAwesomeIcons.banSmoking,
-                        size: 20,
-                        color: Colors.white54,
-                      ),
-                    ),
-                  ],
+                FeaturesList(
+                  features: roomCart.room.amenities,
+                  getFeatures: (feature) {
+                    return null;
+                  },
                 ),
               ],
             ),
           ),
-          // button 
+          (isNotDecreasable == false || isNotDecreasable == null)
+              ? SizedBox(
+                  width: double.infinity,
+                  child: CustomButton(
+                    label: '- Decrease (${roomCart.count})',
+                    isFlat: true,
+                    onPressed: () {
+                      BlocProvider.of<HotelDetailsCubit>(context)
+                          .removeRoom(roomCart);
+                    },
+                  ),
+                )
+              : const SizedBox(),
+          // button
         ],
       ),
     );
@@ -104,7 +115,7 @@ class RoomCard2 extends StatelessWidget {
     return BoxDecoration(
       color: Colors.grey[200],
       borderRadius: BorderRadius.circular(radius),
-      border: Border.all(color: Themes.primary, width: 3),
+      border: Border.all(color: color ?? Themes.primary, width: 3),
     );
   }
 }

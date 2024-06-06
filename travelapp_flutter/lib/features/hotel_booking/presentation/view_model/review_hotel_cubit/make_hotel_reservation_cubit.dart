@@ -5,7 +5,7 @@ import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model
 
 class MakeHotelReservationCubit extends Cubit<MakeHotelReservationState> {
   final HotelBookingImp hotelBookingImp;
-  String? starDate , numOfDays;
+  String? starDate, numOfDays;
   // يوجد تعديل بناء على المصفوفة القادمة من خالد
   List<RoomTypeModel>? rooms;
   Map<String, bool> availableRooms = {};

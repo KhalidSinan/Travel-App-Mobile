@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:travelapp_flutter/core/helpers/api_service.dart';
@@ -14,7 +16,7 @@ class HotelBookingImp extends HotelBookingRepo {
   @override
   Future<Either<Failure, Map<String, dynamic>>> getAllHotelData(
       {required String namecityOrhotelName,
-      String ?startdate,
+      String? startdate,
       int? numDays,
       int? numRooms,
       int? page,
@@ -22,18 +24,21 @@ class HotelBookingImp extends HotelBookingRepo {
       String? order,
       double? starsNumber}) async {
     try {
+      print(page);
       //print(starsNumber);
-      Map<String, dynamic> response =
-          await apiService.post(endPoint: "/hotels/search", body: {
-        "nameOrCity": namecityOrhotelName,
-        "startDate": startdate,
-        "numDays": 1,
-        "numRooms": 1,
-        "page": page??1,
-        "sortField": sortField,
-        "order": order,
-        "stars": starsNumber,
-      }, );
+      Map<String, dynamic> response = await apiService.post(
+        endPoint: "/hotels/search",
+        body: {
+          "nameOrCity": namecityOrhotelName,
+          "startDate": startdate,
+          "numDays": 1,
+          "numRooms": 1,
+          "page": page ?? 1,
+          "sortField": sortField,
+          "order": order,
+          "stars": starsNumber,
+        },
+      );
       print('response is : $response');
       return right(response);
     } catch (e) {
@@ -60,7 +65,7 @@ class HotelBookingImp extends HotelBookingRepo {
           "hotelId": hotelId,
           "roomCodes": roomCodes,
           "startDate": startDate,
-          "numDays": numDays,
+          "numDays": int.parse(numDays),
         },
       );
       return right(response);
@@ -74,5 +79,27 @@ class HotelBookingImp extends HotelBookingRepo {
     }
   }
 
-  
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> getNextDestination() async {
+    try {
+      Map<String, dynamic> response = await apiService.get(
+        endPoint: "/plane-reservations/next-destination",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization':
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmQyNDkzOTc2MjUxMWQ0ZTZjYTg2OCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTc0OTI2MzZ9.XKVKVY6fwviI88OSLvkUSiOyHHg-5UNiyfaFZ08P0is',
+        },
+      );
+      print(response);
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        print(e);
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      } else {
+        return left(Failure(errMessage: 'Something went wrong'));
+      }
+    }
+  }
 }

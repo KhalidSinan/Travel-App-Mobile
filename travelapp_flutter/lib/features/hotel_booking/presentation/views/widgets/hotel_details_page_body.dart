@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -11,6 +13,7 @@ import 'package:travelapp_flutter/features/hotel_booking/data/models/location_mo
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/hotel_rooms_page.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_description.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/stars_list.dart';
 
 class HotelDetailsPageBody extends StatelessWidget {
   const HotelDetailsPageBody({super.key});
@@ -27,8 +30,10 @@ class HotelDetailsPageBody extends StatelessWidget {
               elevation: 0,
               expandedHeight: MediaQuery.sizeOf(context).height * 0.25,
               leading: getBackButton(),
-              flexibleSpace: FlexibleSpaceBar(
-                background: ImageSlider(images: hotel.images, network: true),
+              flexibleSpace: const FlexibleSpaceBar(
+                background: ImageSlider(
+                  images: ["assets/images/hotel.jpg"],
+                ),
               ),
             ),
             SliverPadding(
@@ -42,7 +47,9 @@ class HotelDetailsPageBody extends StatelessWidget {
                         hotel.name,
                         style: Styles.heading,
                       ),
-                      Text('⭐' * hotel.stars),
+                      starsList(
+                        stars: hotel.stars,
+                      ),
                       const SizedBox(height: 16),
                       Row(
                         children: [
@@ -52,14 +59,24 @@ class HotelDetailsPageBody extends StatelessWidget {
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            getHotelLocation(hotel.location),
+                            hotel.location.country!,
                             style: Styles.content.copyWith(
                               color: Colors.grey[400],
                               fontSize: 16,
                             ),
                           ),
                         ],
-                      )
+                      ),
+                      const SizedBox(height: 8),
+                      Wrap(children: [
+                        Text(
+                          "${hotel.location.city} - ${hotel.location.name}",
+                          style: Styles.content.copyWith(
+                            color: Colors.grey[400],
+                            fontSize: 16,
+                          ),
+                        ),
+                      ])
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -75,7 +92,11 @@ class HotelDetailsPageBody extends StatelessWidget {
           left: 0,
           right: 0,
           child: CustomButton(
-            onPressed: () => Get.to(() => const HotelRoomsPage()),
+            onPressed: () => Get.to(
+              () => HotelRoomsPage(
+                bloc: BlocProvider.of<HotelDetailsCubit>(context),
+              ),
+            ),
             label: "Select Room(s)",
             isFlat: true,
           ),

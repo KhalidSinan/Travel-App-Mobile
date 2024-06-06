@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream:travelapp_flutter/lib/features/hotel_booking/presentation/views/widgets/search_page_widgets/search_fields.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
-=======
->>>>>>> Stashed changes:travelapp_flutter/lib/features/hotel_booking/presentation/views/widgets/search_hotel_page_widgets/search_fields.dart
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:travelapp_flutter/core/helpers/date_picker.dart';
@@ -32,18 +29,18 @@ class _SearchFieldsState extends State<SearchFields> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Look for a hotel',
-            style: Styles.heading2,
-          ),
-          const SizedBox(height: 16),
-          Form(
-            key: key,
-            autovalidateMode: autovalidateMode,
-            child: CustomTextFormField(
+      child: Form(
+        key: key,
+        autovalidateMode: autovalidateMode,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Look for a hotel',
+              style: Styles.heading2,
+            ),
+            const SizedBox(height: 16),
+            CustomTextFormField(
               textInputType: TextInputType.text,
               readOnly: false,
               hintText: 'Search by a hotel name or a city',
@@ -56,83 +53,85 @@ class _SearchFieldsState extends State<SearchFields> {
                 name = value;
               },
             ),
-            readOnly: false,
-          ),
-          const SizedBox(height: 16),
-          CustomTextFormField(
-            hintText: 'Reservation date',
-            prefixIcon: Icon(
-              Icons.calendar_month,
-              color: Colors.grey[600],
+            const SizedBox(height: 16),
+            CustomTextFormField(
+              hintText: 'Reservation date',
+              prefixIcon: Icon(
+                Icons.calendar_month,
+                color: Colors.grey[600],
+              ),
+              controller: dateController,
+              onSaved: (value) {
+                date = value;
+              },
+              onTap: () async {
+                DateTime? pickeddate = await customDatePicker(context: context);
+                if (pickeddate != null) {
+                  setState(
+                    () {
+                      DateFormat outputFormat = DateFormat('dd/MM/yyyy');
+                      dateController.text = outputFormat.format(pickeddate);
+                      BlocProvider.of<AllHotelsCubit>(context).startDate =
+                          dateController.text;
+                      print(BlocProvider.of<AllHotelsCubit>(context).startDate);
+                    },
+                  );
+                }
+              },
             ),
-            controller: dateController,
-            onSaved: (value) {
-              date = value;
-            },
-            onTap: () async {
-              DateTime? pickeddate = await customDatePicker(context: context);
-              if (pickeddate != null) {
-                setState(
-                  () {
-                    DateFormat outputFormat = DateFormat('dd/MM/yyyy');
-                    dateController.text = outputFormat.format(pickeddate);
-                  },
-                );
-              }
-            },
-          ),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.43,
-                child: CustomTextFormField(
-                  textInputType: TextInputType.number,
-                  hintText: 'Days',
-                  prefixIcon: Icon(
-                    Icons.view_day_outlined,
-                    color: Colors.grey[600],
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.43,
+                  child: CustomTextFormField(
+                    textInputType: TextInputType.number,
+                    hintText: 'Days',
+                    prefixIcon: Icon(
+                      Icons.view_day_outlined,
+                      color: Colors.grey[600],
+                    ),
+                    onSaved: (value) {
+                      days = value;
+                    },
                   ),
-                  onSaved: (value) {
-                    days = value;
-                  },
                 ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.43,
-                child: CustomTextFormField(
-                  textInputType: TextInputType.number,
-                  hintText: 'Rooms',
-                  prefixIcon: Icon(
-                    Icons.meeting_room,
-                    color: Colors.grey[600],
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.43,
+                  child: CustomTextFormField(
+                    textInputType: TextInputType.number,
+                    hintText: 'Rooms',
+                    prefixIcon: Icon(
+                      Icons.meeting_room,
+                      color: Colors.grey[600],
+                    ),
+                    onSaved: (value) {
+                      rooms = value;
+                    },
                   ),
-                  onSaved: (value) {
-                    rooms = value;
-                  },
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 25),
-          BlocBuilder<AllHotelsCubit, AllHotelStates>(
-            builder: (context, state) {
-              if (state is LoadingAllHotelStates) {
-                return const Center(child: CircularProgressIndicator());
-              } else {
-                return SizedBox(
-                  width: double.infinity,
-                  child: CustomButton(
-                    label: 'Check',
-                    onPressed: searchHotels,
-                  ),
-                );
-              }
-            },
-          ),
-          const SizedBox(height: 28),
-        ],
+              ],
+            ),
+            const SizedBox(height: 25),
+            BlocBuilder<AllHotelsCubit, AllHotelStates>(
+              builder: (context, state) {
+                if (state is LoadingAllHotelStates) {
+                  return const Center(child: CircularProgressIndicator());
+                } else {
+                  return SizedBox(
+                    width: double.infinity,
+                    child: CustomButton(
+                      label: 'Check',
+                      onPressed: searchHotels,
+                    ),
+                  );
+                }
+              },
+            ),
+            const SizedBox(height: 28),
+          ],
+        ),
       ),
     );
   }
@@ -140,19 +139,13 @@ class _SearchFieldsState extends State<SearchFields> {
   void searchHotels() async {
     if (key.currentState!.validate()) {
       key.currentState!.save();
-      // await BlocProvider.of<AllHotelsCubit>(context).getAllHotelData(
-      //   nameHotelOrCity: name!,
-      //   startDate: date,
-      //   numDays: int.parse(days ?? '1'),
-      //   numRooms: int.parse(rooms ?? '1'),
-      // );
-      Get.to(
-        () => AllHotelsPage(
-          nameHotelOrCity: name!,
-          startDate: date,
-          numDays: int.parse(days ?? '1'),
-          numRooms: int.parse(rooms ?? '1'),
-        ),
+      if (days!.isEmpty) days = '1';
+      if (rooms!.isEmpty) rooms = '1';
+      await BlocProvider.of<AllHotelsCubit>(context).getAllHotelData(
+        nameHotelOrCity: name!,
+        startDate: dateController.text,
+        numDays: int.parse(days!),
+        numRooms: int.parse(rooms!),
       );
     } else {
       autovalidateMode = AutovalidateMode.always;

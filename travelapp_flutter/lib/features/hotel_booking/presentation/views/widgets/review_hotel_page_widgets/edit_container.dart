@@ -5,7 +5,7 @@ import 'package:travelapp_flutter/core/helpers/date_picker.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/custom_text_and_text_form.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/review_hotel_cubit/make_hotel_reservation_cubit.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_cubit.dart';
 
 class EditContainer extends StatefulWidget {
   const EditContainer({
@@ -28,8 +28,14 @@ class _EditContainerState extends State<EditContainer> {
   @override
   void initState() {
     //  اضافة القيم من واجهة سارة أي من الكيوبيت
-    dateController.text = '7/9/2024';
-    daysController.text = '6';
+    DateFormat startDateFormat = DateFormat('dd/MM/yyyy');
+    String startDate = startDateFormat.format(DateTime.now());
+    dateController.text =
+        BlocProvider.of<HotelDetailsCubit>(context).startDate!.isEmpty
+            ? startDate
+            : BlocProvider.of<HotelDetailsCubit>(context).startDate!;
+    daysController.text =
+        BlocProvider.of<HotelDetailsCubit>(context).numDays ?? '1';
     super.initState();
   }
 
@@ -73,14 +79,7 @@ class _EditContainerState extends State<EditContainer> {
                   prefixIcon: const Icon(Icons.calendar_month),
                   controller: dateController,
                   onSaved: (val) {
-                    if (val == null) {
-                      // -------------
-                      BlocProvider.of<MakeHotelReservationCubit>(context)
-                          .starDate = dateController.text;
-                    } else {
-                      BlocProvider.of<MakeHotelReservationCubit>(context)
-                          .starDate = val;
-                    }
+                    BlocProvider.of<HotelDetailsCubit>(context).startDate = val;
                   },
                   onTap: () async {
                     DateTime? pickeddate =
@@ -90,6 +89,8 @@ class _EditContainerState extends State<EditContainer> {
                       setState(() {
                         DateFormat outputFormat = DateFormat('dd/MM/yyyy');
                         dateController.text = outputFormat.format(pickeddate);
+                        BlocProvider.of<HotelDetailsCubit>(context).startDate =
+                            dateController.text;
                       });
                     }
                   },
@@ -110,13 +111,7 @@ class _EditContainerState extends State<EditContainer> {
                   readOnly: false,
                   textInputType: TextInputType.number,
                   onSaved: (val) {
-                    if (val == null) {
-                      BlocProvider.of<MakeHotelReservationCubit>(context)
-                          .numOfDays = daysController.text;
-                    } else {
-                      BlocProvider.of<MakeHotelReservationCubit>(context)
-                          .numOfDays = val;
-                    }
+                    BlocProvider.of<HotelDetailsCubit>(context).numDays = val;
                   },
                 )
               ],

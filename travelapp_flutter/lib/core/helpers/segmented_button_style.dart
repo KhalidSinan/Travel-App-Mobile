@@ -5,7 +5,7 @@ ButtonStyle getButtonStyle() {
   return ButtonStyle(
     backgroundColor: MaterialStateColor.resolveWith((states) {
       if (states.contains(MaterialState.selected)) {
-        return Themes.third!;
+        return Themes.third;
       } else {
         return Themes.secondary!;
       }

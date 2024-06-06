@@ -28,7 +28,6 @@ class DefaultStatusCodeHandler extends StatusCodeHandler {
   }
 }
 
-
 class RegisterStatusCodeHandler extends StatusCodeHandler {
   @override
   Failure handleError(int statusCode, data) {
@@ -50,6 +49,7 @@ class RegisterStatusCodeHandler extends StatusCodeHandler {
 class ReservationHotelStatusCodeHandler extends StatusCodeHandler {
   @override
   Failure handleError(int statusCode, data) {
+    print(data);
     List<Map<String, dynamic>> problems = data['problems'];
     String message = data['message'];
 

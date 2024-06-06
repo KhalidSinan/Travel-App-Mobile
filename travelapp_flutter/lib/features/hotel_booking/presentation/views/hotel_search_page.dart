@@ -6,7 +6,8 @@ import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/repos/hotel_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/search_page_widgets/search_page_body.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/all_hotel_page.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/search_hotel_page_widgets/search_hotel_page_body.dart';
 
 class HotelSearchPage extends StatelessWidget {
   const HotelSearchPage({super.key});
@@ -27,8 +28,16 @@ class HotelSearchPage extends StatelessWidget {
                   ),
                 );
               }
+              if (state is SuccessAllHotelStates) {
+                Get.to(
+                  () => BlocProvider.value(
+                    value: BlocProvider.of<AllHotelsCubit>(context),
+                    child: const AllHotelsPage(),
+                  ),
+                );
+              }
             },
-            child: const SearchPageBody(),
+            child: const HotelSearchPageBody(),
           ),
         ),
       ),

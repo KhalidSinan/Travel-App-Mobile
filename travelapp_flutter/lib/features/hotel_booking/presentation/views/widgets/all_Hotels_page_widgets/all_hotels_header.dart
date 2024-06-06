@@ -19,37 +19,38 @@ class AllHotelsHeader extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: BlocBuilder<AllHotelsCubit, AllHotelStates>(
         builder: (context, state) {
+          print(BlocProvider.of<AllHotelsCubit>(context).allhotels);
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               (state is LoadingAllHotelStates &&
-                          BlocProvider.of<AllHotelsCubit>(context)
-                                  .allhotels
-                                  ?.totalHotels ==
-                              null)
-                      ? Shimmer.fromColors(
-                          period: const Duration(milliseconds: 2000),
-                          baseColor: Colors.grey[300]!,
-                          highlightColor: Colors.grey[400]!,
-                          child: Container(
-                            margin: const EdgeInsets.all(5),
-                            width: 20,
-                            height: 25,
-                          ),
-                        )
-                      : Row(
-                children: [
-                 Text(
+              (state is LoadingAllHotelStates &&
+                      BlocProvider.of<AllHotelsCubit>(context)
+                              .allhotels
+                              ?.totalHotels ==
+                          null)
+                  ? Shimmer.fromColors(
+                      period: const Duration(milliseconds: 2000),
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[400]!,
+                      child: Container(
+                        margin: const EdgeInsets.all(5),
+                        width: 20,
+                        height: 25,
+                      ),
+                    )
+                  : Row(
+                      children: [
+                        Text(
                           'All Hotels',
                           style: Styles.heading,
                         ),
-                  const SizedBox(width: 8),
-                  Text(
-                    '(${BlocProvider.of<AllHotelsCubit>(context).allhotels!.totalHotels})',
-                    style: Styles.subtitle,
-                  ),
-                ],
-              ),
+                        const SizedBox(width: 8),
+                        Text(
+                          '(${BlocProvider.of<AllHotelsCubit>(context).allhotels!.totalHotels})',
+                          style: Styles.subtitle,
+                        ),
+                      ],
+                    ),
               (state is LoadingAllHotelStates)
                   ? const SizedBox()
                   : const AllHotelsOptions()

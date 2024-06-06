@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/widgets/custom_tag.dart';
+import 'package:travelapp_flutter/core/widgets/features_list.dart';
 
 class ClassCard extends StatelessWidget {
   const ClassCard(
@@ -70,65 +71,47 @@ class ClassCard extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: 70,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: features!.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(right: 25),
-                  child: CustomTag(
-                    text: features![index],
-                    icon: features![index] == 'Buffet'
-                        ? Icons.restaurant
-                        : features![index] == 'Bedding'
-                            ? Icons.bed
-                            : features![index] == 'Beverages'
-                                ? Icons.local_bar
-                                : features![index] == 'Comfort'
-                                    ? Icons.event_seat
-                                    : features![index] == 'Toiletries'
-                                        ? Icons.bathtub
-                                        : features![index] == 'Wifi'
-                                            ? FontAwesomeIcons.rss
-                                            : features![index] == 'Lie seats'
-                                                ? Icons.airline_seat_flat
-                                                : features![index] ==
-                                                        'Entertainment'
-                                                    ? FontAwesomeIcons.gamepad
-                                                    : features![index] ==
-                                                            'Suite'
-                                                        ? Icons.weekend
-                                                        : features![index] ==
-                                                                'Pajamas'
-                                                            ? FontAwesomeIcons
-                                                                .shirt
-                                                            : features![index] ==
-                                                                    'Drinks'
-                                                                ? Icons
-                                                                    .local_cafe
-                                                                : features![index] ==
-                                                                        'TV'
-                                                                    ? Icons.tv
-                                                                    : features![index] ==
-                                                                            'Charging'
-                                                                        ? Icons
-                                                                            .power
-                                                                        : features![index] ==
-                                                                                'Meal'
-                                                                            ? Icons.room_service
-                                                                            : features![index] == 'Backrest'
-                                                                                ? Icons.airline_seat_flat_angled
-                                                                                : Icons.priority_high,
-                  ),
-                );
-              },
-            ),
+          FeaturesList(
+            features: features,
+            getFeatures: getFeatureIcon,
           ),
         ],
       ),
     );
+  }
+
+  IconData? getFeatureIcon(String feature) {
+    switch (feature) {
+      case 'Buffet':
+        return Icons.restaurant;
+      case 'Bedding':
+        return Icons.bed;
+      case 'Beverages':
+        return Icons.local_bar;
+      case 'Comfort':
+        return Icons.event_seat;
+      case 'Toiletries':
+        return Icons.bathtub;
+      case 'Wifi':
+        return FontAwesomeIcons.rss;
+      case 'Lie seats':
+        return Icons.airline_seat_flat;
+      case 'Entertainment':
+        return FontAwesomeIcons.gamepad;
+      case 'Suite':
+        return Icons.weekend;
+      case 'Pajamas':
+        return FontAwesomeIcons.shirt;
+      case 'Drinks':
+        return Icons.local_cafe;
+      case 'TV':
+        return Icons.tv;
+      case 'Charging':
+        return Icons.power;
+      case 'Meal':
+        return Icons.room_service;
+      default:
+        return null;
+    }
   }
 }

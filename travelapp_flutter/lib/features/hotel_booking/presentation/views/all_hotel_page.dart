@@ -22,30 +22,24 @@ class AllHotelsPage extends StatelessWidget {
   final int? numDays, numRooms;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AllHotelsCubit(getIt.get<HotelBookingImp>())
-        ..getAllHotelData(
-            nameHotelOrCity: nameHotelOrCity!,
-            startDate: startDate,
-            numDays: numDays,
-            numRooms: numRooms),
-      child: Scaffold(
-        body: SafeArea(
-          child: BlocListener<AllHotelsCubit, AllHotelStates>(
-            listener: (context, state) {
-              if (state is FailureGetAllHotelsState) {
-                Get.to(
-                  () => FailurePage(
-                    error: state.failure,
-                    onPressed: () async {
-                      await BlocProvider.of<AllHotelsCubit>(context).retry();
-                    },
-                  ),
-                );
-              }
-            },
-            child: AllHotelsPageBody(city: nameHotelOrCity!),
-          ),
+    return Scaffold(
+      body: SafeArea(
+        child: BlocListener<AllHotelsCubit, AllHotelStates>(
+          listener: (context, state) {
+            if (state is FailureGetAllHotelsState) {
+              Get.to(
+                () => FailurePage(
+                  error: state.failure,
+                  onPressed: () async {
+                    await BlocProvider.of<AllHotelsCubit>(context).retry();
+                  },
+                ),
+              );
+            }
+          },
+          child: AllHotelsPageBody(
+              city: BlocProvider.of<AllHotelsCubit>(context)
+                  .namecityOrhotelName!),
         ),
       ),
     );

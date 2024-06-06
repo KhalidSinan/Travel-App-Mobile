@@ -25,7 +25,7 @@ class RoomTypeChip extends StatelessWidget {
           border: isSelected
               ? Border(
                   bottom: BorderSide(
-                  color: Themes.third!,
+                  color: Themes.third,
                   width: 3,
                 ))
               : null,
