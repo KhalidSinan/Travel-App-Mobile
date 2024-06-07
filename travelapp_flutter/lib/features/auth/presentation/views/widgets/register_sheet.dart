@@ -14,7 +14,7 @@ class RegisterSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomSheet(
-      height: MediaQuery.sizeOf(context).height * .80,
+      height: MediaQuery.sizeOf(context).height * .75,
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

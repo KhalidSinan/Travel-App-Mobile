@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:travelapp_flutter/core/helpers/date_picker.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
@@ -9,8 +8,6 @@ import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/all_hotel_page.dart';
-
 class SearchFields extends StatefulWidget {
   const SearchFields({super.key});
 
@@ -73,7 +70,7 @@ class _SearchFieldsState extends State<SearchFields> {
                       dateController.text = outputFormat.format(pickeddate);
                       BlocProvider.of<AllHotelsCubit>(context).startDate =
                           dateController.text;
-                      print(BlocProvider.of<AllHotelsCubit>(context).startDate);
+                      //print(BlocProvider.of<AllHotelsCubit>(context).startDate);
                     },
                   );
                 }
@@ -129,7 +126,7 @@ class _SearchFieldsState extends State<SearchFields> {
                 }
               },
             ),
-            const SizedBox(height: 28),
+            const SizedBox(height: 25),
           ],
         ),
       ),

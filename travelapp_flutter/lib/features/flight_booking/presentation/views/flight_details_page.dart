@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:travelapp_flutter/core/helpers/convert_class_type.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
@@ -38,16 +37,6 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
   final PageController controller = PageController();
   FlightDetailsModel? flightdetails;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   BlocProvider.of<FlightDetailsCubit>(context).getFlightDetails(
-  //     flightid: widget.id,
-  //     classType: widget.classType,
-  //     idback: widget.idback,
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -68,17 +57,19 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
           child: BlocConsumer<FlightDetailsCubit, FlightDetailsState>(
             listener: (context, state) {
               if (state is FlightDetailsFailure) {
-                Get.to(() => FailurePage(
-                      error: state.failure,
-                      onPressed: () async {
-                        await BlocProvider.of<FlightDetailsCubit>(context)
-                            .getFlightDetails(
-                          flightid: widget.id,
-                          classType: widget.classType,
-                          idback: widget.idback,
-                        );
-                      },
-                    ));
+                Get.to(
+                  () => FailurePage(
+                    error: state.failure,
+                    onPressed: () async {
+                      await BlocProvider.of<FlightDetailsCubit>(context)
+                          .getFlightDetails(
+                        flightid: widget.id,
+                        classType: widget.classType,
+                        idback: widget.idback,
+                      );
+                    },
+                  ),
+                );
               }
             },
             builder: (context, state) {
@@ -153,7 +144,8 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                                   activeDotColor: Themes.primary,
                                   type: SwapType.zRotation,
                                 ),
-                              ))
+                              ),
+                            )
                           : const Text(''),
                       ClassCard(
                         classType: flightdetails!.flight.classType.className,
@@ -171,18 +163,16 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                                 flightdetails!.flightback?.id ?? '',
                               ];
                               flightsId.removeWhere((element) => element == '');
-                              print(getReservationType(flightdetails!.twoWay));
-                              print(getClassType(
-                                  flightdetails!.flight.classType.className));
-                              print(flightdetails!.twoWay);
-                              Get.to(() => FormPage(
-                                    flightsId: flightsId,
-                                    reservationType: getReservationType(
-                                        flightdetails!.twoWay),
-                                    classType: flightdetails!
-                                        .flight.classType.className,
-                                    seats: widget.seats,
-                                  ));
+                              Get.to(
+                                () => FormPage(
+                                  flightsId: flightsId,
+                                  reservationType:
+                                      getReservationType(flightdetails!.twoWay),
+                                  classType:
+                                      flightdetails!.flight.classType.className,
+                                  seats: widget.seats,
+                                ),
+                              );
                             },
                             label: 'Reserve',
                           ),
@@ -204,7 +194,6 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
       ),
     );
   }
-
   String getReservationType(bool isTwoWay) {
     return isTwoWay ? 'Two-Way' : 'One-Way';
   }
