@@ -8,6 +8,8 @@ class LoadingAllHotelStates extends AllHotelStates {}
 
 class SuccessAllHotelStates extends AllHotelStates {}
 
+class SearchHotelsSuccess extends AllHotelStates {}
+
 class NoHotelsState extends AllHotelStates {}
 
 class FailureGetAllHotelsState extends AllHotelStates {

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/all_hotels_model.dart';
-import 'package:travelapp_flutter/features/hotel_booking/data/models/next_destination_model.dart';
+import 'package:travelapp_flutter/features/hotel_booking/data/models/destinations_model.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/repos/hotel_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
 
@@ -18,7 +18,7 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
   int? numRooms;
   final HotelBookingImp _hotelBookingImp;
   AllHotelModel? allhotels;
-  List<NextDestinationModel> destinations = [];
+  DestinationsModel? destinations;
 
   Future<void> getAllHotelData({
     required String nameHotelOrCity,
@@ -104,7 +104,8 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
     stars = 0;
   }
 
-  Future<void> nextDestination() async {
+  Future<void> getNextDestination() async {
+    emit(LoadingAllHotelStates());
     var response = await _hotelBookingImp.getNextDestination();
     response.fold(
       (failure) {
@@ -115,10 +116,8 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
       },
       (res) {
         print(res['data']);
-        for (int i = 0; i < res['data'].length; i++) {
-          destinations.add(NextDestinationModel.fromJson(['data'][i]));
-        }
-        emit(SuccessAllHotelStates());
+        destinations = DestinationsModel.fromJson(res);
+        emit(SearchHotelsSuccess());
       },
     );
   }

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'dart:ui';
-
 import 'package:travelapp_flutter/core/utils/themes.dart';
 
 class Styles {
@@ -18,7 +15,7 @@ class Styles {
   static final heading2 = GoogleFonts.quattrocento().copyWith(
     fontSize: 28,
     fontWeight: FontWeight.bold,
-    color: Themes.third,
+    color: Themes.primary,
   );
   static final content = TextStyle(
     color: Themes.third,

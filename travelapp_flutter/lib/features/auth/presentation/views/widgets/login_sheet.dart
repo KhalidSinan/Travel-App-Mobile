@@ -48,11 +48,11 @@ class _LoginSheetState extends State<LoginSheet> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Sign in',
+              'Login',
               style: Styles.heading.copyWith(fontSize: 40),
             ),
             const Text(
-              'Welcome again, sign in to book your trip',
+              'Welcome again, login to book your trip',
               style: Styles.subtitle,
             ),
             const SizedBox(height: 24),

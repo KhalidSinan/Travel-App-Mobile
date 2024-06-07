@@ -64,15 +64,16 @@ class _TravelAppState extends State<TravelApp> {
         ),
       ],
       child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          textTheme: GoogleFonts.aBeeZeeTextTheme(),
-        ),
-        // home: rememberMe == true
-        //     ? FetchProfileDataPage(token: token)
-        //     : const LoginPage(),
-        home: const HotelSearchPage(),
-      ),
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            textTheme: GoogleFonts.aBeeZeeTextTheme(),
+          ),
+          // home: rememberMe == true
+          //     ? FetchProfileDataPage(token: token)
+          //     : const LoginPage(),
+          home: const HotelSearchPage()
+          //HotelSearchPage(),
+          ),
     );
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
-import 'package:travelapp_flutter/core/widgets/custom_tag.dart';
 import 'package:travelapp_flutter/core/widgets/features_list.dart';
 
 class ClassCard extends StatelessWidget {
