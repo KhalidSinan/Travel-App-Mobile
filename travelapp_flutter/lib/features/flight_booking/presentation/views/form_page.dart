@@ -52,23 +52,25 @@ class _FormPageState extends State<FormPage> {
           surfaceTintColor: Colors.white,
           leading: const CustomBackButton(),
         ),
-        body: BlocConsumer<FormCubit, FormCubitState>(
-          listener: formListener,
-          builder: (context, state) {
-            if (state is FormLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              return FormPageBody(
-                flightsId: widget.flightsId,
-                reservationType: widget.reservationType,
-                classType: widget.classType,
-                seats: numberOfSeats,
-                // isInitial: state is FormInitial,
-              );
-            }
-          },
+        body: SafeArea(
+          child: BlocConsumer<FormCubit, FormCubitState>(
+            listener: formListener,
+            builder: (context, state) {
+              if (state is FormLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                return FormPageBody(
+                  flightsId: widget.flightsId,
+                  reservationType: widget.reservationType,
+                  classType: widget.classType,
+                  seats: numberOfSeats,
+                  // isInitial: state is FormInitial,
+                );
+              }
+            },
+          ),
         ),
       ),
     );
