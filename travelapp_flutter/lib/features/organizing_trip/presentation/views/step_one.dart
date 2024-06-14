@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
@@ -13,8 +15,6 @@ class StepOne extends StatefulWidget {
 }
 
 class _StepOneState extends State<StepOne> {
-  int? persons;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +53,7 @@ class _StepOneState extends State<StepOne> {
                 child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,16 +68,13 @@ class _StepOneState extends State<StepOne> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 50),
+                      SizedBox(height: 65),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 15),
-                            child: Text(
-                              'Days',
-                              style: TextStyle(fontSize: 25),
-                            ),
+                          Text(
+                            'Days',
+                            style: TextStyle(fontSize: 25),
                           ),
                           SizedBox(width: 10),
                           Scroller(
@@ -88,7 +86,7 @@ class _StepOneState extends State<StepOne> {
                   ),
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.3),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.28),
               NextButton(onTap: () {})
             ],
           ),

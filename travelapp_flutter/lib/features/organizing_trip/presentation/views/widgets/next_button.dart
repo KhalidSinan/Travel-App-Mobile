@@ -8,10 +8,10 @@ class NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:onTap,
+      onTap: onTap,
       child: Row(
         children: [
-          SizedBox(width: MediaQuery.of(context).size.width * 0.7),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.4),
           Text(
             'Next',
             style: TextStyle(color: Themes.primary, fontSize: 25),

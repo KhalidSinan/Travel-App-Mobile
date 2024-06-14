@@ -12,7 +12,7 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cu
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/step1.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/step_one.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
 Future _firebaseBackgroundMessage(RemoteMessage message) async {
