@@ -17,14 +17,6 @@ class _ScrollerState extends State<Scroller> {
       width: MediaQuery.of(context).size.width * 0.65,
       child: Stack(
         children: [
-          // Container(
-          //   margin: const EdgeInsets.only(top: 50),
-          //   height: 55,
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(5),
-          //     color: Colors.grey[200],
-          //   ),
-          // ),
           Padding(
             padding: const EdgeInsets.only(top: 48),
             child: Column(
