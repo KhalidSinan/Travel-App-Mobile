@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:travelapp_flutter/core/widgets/custom_tag.dart';
 
 class FeaturesList extends StatelessWidget {
@@ -24,6 +23,7 @@ class FeaturesList extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(right: 25),
             child: CustomTag(
+              roomTag: true,
               text: features![index],
               icon: getFeatures(features![index]),
             ),

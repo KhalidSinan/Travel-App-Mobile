@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 
+// ignore: must_be_immutable
 class CustomTag extends StatelessWidget {
-  const CustomTag({super.key, required this.text, this.icon});
+  CustomTag({
+    super.key,
+    required this.text,
+    this.icon,
+    this.roomTag,
+  });
 
   final String text;
   final IconData? icon;
-
+  bool? roomTag;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,7 +22,7 @@ class CustomTag extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
+            color: roomTag==true ? Colors.grey[400] : Colors.white,
           ),
           child: Icon(
             icon,
@@ -25,8 +31,8 @@ class CustomTag extends StatelessWidget {
         ),
         Text(
           text,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: roomTag==true ? Colors.grey[400] : Colors.white,
             fontSize: 16,
           ),
         ),

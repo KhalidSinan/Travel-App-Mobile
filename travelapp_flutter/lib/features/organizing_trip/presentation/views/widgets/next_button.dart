@@ -11,7 +11,7 @@ class NextButton extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          SizedBox(width: MediaQuery.of(context).size.width * 0.4),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.7),
           Text(
             'Next',
             style: TextStyle(color: Themes.primary, fontSize: 25),
