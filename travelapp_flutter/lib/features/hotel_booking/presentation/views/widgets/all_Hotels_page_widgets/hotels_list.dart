@@ -93,7 +93,7 @@ class HotelsList extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              starsList(
+                              StarsList(
                                 stars: hotels.hotels[index].stars,
                               ),
                               const SizedBox(

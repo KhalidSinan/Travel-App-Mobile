@@ -6,7 +6,6 @@ import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_check_box.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/room_cart_model.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_cubit.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/review_page.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/review_hotel_page_widgets/room_cart_card.dart';
 
 class DeletePage extends StatefulWidget {

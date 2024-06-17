@@ -7,7 +7,6 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/features_list.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/room_cart_model.dart';
-import 'package:travelapp_flutter/features/hotel_booking/data/models/room_model.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_cubit.dart';
 
 class RoomCartCard extends StatelessWidget {

@@ -4,7 +4,6 @@ import 'package:travelapp_flutter/features/hotel_booking/data/models/room_cart_m
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_states.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/review_hotel_page_widgets/room_cart_card.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/room_card.dart';
 
 class SilverListBuilder extends StatelessWidget {
   const SilverListBuilder({

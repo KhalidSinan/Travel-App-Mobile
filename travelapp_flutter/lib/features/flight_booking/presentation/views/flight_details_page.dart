@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:travelapp_flutter/core/helpers/convert_class_type.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
@@ -38,16 +37,6 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
   final PageController controller = PageController();
   FlightDetailsModel? flightdetails;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   BlocProvider.of<FlightDetailsCubit>(context).getFlightDetails(
-  //     flightid: widget.id,
-  //     classType: widget.classType,
-  //     idback: widget.idback,
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -64,11 +53,13 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
           surfaceTintColor: Colors.white,
           leading: const CustomBackButton(),
         ),
-        body: SingleChildScrollView(
-          child: BlocConsumer<FlightDetailsCubit, FlightDetailsState>(
-            listener: (context, state) {
-              if (state is FlightDetailsFailure) {
-                Get.to(() => FailurePage(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: BlocConsumer<FlightDetailsCubit, FlightDetailsState>(
+              listener: (context, state) {
+                if (state is FlightDetailsFailure) {
+                  Get.to(
+                    () => FailurePage(
                       error: state.failure,
                       onPressed: () async {
                         await BlocProvider.of<FlightDetailsCubit>(context)
@@ -78,127 +69,131 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                           idback: widget.idback,
                         );
                       },
-                    ));
-              }
-            },
-            builder: (context, state) {
-              if (state is FlightDetailsSuccess) {
-                flightdetails =
-                    BlocProvider.of<FlightDetailsCubit>(context).flightdetails;
-                return Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(15),
                     ),
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 460,
-                        child: PageView(
-                          controller: controller,
-                          physics: const PageScrollPhysics(),
-                          onPageChanged: (index) {
-                            setState(() {});
-                          },
-                          children: [
-                            FlightDetailsCard(
-                              image: 'assets/images/path-go.png',
-                              logo: flightdetails!.flight.airline.logo,
-                              airline: flightdetails!.flight.airline.name,
-                              source: flightdetails!.flight.source,
-                              destination: flightdetails!.flight.destination,
-                              srcairport: flightdetails!.flight.source.name,
-                              desairport:
-                                  flightdetails!.flight.destination.name,
-                              departure: flightdetails!.flight.departure,
-                              arrival: flightdetails!.flight.arrival,
-                              duration: flightdetails!.flight.duration,
-                              flightPrice:
-                                  flightdetails!.flight.classType.price,
-                            ),
-                            if (flightdetails!.flightback != null)
+                  );
+                }
+              },
+              builder: (context, state) {
+                if (state is FlightDetailsSuccess) {
+                  flightdetails = BlocProvider.of<FlightDetailsCubit>(context)
+                      .flightdetails;
+                  return Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(15),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 460,
+                          child: PageView(
+                            controller: controller,
+                            physics: const PageScrollPhysics(),
+                            onPageChanged: (index) {
+                              setState(() {});
+                            },
+                            children: [
                               FlightDetailsCard(
-                                image: 'assets/images/path-back.png',
-                                logo: flightdetails!.flightback!.airline.logo,
-                                airline:
-                                    flightdetails!.flightback!.airline.name,
-                                source: flightdetails!.flightback!.source,
-                                destination:
-                                    flightdetails!.flightback!.destination,
-                                srcairport:
-                                    flightdetails!.flightback!.source.name,
+                                image: 'assets/images/path-go.png',
+                                logo: flightdetails!.flight.airline.logo,
+                                airline: flightdetails!.flight.airline.name,
+                                source: flightdetails!.flight.source,
+                                destination: flightdetails!.flight.destination,
+                                srcairport: flightdetails!.flight.source.name,
                                 desairport:
-                                    flightdetails!.flightback!.destination.name,
-                                departure: flightdetails!.flightback!.departure,
-                                arrival: flightdetails!.flightback!.arrival,
-                                duration: flightdetails!.flightback!.duration,
+                                    flightdetails!.flight.destination.name,
+                                departure: flightdetails!.flight.departure,
+                                arrival: flightdetails!.flight.arrival,
+                                duration: flightdetails!.flight.duration,
                                 flightPrice:
-                                    flightdetails!.flightback!.classType.price,
+                                    flightdetails!.flight.classType.price,
                               ),
-                          ],
-                        ),
-                      ),
-                      flightdetails!.flightback != null
-                          ? Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              child: SmoothPageIndicator(
-                                controller: controller,
-                                count: 2,
-                                effect: SwapEffect(
-                                  dotWidth: 10,
-                                  dotHeight: 10,
-                                  activeDotColor: Themes.primary,
-                                  type: SwapType.zRotation,
+                              if (flightdetails!.flightback != null)
+                                FlightDetailsCard(
+                                  image: 'assets/images/path-back.png',
+                                  logo: flightdetails!.flightback!.airline.logo,
+                                  airline:
+                                      flightdetails!.flightback!.airline.name,
+                                  source: flightdetails!.flightback!.source,
+                                  destination:
+                                      flightdetails!.flightback!.destination,
+                                  srcairport:
+                                      flightdetails!.flightback!.source.name,
+                                  desairport: flightdetails!
+                                      .flightback!.destination.name,
+                                  departure:
+                                      flightdetails!.flightback!.departure,
+                                  arrival: flightdetails!.flightback!.arrival,
+                                  duration: flightdetails!.flightback!.duration,
+                                  flightPrice: flightdetails!
+                                      .flightback!.classType.price,
                                 ),
-                              ))
-                          : const Text(''),
-                      ClassCard(
-                        classType: flightdetails!.flight.classType.className,
-                        load: flightdetails!.flight.classType.load,
-                        features: flightdetails!.flight.classType.features,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: CustomButton(
-                            onPressed: () {
-                              List<String> flightsId = [
-                                flightdetails!.flight.id,
-                                flightdetails!.flightback?.id ?? '',
-                              ];
-                              flightsId.removeWhere((element) => element == '');
-                              print(getReservationType(flightdetails!.twoWay));
-                              print(getClassType(
-                                  flightdetails!.flight.classType.className));
-                              print(flightdetails!.twoWay);
-                              Get.to(() => FormPage(
+                            ],
+                          ),
+                        ),
+                        flightdetails!.flightback != null
+                            ? Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                child: SmoothPageIndicator(
+                                  controller: controller,
+                                  count: 2,
+                                  effect: SwapEffect(
+                                    dotWidth: 10,
+                                    dotHeight: 10,
+                                    activeDotColor: Themes.primary,
+                                    type: SwapType.zRotation,
+                                  ),
+                                ),
+                              )
+                            : const Text(''),
+                        ClassCard(
+                          classType: flightdetails!.flight.classType.className,
+                          load: flightdetails!.flight.classType.load,
+                          features: flightdetails!.flight.classType.features,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: CustomButton(
+                              onPressed: () {
+                                List<String> flightsId = [
+                                  flightdetails!.flight.id,
+                                  flightdetails!.flightback?.id ?? '',
+                                ];
+                                flightsId
+                                    .removeWhere((element) => element == '');
+                                Get.to(
+                                  () => FormPage(
                                     flightsId: flightsId,
                                     reservationType: getReservationType(
                                         flightdetails!.twoWay),
                                     classType: flightdetails!
                                         .flight.classType.className,
                                     seats: widget.seats,
-                                  ));
-                            },
-                            label: 'Reserve',
+                                  ),
+                                );
+                              },
+                              label: 'Reserve',
+                            ),
                           ),
                         ),
-                      ),
+                      ],
+                    ),
+                  );
+                } else {
+                  return const Column(
+                    children: [
+                      Center(child: CircularProgressIndicator()),
                     ],
-                  ),
-                );
-              } else {
-                return const Column(
-                  children: [
-                    Center(child: CircularProgressIndicator()),
-                  ],
-                );
-              }
-            },
+                  );
+                }
+              },
+            ),
           ),
         ),
       ),

@@ -56,7 +56,7 @@ class DateCard extends StatelessWidget {
   Border? getBorder() {
     return isCurrent
         ? Border.all(
-            color: Themes.third!,
+            color: Themes.third,
             width: 2,
           )
         : null;

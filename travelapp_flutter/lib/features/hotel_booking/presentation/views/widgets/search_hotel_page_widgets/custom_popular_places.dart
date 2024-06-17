@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/all_hotel_page.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
 class PopularCitys extends StatelessWidget {
   const PopularCitys({super.key, required this.image, required this.city});
   final String image;
@@ -11,7 +10,9 @@ class PopularCitys extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        await Get.to(() => AllHotelsPage(nameHotelOrCity: city));
+        await BlocProvider.of<AllHotelsCubit>(context)
+            .getAllHotelData(nameHotelOrCity: city);
+        //Get.to(() => AllHotelsPage(nameHotelOrCity: city));
       },
       child: Padding(
         padding: const EdgeInsets.only(right: 15),

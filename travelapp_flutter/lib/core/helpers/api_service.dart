@@ -3,7 +3,8 @@ import 'package:dio/dio.dart';
 class ApiService {
   final String _baseUrl = 'http://10.0.2.2:5000';
   final Dio _dio;
-//http://10.0.2.2:5000
+  final String token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NjAzNDk4M2I5ODA0YzdiZjc4NjBjNiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTc3NjA0MDl9.Xt3XMWem-iugaTXDntJXn2nA3cITT2oK-UK3uTqX9Zw';
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get(
@@ -13,7 +14,10 @@ class ApiService {
     var response = await _dio.get(
       '$_baseUrl$endPoint',
       options: Options(
-        headers: headers,
+        headers: headers ?? {
+          'Authorization':
+              'Bearer $token',
+        },
         extra: extra,
       ),
     );
@@ -35,7 +39,7 @@ class ApiService {
         headers: {
           'Content-Type': 'application/json',
           'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NWVkMjM3ZDc3NjVmNGU0Y2I3OThmMSIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTc0OTAzODJ9.05SbvR3aVUg_pwZrpoH_R_Fh4zS3OCYeusremiDcJ70',
+              'Bearer $token',
         },
       ),
     );

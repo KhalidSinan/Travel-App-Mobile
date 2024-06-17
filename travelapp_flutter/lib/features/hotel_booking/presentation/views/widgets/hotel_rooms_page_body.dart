@@ -16,7 +16,7 @@ class HotelRoomsPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final hotel = BlocProvider.of<HotelDetailsCubit>(context).hotel;
     final rooms = BlocProvider.of<HotelDetailsCubit>(context).rooms;
-    final selectedRooms =
+    final selectedRooms = 
         BlocProvider.of<HotelDetailsCubit>(context).selectedRooms;
     return CustomScrollView(
       slivers: [
