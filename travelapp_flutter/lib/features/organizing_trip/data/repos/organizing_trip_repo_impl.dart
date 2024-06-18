@@ -3,5 +3,6 @@ import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing
 
 class OrganizingTripImpl extends OrganizingTripRepo {
   final ApiService apiService;
+  
   OrganizingTripImpl(this.apiService);
 }
