@@ -6,6 +6,7 @@ import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/repos/hotel_booking_impl_repo.dart';
+import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
 
 final getIt = GetIt.instance;
 
@@ -19,6 +20,10 @@ Future<void> setup() async {
   ));
 
     getIt.registerSingleton<HotelBookingImp>(HotelBookingImp(
+    getIt.get<ApiService>(),
+  ));
+
+    getIt.registerSingleton<OrganizingTripImpl>(OrganizingTripImpl(
     getIt.get<ApiService>(),
   ));
 
