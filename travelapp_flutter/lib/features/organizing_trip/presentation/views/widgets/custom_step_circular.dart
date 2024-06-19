@@ -8,9 +8,10 @@ class CustomStepCircular extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircularPercentIndicator(
-      radius: 16,
+      radius: 20,
       lineWidth: 5,
       percent: progress,
+      center: const Text("3/8"),
       progressColor: Themes.third,
       animation: true,
       animationDuration: 1000,
