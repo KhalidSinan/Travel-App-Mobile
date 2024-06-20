@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/drop_select_class.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/TravelDestination/form_destinations.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/TravelDestination/list_destination_view.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/TravelDestination/source_form.dart';
@@ -37,6 +38,22 @@ class _StepThreeBodyState extends State<StepThreeBody> {
                 ),
               ),
               SourceForm(searchcontroller1: searchcontroller1),
+              const Padding(
+                padding: EdgeInsets.all(15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Class Type :',
+                      style: TextStyle(fontSize: 25),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Expanded(child: SizedBox(child: DropSelectClass())),
+                  ],
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
