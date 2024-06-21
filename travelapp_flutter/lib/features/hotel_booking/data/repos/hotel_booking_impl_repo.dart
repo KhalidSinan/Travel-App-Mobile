@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:travelapp_flutter/core/helpers/api_service.dart';
@@ -73,8 +71,7 @@ class HotelBookingImp extends HotelBookingRepo {
       return right(response);
     } catch (e) {
       if (e is DioException) {
-        return left(
-            Failure.fromDioException(e, ReservationHotelStatusCodeHandler()));
+        return left(Failure.fromDioException(e, DefaultStatusCodeHandler()));
       } else {
         return left(Failure(errMessage: 'Something went wrong'));
       }
@@ -86,11 +83,6 @@ class HotelBookingImp extends HotelBookingRepo {
     try {
       Map<String, dynamic> response = await apiService.get(
         endPoint: "/plane-reservations/next-destination",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmQyNDkzOTc2MjUxMWQ0ZTZjYTg2OCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTc0OTI2MzZ9.XKVKVY6fwviI88OSLvkUSiOyHHg-5UNiyfaFZ08P0is',
-        },
       );
       print(response);
       return right(response);

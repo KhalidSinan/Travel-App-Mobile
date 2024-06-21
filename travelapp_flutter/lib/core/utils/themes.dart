@@ -7,7 +7,7 @@ class Themes {
   static ThemeData timePickerTheme = ThemeData.light().copyWith(
     colorScheme: ColorScheme.light(
       primary: Themes.primary,
-      onSurface: Themes.third!,
+      onSurface: Themes.third,
     ),
     // button colors
     buttonTheme: ButtonThemeData(

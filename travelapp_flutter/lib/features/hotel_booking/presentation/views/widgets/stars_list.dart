@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/features/hotel_booking/data/models/hotel_model.dart';
 
-class starsList extends StatelessWidget {
-  const starsList({
+class StarsList extends StatelessWidget {
+  const StarsList({
     super.key,
     required this.stars,
   });

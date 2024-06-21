@@ -1,6 +1,4 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -47,7 +45,7 @@ class HotelDetailsPageBody extends StatelessWidget {
                         hotel.name,
                         style: Styles.heading,
                       ),
-                      starsList(
+                      StarsList(
                         stars: hotel.stars,
                       ),
                       const SizedBox(height: 16),

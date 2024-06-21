@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
+import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/reservation_ticket_cubit/reservation_ticket_cubit.dart';
 
 class DropSelectClass extends StatefulWidget {
@@ -19,13 +20,13 @@ class _DropState extends State<DropSelectClass> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 10.0, bottom: 5),
-            child: Text(
-              'class',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
+          // const Padding(
+          //   padding: EdgeInsets.only(left: 10.0, bottom: 5),
+          //   child: Text(
+          //     'class',
+          //     style: TextStyle(fontWeight: FontWeight.bold),
+          //   ),
+          // ),
           Container(
             decoration: BoxDecoration(
                 color: Colors.grey[100],
@@ -40,6 +41,7 @@ class _DropState extends State<DropSelectClass> {
                       .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                       .toList(),
                   validator: (value) => value == null ? 'field required' : null,
+
                   onChanged: (val) {
                     setState(
                       () {
@@ -48,8 +50,10 @@ class _DropState extends State<DropSelectClass> {
                       },
                     );
                   },
-                  decoration: const InputDecoration(
-                      focusedBorder: UnderlineInputBorder()),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Themes.primary)),
+                      focusedBorder: const UnderlineInputBorder()),
                   value: selectedClass,
                 ),
               ),
