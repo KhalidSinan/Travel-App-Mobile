@@ -39,11 +39,7 @@ class ApiService {
         headers: {
           'Content-Type': 'application/json',
           'Authorization':
-<<<<<<< HEAD
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmQ4NmE0YWVlYjMwNjdhNmU0MmUxNSIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTg0NTM5NzZ9.HH1aJ9o0F2GH-SsH5Fbt0DaBbaYW3eAOZsb4unU48Sc'
-=======
               'Bearer $token',
->>>>>>> 98227ed47b0943476ec7638ce7f16f3e586d0123
         },
       ),
     );

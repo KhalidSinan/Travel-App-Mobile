@@ -20,7 +20,7 @@ class StepThree extends StatelessWidget {
             //     style: TextStyle(color: Themes.primary, fontSize: 22),
             //   ),
             // ),
-            CustomStepCircular(progress: 0.375),
+            CustomStepCircular(progress: 0.375,text: '3/8',),
             SizedBox(width: 15)
           ],
           backgroundColor: Colors.white,
