@@ -20,7 +20,7 @@ class StepTwo extends StatelessWidget {
               style: TextStyle(color: Themes.primary, fontSize: 22),
             ),
           ),
-          const CustomStepCircular(progress: 0.25),
+          const CustomStepCircular(progress: 0.25,text: '2/8',),
           const SizedBox(width: 15)
         ],
         backgroundColor: Colors.white,
