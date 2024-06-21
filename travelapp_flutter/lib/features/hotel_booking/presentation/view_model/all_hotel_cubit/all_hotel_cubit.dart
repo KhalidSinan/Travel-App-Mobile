@@ -51,6 +51,9 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
       },
       (res) {
         print(res);
+        if (res.isEmpty) {
+          emit(NoHotelsState());
+        }
         allhotels = AllHotelModel.fromJson(res['data']);
         print(res['data']);
         emit(SuccessAllHotelStates());

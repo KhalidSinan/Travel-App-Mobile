@@ -11,12 +11,19 @@ class HotelDetailsCubit extends Cubit<HotelDetailsStates> {
   HotelDetailsCubit(this.hotel, this.rooms, this.startDate, this.numDays,
       this.hotelBookingImp)
       : super(InitialHotelDetailsState());
+
   final HotelBookingImp hotelBookingImp;
   final HotelModel hotel;
   final List<RoomTypeModel> rooms;
+  int selectedRoomType = 0;
   String? startDate, numDays;
   List<RoomCartModel> selectedRooms = [];
   Map<String, bool> availableRooms = {};
+
+  void changeRoomType(int roomTypeId) {
+    selectedRoomType = roomTypeId;
+    emit(FilterRoomType());
+  }
 
   void addRoom(RoomCartModel roomCart) {
     for (var currRoomCart in selectedRooms) {

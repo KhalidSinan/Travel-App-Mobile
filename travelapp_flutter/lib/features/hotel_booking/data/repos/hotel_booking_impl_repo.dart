@@ -53,12 +53,14 @@ class HotelBookingImp extends HotelBookingRepo {
   }
 
   @override
-  Future<Either<Failure, Map<String, dynamic>>> makeHotelReservation(
-      {required String hotelId,
-      required List<Map<String, dynamic>> roomCodes,
-      required String startDate,
-      required String numDays}) async {
+  Future<Either<Failure, Map<String, dynamic>>> makeHotelReservation({
+    required String hotelId,
+    required List<Map<String,dynamic>> roomCodes,
+    required String startDate,
+    required String numDays,
+  }) async {
     try {
+
       Map<String, dynamic> response = await apiService.post(
         endPoint: "/hotels/reserve",
         body: {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/room_type_chip.dart';
 
 class RoomTypesList extends StatefulWidget {
@@ -11,8 +13,14 @@ class RoomTypesList extends StatefulWidget {
 }
 
 class _RoomTypesListState extends State<RoomTypesList> {
-  int selectedRoomType = 0;
-  List<String> roomTypeNames = ['Suite', 'Deluxe', 'Standard', 'Budget'];
+  late int selectedRoomType;
+  List<String> roomTypeNames = ['Budget', 'Standard', 'Deluxe', 'Suite'];
+  @override
+  void initState() {
+    selectedRoomType =
+        BlocProvider.of<HotelDetailsCubit>(context).selectedRoomType;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,6 +35,8 @@ class _RoomTypesListState extends State<RoomTypesList> {
               onSelected: () {
                 setState(() {
                   selectedRoomType = index;
+                  BlocProvider.of<HotelDetailsCubit>(context)
+                      .changeRoomType(index);
                 });
               },
               isSelected: selectedRoomType == index,
