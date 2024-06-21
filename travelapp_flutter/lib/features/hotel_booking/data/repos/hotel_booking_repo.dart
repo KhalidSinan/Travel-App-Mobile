@@ -15,7 +15,7 @@ abstract class HotelBookingRepo {
 
   Future<Either<Failure, Map<String, dynamic>>> makeHotelReservation({
     required String hotelId,
-    required List<Map<String, String>> roomCodes,
+    required List<Map<String, dynamic>> roomCodes,
     required String startDate,
     required String numDays,
   });

@@ -8,6 +8,8 @@ class AddRoom extends HotelDetailsStates {}
 
 class DeleteRoom extends HotelDetailsStates {}
 
+class FilterRoomType extends HotelDetailsStates {}
+
 class InitialReviewHotelState extends HotelDetailsStates {}
 
 class SuccessReviewHotelState extends HotelDetailsStates {}

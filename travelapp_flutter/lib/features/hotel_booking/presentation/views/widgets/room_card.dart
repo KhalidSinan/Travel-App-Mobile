@@ -34,7 +34,7 @@ class RoomCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Deluxe',
+                      room.type!,
                       style: Styles.content.copyWith(
                         fontSize: 16,
                         color: Colors.grey[400],
@@ -74,6 +74,11 @@ class RoomCard extends StatelessWidget {
                       ],
                     ),
                   ],
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  room.view!,
+                  style: Styles.content.copyWith(fontSize: 16),
                 ),
                 const SizedBox(height: 16),
                 FeaturesList(

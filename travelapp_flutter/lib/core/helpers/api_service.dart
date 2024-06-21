@@ -35,7 +35,7 @@ class ApiService {
         headers: {
           'Content-Type': 'application/json',
           'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NWVkMjM3ZDc3NjVmNGU0Y2I3OThmMSIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTc0OTAzODJ9.05SbvR3aVUg_pwZrpoH_R_Fh4zS3OCYeusremiDcJ70',
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmQ4NmE0YWVlYjMwNjdhNmU0MmUxNSIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTg0NTM5NzZ9.HH1aJ9o0F2GH-SsH5Fbt0DaBbaYW3eAOZsb4unU48Sc'
         },
       ),
     );
