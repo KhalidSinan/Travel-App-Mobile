@@ -8,6 +8,8 @@ class LoadingOrganizingTrip extends OrganizingTripStates {}
 
 class SuccessCheckAvailableFlight extends OrganizingTripStates {}
 
+class TripInfoUpdated extends OrganizingTripStates {}
+
 class DeleteDestination extends OrganizingTripStates {}
 
 class FailureOrganizingTrip extends OrganizingTripStates {

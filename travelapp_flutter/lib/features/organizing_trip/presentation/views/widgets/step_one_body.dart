@@ -4,9 +4,15 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/next_button.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/scroller.dart';
 
-class StepOneBody extends StatelessWidget {
+
+class StepOneBody extends StatefulWidget {
   const StepOneBody({super.key});
 
+  @override
+  State<StepOneBody> createState() => _StepOneBodyState();
+}
+
+class _StepOneBodyState extends State<StepOneBody> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -39,6 +45,7 @@ class StepOneBody extends StatelessWidget {
                       ),
                       SizedBox(width: 10),
                       Scroller(
+                    
                         items: 30,
                       ),
                     ],
@@ -54,6 +61,7 @@ class StepOneBody extends StatelessWidget {
                       SizedBox(width: 10),
                       Scroller(
                         items: 30,
+                        
                       ),
                     ],
                   ),

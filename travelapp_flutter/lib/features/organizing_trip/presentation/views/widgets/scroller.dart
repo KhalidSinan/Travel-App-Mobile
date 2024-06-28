@@ -3,7 +3,7 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/scroll_item.dart';
 
 class Scroller extends StatefulWidget {
-  const Scroller({super.key, required this.items});
+  const Scroller({super.key, required this.items, });
   final int items;
   @override
   State<Scroller> createState() => _ScrollerState();
@@ -12,6 +12,7 @@ class Scroller extends StatefulWidget {
 class _ScrollerState extends State<Scroller> {
   @override
   Widget build(BuildContext context) {
+   
     return SizedBox(
       height: 150,
       width: MediaQuery.of(context).size.width * 0.65,
@@ -45,7 +46,10 @@ class _ScrollerState extends State<Scroller> {
             diameterRatio: 1.5,
             perspective: 0.008,
             onSelectedItemChanged: (value) {
-              setState(() {});
+              setState(() {
+              
+                
+              });
             },
             childDelegate: ListWheelChildBuilderDelegate(
               childCount: widget.items,
