@@ -9,10 +9,10 @@ class DestinationsModel {
   DestinationsModel(
       {required this.city, required this.days, required this.filter});
 
-  factory DestinationsModel.fromJson(jsonData) {
-    return DestinationsModel(
-        city: jsonData['city'],
-        days: jsonData["days"],
-        filter: jsonData['filter']);
-  }
+  // factory DestinationsModel.fromJson(jsonData) {
+  //   return DestinationsModel(
+  //       city: jsonData['city'],
+  //       days: jsonData["days"],
+  //       filter: jsonData['filter']);
+  // }
 }

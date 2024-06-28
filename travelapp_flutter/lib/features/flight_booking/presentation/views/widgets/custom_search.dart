@@ -114,12 +114,3 @@ class CustomSearch extends SearchDelegate {
 
 
 
-// Card(
-//                 child: Padding(
-//                   padding: const EdgeInsets.all(8.0),
-//                   child: Text(
-//                     '${cities[i]}',
-//                     style: const TextStyle(fontSize: 20),
-//                   ),
-//                 ),
-//               ),

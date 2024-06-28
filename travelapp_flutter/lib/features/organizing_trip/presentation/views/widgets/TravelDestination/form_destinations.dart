@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/TravelDestination/custom_search_cities.dart';
 
-class FormDestinations extends StatelessWidget {
+class FormDestinations extends StatefulWidget {
   const FormDestinations({
     super.key,
-    required this.searchcontroller1,
-    required this.searchcontroller2,
   });
 
-  final TextEditingController searchcontroller1;
-  final TextEditingController searchcontroller2;
+  @override
+  State<FormDestinations> createState() => _FormDestinationsState();
+}
 
+class _FormDestinationsState extends State<FormDestinations> {
+  TextEditingController searchcontroller1 = TextEditingController();
+  TextEditingController searchcontroller2 = TextEditingController();
+  String? src;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,10 +41,23 @@ class FormDestinations extends StatelessWidget {
               outlineInputBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Themes.primary)),
               prefixIcon: const Icon(Icons.flight_takeoff_outlined),
-              onTap: () {},
+              onTap: () async {
+                var searchResult = await showSearch(
+                  context: context,
+                  delegate: CustomSearchCities(
+                    countries:
+                        BlocProvider.of<OrganizingTripCubit>(context).cities,
+                  ),
+                );
+                if (searchResult != null) {
+                  setState(() {
+                    searchcontroller1.text = searchResult.toString();
+                  });
+                }
+              },
               controller: searchcontroller1,
-              onSaved: (value) {},
-              validator: (string) {},
+              onSaved: (value) => src = value,
+              validator: validateName,
             ),
             const SizedBox(
               height: 8,
@@ -53,9 +73,9 @@ class FormDestinations extends StatelessWidget {
                     outlineInputBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Themes.primary)),
                     onTap: () {},
-                    controller: searchcontroller1,
-                    onSaved: (value) {},
-                    validator: (string) {},
+                    controller: searchcontroller2,
+                    onSaved: (value) => src = value,
+                    validator: validateName,
                   ),
                 ),
                 const SizedBox(
