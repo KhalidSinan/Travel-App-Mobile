@@ -4,7 +4,6 @@ import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip_states.dart';
 
 import '../../../data/models/cities_airline_model.dart';
-import '../../../data/models/trip_Info_model.dart';
 
 class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   OrganizingTripCubit(this.organizingTripImpl) : super(InitialOrganizingTrip());
@@ -12,11 +11,18 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   final OrganizingTripImpl organizingTripImpl;
 
   List<CheckFlightModel>? checkFlights;
-  TripOrgModel? trip;
+
   List<dynamic> airlines = [];
   List<CountryModel> cities = [];
-  // CountryModel cc;
   String? seatClass;
+
+  //////////////////////////////
+  String? source;
+  String? classType;
+  int? numberDays;
+  int? numberPerson;
+  String? startDate;
+
   Future<void> getCountriesAndAirlines() async {
     emit(LoadingOrganizingTrip());
     var response = await organizingTripImpl.getCitiesAndAirlines();
@@ -30,36 +36,40 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
         cities.add(CountryModel.fromJson(response["cities"][i]));
         print(cities[i]);
       }
-      print(airlines);
-      print("&&&&&&&&&&&&&&&&&&&&&&&&&7");
-      print(cities);
       emit(SuccessCheckAvailableFlight());
     });
   }
 
-  void updateStartDate(String newStartDate) {
-    trip!.startDate = newStartDate;
-    emit(TripInfoUpdated()); // Signal state update
+  void setNumberDays(int numDays) {
+    this.numberDays = numDays;
   }
 
-  void updateNumOfSeats(int newNumOfSeats) {
-    trip!.numOfSeats = newNumOfSeats;
-    emit(TripInfoUpdated()); // Signal state update
+  void setNumberPerson(int numPerson) {
+    this.numberPerson = numPerson;
   }
 
-  void updateNumOfDays(int newNumOfDays) {
-    trip!.numOfDays = newNumOfDays;
-    emit(TripInfoUpdated()); // Signal state update
+  void setStartDate(String startDate) {
+    this.startDate = startDate;
   }
 
-  void getClass({required String selectedClass}) {
+  void setSoucre(String source) {
+    this.source = source;
+  }
+
+  void setClassType(String classType) {
+    this.seatClass = getClass(selectedClass: classType);
+  }
+
+  String getClass({required String selectedClass}) {
     switch (selectedClass) {
       case 'First':
-        seatClass = 'A';
+        return 'A';
       case 'Business':
-        seatClass = 'B';
+        return 'B';
       case 'Economy':
-        seatClass = 'C';
+        return 'C';
+      default:
+        return '';
     }
   }
 }
