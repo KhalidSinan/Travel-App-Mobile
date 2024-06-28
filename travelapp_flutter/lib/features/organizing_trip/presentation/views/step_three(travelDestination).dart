@@ -13,13 +13,7 @@ class StepThree extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           actions: const [
-            // Padding(
-            //   padding: const EdgeInsets.all(15),
-            //   child: Text(
-            //     'Step 3/8',
-            //     style: TextStyle(color: Themes.primary, fontSize: 22),
-            //   ),
-            // ),
+           
             CustomStepCircular(progress: 0.375),
             SizedBox(width: 15)
           ],

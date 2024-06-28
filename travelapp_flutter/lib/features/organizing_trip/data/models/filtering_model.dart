@@ -12,12 +12,12 @@ class FilterModel {
       required this.maxPrice,
       required this.airline});
 
-  factory FilterModel.fromJson(jsonData) {
-    return FilterModel(
-        timeStart: jsonData['time_start'],
-        timeEnd: jsonData['time_end'],
-        minPrice: jsonData['min_price'],
-        maxPrice: jsonData['max_price'],
-        airline: jsonData['airline']);
-  }
+  // factory FilterModel.fromJson(jsonData) {
+  //   return FilterModel(
+  //       timeStart: jsonData['time_start'],
+  //       timeEnd: jsonData['time_end'],
+  //       minPrice: jsonData['min_price'],
+  //       maxPrice: jsonData['max_price'],
+  //       airline: jsonData['airline']);
+  // }
 }
