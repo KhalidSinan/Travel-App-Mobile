@@ -8,27 +8,32 @@ class RoomTypeModel {
   final bool? smokingAllowed;
   final int? availableRooms;
   final int? totalRooms;
+  final String? type;
   final String? view;
   final List<String>? amenities;
   final String? id;
 
-  RoomTypeModel(
-      {required this.images,
-      required this.code,
-      required this.description,
-      required this.price,
-      required this.bedOptions,
-      required this.sleepsCount,
-      required this.smokingAllowed,
-      required this.availableRooms,
-      required this.totalRooms,
-      required this.view,
-      required this.amenities,
-      required this.id});
+  RoomTypeModel({
+    required this.type,
+    required this.images,
+    required this.code,
+    required this.description,
+    required this.price,
+    required this.bedOptions,
+    required this.sleepsCount,
+    required this.smokingAllowed,
+    required this.availableRooms,
+    required this.totalRooms,
+    required this.view,
+    required this.amenities,
+    required this.id,
+  });
+
   factory RoomTypeModel.fromJson(jsonData) {
     return RoomTypeModel(
         images: List<String>.from(jsonData["images"]),
         code: jsonData['code'],
+        type: jsonData['type'],
         description: jsonData['description'],
         price: jsonData['price'],
         bedOptions: jsonData['bed_options'],

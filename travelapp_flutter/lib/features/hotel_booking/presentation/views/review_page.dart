@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
@@ -89,6 +91,7 @@ class _ReviewPageState extends State<ReviewPage> {
   void checkReservation() async {
     String? startDate = widget.bloc.startDate;
     String? numOfDays = widget.bloc.numDays;
+    print(startDate);
     List<String> formattedDate = startDate!.split('/');
     startDate = "${formattedDate[2]}-${formattedDate[1]}-${formattedDate[0]}";
     List<RoomCartModel>? rooms = widget.bloc.selectedRooms;
@@ -102,10 +105,10 @@ class _ReviewPageState extends State<ReviewPage> {
       };
       roomCodes.add(oneRoom);
     }
-    // await widget.bloc.makeHotelReservation(
-    //   roomCodes: roomCodes,
-    //   startDate: startDate,
-    //   numDays: numOfDays!,
-    // );
+    await widget.bloc.makeHotelReservation(
+      roomCodes: roomCodes,
+      startDate: startDate,
+      numDays: numOfDays!,
+    );
   }
 }
