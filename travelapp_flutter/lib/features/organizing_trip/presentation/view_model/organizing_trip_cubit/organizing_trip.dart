@@ -4,6 +4,7 @@ import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip_states.dart';
 
 import '../../../data/models/cities_airline_model.dart';
+import '../../../data/models/trip_Info_model.dart';
 
 class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   OrganizingTripCubit(this.organizingTripImpl) : super(InitialOrganizingTrip());
@@ -11,7 +12,7 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   final OrganizingTripImpl organizingTripImpl;
 
   List<CheckFlightModel>? checkFlights;
-
+  TripOrgModel? trip;
   List<dynamic> airlines = [];
   List<CountryModel> cities = [];
   // CountryModel cc;
@@ -34,6 +35,21 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
       print(cities);
       emit(SuccessCheckAvailableFlight());
     });
+  }
+
+  void updateStartDate(String newStartDate) {
+    trip!.startDate = newStartDate;
+    emit(TripInfoUpdated()); // Signal state update
+  }
+
+  void updateNumOfSeats(int newNumOfSeats) {
+    trip!.numOfSeats = newNumOfSeats;
+    emit(TripInfoUpdated()); // Signal state update
+  }
+
+  void updateNumOfDays(int newNumOfDays) {
+    trip!.numOfDays = newNumOfDays;
+    emit(TripInfoUpdated()); // Signal state update
   }
 
   void getClass({required String selectedClass}) {
