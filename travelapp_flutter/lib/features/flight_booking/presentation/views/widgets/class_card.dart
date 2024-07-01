@@ -79,7 +79,6 @@ class ClassCard extends StatelessWidget {
   }
 
   IconData? getFeatureIcon(String feature) {
-    print(features);
     switch (feature) {
       //first
       case 'Bedding':

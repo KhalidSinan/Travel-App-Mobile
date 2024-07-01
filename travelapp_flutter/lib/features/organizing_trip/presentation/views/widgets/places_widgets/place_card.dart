@@ -20,26 +20,35 @@ class PlaceCard extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
       padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 15),
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          color: Themes.secondary,
-          border: Border.symmetric(
-            vertical: BorderSide(color: Themes.primary, width: 3),
-            horizontal: BorderSide(color: Themes.primary, width: 0.8),
-          ),
-          borderRadius: BorderRadiusDirectional.circular(30)),
+      decoration:
+          // BoxDecoration(
+          //   color: Colors.white,
+          //   border: BorderDirectional(
+          //     bottom: BorderSide(color: Themes.primary, width: 2),
+          //   ),
+          // ),
+          BoxDecoration(
+        color: Themes.secondary,
+        border: Border.symmetric(
+          vertical: BorderSide(color: Themes.primary, width: 3),
+          horizontal: BorderSide(color: Themes.primary, width: 0.8),
+        ),
+        borderRadius: BorderRadiusDirectional.circular(30),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             name,
-            style: const TextStyle(fontSize: 25),
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontSize: 23),
           ),
           const SizedBox(height: 8),
           Text(
             description,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(color: Colors.grey, fontSize: 20),
+            style: const TextStyle(color: Colors.grey, fontSize: 18),
           ),
           const SizedBox(height: 8),
           Row(
@@ -51,7 +60,8 @@ class PlaceCard extends StatelessWidget {
               const SizedBox(width: 6),
               Text(
                 location,
-                style: const TextStyle(fontSize: 20),
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 18),
               ),
             ],
           ),
@@ -65,7 +75,7 @@ class PlaceCard extends StatelessWidget {
               const SizedBox(width: 6),
               Text(
                 '+$code $number',
-                style: const TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 18),
               ),
             ],
           ),

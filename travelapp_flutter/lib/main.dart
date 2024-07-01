@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 // ignore: depend_on_referenced_packages
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -14,7 +15,7 @@ import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
-import 'package:travelapp_flutter/features/flight_booking/presentation/views/plane_page.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/places_page.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
 Future _firebaseBackgroundMessage(RemoteMessage message) async {
@@ -80,7 +81,7 @@ class _TravelAppState extends State<TravelApp> {
         // home: rememberMe == true
         //     ? FetchProfileDataPage(token: token)
         //     : const LoginPage(),
-        home: const PlanePage(),
+        home: const PlacesPage(city: 'Berlin',),
       ),
     );
   }

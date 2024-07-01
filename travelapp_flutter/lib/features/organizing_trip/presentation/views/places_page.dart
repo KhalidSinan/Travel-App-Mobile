@@ -23,8 +23,9 @@ class PlacesPage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             leading: const CustomBackButton(),
-            title: Text("Places in $city"),
-            titleTextStyle: Styles.heading2.copyWith(color: Themes.third),
+            title: Text('Select activities in $city'),
+            titleTextStyle:
+                Styles.heading2.copyWith(color: Themes.third, fontSize: 25),
           ),
           body: SafeArea(
             child: BlocListener<OrganizingTripCubit, OrganizingTripStates>(
