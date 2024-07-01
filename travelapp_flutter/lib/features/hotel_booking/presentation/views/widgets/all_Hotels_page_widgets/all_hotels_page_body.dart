@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_Hotels_page_widgets/all_hotels_header.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_Hotels_page_widgets/all_hotels_pagination.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_Hotels_page_widgets/app_bar_all_hotels.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_Hotels_page_widgets/hotels_list.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_hotels_page_widgets/all_hotels_header.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_hotels_page_widgets/all_hotels_pagination.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_hotels_page_widgets/app_bar_all_hotels.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_hotels_page_widgets/hotels_list.dart';
 
 class AllHotelsPageBody extends StatelessWidget {
   const AllHotelsPageBody({

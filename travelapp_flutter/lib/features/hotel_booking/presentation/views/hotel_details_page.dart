@@ -4,7 +4,7 @@ import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/hotel_model.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/repos/hotel_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_cubit.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_details_page_body.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/hotel_details_page_body.dart';
 
 class HotelDetailsPage extends StatelessWidget {
   const HotelDetailsPage(

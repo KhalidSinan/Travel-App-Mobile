@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_Hotels_page_widgets/all_hotels_page_body.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_hotels_page_widgets/all_hotels_page_body.dart';
 
 class AllHotelsPage extends StatelessWidget {
   const AllHotelsPage({

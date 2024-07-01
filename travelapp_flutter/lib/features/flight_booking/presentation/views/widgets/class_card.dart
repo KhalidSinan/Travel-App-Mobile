@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/widgets/features_list.dart';
@@ -80,35 +79,41 @@ class ClassCard extends StatelessWidget {
   }
 
   IconData? getFeatureIcon(String feature) {
+    print(features);
     switch (feature) {
-      case 'Buffet':
-        return Icons.restaurant;
+      //first
       case 'Bedding':
         return Icons.bed;
       case 'Beverages':
         return Icons.local_bar;
-      case 'Comfort':
-        return Icons.event_seat;
-      case 'Toiletries':
+      case 'Spa':
+        return Icons.spa;
+      case 'Buffet':
+        return Icons.flatware;
+      case 'Shower':
         return Icons.bathtub;
+      //business
       case 'Wifi':
-        return FontAwesomeIcons.rss;
+        return Icons.wifi;
+      case 'Entertainment':
+        return Icons.sports_esports;
+      case 'Fast Food':
+        return Icons.fastfood;
+      case 'Privacy':
+        return Icons.safety_divider;
       case 'Lie seats':
         return Icons.airline_seat_flat;
-      case 'Entertainment':
-        return FontAwesomeIcons.gamepad;
-      case 'Suite':
-        return Icons.weekend;
-      case 'Pajamas':
-        return FontAwesomeIcons.shirt;
+      //economy
       case 'Drinks':
         return Icons.local_cafe;
       case 'TV':
-        return Icons.tv;
+        return Icons.live_tv;
       case 'Charging':
         return Icons.power;
       case 'Meal':
         return Icons.room_service;
+      case 'Backrest':
+        return Icons.airline_seat_recline_extra;
       default:
         return null;
     }

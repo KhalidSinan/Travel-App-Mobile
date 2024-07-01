@@ -15,10 +15,24 @@ class OrganizingTripImpl extends OrganizingTripRepo {
   Future<Either<Failure, Map<String, dynamic>>> getCitiesAndAirlines() async {
     try {
       Map<String, dynamic> response =
-          await apiService.get(endPoint: "/flights/cities", headers: {
-        "Authorization":
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzJkOWU4ZmQ5ZjMwM2QxZjQwN2Y5MCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTg5NTI4MjB9.BsY3vDEIQ00BbjX-6ImkT1v5w17TRXHE2cH8W1GUm3I",
-      });
+          await apiService.get(endPoint: "/flights/cities");
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      } else {
+        return left(Failure(errMessage: 'Something went wrong'));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> getPlaces(
+      {required String city, required String category}) async {
+    try {
+      Map<String, dynamic> response = await apiService.get(
+          endPoint: "/places/city?city=$city&category=$category");
       return right(response);
     } catch (e) {
       if (e is DioException) {
