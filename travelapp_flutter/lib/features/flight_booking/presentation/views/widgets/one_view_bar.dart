@@ -31,87 +31,92 @@ class _OneViewBarState extends State<OneViewBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            autovalidateMode: autovalidateMode,
-            child: Column(
-              children: [
-                CustomTextAndTextForm(
-                  text: 'From',
-                  prefixIcon: const Icon(Icons.flight_takeoff_outlined),
-                  hintText: 'Select Src',
-                  onTap: searchFunction1,
-                  controller: searchcontroller1,
-                  onSaved: (value) => src = value,
-                  validator: validateName,
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: SingleChildScrollView(
+        child: Form(
+          key: formKey,
+          autovalidateMode: autovalidateMode,
+          child: Column(
+            children: [
+              CustomTextAndTextForm(
+                text: 'From',
+                prefixIcon: const Icon(Icons.flight_takeoff_outlined),
+                hintText: 'Select Src',
+                onTap: searchFunction1,
+                controller: searchcontroller1,
+                onSaved: (value) => src = value,
+                validator: validateName,
+              ),
+              CustomTextAndTextForm(
+                text: 'To',
+                prefixIcon: const Icon(
+                  Icons.flight_land_outlined,
                 ),
-                CustomTextAndTextForm(
-                  text: 'To',
-                  prefixIcon: const Icon(
-                    Icons.flight_land_outlined,
-                  ),
-                  hintText: 'Select Des',
-                  controller: searchcontroller2,
-                  onTap: searchFunction2,
-                  onSaved: (value) => des = value,
-                  validator: validateName,
-                ),
-                ClenderRow(
-                  text: 'Depart',
-                  width: 360,
-                  onSaved: (vlaue) => depart = vlaue,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Expanded(
-                      child: NumberOfPassengers(
-                        onSaved: (value) => numOfPassengers = value,
-                      ),
+                hintText: 'Select Des',
+                controller: searchcontroller2,
+                onTap: searchFunction2,
+                onSaved: (value) => des = value,
+                validator: validateName,
+              ),
+              ClenderRow(
+                text: 'Depart',
+                width: 360,
+                onSaved: (vlaue) => depart = vlaue,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: NumberOfPassengers(
+                      onSaved: (value) => numOfPassengers = value,
                     ),
-                    const Expanded(
-                      child: DropSelectClass(),
-                    )
-                  ],
-                ),
-                const SizedBox(height: 24),
-                BlocConsumer<ReservationTicketCubit, ReservationTicketState>(
-                  listener: (context, state) {
-                    if (state is SuccessSearchFlightState) {
-                      Get.to(() => AllFlightsPage(
-                            flights: state.flights,
-                            isTwoWay: state.isTwoWay,
-                            departureDate: state.departureDate,
-                            source: state.source,
-                            destination: state.destination,
-                            seats: state.seats,
-                            seatsClass: state.seatsClass,
-                            airlines: state.airlines,
-                            totalFlights: state.totalFlights,
-                          ));
-                    } else if (state is FailureSearchFlightState) {
-                      showCustomSnackBar(
-                          title: 'Error', message: state.failure.errMessage);
-                    }
-                  },
-                  builder: (context, state) {
-                    return (state is LoadingSearchFlightState)
-                        ? const CircularProgressIndicator()
-                        : SizedBox(
-                            width: 350,
-                            child: CustomButton(
-                              onPressed: searchFlight,
-                              label: 'Search Flights',
-                            ),
-                          );
-                  },
-                )
-              ],
-            ),
+                  ),
+                  const Expanded(
+                    child: DropSelectClass(
+                      text: 'class',
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(height: 24),
+              BlocConsumer<ReservationTicketCubit, ReservationTicketState>(
+                listener: (context, state) {
+                  if (state is SuccessSearchFlightState) {
+                    Get.to(
+                      () => AllFlightsPage(
+                        flights: state.flights,
+                        isTwoWay: state.isTwoWay,
+                        departureDate: state.departureDate,
+                        source: state.source,
+                        destination: state.destination,
+                        seats: state.seats,
+                        seatsClass: state.seatsClass,
+                        airlines: state.airlines,
+                        totalFlights: state.totalFlights,
+                      ),
+                    );
+                  } else if (state is FailureSearchFlightState) {
+                    showCustomSnackBar(
+                        title: 'Error', message: state.failure.errMessage);
+                  }
+                },
+                builder: (context, state) {
+                  return (state is LoadingSearchFlightState)
+                      ? const CircularProgressIndicator()
+                      : SizedBox(
+                          width: 350,
+                          child: CustomButton(
+                            onPressed: searchFlight,
+                            label: 'Search Flights',
+                          ),
+                        );
+                },
+              )
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   void searchFlight() async {

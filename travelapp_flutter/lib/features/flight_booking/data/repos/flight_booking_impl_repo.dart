@@ -203,9 +203,6 @@ class FlightBookingImp extends FlightBookingRepo {
     try {
       Map<String, dynamic> response = await apiService.get(
         endPoint: "/flights/search",
-        // headers: {
-        //   "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmQyNDkzOTc2MjUxMWQ0ZTZjYTg2OCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTU3MDExODB9.QJ-iLnUppgCadjgO4qJLi5RuLGfo8HEKSjH3zES3D8w",
-        // },
       );
       return right(response);
     } catch (e) {

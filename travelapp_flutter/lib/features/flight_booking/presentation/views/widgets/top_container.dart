@@ -13,9 +13,10 @@ class TopContainer extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(
-            Assets.nature1,
+            Assets.flight1,
             fit: BoxFit.fill,
-            // height: 350,
+            height: MediaQuery.of(context).size.height * 0.33,
+            width: double.infinity,
           ),
         ],
       ),

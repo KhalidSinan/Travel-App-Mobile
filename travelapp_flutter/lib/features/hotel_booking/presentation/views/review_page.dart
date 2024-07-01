@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';

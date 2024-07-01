@@ -40,7 +40,7 @@ class HotelSearchPageBody extends StatelessWidget {
           ),
         ),
         const SliverToBoxAdapter(
-          child: SearchPagenSheet(),
+          child: SearchPageSheet(),
         ),
       ],
     );

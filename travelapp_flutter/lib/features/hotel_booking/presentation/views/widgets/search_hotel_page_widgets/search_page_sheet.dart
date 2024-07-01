@@ -6,14 +6,14 @@ import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widg
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/search_hotel_page_widgets/search_dest.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/search_hotel_page_widgets/search_fields.dart';
 
-class SearchPagenSheet extends StatefulWidget {
-  const SearchPagenSheet({super.key});
+class SearchPageSheet extends StatefulWidget {
+  const SearchPageSheet({super.key});
 
   @override
-  State<SearchPagenSheet> createState() => _SearchPagenSheetState();
+  State<SearchPageSheet> createState() => _SearchPageSheetState();
 }
 
-class _SearchPagenSheetState extends State<SearchPagenSheet> {
+class _SearchPageSheetState extends State<SearchPageSheet> {
   @override
   void initState() {
     super.initState();
@@ -33,9 +33,7 @@ class _SearchPagenSheetState extends State<SearchPagenSheet> {
       child: BlocBuilder<AllHotelsCubit, AllHotelStates>(
         builder: (context, state) {
           if (state is LoadingAllHotelStates) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           } else {
             bool? availableTrips = BlocProvider.of<AllHotelsCubit>(context)
                 .destinations!

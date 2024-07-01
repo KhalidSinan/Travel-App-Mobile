@@ -4,8 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_Hotels_page_widgets/filter_hotel_sheet.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_Hotels_page_widgets/sort_hotel_sheet.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_hotels_page_widgets/filter_hotel_sheet.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_hotels_page_widgets/sort_hotel_sheet.dart';
 
 class AllHotelsOptions extends StatelessWidget {
   const AllHotelsOptions({

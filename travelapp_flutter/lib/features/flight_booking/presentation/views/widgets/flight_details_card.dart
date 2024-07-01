@@ -6,6 +6,7 @@ import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/country_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/trip_date_model.dart';
+
 // ignore: must_be_immutable
 class FlightDetailsCard extends StatelessWidget {
   FlightDetailsCard(
@@ -39,15 +40,16 @@ class FlightDetailsCard extends StatelessWidget {
         Row(
           children: [
             SizedBox(
-              height: 50, width: 50, child: Image.network(logo!),
+              height: 50, width: 50,
+              child: Image.network(logo!),
               //CustomImage(image:logo!);
             ),
             const SizedBox(width: 16),
             Text(
               airline!,
-              overflow: TextOverflow.ellipsis,
+              overflow: TextOverflow.fade,
               style: Styles.heading.copyWith(
-                fontSize: 25,
+                fontSize: 22,
                 color: Colors.black,
               ),
             ),
@@ -70,7 +72,7 @@ class FlightDetailsCard extends StatelessWidget {
                   Text(
                     source!.country!,
                     style: const TextStyle(
-                      fontSize: 22,
+                      fontSize: 20,
                     ),
                   ),
                 ],
@@ -80,7 +82,7 @@ class FlightDetailsCard extends StatelessWidget {
               srcairport!,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 18,
               ),
             ),
             Padding(
@@ -94,7 +96,7 @@ class FlightDetailsCard extends StatelessWidget {
               desairport!,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 18,
               ),
             ),
             Padding(
@@ -110,7 +112,7 @@ class FlightDetailsCard extends StatelessWidget {
                   Text(
                     destination!.country!,
                     style: const TextStyle(
-                      fontSize: 22,
+                      fontSize: 20,
                     ),
                   ),
                 ],
@@ -141,14 +143,14 @@ class FlightDetailsCard extends StatelessWidget {
                           Text(
                             departure!.date,
                             style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 15,
                             ),
                           ),
                           const SizedBox(width: 8),
                           Text(
                             departure!.time!,
                             style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 15,
                             ),
                           ),
                         ],
@@ -178,14 +180,14 @@ class FlightDetailsCard extends StatelessWidget {
                           Text(
                             arrival!.date,
                             style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 15,
                             ),
                           ),
                           const SizedBox(width: 8),
                           Text(
                             arrival!.time!,
                             style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 15,
                             ),
                           ),
                         ],

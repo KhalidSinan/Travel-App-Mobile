@@ -48,69 +48,68 @@ class CustomSearch extends SearchDelegate {
 
     if (query == "") {
       return ListView.builder(
-          itemCount: countries.length,
-          itemBuilder: (context, i) {
-            return InkWell(
-                onTap: () {
-                  close(context, countries[i]);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 24),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: Text(
-                          '${countries[i]}',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
-                        leading: const Icon(Icons.airplanemode_on_sharp),
-                      ),
-                      const Divider(
-                        indent: 44,
-                        endIndent: 40,
-                        thickness: 2,
-                      )
-                    ],
+        itemCount: countries.length,
+        itemBuilder: (context, i) {
+          return InkWell(
+            onTap: () {
+              close(context, countries[i]);
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(left: 24),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text(
+                      '${countries[i]}',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    leading: const Icon(Icons.airplanemode_on_sharp),
                   ),
-                ));
-          });
+                  const Divider(
+                    indent: 44,
+                    endIndent: 40,
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+      );
     } else {
       filterList = countries
           .where(
               (element) => element.toLowerCase().contains(query.toLowerCase()))
           .toList();
       return ListView.builder(
-          itemCount: filterList.length,
-          itemBuilder: (context, i) {
-            return InkWell(
-                onTap: () {
-                  close(context, filterList![i]);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 24),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: Text(
-                          filterList![i],
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
-                        leading: const Icon(Icons.airplanemode_on_sharp),
-                      ),
-                      const Divider(
-                        indent: 44,
-                        endIndent: 40,
-                        thickness: 2,
-                      )
-                    ],
+        itemCount: filterList.length,
+        itemBuilder: (context, i) {
+          return InkWell(
+            onTap: () {
+              close(context, filterList![i]);
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(left: 24),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text(
+                      filterList![i],
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    leading: const Icon(Icons.airplanemode_on_sharp),
                   ),
-                ));
-          });
+                  const Divider(
+                    indent: 44,
+                    endIndent: 40,
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+      );
     }
   }
 }
-
-
-

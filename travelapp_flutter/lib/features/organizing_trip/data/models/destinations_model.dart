@@ -1,4 +1,3 @@
-import 'package:travelapp_flutter/features/hotel_booking/data/models/destinations_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/filtering_model.dart';
 
 class DestinationsModel {
