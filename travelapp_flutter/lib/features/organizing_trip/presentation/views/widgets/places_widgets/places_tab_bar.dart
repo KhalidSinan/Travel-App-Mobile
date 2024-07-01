@@ -20,42 +20,6 @@ class PlacesTabBar extends StatelessWidget {
       const Tab(
         child: Row(
           children: [
-            Text('Cinema'),
-            SizedBox(width: 7),
-            Icon(Icons.theaters),
-          ],
-        ),
-      ),
-      const Tab(
-        child: Row(
-          children: [
-            Text('Mall'),
-            SizedBox(width: 7),
-            Icon(Icons.shopping_cart),
-          ],
-        ),
-      ),
-      const Tab(
-        child: Row(
-          children: [
-            Text('Market'),
-            SizedBox(width: 7),
-            Icon(Icons.store_mall_directory),
-          ],
-        ),
-      ),
-      const Tab(
-        child: Row(
-          children: [
-            Text('Museum'),
-            SizedBox(width: 7),
-            Icon(Icons.museum),
-          ],
-        ),
-      ),
-      const Tab(
-        child: Row(
-          children: [
             Text('Attraction'),
             SizedBox(width: 7),
             Icon(Icons.account_balance),
@@ -65,18 +29,9 @@ class PlacesTabBar extends StatelessWidget {
       const Tab(
         child: Row(
           children: [
-            Text('Street'),
+            Text('Cinema'),
             SizedBox(width: 7),
-            Icon(FontAwesomeIcons.road),
-          ],
-        ),
-      ),
-      const Tab(
-        child: Row(
-          children: [
-            Text('Park'),
-            SizedBox(width: 7),
-            Icon(Icons.park),
+            Icon(Icons.theaters),
           ],
         ),
       ),
@@ -92,9 +47,54 @@ class PlacesTabBar extends StatelessWidget {
       const Tab(
         child: Row(
           children: [
+            Text('Museum'),
+            SizedBox(width: 7),
+            Icon(Icons.museum),
+          ],
+        ),
+      ),
+      const Tab(
+        child: Row(
+          children: [
+            Text('Mall'),
+            SizedBox(width: 7),
+            Icon(Icons.shopping_cart),
+          ],
+        ),
+      ),
+      const Tab(
+        child: Row(
+          children: [
             Text('Stadium'),
             SizedBox(width: 7),
             Icon(Icons.stadium),
+          ],
+        ),
+      ),
+      const Tab(
+        child: Row(
+          children: [
+            Text('Market'),
+            SizedBox(width: 7),
+            Icon(Icons.store_mall_directory),
+          ],
+        ),
+      ),
+      const Tab(
+        child: Row(
+          children: [
+            Text('Park'),
+            SizedBox(width: 7),
+            Icon(Icons.park),
+          ],
+        ),
+      ),
+      const Tab(
+        child: Row(
+          children: [
+            Text('Street'),
+            SizedBox(width: 7),
+            Icon(FontAwesomeIcons.road),
           ],
         ),
       ),

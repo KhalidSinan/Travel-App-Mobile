@@ -47,7 +47,7 @@ class FlightDetailsCard extends StatelessWidget {
             const SizedBox(width: 16),
             Text(
               airline!,
-              overflow: TextOverflow.fade,
+              overflow: TextOverflow.ellipsis,
               style: Styles.heading.copyWith(
                 fontSize: 22,
                 color: Colors.black,
@@ -143,14 +143,14 @@ class FlightDetailsCard extends StatelessWidget {
                           Text(
                             departure!.date,
                             style: const TextStyle(
-                              fontSize: 15,
+                              fontSize: 16,
                             ),
                           ),
                           const SizedBox(width: 8),
                           Text(
                             departure!.time!,
                             style: const TextStyle(
-                              fontSize: 15,
+                              fontSize: 16,
                             ),
                           ),
                         ],
@@ -180,14 +180,14 @@ class FlightDetailsCard extends StatelessWidget {
                           Text(
                             arrival!.date,
                             style: const TextStyle(
-                              fontSize: 15,
+                              fontSize: 16,
                             ),
                           ),
                           const SizedBox(width: 8),
                           Text(
                             arrival!.time!,
                             style: const TextStyle(
-                              fontSize: 15,
+                              fontSize: 16,
                             ),
                           ),
                         ],

@@ -119,9 +119,9 @@ class RoomCard extends StatelessWidget {
       case 'Mini Bar':
         return Icons.local_bar;
       case 'Free WiFi':
-        return FontAwesomeIcons.rss;
+        return Icons.wifi;
       case 'TV':
-        return Icons.tv;
+        return Icons.live_tv;
       case 'Room Service':
         return Icons.room_service;
       default:
