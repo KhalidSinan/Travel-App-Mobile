@@ -4,28 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
-<<<<<<< HEAD
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/2_date_selection.dart';
 import 'package:travelapp_flutter/core/widgets/next_button.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/1_persons_days_selection_widgets/scroller.dart';
 
-<<<<<<<< HEAD:travelapp_flutter/lib/features/organizing_trip/presentation/views/widgets/number_persons_days_page_body.dart
-class NumberPersonsDaysPageBody extends StatelessWidget {
-  const NumberPersonsDaysPageBody({super.key});
-========
-class PersonDaySelectionBody extends StatefulWidget {
-  const PersonDaySelectionBody({super.key});
->>>>>>>> f9022ec8f06acb804a4fe167e758fe140e5ff259:travelapp_flutter/lib/features/organizing_trip/presentation/views/widgets/1_persons_days_selection_widgets/persons_days_selection_body.dart
 
-  @override
-  State<PersonDaySelectionBody> createState() => _PersonDaySelectionBodyState();
-}
-
-class _PersonDaySelectionBodyState extends State<PersonDaySelectionBody> {
-=======
-import 'package:travelapp_flutter/core/widgets/next_button.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/2_date_selection_page.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/1_persons_days_selection_widgets/scroller.dart';
+
 
 
 class NumberPersonsDaysPageBody extends StatefulWidget {
@@ -35,7 +19,6 @@ class NumberPersonsDaysPageBody extends StatefulWidget {
 }
 
 class _NumberPersonsDaysPageBodyState extends State<NumberPersonsDaysPageBody> {
->>>>>>> Hmzati
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -95,11 +78,10 @@ class _NumberPersonsDaysPageBodyState extends State<NumberPersonsDaysPageBody> {
           SizedBox(height: MediaQuery.of(context).size.height * 0.28),
           NextButton(
             onTap: () {
-<<<<<<< HEAD
-              Get.to(const DateSelection());
-=======
+
+
               Get.to(const DateSelectionPage());
->>>>>>> Hmzati
+
             },
           )
         ],

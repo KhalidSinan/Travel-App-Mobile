@@ -6,18 +6,10 @@ import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_states.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/review_page.dart';
-<<<<<<< HEAD
-<<<<<<< HEAD:travelapp_flutter/lib/features/hotel_booking/presentation/views/widgets/hotel_rooms_page_body.dart
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/room_types_list.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/rooms_list.dart';
-=======
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/room_types_list.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/rooms_list.dart';
->>>>>>> f9022ec8f06acb804a4fe167e758fe140e5ff259:travelapp_flutter/lib/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/hotel_rooms_page_body.dart
-=======
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/room_types_list.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/rooms_list.dart';
->>>>>>> Hmzati
+
+
 
 class HotelRoomsPageBody extends StatelessWidget {
   const HotelRoomsPageBody({super.key});
@@ -26,18 +18,14 @@ class HotelRoomsPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final hotel = BlocProvider.of<HotelDetailsCubit>(context).hotel;
     final rooms = BlocProvider.of<HotelDetailsCubit>(context).rooms;
-<<<<<<< HEAD
-<<<<<<< HEAD:travelapp_flutter/lib/features/hotel_booking/presentation/views/widgets/hotel_rooms_page_body.dart
+
     final selectedRooms =
         BlocProvider.of<HotelDetailsCubit>(context).selectedRooms;
-=======
     // final selectedRooms = 
     //     BlocProvider.of<HotelDetailsCubit>(context).selectedRooms;
->>>>>>> f9022ec8f06acb804a4fe167e758fe140e5ff259:travelapp_flutter/lib/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/hotel_rooms_page_body.dart
-=======
+
     // final selectedRooms = 
     //     BlocProvider.of<HotelDetailsCubit>(context).selectedRooms;
->>>>>>> Hmzati
     return CustomScrollView(
       slivers: [
         SliverAppBar(

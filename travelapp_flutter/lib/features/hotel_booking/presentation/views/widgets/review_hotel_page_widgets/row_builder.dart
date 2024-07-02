@@ -34,23 +34,6 @@ class RowBuilder extends StatelessWidget {
                 Icons.delete_forever,
                 size: 32,
               ),
-<<<<<<< HEAD
-              IconButton(
-                  style: const ButtonStyle(
-                      iconColor: MaterialStatePropertyAll(Colors.red),
-                      backgroundColor: MaterialStatePropertyAll(Colors.white)),
-                  onPressed: () {
-                    Get.to(DeletePage(
-                      bloc: BlocProvider.of<HotelDetailsCubit>(context),
-                    ));
-                  },
-                  icon: const Icon(
-                    Icons.delete_forever,
-                    size: 32,
-                  ))
-            ],
-          )),
-=======
             ),
             // Button OR Text ................
             // Text(
@@ -60,7 +43,6 @@ class RowBuilder extends StatelessWidget {
           ],
         ),
       ),
->>>>>>> f9022ec8f06acb804a4fe167e758fe140e5ff259
     );
   }
 }
