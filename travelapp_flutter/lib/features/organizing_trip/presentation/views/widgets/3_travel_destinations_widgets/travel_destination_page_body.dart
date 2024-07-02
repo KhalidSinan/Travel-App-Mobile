@@ -3,9 +3,15 @@ import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/drop_select_class.dart';
+<<<<<<< HEAD
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/TravelDestination/form_destinations.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/TravelDestination/list_destination_view.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/TravelDestination/source_form.dart';
+=======
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/form_destinations.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/list_destination_view.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/source_form.dart';
+>>>>>>> Hmzati
 
 class TravelDestinationPageBody extends StatefulWidget {
   const TravelDestinationPageBody({super.key});
@@ -37,7 +43,13 @@ class _TravelDestinationPageBodyState extends State<TravelDestinationPageBody> {
                       .copyWith(color: Themes.third, fontSize: 25),
                 ),
               ),
+<<<<<<< HEAD
               SourceForm(searchcontroller1: searchcontroller1),
+=======
+              SourceForm(
+                //searchcontroller1: searchcontroller1
+              ),
+>>>>>>> Hmzati
               const Padding(
                 padding: EdgeInsets.all(15),
                 child: Row(
@@ -81,8 +93,13 @@ class _TravelDestinationPageBodyState extends State<TravelDestinationPageBody> {
                 ),
               ),
               FormDestinations(
+<<<<<<< HEAD
                 searchcontroller1: searchcontroller2,
                 searchcontroller2: searchcontroller3,
+=======
+                // searchcontroller1: searchcontroller2,
+                // searchcontroller2: searchcontroller3,
+>>>>>>> Hmzati
               ),
               const ListDestinationView(),
             ],

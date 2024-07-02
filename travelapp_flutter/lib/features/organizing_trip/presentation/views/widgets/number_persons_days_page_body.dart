@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+<<<<<<< HEAD
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/2_date_selection.dart';
 import 'package:travelapp_flutter/core/widgets/next_button.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/1_persons_days_selection_widgets/scroller.dart';
@@ -21,6 +22,20 @@ class PersonDaySelectionBody extends StatefulWidget {
 }
 
 class _PersonDaySelectionBodyState extends State<PersonDaySelectionBody> {
+=======
+import 'package:travelapp_flutter/core/widgets/next_button.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/2_date_selection_page.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/1_persons_days_selection_widgets/scroller.dart';
+
+
+class NumberPersonsDaysPageBody extends StatefulWidget {
+  const NumberPersonsDaysPageBody({super.key});
+  @override
+  State<NumberPersonsDaysPageBody> createState() => _NumberPersonsDaysPageBodyState();
+}
+
+class _NumberPersonsDaysPageBodyState extends State<NumberPersonsDaysPageBody> {
+>>>>>>> Hmzati
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -80,7 +95,11 @@ class _PersonDaySelectionBodyState extends State<PersonDaySelectionBody> {
           SizedBox(height: MediaQuery.of(context).size.height * 0.28),
           NextButton(
             onTap: () {
+<<<<<<< HEAD
               Get.to(const DateSelection());
+=======
+              Get.to(const DateSelectionPage());
+>>>>>>> Hmzati
             },
           )
         ],

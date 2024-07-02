@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/custom_step_circular.dart';
+=======
+import 'package:travelapp_flutter/core/widgets/back_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_step_circular.dart';
+
+>>>>>>> Hmzati
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/number_persons_days_page_body.dart';
 
 class NumberPersonsDaysPage extends StatelessWidget {
@@ -13,6 +19,7 @@ class NumberPersonsDaysPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         actions: [
+<<<<<<< HEAD
           Padding(
             padding: const EdgeInsets.all(15),
             child: Text(
@@ -21,6 +28,9 @@ class NumberPersonsDaysPage extends StatelessWidget {
             ),
           ),
           const CustomStepCircular(progress: 0.125),
+=======
+          const CustomStepCircular(progress: 0.125 , text: '1/8',),
+>>>>>>> Hmzati
           const SizedBox(width: 15)
         ],
         backgroundColor: Colors.white,
