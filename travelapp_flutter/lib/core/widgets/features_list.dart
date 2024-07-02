@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/widgets/custom_tag.dart';
 
+// ignore: must_be_immutable
 class FeaturesList extends StatelessWidget {
-  const FeaturesList({
+  FeaturesList({
     super.key,
     required this.features,
     required this.getFeatures,
+    this.roomTag,
   });
-
+  bool? roomTag;
   final List<String>? features;
   final IconData? Function(String feature) getFeatures;
 
@@ -15,15 +17,15 @@ class FeaturesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: 70,
+      height: 75,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: features!.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.only(right: 25),
+            padding: const EdgeInsets.only(right: 20),
             child: CustomTag(
-              roomTag: true,
+              roomTag: roomTag,
               text: features![index],
               icon: getFeatures(features![index]),
             ),

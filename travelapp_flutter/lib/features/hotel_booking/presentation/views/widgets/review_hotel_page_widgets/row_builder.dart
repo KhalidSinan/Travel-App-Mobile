@@ -13,14 +13,28 @@ class RowBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
-          padding: const EdgeInsets.only(bottom: 8, right: 8, left: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Rooms :',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+        padding: const EdgeInsets.only(bottom: 8, right: 8, left: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Rooms :',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
+            IconButton(
+              style: const ButtonStyle(
+                  iconColor: MaterialStatePropertyAll(Colors.red),
+                  backgroundColor: MaterialStatePropertyAll(Colors.white)),
+              onPressed: () {
+                Get.to(DeletePage(
+                  bloc: BlocProvider.of<HotelDetailsCubit>(context),
+                ));
+              },
+              icon: const Icon(
+                Icons.delete_forever,
+                size: 32,
               ),
+<<<<<<< HEAD
               IconButton(
                   style: const ButtonStyle(
                       iconColor: MaterialStatePropertyAll(Colors.red),
@@ -36,6 +50,17 @@ class RowBuilder extends StatelessWidget {
                   ))
             ],
           )),
+=======
+            ),
+            // Button OR Text ................
+            // Text(
+            //   'Remove room',
+            //   style: TextStyle(color: Colors.red),
+            // )
+          ],
+        ),
+      ),
+>>>>>>> f9022ec8f06acb804a4fe167e758fe140e5ff259
     );
   }
 }

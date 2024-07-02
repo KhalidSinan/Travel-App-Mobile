@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
@@ -20,13 +21,14 @@ class FlightDetailsPage extends StatefulWidget {
   final String classType;
   String? idback;
   final int seats;
-
+  bool? visible;
   FlightDetailsPage({
     super.key,
     required this.id,
     required this.classType,
     this.idback,
     required this.seats,
+    this.visible,
   });
 
   @override
@@ -49,8 +51,6 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          surfaceTintColor: Colors.white,
           leading: const CustomBackButton(),
         ),
         body: SafeArea(
@@ -89,6 +89,7 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                       children: [
                         SizedBox(
                           height: 460,
+                          width: MediaQuery.of(context).size.width,
                           child: PageView(
                             controller: controller,
                             physics: const PageScrollPhysics(),
@@ -155,30 +156,33 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                           load: flightdetails!.flight.classType.load,
                           features: flightdetails!.flight.classType.features,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            child: CustomButton(
-                              onPressed: () {
-                                List<String> flightsId = [
-                                  flightdetails!.flight.id,
-                                  flightdetails!.flightback?.id ?? '',
-                                ];
-                                flightsId
-                                    .removeWhere((element) => element == '');
-                                Get.to(
-                                  () => FormPage(
-                                    flightsId: flightsId,
-                                    reservationType: getReservationType(
-                                        flightdetails!.twoWay),
-                                    classType: flightdetails!
-                                        .flight.classType.className,
-                                    seats: widget.seats,
-                                  ),
-                                );
-                              },
-                              label: 'Reserve',
+                        Visibility(
+                          visible: widget.visible ?? true,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: CustomButton(
+                                onPressed: () {
+                                  List<String> flightsId = [
+                                    flightdetails!.flight.id,
+                                    flightdetails!.flightback?.id ?? '',
+                                  ];
+                                  flightsId
+                                      .removeWhere((element) => element == '');
+                                  Get.to(
+                                    () => FormPage(
+                                      flightsId: flightsId,
+                                      reservationType: getReservationType(
+                                          flightdetails!.twoWay),
+                                      classType: flightdetails!
+                                          .flight.classType.className,
+                                      seats: widget.seats,
+                                    ),
+                                  );
+                                },
+                                label: 'Reserve',
+                              ),
                             ),
                           ),
                         ),

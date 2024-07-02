@@ -8,6 +8,8 @@ class ReservationTicketCubit extends Cubit<ReservationTicketState> {
   final FlightBookingImp flightBookingImp;
   List<dynamic> countries = [];
   List<dynamic> airlines = [];
+
+  
   String? seatClass;
 
   ReservationTicketCubit(this.flightBookingImp)

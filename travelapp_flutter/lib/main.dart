@@ -1,3 +1,6 @@
+// ignore_for_file: avoid_print
+// ignore: depend_on_referenced_packages
+import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +15,7 @@ import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/4_hotel_selection_page.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/4_hotel_selection_page.dart';s
 import 'package:travelapp_flutter/firebase_options.dart';
 
 Future _firebaseBackgroundMessage(RemoteMessage message) async {
@@ -68,10 +70,12 @@ class _TravelAppState extends State<TravelApp> {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           textSelectionTheme: TextSelectionThemeData(
-            cursorColor: Themes.primary,
-            selectionColor: Themes.primary,
-            selectionHandleColor: Themes.primary,
-          ),
+              cursorColor: Themes.primary,
+              selectionColor: Themes.primary,
+              selectionHandleColor: Themes.primary),
+          appBarTheme: const AppBarTheme(
+              color: Colors.white, surfaceTintColor: Colors.white),
+          scaffoldBackgroundColor: Colors.white,
           textTheme: GoogleFonts.aBeeZeeTextTheme(),
         ),
         // home: rememberMe == true

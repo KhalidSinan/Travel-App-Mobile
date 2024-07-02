@@ -49,11 +49,11 @@ class SearchDest extends StatelessWidget {
                     },
                     child: Container(
                       margin: destination.length == 1
-                          ? const EdgeInsets.only(right: 10)
-                          : const EdgeInsets.only(right: 24),
+                          ? const EdgeInsets.only(right: 24)
+                          : const EdgeInsets.only(right: 10),
                       width: destination.length == 1
                           ? MediaQuery.of(context).size.width
-                          : MediaQuery.of(context).size.width * 0.6,
+                          : MediaQuery.of(context).size.width * 0.65,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10)),
                       child: Card(

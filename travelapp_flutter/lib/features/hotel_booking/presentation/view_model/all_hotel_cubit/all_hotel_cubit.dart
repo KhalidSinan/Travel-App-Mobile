@@ -8,6 +8,7 @@ import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model
 class AllHotelsCubit extends Cubit<AllHotelStates> {
   AllHotelsCubit(this._hotelBookingImp) : super(InitialAllHotelStates());
 
+  final HotelBookingImp _hotelBookingImp;
   int page = 1;
   String? namecityOrhotelName;
   double stars = 0;
@@ -16,7 +17,6 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
   String? startDate;
   int? numDays;
   int? numRooms;
-  final HotelBookingImp _hotelBookingImp;
   AllHotelModel? allhotels;
   DestinationsModel? destinations;
 
@@ -113,9 +113,7 @@ class AllHotelsCubit extends Cubit<AllHotelStates> {
     response.fold(
       (failure) {
         print(failure.errMessage);
-        emit(
-          FailureGetAllHotelsState(failure: failure),
-        );
+        emit(FailureGetAllHotelsState(failure: failure));
       },
       (res) {
         print(res['data']);
