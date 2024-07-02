@@ -7,14 +7,14 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/views/wi
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/TravelDestination/list_destination_view.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/TravelDestination/source_form.dart';
 
-class StepThreeBody extends StatefulWidget {
-  const StepThreeBody({super.key});
+class TravelDestinationPageBody extends StatefulWidget {
+  const TravelDestinationPageBody({super.key});
 
   @override
-  State<StepThreeBody> createState() => _StepThreeBodyState();
+  State<TravelDestinationPageBody> createState() => _TravelDestinationPageBodyState();
 }
 
-class _StepThreeBodyState extends State<StepThreeBody> {
+class _TravelDestinationPageBodyState extends State<TravelDestinationPageBody> {
   TextEditingController searchcontroller1 = TextEditingController();
   TextEditingController searchcontroller2 = TextEditingController();
   TextEditingController searchcontroller3 = TextEditingController();

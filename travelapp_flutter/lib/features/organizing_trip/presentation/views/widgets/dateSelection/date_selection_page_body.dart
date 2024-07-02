@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/next_button.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/step_two_widgets/custom_table_calendar.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/dateSelection/custom_table_calendar.dart';
 
-class StepTwoBody extends StatelessWidget {
-  const StepTwoBody({super.key});
+class DateSelectionPageBody extends StatelessWidget {
+  const DateSelectionPageBody({super.key});
   @override
   Widget build(BuildContext context) {
     return Center(

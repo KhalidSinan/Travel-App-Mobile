@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/TravelDestination/step_three_body.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/TravelDestination/travel_destination_page_body.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/custom_step_circular.dart';
 
-class StepThree extends StatelessWidget {
-  const StepThree({super.key});
+class TravelDestinationPage extends StatelessWidget {
+  const TravelDestinationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class StepThree extends StatelessWidget {
           surfaceTintColor: Colors.white,
           leading: const CustomBackButton(),
         ),
-        body: const StepThreeBody(),
+        body: const TravelDestinationPageBody(),
       ),
     );
   }

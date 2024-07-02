@@ -34,11 +34,6 @@ class RowBuilder extends StatelessWidget {
                     Icons.delete_forever,
                     size: 32,
                   ))
-              // Button OR Text ................
-              // Text(
-              //   'Remove room',
-              //   style: TextStyle(color: Colors.red),
-              // )
             ],
           )),
     );

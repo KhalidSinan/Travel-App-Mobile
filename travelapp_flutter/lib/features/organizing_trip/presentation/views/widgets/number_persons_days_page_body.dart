@@ -4,8 +4,8 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/next_button.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/scroller.dart';
 
-class StepOneBody extends StatelessWidget {
-  const StepOneBody({super.key});
+class NumberPersonsDaysPageBody extends StatelessWidget {
+  const NumberPersonsDaysPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ class RoomTypeModel {
   final String? description;
   final dynamic price;
   final String? bedOptions;
+  final int? bedOptionsCount;
   final int? sleepsCount;
   final bool? smokingAllowed;
   final int? availableRooms;
@@ -20,6 +21,7 @@ class RoomTypeModel {
     required this.description,
     required this.price,
     required this.bedOptions,
+    required this.bedOptionsCount,
     required this.sleepsCount,
     required this.smokingAllowed,
     required this.availableRooms,
@@ -37,6 +39,7 @@ class RoomTypeModel {
         description: jsonData['description'],
         price: jsonData['price'],
         bedOptions: jsonData['bed_options'],
+        bedOptionsCount: jsonData['bed_options_count'],
         sleepsCount: jsonData['sleeps_count'],
         smokingAllowed: jsonData['smoking_allowed'],
         availableRooms: jsonData['available_rooms'],

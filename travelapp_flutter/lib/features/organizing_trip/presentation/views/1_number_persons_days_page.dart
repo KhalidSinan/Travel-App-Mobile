@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/custom_step_circular.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/step_two_widgets/step_two_body.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/number_persons_days_page_body.dart';
 
-class StepTwo extends StatelessWidget {
-  const StepTwo({super.key});
+class NumberPersonsDaysPage extends StatelessWidget {
+  const NumberPersonsDaysPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +16,20 @@ class StepTwo extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(15),
             child: Text(
-              'Step 2/8',
+              'Step 1/8',
               style: TextStyle(color: Themes.primary, fontSize: 22),
             ),
           ),
-          const CustomStepCircular(progress: 0.25),
+          const CustomStepCircular(progress: 0.125),
           const SizedBox(width: 15)
         ],
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.white,
         leading: const CustomBackButton(),
       ),
-      body: const SafeArea(child: StepTwoBody()),
+      body: const SafeArea(
+        child: NumberPersonsDaysPageBody(),
+      ),
     );
   }
 }

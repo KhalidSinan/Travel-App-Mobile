@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
@@ -7,7 +6,6 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/features_list.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/room_cart_model.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_cubit.dart';
 
 class RoomCartCard extends StatelessWidget {
   const RoomCartCard({
@@ -15,10 +13,12 @@ class RoomCartCard extends StatelessWidget {
     this.color,
     required this.roomCart,
     this.isNotDecreasable,
+    required this.onDecreaseAmount,
   });
   final Color? color;
   final RoomCartModel roomCart;
   final bool? isNotDecreasable;
+  final VoidCallback onDecreaseAmount;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,7 +40,7 @@ class RoomCartCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Deluxe',
+                      roomCart.room.type!,
                       style: Styles.content.copyWith(
                         fontSize: 16,
                         color: Colors.grey[400],
@@ -70,7 +70,7 @@ class RoomCartCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          '2',
+                          roomCart.room.bedOptionsCount.toString(),
                           style: TextStyle(
                             color: Themes.third,
                             fontWeight: FontWeight.bold,
@@ -97,10 +97,7 @@ class RoomCartCard extends StatelessWidget {
                   child: CustomButton(
                     label: '- Decrease (${roomCart.count})',
                     isFlat: true,
-                    onPressed: () {
-                      BlocProvider.of<HotelDetailsCubit>(context)
-                          .removeRoom(roomCart);
-                    },
+                    onPressed: onDecreaseAmount,
                   ),
                 )
               : const SizedBox(),

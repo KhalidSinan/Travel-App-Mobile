@@ -35,10 +35,18 @@ class SilverListBuilder extends StatelessWidget {
                   return RoomCartCard(
                     color: Colors.red,
                     roomCart: rooms[index],
+                    onDecreaseAmount: () {
+                      BlocProvider.of<HotelDetailsCubit>(context)
+                          .removeRoom(rooms[index]);
+                    },
                   );
                 }
                 return RoomCartCard(
                   roomCart: rooms[index],
+                  onDecreaseAmount: () {
+                    BlocProvider.of<HotelDetailsCubit>(context)
+                        .removeRoom(rooms[index]);
+                  },
                 );
               }),
             );

@@ -79,6 +79,10 @@ class _DeletePageState extends State<DeletePage> {
                       title: RoomCartCard(
                         isNotDecreasable: true,
                         roomCart: rooms[index],
+                        onDecreaseAmount: () {
+                          BlocProvider.of<HotelDetailsCubit>(context)
+                              .removeRoom(rooms[index]);
+                        },
                       ),
                       value: selectedRooms.contains(rooms[index]),
                       onChanged: (value) {
@@ -148,9 +152,6 @@ class _DeletePageState extends State<DeletePage> {
                           ],
                         );
                       });
-
-                  //   }
-                  // });
                 }, //onpressed
               ),
             )
