@@ -34,15 +34,7 @@ class _PlacesListState extends State<PlacesList> {
                 return Column(
                   children: [
                     if (index == 0) const SizedBox(height: 10),
-                    PlaceCard(
-                      name: places[index].name,
-                      description: places[index].description,
-                      location: places[index].address.address,
-                      number: places[index].phoneNumber.number,
-                      code: places[index].phoneNumber.countryCode,
-                      country: places[index].address.country,
-                      city: places[index].address.city,
-                    ),
+                    PlaceCard(place: places[index]),
                   ],
                 );
               },
