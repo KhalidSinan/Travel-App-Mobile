@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/all_hotels_model.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/hotel_details_page.dart';
+<<<<<<< HEAD
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/all_Hotels_page_widgets/hotel_card.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/stars_list.dart';
+=======
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/stars_list.dart';
+>>>>>>> f9022ec8f06acb804a4fe167e758fe140e5ff259
 
 class HotelsList extends StatelessWidget {
   const HotelsList({super.key});
@@ -36,18 +40,31 @@ class HotelsList extends StatelessWidget {
             itemBuilder: (context, index) {
               print(hotels.hotels);
               // http://localhost:5000/images/rooms/00000735.jpg
+<<<<<<< HEAD
+              return HotelCard(
+                onTap: () => Get.to(
+                  () => HotelDetailsPage(
+                    hotel: hotels.hotels[index],
+                    startDate:
+                        BlocProvider.of<AllHotelsCubit>(context).startDate,
+                    numDays: BlocProvider.of<AllHotelsCubit>(context)
+                        .numDays
+                        .toString(),
+=======
               return GestureDetector(
                 onTap: () {
                   print(BlocProvider.of<AllHotelsCubit>(context).startDate);
                   print(BlocProvider.of<AllHotelsCubit>(context).numDays);
-                  Get.to(() => HotelDetailsPage(
-                        hotel: hotels.hotels[index],
-                        startDate:
-                            BlocProvider.of<AllHotelsCubit>(context).startDate,
-                        numDays: BlocProvider.of<AllHotelsCubit>(context)
-                            .numDays
-                            .toString(),
-                      ));
+                  Get.to(
+                    () => HotelDetailsPage(
+                      hotel: hotels.hotels[index],
+                      startDate:
+                          BlocProvider.of<AllHotelsCubit>(context).startDate,
+                      numDays: BlocProvider.of<AllHotelsCubit>(context)
+                          .numDays
+                          .toString(),
+                    ),
+                  );
                 },
                 child: Container(
                   padding: const EdgeInsets.all(8),
@@ -116,8 +133,10 @@ class HotelsList extends StatelessWidget {
                         ),
                       ),
                     ],
+>>>>>>> f9022ec8f06acb804a4fe167e758fe140e5ff259
                   ),
                 ),
+                hotel: hotels.hotels[index],
               );
             },
           );

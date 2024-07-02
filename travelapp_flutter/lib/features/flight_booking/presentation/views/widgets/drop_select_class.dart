@@ -5,8 +5,8 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/reservation_ticket_cubit/reservation_ticket_cubit.dart';
 
 class DropSelectClass extends StatefulWidget {
-  const DropSelectClass({super.key});
-
+  const DropSelectClass({super.key, this.text});
+  final String? text;
   @override
   State<DropSelectClass> createState() => _DropState();
 }
@@ -20,13 +20,13 @@ class _DropState extends State<DropSelectClass> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // const Padding(
-          //   padding: EdgeInsets.only(left: 10.0, bottom: 5),
-          //   child: Text(
-          //     'class',
-          //     style: TextStyle(fontWeight: FontWeight.bold),
-          //   ),
-          // ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0, bottom: 5),
+            child: Text(
+              widget.text ?? '',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
           Container(
             decoration: BoxDecoration(
                 color: Colors.grey[100],
@@ -51,7 +51,7 @@ class _DropState extends State<DropSelectClass> {
                     );
                   },
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(
+                      border: UnderlineInputBorder(
                           borderSide: BorderSide(color: Themes.primary)),
                       focusedBorder: const UnderlineInputBorder()),
                   value: selectedClass,

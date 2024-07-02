@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/utils/themes.dart';
 
 const tabsStyle = TextStyle(color: Colors.white, fontSize: 15);
 
@@ -22,13 +23,15 @@ class Tabs extends StatelessWidget {
             borderRadius: BorderRadius.circular(12)),
         child: TabBar(
           indicatorSize: TabBarIndicatorSize.tab,
-          indicator: const
+          indicator:
               //  UnderlineTabIndicator(
               //     borderSide: BorderSide(width: 5),
               //     insets: EdgeInsets.symmetric(horizontal: 3)),
               BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  color: Color(0xff205E61)),
+                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  color: Themes.primary),
+          unselectedLabelColor: Colors.black87,
+          labelColor: Colors.white,
           controller: tabController,
           isScrollable: false,
           labelPadding: EdgeInsets.zero,
@@ -36,13 +39,13 @@ class Tabs extends StatelessWidget {
             Tab(
               child: Text(
                 ' One Way ',
-                style: tabsStyle,
+                //style: tabsStyle,
               ),
             ),
             Tab(
               child: Text(
                 ' Two Way ',
-                style: tabsStyle,
+                //style: tabsStyle,
               ),
             ),
           ],

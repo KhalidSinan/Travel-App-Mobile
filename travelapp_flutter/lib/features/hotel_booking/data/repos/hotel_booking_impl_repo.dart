@@ -53,12 +53,11 @@ class HotelBookingImp extends HotelBookingRepo {
   @override
   Future<Either<Failure, Map<String, dynamic>>> makeHotelReservation({
     required String hotelId,
-    required List<Map<String,dynamic>> roomCodes,
+    required List<Map<String, dynamic>> roomCodes,
     required String startDate,
     required String numDays,
   }) async {
     try {
-
       Map<String, dynamic> response = await apiService.post(
         endPoint: "/hotels/reserve",
         body: {
@@ -93,6 +92,36 @@ class HotelBookingImp extends HotelBookingRepo {
             Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
       } else {
         return left(Failure(errMessage: 'Something went wrong'));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> getHotelsByCity({
+    required String city,
+    String? startDate,
+    int? numDays,
+    int? numRooms,
+    int? page,
+  }) async {
+    try {
+      Map<String, dynamic> response = await apiService.post(
+        endPoint: "/hotels/search/cities",
+        body: {
+          "city": city,
+          "startDate": startDate,
+          "numDays": numDays,
+          "numRooms": numRooms,
+          "page" : page,
+        },
+      );
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      } else {
+        return left(Failure(errMessage: "Something went wrong"));
       }
     }
   }

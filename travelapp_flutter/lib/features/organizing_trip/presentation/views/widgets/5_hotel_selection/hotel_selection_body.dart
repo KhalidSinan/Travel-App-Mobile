@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection/hotel_select_card.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/next_button.dart';
+import 'package:travelapp_flutter/core/widgets/next_button.dart';
 
 class HotelSelectionBody extends StatelessWidget {
   const HotelSelectionBody({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -13,22 +12,22 @@ class HotelSelectionBody extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: 5,
-                itemBuilder: (context, i) {
-                  return CardSelectHotel();
-                }),
+              physics: const BouncingScrollPhysics(),
+              itemCount: 5,
+              itemBuilder: (context, i) {
+                return const CardSelectHotel();
+              },
+            ),
           ),
           const SizedBox(
             height: 10,
           ),
-        NextButton(onTap: (){}) ,
-              const SizedBox(
+          NextButton(onTap: () {}),
+          const SizedBox(
             height: 20,
           ),
         ],
       ),
     );
   }
- 
 }

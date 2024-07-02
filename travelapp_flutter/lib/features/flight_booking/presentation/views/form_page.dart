@@ -48,8 +48,6 @@ class _FormPageState extends State<FormPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          surfaceTintColor: Colors.white,
           leading: const CustomBackButton(),
         ),
         body: SafeArea(

@@ -21,18 +21,21 @@ class CustomTag extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 5),
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: roomTag==true ? Colors.grey[400] : Colors.white,
+            borderRadius: BorderRadius.circular(25),
+            color: roomTag == true
+                ? Themes.primary.withOpacity(0.2)
+                : Colors.white,
           ),
           child: Icon(
             icon,
-            color: Themes.third,
+            size: 30,
+            color: roomTag == true ? Colors.grey[600] : Themes.third,
           ),
         ),
         Text(
           text,
           style: TextStyle(
-            color: roomTag==true ? Colors.grey[400] : Colors.white,
+            color: roomTag == true ? Colors.grey[600] : Colors.white,
             fontSize: 16,
           ),
         ),

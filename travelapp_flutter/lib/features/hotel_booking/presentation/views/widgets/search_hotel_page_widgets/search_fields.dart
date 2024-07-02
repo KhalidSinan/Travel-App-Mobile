@@ -22,6 +22,7 @@ class _SearchFieldsState extends State<SearchFields> {
   GlobalKey<FormState> key = GlobalKey();
   DateTime now = DateTime.now();
   String? name, days, rooms, date;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,6 +41,7 @@ class _SearchFieldsState extends State<SearchFields> {
             CustomTextFormField(
               textInputType: TextInputType.text,
               readOnly: false,
+              controller: searchController,
               hintText: 'Search by a hotel name or a city',
               prefixIcon: Icon(
                 Icons.search,
@@ -119,7 +121,7 @@ class _SearchFieldsState extends State<SearchFields> {
                   return SizedBox(
                     width: double.infinity,
                     child: CustomButton(
-                      label: 'Check',
+                      label: 'Search',
                       onPressed: searchHotels,
                     ),
                   );
