@@ -3,11 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
-import 'package:travelapp_flutter/features/hotel_booking/data/models/room_model.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_states.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/review_page.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/room_card.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/room_types_list.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/rooms_list.dart';
 
@@ -18,7 +16,7 @@ class HotelRoomsPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final hotel = BlocProvider.of<HotelDetailsCubit>(context).hotel;
     final rooms = BlocProvider.of<HotelDetailsCubit>(context).rooms;
-    final selectedRooms = 
+    final selectedRooms =
         BlocProvider.of<HotelDetailsCubit>(context).selectedRooms;
     return CustomScrollView(
       slivers: [

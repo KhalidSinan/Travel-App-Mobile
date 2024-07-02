@@ -13,9 +13,7 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cu
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/step_one.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/step_three(travelDestination).dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/step_three_(travelDestinationFilter).dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/4_hotel_selection_page.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
 Future _firebaseBackgroundMessage(RemoteMessage message) async {
@@ -67,18 +65,25 @@ class _TravelAppState extends State<TravelApp> {
         ),
       ],
       child: GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            textSelectionTheme: TextSelectionThemeData(
-                cursorColor: Themes.primary,
-                selectionColor: Themes.primary,
-                selectionHandleColor: Themes.primary),
-            textTheme: GoogleFonts.aBeeZeeTextTheme(),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: Themes.primary,
+            selectionColor: Themes.primary,
+            selectionHandleColor: Themes.primary,
           ),
-          // home: rememberMe == true
-          //     ? FetchProfileDataPage(token: token)
-          //     : const LoginPage(),
-          home: const StepThree() ),
+          textTheme: GoogleFonts.aBeeZeeTextTheme(),
+        ),
+        // home: rememberMe == true
+        //     ? FetchProfileDataPage(token: token)
+        //     : const LoginPage(),
+        home: const HotelSelectionPage(
+          city: "Las Vegas",
+          startDate: "22/6/2024",
+          numDays: 1,
+          numRooms: 1,
+        ),
+      ),
     );
   }
 }

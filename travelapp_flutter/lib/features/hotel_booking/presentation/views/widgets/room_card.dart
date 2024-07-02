@@ -11,8 +11,9 @@ import 'package:travelapp_flutter/features/hotel_booking/data/models/room_model.
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_cubit.dart';
 
 class RoomCard extends StatelessWidget {
-  const RoomCard({super.key, required this.room});
+  const RoomCard({super.key, required this.room, required this.onRoomAdd});
   final RoomTypeModel room;
+  final VoidCallback onRoomAdd;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -64,7 +65,7 @@ class RoomCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          '2',
+                          room.bedOptionsCount.toString(),
                           style: TextStyle(
                             color: Themes.third,
                             fontWeight: FontWeight.bold,
@@ -95,10 +96,7 @@ class RoomCard extends StatelessWidget {
             child: CustomButton(
               label: '+ Add \$${room.price}',
               isFlat: true,
-              onPressed: () {
-                BlocProvider.of<HotelDetailsCubit>(context)
-                    .addRoom(RoomCartModel.from({"room": room, "count": 1}));
-              },
+              onPressed: onRoomAdd,
             ),
           ),
         ],
