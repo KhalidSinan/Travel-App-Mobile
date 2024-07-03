@@ -15,7 +15,7 @@ import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_destination_hotels_page.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/hotels_widgets/destination_hotels_page.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
 Future _firebaseBackgroundMessage(RemoteMessage message) async {
