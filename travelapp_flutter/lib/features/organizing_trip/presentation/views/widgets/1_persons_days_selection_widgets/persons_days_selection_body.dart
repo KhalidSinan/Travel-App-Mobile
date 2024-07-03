@@ -1,32 +1,40 @@
-// ignore_for_file: file_names
+
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/next_button.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/2_date_selection_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/1_persons_days_selection_widgets/scroller.dart';
 
 
-class PersonDaySelectionBody extends StatefulWidget {
-  const PersonDaySelectionBody({super.key});
+class StepOneBody extends StatefulWidget {
+  const StepOneBody({
+    super.key,
+  });
 
   @override
-  State<PersonDaySelectionBody> createState() => _PersonDaySelectionBodyState();
+  State<StepOneBody> createState() => _StepOneBodyState();
 }
 
-class _PersonDaySelectionBodyState extends State<PersonDaySelectionBody> {
+class _StepOneBodyState extends State<StepOneBody> {
+  late int numberOfPerson;
+  late int numberDays;
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 25),
+          const SizedBox(height: 35),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Text(
-              "Let's create a fantastic trip !",
+              'Let s create a fantastic trip !',
               style:
                   Styles.heading2.copyWith(color: Themes.third, fontSize: 25),
             ),
@@ -34,37 +42,45 @@ class _PersonDaySelectionBodyState extends State<PersonDaySelectionBody> {
           const SizedBox(height: 40),
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Persons',
                         style: TextStyle(fontSize: 25),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Scroller(
                         items: 30,
-                        select: 'p',
+                        onNumberOfPersonChanged: (int person) {
+                          setState(() {
+                            numberOfPerson = person + 1;
+                          });
+                        },
                       ),
                     ],
                   ),
-                  SizedBox(height: 65),
+                  const SizedBox(height: 65),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Days',
                         style: TextStyle(fontSize: 25),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Scroller(
                         items: 30,
-                        select: 'd',
+                        onNumberOfPersonChanged: (p0) {
+                          setState(() {
+                            numberDays = p0 + 1;
+                          });
+                        },
                       ),
                     ],
                   ),
@@ -73,11 +89,15 @@ class _PersonDaySelectionBodyState extends State<PersonDaySelectionBody> {
             ),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.28),
-          NextButton(
-            onTap: () {
-              Get.to(const DateSelectionPage());
-            },
-          )
+          NextButton(onTap: () {
+            BlocProvider.of<OrganizingTripCubit>(context)
+                .setNumberPerson(numberOfPerson);
+            BlocProvider.of<OrganizingTripCubit>(context)
+                .setNumberDays(numberDays);
+            print(BlocProvider.of<OrganizingTripCubit>(context).numberPerson);
+            print(BlocProvider.of<OrganizingTripCubit>(context).numberDays);
+            Get.to(const StepTwo());
+          })
         ],
       ),
     );

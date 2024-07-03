@@ -1,13 +1,14 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/1_persons_days_selection_widgets/scroll_item.dart';
 
 class Scroller extends StatefulWidget {
-  const Scroller({super.key, required this.items, required this.select});
+  const Scroller(
+      {super.key, required this.items, required this.onNumberOfPersonChanged});
   final int items;
-  final String select;
+  final Function(int) onNumberOfPersonChanged;
   @override
   State<Scroller> createState() => _ScrollerState();
 }
@@ -47,17 +48,7 @@ class _ScrollerState extends State<Scroller> {
             squeeze: 0.6,
             diameterRatio: 1.5,
             perspective: 0.008,
-            onSelectedItemChanged: (value) {
-              if (widget.select == 'd') {
-                BlocProvider.of<OrganizingTripCubit>(context)
-                    .setNumberDays(value + 1);
-              }
-              if (widget.select == 'p') {
-                BlocProvider.of<OrganizingTripCubit>(context)
-                    .setNumberPerson(value + 1);
-              }
-              setState(() {});
-            },
+            onSelectedItemChanged: widget.onNumberOfPersonChanged,
             childDelegate: ListWheelChildBuilderDelegate(
               childCount: widget.items,
               builder: (context, index) {

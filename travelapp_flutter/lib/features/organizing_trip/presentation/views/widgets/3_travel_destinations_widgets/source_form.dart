@@ -3,9 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip_cubit.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/custom_search_cities.dart';
-
 
 class SourceForm extends StatefulWidget {
   @override
@@ -18,7 +17,6 @@ class _SourceFormState extends State<SourceForm> {
 
   @override
   Widget build(BuildContext context) {
-   
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(
@@ -46,15 +44,20 @@ class _SourceFormState extends State<SourceForm> {
                         BlocProvider.of<OrganizingTripCubit>(context).cities,
                   ),
                 );
-                print("=================================================");
                 if (searchResult != null) {
                   setState(() {
                     searchController1.text = searchResult.toString();
+                  BlocProvider.of<OrganizingTripCubit>(context).setSoucre(searchController1.text);
+                debugPrint(
+                    BlocProvider.of<OrganizingTripCubit>(context).source);
                   });
                 }
               },
               controller: searchController1,
-              onSaved: (value) => src = value,
+              onSaved: (value) {
+                src = value;
+               
+              },
               validator: validateName,
             ),
           ),

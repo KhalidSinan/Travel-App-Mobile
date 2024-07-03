@@ -1,16 +1,32 @@
 class FilterModel {
-  final String timeStart;
-  final String timeEnd;
-  final double minPrice;
-  final double maxPrice;
-  final String airline;
+   String? timeStart;
+   String? timeEnd;
+   double? minPrice;
+   double? maxPrice;
+   String? airline;
 
   FilterModel(
-      {required this.timeStart,
-      required this.timeEnd,
-      required this.minPrice,
-      required this.maxPrice,
-      required this.airline});
+      {this.timeStart,
+      this.timeEnd,
+      this.minPrice,
+      this.maxPrice,
+      this.airline});
+
+  FilterModel copyWith({
+    String? timeStart,
+    String? timeEnd,
+    double? minPrice,
+    double? maxPrice,
+    String? airline,
+  }) {
+    return FilterModel(
+      timeStart: timeStart ?? this.timeStart,
+      timeEnd: timeEnd ?? this.timeEnd,
+      maxPrice: maxPrice ?? this.maxPrice,
+      minPrice: minPrice ?? this.minPrice,
+      airline: airline ?? this.airline,
+    );
+  }
 
   // factory FilterModel.fromJson(jsonData) {
   //   return FilterModel(

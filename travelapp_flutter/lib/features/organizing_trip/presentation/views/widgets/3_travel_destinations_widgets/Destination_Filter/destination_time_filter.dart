@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/helpers/time_picker.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:intl/intl.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 
 class DestinationTimeFilter extends StatefulWidget {
-  const DestinationTimeFilter({super.key});
-
+  const DestinationTimeFilter({super.key, required this.index});
+  final int index;
   @override
   State<DestinationTimeFilter> createState() => _DestinationTimeFilterState();
 }
@@ -18,6 +20,14 @@ class _DestinationTimeFilterState extends State<DestinationTimeFilter> {
   @override
   void initState() {
     super.initState();
+    startTime = BlocProvider.of<OrganizingTripCubit>(context)
+        .destinations[widget.index]
+        .filter
+        ?.timeStart;
+    endTime = BlocProvider.of<OrganizingTripCubit>(context)
+        .destinations[widget.index]
+        .filter
+        ?.timeEnd;
   }
 
   @override
@@ -54,6 +64,10 @@ class _DestinationTimeFilterState extends State<DestinationTimeFilter> {
                   String formattedTime = formatTime(pickedTime);
                   setState(() {
                     startTime = formattedTime;
+                    BlocProvider.of<OrganizingTripCubit>(context)
+                        .destinations[widget.index]
+                        .filter
+                        ?.timeStart = startTime;
                   });
                 }
               },
@@ -80,6 +94,10 @@ class _DestinationTimeFilterState extends State<DestinationTimeFilter> {
                   String formattedTime = formatTime(pickedTime);
                   setState(() {
                     endTime = formattedTime;
+                    BlocProvider.of<OrganizingTripCubit>(context)
+                        .destinations[widget.index]
+                        .filter
+                        ?.timeEnd = endTime;
                   });
                 }
               },
@@ -95,7 +113,6 @@ class _DestinationTimeFilterState extends State<DestinationTimeFilter> {
   }
 
   String formatTime(TimeOfDay pickedTime) {
-    // format time from 24-hour clock to 12-hour clock
     DateTime now = DateTime.now();
     DateTime selectedDateTime = DateTime(
       now.year,
@@ -108,8 +125,14 @@ class _DestinationTimeFilterState extends State<DestinationTimeFilter> {
   }
 
   void restartTime() {
-    // BlocProvider.of<AllFlightsCubit>(context).timeStart = null;
-    // BlocProvider.of<AllFlightsCubit>(context).timeEnd = null;
+    BlocProvider.of<OrganizingTripCubit>(context)
+        .destinations[widget.index]
+        .filter
+        ?.timeStart = null;
+    BlocProvider.of<OrganizingTripCubit>(context)
+        .destinations[widget.index]
+        .filter
+        ?.timeEnd = null;
     startTime = null;
     endTime = null;
     setState(() {});

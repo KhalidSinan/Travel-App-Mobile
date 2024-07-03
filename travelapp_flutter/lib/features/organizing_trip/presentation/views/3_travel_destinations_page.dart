@@ -1,4 +1,3 @@
-// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_step_circular.dart';
@@ -11,11 +10,14 @@ class StepThree extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           actions: const [
             CustomStepCircular(progress: 0.375, text: "3/8"),
             SizedBox(width: 15)
           ],
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
           leading: const CustomBackButton(),
         ),
         body: const StepThreeBody(),

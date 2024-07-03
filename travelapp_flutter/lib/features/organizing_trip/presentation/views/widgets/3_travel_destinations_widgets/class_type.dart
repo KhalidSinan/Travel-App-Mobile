@@ -13,7 +13,7 @@ class _DropState extends State<DropSelectClass> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+      padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,7 +42,7 @@ class _DropState extends State<DropSelectClass> {
                     setState(
                       () {
                         selectedClass = val;
-                        // getget();
+                       // getget();
                       },
                     );
                   },

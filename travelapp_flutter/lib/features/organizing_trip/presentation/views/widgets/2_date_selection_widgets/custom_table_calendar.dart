@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 
 class CustomTableCalendar extends StatefulWidget {
   const CustomTableCalendar({super.key});
@@ -19,8 +21,7 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: 410,
-        width: 360,
+        width: 350,
         child: TableCalendar(
           calendarStyle: CalendarStyle(
             rangeEndDecoration: const BoxDecoration(
@@ -81,8 +82,16 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
               // _selectedDay = _selectedDay;
               focusedDay = focusedDay;
               rangeStart = start;
-              rangeEnd = start?.add(const Duration(days: 4));
+              rangeEnd = start?.add(Duration(
+                  days: BlocProvider.of<OrganizingTripCubit>(context)
+                          .numberDays! -
+                      1));
               rangeSelectionMode = RangeSelectionMode.enforced;
+              String formattedStartDate =
+                  '${rangeStart!.year}-${rangeStart!.month.toString().padLeft(2, '0')}-${rangeStart!.day.toString().padLeft(2, '0')}';
+              BlocProvider.of<OrganizingTripCubit>(context)
+                  .setStartDate(formattedStartDate);
+              print(BlocProvider.of<OrganizingTripCubit>(context).startDate);
             });
           },
           // onFormatChanged: (format) {
