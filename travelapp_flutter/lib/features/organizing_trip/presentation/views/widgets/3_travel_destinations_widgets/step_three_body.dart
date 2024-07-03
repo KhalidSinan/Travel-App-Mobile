@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
-import 'package:travelapp_flutter/core/widgets/failure_page.dart';
-import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/drop_select_class.dart';
-import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip_cubit.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip_states.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/drop_selected_class.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/form_destinations.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/list_destination_view.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/source_form.dart';
@@ -26,30 +21,14 @@ class _StepThreeBodyState extends State<StepThreeBody> {
   TextEditingController searchcontroller2 = TextEditingController();
   TextEditingController searchcontroller3 = TextEditingController();
   bool value = false;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => OrganizingTripCubit(getIt.get<OrganizingTripImpl>())
-        ..getCountriesAndAirlines(),
-      child: BlocConsumer<OrganizingTripCubit, OrganizingTripStates>(
-        listener: (context, state) {
-          if (state is FailureOrganizingTrip) {
-            Get.to(
-              () => FailurePage(
-                error: state.failure,
-                onPressed: () async {
-                  await BlocProvider.of<OrganizingTripCubit>(context)
-                      .getCountriesAndAirlines();
-                },
-              ),
-            );
-          }
-        },
-        builder: (context, state) {
-          if (state is LoadingOrganizingTrip) {
-            return const CircularProgressIndicator();
-          }
-          return SingleChildScrollView(
+    return BlocBuilder<OrganizingTripCubit, OrganizingTripStates>(
+      builder: (context, state) {
+        return SingleChildScrollView(
+          child: Form(
+            key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -60,7 +39,7 @@ class _StepThreeBodyState extends State<StepThreeBody> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Text(
-                        'Number Of Trip Days : ${8}',
+                        'Number Of Trip Days : ${BlocProvider.of<OrganizingTripCubit>(context).numberDays}',
                         style: Styles.heading2
                             .copyWith(color: Themes.third, fontSize: 25),
                       ),
@@ -78,7 +57,8 @@ class _StepThreeBodyState extends State<StepThreeBody> {
                           SizedBox(
                             width: 15,
                           ),
-                          Expanded(child: SizedBox(child: DropSelectClass())),
+                          Expanded(
+                              child: SizedBox(child: DropSelectClassFlight())),
                         ],
                       ),
                     ),
@@ -101,8 +81,9 @@ class _StepThreeBodyState extends State<StepThreeBody> {
                               value: value,
                               onChanged: (newvalue) {
                                 setState(() {
-                                  // print(value);
                                   value = newvalue ?? false;
+                                  BlocProvider.of<OrganizingTripCubit>(context)
+                                      .setReturnHome(value);
                                 });
                               })
                         ],
@@ -113,18 +94,26 @@ class _StepThreeBodyState extends State<StepThreeBody> {
                   ],
                 ),
                 SizedBox(
-                  width: double.infinity,
-                  child: CustomButton(
-                    onPressed: () {},
-                    label: "Check",
-                    isFlat: true,
-                  ),
-                ),
+                    width: double.infinity,
+                    child: Visibility(
+                      visible: BlocProvider.of<OrganizingTripCubit>(context)
+                          .visibilityButton(),
+                      child: CustomButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            await BlocProvider.of<OrganizingTripCubit>(context)
+                                .checkFlightsForTrip();
+                          }
+                        },
+                        label: "Check",
+                        isFlat: true,
+                      ),
+                    )),
               ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

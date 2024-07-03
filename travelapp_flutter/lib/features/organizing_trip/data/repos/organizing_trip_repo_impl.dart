@@ -26,6 +26,38 @@ class OrganizingTripImpl extends OrganizingTripRepo {
       }
     }
   }
+  
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> checkFlightsForTrip({
+    required String source,
+    required bool isReturn,
+    required List<Map<String, dynamic>> destinations,
+    required String classType,
+    required int daysTrip,
+    required int numPersons,
+    required String startDate,
+  }) async {
+    try {
+      Map<String, dynamic> response =
+          await apiService.post(endPoint: "/flights/options", body: {
+        "source": source,
+        "destinations": destinations,
+        "start_date": startDate,
+        "num_of_seats": numPersons,
+        "class_of_seats": classType,
+        "is_return": isReturn,
+        "num_of_days": daysTrip,
+      });
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      } else {
+        return left(Failure(errMessage: "something went wrong"));
+      }
+    }
+  }
 
   @override
   Future<Either<Failure, Map<String, dynamic>>> getPlaces(

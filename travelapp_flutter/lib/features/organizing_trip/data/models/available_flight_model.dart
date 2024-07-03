@@ -1,7 +1,8 @@
+
 import 'package:travelapp_flutter/features/organizing_trip/data/models/flight_model.dart';
 
 class AvailableFlightModel {
-  final String city;
+  final dynamic city;
   final Flight? flight;
   final bool isAvailable;
   final String reason;
