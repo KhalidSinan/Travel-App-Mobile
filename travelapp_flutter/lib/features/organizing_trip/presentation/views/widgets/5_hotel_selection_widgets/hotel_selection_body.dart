@@ -10,8 +10,9 @@ class HotelSelectionBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    List cities = BlocProvider.of<OrganizingTripCubit>(context).cities;
+    List destinations = BlocProvider.of<OrganizingTripCubit>(context).destinations;
     int? numberPerson = BlocProvider.of<OrganizingTripCubit>(context).numberPerson;
+    List startDates = BlocProvider.of<OrganizingTripCubit>(context).startDates;
                                                           
     return SafeArea(
       child: Column(
@@ -19,10 +20,12 @@ class HotelSelectionBody extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               physics: const BouncingScrollPhysics(),
-              itemCount: cities.length,
+              itemCount: destinations.length,
               itemBuilder: (context, i) {
                 return CardCityAndSelectHotel(
-                  countryName: cities[i]['countryName'],
+                  countryName:destinations[i]['city'] ,
+                  numDays: destinations[i]['days'],
+                  startDate:startDates[i] ,
                   numberPerson: numberPerson!,
                 );
               },
