@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/hotel_select_card.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/hotel_select_custom_button.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/hotels_widgets/destination_hotels_page.dart';
 
 class CardCityAndSelectHotel extends StatelessWidget {
-  const CardCityAndSelectHotel({super.key, required this.countryName, required this.numberPerson});
+  const CardCityAndSelectHotel(
+      {super.key, required this.countryName, required this.numberPerson, required this.numDays, required this.startDate});
   final String countryName;
   final int numberPerson;
+  final int numDays;
+  final String startDate;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,11 +36,11 @@ class CardCityAndSelectHotel extends StatelessWidget {
                 CustomButtonSelectHotel(
                   label: 'select hotel',
                   onPressed: () {
-                    // Get.to(HotelSelectionPage(
-                    //     city: countryName,
-                    //     startDate: startDate,
-                    //     numDays: numDays,
-                    //     numRooms: numberPerson));
+                    Get.to(DestinationHotelsPage(
+                        city: countryName,
+                        startDate: startDate,
+                        numDays: numDays,
+                        numRooms: numberPerson));
                   },
                   suffix: Icon(
                     FontAwesomeIcons.chevronRight,
