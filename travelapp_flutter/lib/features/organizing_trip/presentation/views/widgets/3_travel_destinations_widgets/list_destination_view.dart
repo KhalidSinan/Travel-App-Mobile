@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/travel_destination_filter.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/destination_filter_widgets/travel_destination_filter.dart';
 
 class ListDestinationView extends StatelessWidget {
   const ListDestinationView({
