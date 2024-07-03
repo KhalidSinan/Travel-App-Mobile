@@ -4,8 +4,8 @@ import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_step_circular.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/4_tickets_review_widgets/tickets_review_body.dart';
 
-class TicketsReview extends StatelessWidget {
-  const TicketsReview({super.key});
+class TicketsReviewPage extends StatelessWidget {
+  const TicketsReviewPage({super.key});
 
   @override
   Widget build(BuildContext context) {

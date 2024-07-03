@@ -19,8 +19,8 @@ class HotelRoomsPageBody extends StatelessWidget {
     final hotel = BlocProvider.of<HotelDetailsCubit>(context).hotel;
     final rooms = BlocProvider.of<HotelDetailsCubit>(context).rooms;
 
-    final selectedRooms =
-        BlocProvider.of<HotelDetailsCubit>(context).selectedRooms;
+    // final selectedRooms =
+    //     BlocProvider.of<HotelDetailsCubit>(context).selectedRooms;
     // final selectedRooms = 
     //     BlocProvider.of<HotelDetailsCubit>(context).selectedRooms;
 

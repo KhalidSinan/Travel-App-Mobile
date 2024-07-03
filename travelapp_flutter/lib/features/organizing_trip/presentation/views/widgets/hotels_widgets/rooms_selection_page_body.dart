@@ -5,9 +5,9 @@ import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_reservation_cubit/hotel_reservation_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_reservation_cubit/hotel_reservations_states.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/4_hotel_review_page.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/Hotels/rooms_selection_list.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/Hotels/rooms_selection_types_list.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_review_page.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/hotels_widgets/rooms_selection_list.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/hotels_widgets/rooms_selection_types_list.dart';
 
 class RoomsSelectionPageBody extends StatelessWidget {
   const RoomsSelectionPageBody({super.key});
