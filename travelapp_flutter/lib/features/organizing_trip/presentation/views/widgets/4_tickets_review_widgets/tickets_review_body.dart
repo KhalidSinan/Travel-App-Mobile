@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/4_tickets_review_widgets/tickets_row.dart';
 import 'package:travelapp_flutter/core/widgets/next_button.dart';
 
@@ -48,7 +50,10 @@ class _TicketsReviewBodyState extends State<TicketsReviewBody> {
                           if (index == count - 1)
                             Padding(
                               padding: const EdgeInsets.only(bottom: 20),
-                              child: NextButton(onTap: () {}),
+                              child: NextButton(onTap: () {
+                                BlocProvider.of<OrganizingTripCubit>(context)
+                                    .getStartDate();
+                              }),
                             )
                         ],
                       )

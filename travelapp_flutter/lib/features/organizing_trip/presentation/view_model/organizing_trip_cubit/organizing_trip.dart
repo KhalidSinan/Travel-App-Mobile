@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/available_flight_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/check_flight_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/destinations_model.dart';
@@ -42,6 +43,8 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
 
   static int valid = 0;
   List<DestinationsModel> destinations = [];
+    List<String> startDates = [];
+
 
   // List<FilterModel>? filter = [];
   late CheckFlightModel checkFlightModel;
@@ -227,5 +230,18 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
       },
     );
   }
+  void getStartDate() {
+    startDates.add(startDate!);
+    calculateStartDate();
+  }
 
+  void calculateStartDate() {
+    for (var i = 0; i < destinations.length - 1; i++) {
+      DateTime dateTime = DateTime.parse(startDates[i]);
+      DateTime date = dateTime.add(Duration(days: destinations[i].days));
+      DateFormat outputFormat = DateFormat('dd/MM/yyyy');
+      String formattedDate = outputFormat.format(date);
+      startDates.add(formattedDate);
+    }
+  }
 }
