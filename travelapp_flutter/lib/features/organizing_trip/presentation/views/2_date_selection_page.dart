@@ -1,7 +1,8 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_step_circular.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/dateSelection/date_selection_page_body.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/2_date_selection_widgets/date_selection_body.dart';
 
 class DateSelectionPage extends StatelessWidget {
   const DateSelectionPage({super.key});

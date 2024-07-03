@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/hotel_model.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/stars_list.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/stars_list.dart';
 
 class HotelCard extends StatelessWidget {
   const HotelCard({

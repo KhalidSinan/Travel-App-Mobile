@@ -4,11 +4,11 @@ import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_reservation_cubit/hotel_reservation_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_reservation_cubit/hotel_reservations_states.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/Hotels/hotel_selection_pagination.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/Hotels/hotels_selection_list.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/hotels_widgets/hotel_selection_pagination.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/hotels_widgets/hotels_selection_list.dart';
 
-class HotelSelectionPageBody extends StatelessWidget {
-  const HotelSelectionPageBody({super.key});
+class DestinationHotelsPageBody extends StatelessWidget {
+  const DestinationHotelsPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {

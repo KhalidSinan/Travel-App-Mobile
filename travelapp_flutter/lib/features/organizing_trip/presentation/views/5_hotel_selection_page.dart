@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_step_circular.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection/hotel_selection_body.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/hotel_selection_body.dart';
 
-class HotelSelection extends StatelessWidget {
-  const HotelSelection({super.key});
+class HotelSelectionPage extends StatelessWidget {
+  const HotelSelectionPage({super.key});
 
   @override
   Widget build(BuildContext context) {

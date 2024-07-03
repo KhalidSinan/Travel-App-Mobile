@@ -17,7 +17,7 @@ class _ScrollerState extends State<Scroller> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 150,
-      width: MediaQuery.of(context).size.width * 0.63,
+      width: MediaQuery.of(context).size.width * 0.62,
       child: Stack(
         children: [
           Padding(

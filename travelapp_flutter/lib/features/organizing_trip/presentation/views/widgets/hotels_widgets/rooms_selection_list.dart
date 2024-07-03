@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/room_cart_model.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/room_model.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/room_card.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/room_card.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_reservation_cubit/hotel_reservation_cubit.dart';
 
 class RoomsSelectionList extends StatelessWidget {

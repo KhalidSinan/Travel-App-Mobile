@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection/hotel_select_card.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/hotel_select_card.dart';
 import 'package:travelapp_flutter/core/widgets/next_button.dart';
 
 class HotelSelectionBody extends StatelessWidget {

@@ -1,5 +1,4 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
@@ -9,8 +8,8 @@ import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/1_persons_days_selection_widgets/persons_days_selection_body.dart';
 
-class PersonDaySelection extends StatelessWidget {
-  const PersonDaySelection({super.key});
+class PersonDaySelectionPage extends StatelessWidget {
+  const PersonDaySelectionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
