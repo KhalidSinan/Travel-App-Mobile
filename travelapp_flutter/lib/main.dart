@@ -1,4 +1,4 @@
-
+// ignore_for_file: depend_on_referenced_packages
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -16,7 +16,7 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/hotels_widgets/destination_hotels_page.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/1_persons_days_selection_page.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
 Future _firebaseBackgroundMessage(RemoteMessage message) async {
@@ -66,7 +66,10 @@ class _TravelAppState extends State<TravelApp> {
         BlocProvider(
           create: (context) => ProfileCubit(getIt.get<AuthRepoImpl>()),
         ),
-          BlocProvider(create: (context) =>OrganizingTripCubit(getIt.get<OrganizingTripImpl>())..getCountriesAndAirlines()) 
+        BlocProvider(
+            create: (context) =>
+                OrganizingTripCubit(getIt.get<OrganizingTripImpl>())
+                  ..getCountriesAndAirlines())
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -83,12 +86,7 @@ class _TravelAppState extends State<TravelApp> {
         // home: rememberMe == true
         //     ? FetchProfileDataPage(token: token)
         //     : const LoginPage(),
-        home: const DestinationHotelsPage(
-          city: "Las Vegas",
-          startDate: "22/6/2024",
-          numDays: 1,
-          numRooms: 1,
-        ),
+        home: const PersonsDaysSelection(),
       ),
     );
   }

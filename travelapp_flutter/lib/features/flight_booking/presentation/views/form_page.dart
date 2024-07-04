@@ -46,7 +46,6 @@ class _FormPageState extends State<FormPage> {
           reservationId: widget.reservationId,
         ),
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           leading: const CustomBackButton(),
         ),

@@ -55,7 +55,6 @@ class _DropState extends State<DropSelectClassFlight> {
                       },
                     );
                   },
-                
                   value: selectedClass,
                 ),
               ),
