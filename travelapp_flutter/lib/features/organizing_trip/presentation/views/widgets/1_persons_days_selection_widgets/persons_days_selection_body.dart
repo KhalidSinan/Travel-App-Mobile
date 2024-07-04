@@ -1,9 +1,6 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/next_button.dart';
@@ -11,19 +8,19 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/view_mod
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/2_date_selection_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/1_persons_days_selection_widgets/scroller.dart';
 
-
-class StepOneBody extends StatefulWidget {
-  const StepOneBody({
+class PersonsDaysSelectionBody extends StatefulWidget {
+  const PersonsDaysSelectionBody({
     super.key,
   });
 
   @override
-  State<StepOneBody> createState() => _StepOneBodyState();
+  State<PersonsDaysSelectionBody> createState() =>
+      _PersonsDaysSelectionBodyState();
 }
 
-class _StepOneBodyState extends State<StepOneBody> {
-  late int numberOfPerson;
-  late int numberDays;
+class _PersonsDaysSelectionBodyState extends State<PersonsDaysSelectionBody> {
+   int numberOfPerson=1;
+   int numberDays=1;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -34,7 +31,7 @@ class _StepOneBodyState extends State<StepOneBody> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Text(
-              'Let s create a fantastic trip !',
+              "Let's create a fantastic trip !",
               style:
                   Styles.heading2.copyWith(color: Themes.third, fontSize: 25),
             ),
@@ -94,9 +91,8 @@ class _StepOneBodyState extends State<StepOneBody> {
                 .setNumberPerson(numberOfPerson);
             BlocProvider.of<OrganizingTripCubit>(context)
                 .setNumberDays(numberDays);
-            print(BlocProvider.of<OrganizingTripCubit>(context).numberPerson);
-            print(BlocProvider.of<OrganizingTripCubit>(context).numberDays);
-            Get.to(const StepTwo());
+
+            Get.to(const DateSelection());
           })
         ],
       ),

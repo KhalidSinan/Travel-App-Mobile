@@ -21,7 +21,8 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: 350,
+        height: 410,
+        width: 360,
         child: TableCalendar(
           calendarStyle: CalendarStyle(
             rangeEndDecoration: const BoxDecoration(

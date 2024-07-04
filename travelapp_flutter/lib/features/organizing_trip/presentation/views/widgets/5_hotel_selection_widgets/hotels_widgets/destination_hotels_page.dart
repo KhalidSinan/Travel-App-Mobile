@@ -12,7 +12,7 @@ class DestinationHotelsPage extends StatelessWidget {
     required this.city,
     required this.startDate,
     required this.numDays,
-    required this.numRooms,
+    required this.numRooms, required bloc,
   });
   final String city, startDate;
   final int numDays, numRooms;

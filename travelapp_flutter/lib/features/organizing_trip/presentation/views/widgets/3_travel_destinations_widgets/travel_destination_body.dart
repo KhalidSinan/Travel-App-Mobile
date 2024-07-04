@@ -10,14 +10,15 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/views/wi
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/list_destination_view.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/source_form.dart';
 
-class StepThreeBody extends StatefulWidget {
-  const StepThreeBody({super.key});
+class DestinationsSelectionBody extends StatefulWidget {
+  const DestinationsSelectionBody({super.key});
 
   @override
-  State<StepThreeBody> createState() => _StepThreeBodyState();
+  State<DestinationsSelectionBody> createState() =>
+      _DestinationsSelectionBodyState();
 }
 
-class _StepThreeBodyState extends State<StepThreeBody> {
+class _DestinationsSelectionBodyState extends State<DestinationsSelectionBody> {
   TextEditingController searchcontroller2 = TextEditingController();
   TextEditingController searchcontroller3 = TextEditingController();
   bool value = false;
@@ -94,21 +95,22 @@ class _StepThreeBodyState extends State<StepThreeBody> {
                   ],
                 ),
                 SizedBox(
-                    width: double.infinity,
-                    child: Visibility(
-                      visible: BlocProvider.of<OrganizingTripCubit>(context)
-                          .visibilityButton(),
-                      child: CustomButton(
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            await BlocProvider.of<OrganizingTripCubit>(context)
-                                .checkFlightsForTrip();
-                          }
-                        },
-                        label: "Check",
-                        isFlat: true,
-                      ),
-                    )),
+                  width: double.infinity,
+                  child: Visibility(
+                    visible: BlocProvider.of<OrganizingTripCubit>(context)
+                        .visibilityButton(),
+                    child: CustomButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          await BlocProvider.of<OrganizingTripCubit>(context)
+                              .checkFlightsForTrip();
+                        }
+                      },
+                      label: "Check",
+                      isFlat: true,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

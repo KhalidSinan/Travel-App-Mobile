@@ -19,10 +19,7 @@ class _DestinaionsFilterPageState extends State<DestinaionsFilterPage> {
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
-            backgroundColor: Colors.white,
             appBar: AppBar(
-              backgroundColor: Colors.white,
-              surfaceTintColor: Colors.white,
               leading: const CustomBackButton(),
             ),
             body: Padding(

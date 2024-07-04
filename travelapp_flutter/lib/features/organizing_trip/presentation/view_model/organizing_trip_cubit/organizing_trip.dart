@@ -1,5 +1,4 @@
-
-
+// ignore_for_file: unused_local_variable, avoid_print
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -10,7 +9,6 @@ import 'package:travelapp_flutter/features/organizing_trip/data/models/filtering
 import 'package:travelapp_flutter/features/organizing_trip/data/models/place_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/trip_Info_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip_states.dart';
-
 import '../../../data/models/cities_airline_model.dart';
 import '../../../data/repos/organizing_trip_repo_impl.dart';
 
@@ -30,8 +28,8 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   //////////////////////////////
   String? source;
   String? classType;
-  int? numberDays;
-  int? numberPerson;
+  int? numberDays = 1;
+  int? numberPerson = 1;
   String? startDate;
   bool returnHome = false;
   RangeValues? prices = const RangeValues(0, 1500);
@@ -69,8 +67,8 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
     emit(LoadingOrganizingTrip());
     tripGeneralInfo = TripOrgModel(
         startDate: startDate, numOfDays: numberDays, numOfSeats: numberPerson);
-        print("pppppppppppppppppp");
-        print(tripGeneralInfo.startDate);
+    print("pppppppppppppppppp");
+    print(tripGeneralInfo.startDate);
     checkFlightModel = CheckFlightModel(
         source: source!,
         destinations: destinations,
@@ -166,7 +164,7 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   }
 
   void setdestination(String des) {
-    this.destination = des;
+    destination = des;
   }
 
   void setNumberOfDaysDes(int numDays) {
@@ -188,7 +186,7 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   }
 
   void setReturnHome(bool returnhome) {
-    this.returnHome = returnhome;
+    returnHome = returnhome;
     print(startDate);
   }
 
@@ -212,7 +210,8 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
         return '';
     }
   }
-    Future<void> getPlaces(
+
+  Future<void> getPlaces(
       {required String city, required String category}) async {
     emit(LoadingOrganizingTrip());
     var response =
