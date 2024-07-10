@@ -24,20 +24,14 @@ class HotelSelectionPage extends StatelessWidget {
                 HotelInformationCubit(HotelformationInitialState()))
       ],
       child: Scaffold(
-          backgroundColor: Colors.white,
           appBar: AppBar(
             actions: const [
-              Padding(
-                padding: EdgeInsets.all(8),
-                child: CustomStepCircular(
-                  progress: 0.625,
-                  text: '5/8',
-                ),
+              CustomStepCircular(
+                progress: 0.625,
+                text: '5/8'
               ),
               SizedBox(width: 15)
             ],
-            backgroundColor: Colors.white,
-            surfaceTintColor: Colors.white,
             leading: const CustomBackButton(),
           ),
           body: const HotelSelectionBody()),

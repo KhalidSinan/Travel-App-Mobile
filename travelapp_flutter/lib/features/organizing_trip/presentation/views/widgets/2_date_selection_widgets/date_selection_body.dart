@@ -1,9 +1,6 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/next_button.dart';
@@ -12,8 +9,8 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/view_mod
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/3_travel_destinations_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/2_date_selection_widgets/custom_table_calendar.dart';
 
-class StepTwoBody extends StatelessWidget {
-  const StepTwoBody({super.key});
+class DateSelectionBody extends StatelessWidget {
+  const DateSelectionBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +22,18 @@ class StepTwoBody extends StatelessWidget {
             children: [
               const SizedBox(height: 25),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  'Select begin your trip !',
+                  'Select begin date to your trip !',
                   style: Styles.heading2
                       .copyWith(color: Themes.third, fontSize: 25),
                 ),
               ),
               const SizedBox(height: 30),
               const CustomTableCalendar(),
-              const SizedBox(height: 40),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.25),
               NextButton(onTap: () {
-                Get.to(const StepThree());
+                Get.to(const DestinationsSelection());
               })
             ],
           ),

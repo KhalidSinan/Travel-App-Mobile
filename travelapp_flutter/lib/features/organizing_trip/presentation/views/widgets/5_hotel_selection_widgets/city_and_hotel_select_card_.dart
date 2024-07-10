@@ -47,7 +47,7 @@ class CardCityAndSelectHotel extends StatelessWidget {
                         city: countryName,
                         startDate: startDate,
                         numDays: numDays,
-                        numRooms: numberPerson));
+                        numRooms: numberPerson, bloc: null,));
                   },
                   suffix: Icon(
                     FontAwesomeIcons.chevronRight,
