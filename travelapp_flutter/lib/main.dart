@@ -17,6 +17,8 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/register
 import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/6_schedule_page.dart';
+import 'package:travelapp_flutter/features/settings/data/repos/settings_repo_impl.dart';
+import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
 Future _firebaseBackgroundMessage(RemoteMessage message) async {
@@ -69,7 +71,10 @@ class _TravelAppState extends State<TravelApp> {
         BlocProvider(
             create: (context) =>
                 OrganizingTripCubit(getIt.get<OrganizingTripImpl>())
-                  ..getCountriesAndAirlines())
+                  ..getCountriesAndAirlines()),
+        BlocProvider(
+          create: (context) => ProfilePageCubit(getIt.get<SettingsRepoImpl>()),
+        )
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -86,7 +91,7 @@ class _TravelAppState extends State<TravelApp> {
         // home: rememberMe == true
         //     ? FetchProfileDataPage(token: token)
         //     : const LoginPage(),
-        home: SchedulePage(),
+        home: const SchedulePage(),
       ),
     );
   }

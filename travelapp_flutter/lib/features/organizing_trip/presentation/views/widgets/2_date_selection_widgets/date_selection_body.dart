@@ -31,7 +31,7 @@ class DateSelectionBody extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               const CustomTableCalendar(),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.25),
+              //SizedBox(height: MediaQuery.of(context).size.height * 0.25),
               NextButton(onTap: () {
                 Get.to(const DestinationsSelection());
               })

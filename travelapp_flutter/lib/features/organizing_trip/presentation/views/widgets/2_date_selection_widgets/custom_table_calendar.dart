@@ -89,10 +89,10 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
                       1));
               rangeSelectionMode = RangeSelectionMode.enforced;
               String formattedStartDate =
-                  '${rangeStart!.year}-${rangeStart!.month.toString().padLeft(2, '0')}-${rangeStart!.day.toString().padLeft(2, '0')}';
+                  '${rangeStart!.day.toString().padLeft(2, '0')}/${rangeStart!.month.toString().padLeft(2, '0')}/${rangeStart!.year}';
               BlocProvider.of<OrganizingTripCubit>(context)
                   .setStartDate(formattedStartDate);
-              print(BlocProvider.of<OrganizingTripCubit>(context).startDate);
+              //print(BlocProvider.of<OrganizingTripCubit>(context).startDate);
             });
           },
           // onFormatChanged: (format) {

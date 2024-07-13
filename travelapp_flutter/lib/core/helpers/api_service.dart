@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final String _baseUrl = 'http://192.168.1.108:5000';
+  final String _baseUrl = 'http://10.0.2.2:5000';
   //10.0.2.2
   final Dio _dio;
   final String token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NjAzNDk4M2I5ODA0YzdiZjc4NjBjNiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MTg5NTc4Mjh9.S9IIgfdhCFbeqN54S352olipDqALqhd-vVSYPDPLO6E';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTJhN2NkOGZkZDNkMDUxZWU1OTUxMSIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6InRlc3QiLCJsYXN0X25hbWUiOiJ0ZXN0In0sImlhdCI6MTcyMDg4NzMwM30.2BUoCEDQJxtf7wT09q0J1C50ZTpZeoi-H2CsadL3aLY';
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get(
@@ -39,7 +39,7 @@ class ApiService {
       options: Options(
         headers: {
           'Content-Type': 'application/json',
-          'Authorization':'Bearer $token',
+          'Authorization': 'Bearer $token',
         },
       ),
     );
@@ -58,6 +58,27 @@ class ApiService {
       data: body,
       options: Options(
         headers: headers,
+      ),
+    );
+    print(response.statusCode);
+    print(response);
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>> put({
+    required String endPoint,
+    required dynamic body,
+    Map<String, dynamic>? queryParameters,
+  }) async {
+    var response = await _dio.put(
+      '$_baseUrl$endPoint',
+      data: body,
+      queryParameters: queryParameters,
+      options: Options(
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
       ),
     );
     print(response.statusCode);

@@ -88,10 +88,10 @@ class _DestinationAirlineFilterState extends State<DestinationAirlineFilter> {
           .destinations[widget.index]
           .filter
           ?.airline = currentAirline;
-      print(BlocProvider.of<OrganizingTripCubit>(context)
-          .destinations[widget.index]
-          .filter
-          ?.airline);
+      // print(BlocProvider.of<OrganizingTripCubit>(context)
+      //     .destinations[widget.index]
+      //     .filter
+      //     ?.airline);
     });
   }
 

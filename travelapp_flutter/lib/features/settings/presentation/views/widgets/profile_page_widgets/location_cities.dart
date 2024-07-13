@@ -9,7 +9,7 @@ class LocationCities extends SearchDelegate {
     return [
       IconButton(
           onPressed: () {
-            query = '';
+            close(context, null);
           },
           icon: const Icon(Icons.close))
     ];
@@ -38,12 +38,12 @@ class LocationCities extends SearchDelegate {
     for (int i = 0; i < 249; i++) {
       sum += countries[i].cities.length;
       if (countries[i].cities.isEmpty) {
-        country.add(countries[i].country);
-        cities.add(countries[i].country);
+        country.add(countries[i].countryName);
+        cities.add(countries[i].countryName);
         sum += 1;
       } else {
         for (int j = 0; j < countries[i].cities.length; j++) {
-          country.add(countries[i].country);
+          country.add(countries[i].countryName);
           cities.add(countries[i].cities[j]);
         }
       }
@@ -52,23 +52,17 @@ class LocationCities extends SearchDelegate {
       return ListView.builder(
         itemCount: sum.toInt(),
         itemBuilder: (context, index) {
+          List<String> result = [(cities[index]), (country[index])];
           return InkWell(
             onTap: () {
-              close(context, cities[index]);
+              close(context, result);
             },
             child: Padding(
               padding: const EdgeInsets.only(left: 12),
               child: Column(
                 children: [
                   ListTile(
-                    // leading: const Padding(
-                    //   padding: EdgeInsets.only(right: 5),
-                    //   child: Icon(
-                    //     Icons.location_city_sharp,
-                    //     size: 28,
-                    //     color: Colors.black54,
-                    //   ),
-                    // ),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 25),
                     title: Text(
                       cities[index],
                       style: const TextStyle(
@@ -81,8 +75,8 @@ class LocationCities extends SearchDelegate {
                   ),
                   const Divider(
                     height: 5,
-                    indent: 55,
-                    endIndent: 40,
+                    indent: 20,
+                    endIndent: 30,
                   )
                 ],
               ),
@@ -91,40 +85,45 @@ class LocationCities extends SearchDelegate {
         },
       );
     } else {
-      return Text('');
-      // List? filterList = [];
-      // filterList = cities
-      //     .where(
-      //         (element) => element.toLowerCase().contains(query.toLowerCase()))
-      //     .toList();
-      // return ListView.builder(
-      //   itemCount: filterList.length,
-      //   itemBuilder: (context, index) {
-      //     return InkWell(
-      //       onTap: () {
-      //         close(context, filterList![index]);
-      //       },
-      //       child: Padding(
-      //         padding: const EdgeInsets.only(left: 16),
-      //         child: Column(
-      //           children: [
-      //             ListTile(
-      //               title: Text(
-      //                 filterList![index],
-      //                 style: const TextStyle(
-      //                     fontWeight: FontWeight.bold, fontSize: 18),
-      //               ),
-      //             ),
-      //             const Divider(
-      //               indent: 44,
-      //               endIndent: 40,
-      //             )
-      //           ],
-      //         ),
-      //       ),
-      //     );
-      //   },
-      // );
+      List? filterList = [];
+      filterList = cities
+          .where(
+              (element) => element.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+      return ListView.builder(
+        itemCount: filterList.length,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              close(context, filterList![index]);
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Column(
+                children: [
+                  ListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 25),
+                    title: Text(
+                      cities[index],
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    subtitle: Text(
+                      country[index],
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  const Divider(
+                    height: 5,
+                    indent: 20,
+                    endIndent: 30,
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+      );
     }
   }
 }

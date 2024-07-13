@@ -21,9 +21,7 @@ class TicketsReviewPage extends StatelessWidget {
         leading: const CustomBackButton(),
       ),
       body: const SafeArea(
-        child: TicketsReviewBody(
-          state: 'yes',
-        ),
+        child: TicketsReviewBody(),
       ),
     );
   }
