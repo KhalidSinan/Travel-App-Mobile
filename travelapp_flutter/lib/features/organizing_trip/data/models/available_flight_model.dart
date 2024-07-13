@@ -9,14 +9,14 @@ class AvailableFlightModel {
 
   AvailableFlightModel(
       {required this.city,
-      required this.flight,
+       required this.flight,
       required this.isAvailable,
       required this.reason});
 
   factory AvailableFlightModel.fromJson(jsonData) {
     return AvailableFlightModel(
         city: jsonData['city'],
-        flight: jsonData['flight'],
+        flight: jsonData['flight'] != null ? Flight.fromJson(jsonData['flight']) : null,
         isAvailable: jsonData['is_available'],
         reason: jsonData['reason']);
   }

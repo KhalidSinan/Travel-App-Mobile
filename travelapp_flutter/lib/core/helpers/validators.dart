@@ -44,3 +44,13 @@ String? validateCode(value) {
   }
   return null;
 }
+
+String? validateNumber(value) {
+  if (value!.isEmpty) {
+    return 'this field is required';
+  }
+  if (value.length < 9) {
+    return 'phone number must be 9 digits';
+  }
+  return null;
+}

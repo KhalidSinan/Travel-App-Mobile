@@ -1,11 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({super.key});
+  const ProfileHeader({
+    super.key,
+    required this.photo,
+    required this.fname,
+    required this.lname,
+  });
+  final String fname, lname;
+  final String? photo;
 
   @override
   Widget build(BuildContext context) {
@@ -15,37 +20,27 @@ class ProfileHeader extends StatelessWidget {
       decoration: BoxDecoration(
         color: Themes.primary,
         borderRadius: const BorderRadius.vertical(
-          bottom: Radius.circular(100),
+          bottom: Radius.circular(80),
         ),
       ),
       child: Column(
         children: [
-          const Stack(
-            children: [
-              CircleAvatar(
-                radius: 70,
-                backgroundColor: Colors.grey,
-                child: Icon(
-                  Icons.person_rounded,
-                  size: 100,
-                  color: Colors.white,
-                ),
-              ),
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: Icon(
-                  Icons.add_photo_alternate_rounded,
-                  size: 40,
-                  color: Colors.white,
-                ),
-              ),
-            ],
+          CircleAvatar(
+            radius: 70,
+            backgroundColor: Colors.grey,
+            child: photo == null
+                ? const Icon(
+                    Icons.person_rounded,
+                    size: 100,
+                    color: Colors.white,
+                  )
+                : Image.asset(photo!, fit: BoxFit.fill),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 22),
           Text(
-            'Sara Najati',
+            '$fname $lname',
             style: Styles.heading2.copyWith(color: Colors.white),
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),

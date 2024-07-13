@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
+// import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/Destination_Filter/destination_airline_filter.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/Destination_Filter/destination_price_filter.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/Destination_Filter/destination_time_filter.dart';
@@ -36,8 +36,8 @@ class DestinationsFilterBody extends StatelessWidget {
             width: double.infinity,
             child: CustomButton(
               onPressed: () {
-                BlocProvider.of<OrganizingTripCubit>(context)
-                    .printDestinationsList();
+                // BlocProvider.of<OrganizingTripCubit>(context)
+                //     .printDestinationsList();
                 Get.back();
               },
               label: 'Apply Filters',

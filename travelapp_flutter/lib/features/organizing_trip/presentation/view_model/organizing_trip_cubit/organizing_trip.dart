@@ -1,4 +1,3 @@
-// ignore_for_file: unused_local_variable, avoid_print
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -39,7 +38,7 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   String? destination;
   int? numberOfDaysDes;
 
-  static int valid = 0;
+  int valid = 0;
   List<DestinationsModel> destinations = [];
   List<String> startDates = [];
   Map<String, List<Map<String, List<PlaceModel?>>>> tripSchedule = {};
@@ -58,7 +57,6 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
       airlines = response['airlines'];
       for (var i = 0; i < response['cities'].length; i++) {
         cities.add(CountryModel.fromJson(response["cities"][i]));
-        print(cities[i]);
       }
       emit(SuccessCheckAvailableFlight());
     });
@@ -68,8 +66,9 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
     emit(LoadingOrganizingTrip());
     tripGeneralInfo = TripOrgModel(
         startDate: startDate, numOfDays: numberDays, numOfSeats: numberPerson);
-    print("pppppppppppppppppp");
-    print(tripGeneralInfo.startDate);
+    // print("pppppppppppppppppp");
+    // print(tripGeneralInfo.startDate);
+    printDestinationsList();
     checkFlightModel = CheckFlightModel(
         source: source!,
         destinations: destinations,
@@ -105,11 +104,13 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
         (failure) => emit(
               FailureOrganizingTrip(failure: failure),
             ), (res) {
+      availableFlightModel = [];
+      destinationsoSend = [];
       for (var i = 0; i < res['data'].length; i++) {
         availableFlightModel.add(AvailableFlightModel.fromJson(res["data"][i]));
-        print(cities[i]);
+        // print(cities[i]);
       }
-      print(availableFlightModel);
+      print(destinations);
       emit(SuccessCheckAvailableFlight());
     });
   }
@@ -127,22 +128,35 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   }
 
   void deleteDestination(int index) {
-    valid = valid - destinations[index].days;
     destinations.removeAt(index);
     emit(DeleteDestination());
   }
 
   void addDestination() {
-    destinations.add(DestinationsModel(
-        city: destination!,
-        days: numberOfDaysDes!,
-        filter: FilterModel(
-            timeStart: null,
-            timeEnd: null,
-            airline: null,
-            maxPrice: null,
-            minPrice: null)));
-    emit(AddDestination());
+    if (saveValidDestination(destinations, numberOfDaysDes)) {
+      destinations.add(DestinationsModel(
+          city: destination!,
+          days: numberOfDaysDes!,
+          filter: FilterModel(
+              timeStart: null,
+              timeEnd: null,
+              airline: null,
+              maxPrice: null,
+              minPrice: null)));
+      emit(AddDestination());
+    }
+  }
+
+  bool saveValidDestination(
+      List<DestinationsModel> destinations, numberOfDaysDestinaton) {
+    dynamic daysVisibility = 0;
+    for (var i = 0; i < destinations.length; i++) {
+      daysVisibility = daysVisibility + destinations[i].days;
+    }
+    if (daysVisibility + numberOfDaysDestinaton > numberDays) {
+      return false;
+    }
+    return true;
   }
 
   bool visibilityButton() {
@@ -157,19 +171,16 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
     }
   }
 
-  bool destinationsDaysAreInValid() {
-    int totalDays =
-        destinations.fold(0, (sum, destination) => sum + destination.days);
-
-    return valid > numberDays!;
-  }
+  // bool destinationsDaysAreInValid() {
+  //   print("numberValide ${valid}");
+  //   return valid > numberDays!;
+  // }
 
   void setdestination(String des) {
     destination = des;
   }
 
   void setNumberOfDaysDes(int numDays) {
-    valid = valid + numDays;
     numberOfDaysDes = numDays;
   }
 
@@ -183,12 +194,10 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
 
   void setStartDate(String startDate) {
     this.startDate = startDate;
-    print(startDate);
   }
 
   void setReturnHome(bool returnhome) {
     returnHome = returnhome;
-    print(startDate);
   }
 
   void setSoucre(String source) {
