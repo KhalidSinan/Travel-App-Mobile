@@ -12,8 +12,9 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/view_mod
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/6_schedule_widgets/places_widgets/places_page_body.dart';
 
 class PlacesPage extends StatelessWidget {
-  const PlacesPage({super.key, required this.city});
+  const PlacesPage({super.key, required this.city, required this.step});
   final String city;
+  final int step;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -39,7 +40,7 @@ class PlacesPage extends StatelessWidget {
                   );
                 }
               },
-              child: PlacesPageBody(city: city),
+              child: PlacesPageBody(city: city , step: step,),
             ),
           ),
         ),

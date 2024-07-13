@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/organizing_trip/data/models/destinations_model.dart';
 
 class ScheduleTabs extends StatelessWidget {
   const ScheduleTabs({
@@ -9,7 +10,7 @@ class ScheduleTabs extends StatelessWidget {
   });
 
   final TabController tabController;
-  final List cities;
+  final List<DestinationsModel> cities;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class ScheduleTabs extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: TabBar(
           dividerColor: Colors.white,
+controller: tabController,
           isScrollable: true,
           indicatorSize: TabBarIndicatorSize.tab,
           tabAlignment: TabAlignment.center,
@@ -28,7 +30,7 @@ class ScheduleTabs extends StatelessWidget {
           indicator: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(12)),
               color: Themes.primary),
-          tabs: cities.map((city) => Tab(text: city['city'])).toList(),
+          tabs: cities.map((city) => Tab(text: city.city)).toList(),
         ),
       ),
     );

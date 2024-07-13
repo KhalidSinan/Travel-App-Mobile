@@ -53,6 +53,10 @@ class _TicketsReviewBodyState extends State<TicketsReviewBody> {
                               child: NextButton(onTap: () {
                                 BlocProvider.of<OrganizingTripCubit>(context)
                                     .getStartDate();
+                                BlocProvider.of<OrganizingTripCubit>(context)
+                                    .createTripSchedule();
+                                BlocProvider.of<OrganizingTripCubit>(context)
+                                    .createCurrentSteps();
                               }),
                             )
                         ],

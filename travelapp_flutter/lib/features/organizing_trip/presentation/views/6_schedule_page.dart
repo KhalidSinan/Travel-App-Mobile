@@ -1,8 +1,10 @@
-// ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_step_circular.dart';
+import 'package:travelapp_flutter/features/organizing_trip/data/models/destinations_model.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/6_Schedule_widgets/schedule_tabs.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/6_schedule_widgets/schedule_tab_view.dart';
 
@@ -15,25 +17,19 @@ class SchedulePage extends StatefulWidget {
 
 class _SchedulePageState extends State<SchedulePage>
     with TickerProviderStateMixin {
-  List<Map<String, dynamic>> cities = [
-    {'city': 'Paris', 'days': 4},
-    {'city': 'Roma', 'days': 2},
-    {'city': 'Oman', 'days': 4},
-    {'city': 'Damascus', 'days': 4},
-  ];
-
-  List<int> currentSteps = [];
-
-  @override
-  void initState() {
-    super.initState();
-    currentSteps = List.filled(cities.length, 0);
-  }
 
   @override
   Widget build(BuildContext context) {
+
+    List<int> currentSteps = BlocProvider.of<OrganizingTripCubit>(context).currentSteps; 
+    
+  List<DestinationsModel> cities =
+      BlocProvider.of<OrganizingTripCubit>(context).destinations;
+ 
+    
     TabController tabController =
         TabController(length: cities.length, vsync: this);
+
     return Scaffold(
         appBar: AppBar(
           title: Text(

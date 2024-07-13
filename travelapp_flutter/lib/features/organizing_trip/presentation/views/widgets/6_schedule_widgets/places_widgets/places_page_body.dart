@@ -3,8 +3,9 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/views/wi
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/6_schedule_widgets/places_widgets/places_tab_bar.dart';
 
 class PlacesPageBody extends StatelessWidget {
-  const PlacesPageBody({super.key, required this.city});
+  const PlacesPageBody({super.key, required this.city, required this.step});
   final String city;
+  final int step;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -13,16 +14,16 @@ class PlacesPageBody extends StatelessWidget {
         Expanded(
           child: TabBarView(
             children: [
-              PlacesList(category: 'Food', city: city),
-              PlacesList(category: 'Attraction', city: city),
-              PlacesList(category: 'Cinema', city: city),
-              PlacesList(category: 'Adventure', city: city),
-              PlacesList(category: 'Arts & History', city: city),
-              PlacesList(category: 'Mall', city: city),
-              PlacesList(category: 'Sports', city: city),
-              PlacesList(category: 'Market', city: city),
-              PlacesList(category: 'Park', city: city),
-              PlacesList(category: 'Street', city: city),
+              PlacesList(category: 'Food', city: city , step: step,),
+              PlacesList(category: 'Attraction', city: city,step: step,),
+              PlacesList(category: 'Cinema', city: city , step: step,),
+              PlacesList(category: 'Adventure', city: city , step: step,),
+              PlacesList(category: 'Arts & History', city: city , step: step,),
+              PlacesList(category: 'Mall', city: city , step: step,),
+              PlacesList(category: 'Sports', city: city , step:step ,),
+              PlacesList(category: 'Market', city: city , step: step,),
+              PlacesList(category: 'Park', city: city , step: step,),
+              PlacesList(category: 'Street', city: city, step: step,),
             ],
           ),
         ),

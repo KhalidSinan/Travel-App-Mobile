@@ -41,8 +41,9 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
 
   static int valid = 0;
   List<DestinationsModel> destinations = [];
-    List<String> startDates = [];
-
+  List<String> startDates = [];
+  Map<String, List<Map<String, List<PlaceModel?>>>> tripSchedule = {};
+  List<int> currentSteps = [];
 
   // List<FilterModel>? filter = [];
   late CheckFlightModel checkFlightModel;
@@ -229,6 +230,7 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
       },
     );
   }
+
   void getStartDate() {
     startDates.add(startDate!);
     calculateStartDate();
@@ -242,5 +244,28 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
       String formattedDate = outputFormat.format(date);
       startDates.add(formattedDate);
     }
+  }
+
+void createCurrentSteps(){
+
+  currentSteps = List.filled(destinations.length, 0); 
+}
+  
+  void createTripSchedule() {
+    for (var city in destinations) {
+      List<Map<String, List<PlaceModel?>>> daysList = [];
+      for (var i = 1; i <= city.days; i++) {
+        daysList.add({'day$i': []});
+      }
+      tripSchedule[city.city] = daysList;
+    }
+  }
+
+  void updateTripSchedule(String city, int step, PlaceModel place) {
+    tripSchedule[city]![step]['day${step + 1}']!.add(place);
+  }
+
+  void deleteFromTripSchedule(String city, int step, int i) {
+    tripSchedule[city]![step]['day${step + 1}']!.removeAt(i);
   }
 }
