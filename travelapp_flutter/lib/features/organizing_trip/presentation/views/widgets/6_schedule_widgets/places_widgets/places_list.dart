@@ -6,8 +6,9 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/view_mod
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/6_schedule_widgets/places_widgets/place_card.dart';
 
 class PlacesList extends StatefulWidget {
-  const PlacesList({super.key, required this.category, required this.city});
+  const PlacesList({super.key, required this.category, required this.city, required this.step});
   final String category, city;
+  final int step;
 
   @override
   State<PlacesList> createState() => _PlacesListState();
@@ -34,7 +35,7 @@ class _PlacesListState extends State<PlacesList> {
                 return Column(
                   children: [
                     if (index == 0) const SizedBox(height: 10),
-                    PlaceCard(place: places[index]),
+                    PlaceCard(place: places[index] , city: widget.city, step: widget.step,),
                   ],
                 );
               },

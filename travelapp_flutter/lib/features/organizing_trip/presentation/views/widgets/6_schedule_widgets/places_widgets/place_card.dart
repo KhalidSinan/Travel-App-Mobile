@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/place_model.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/6_schedule_page.dart';
 
 class PlaceCard extends StatelessWidget {
   const PlaceCard({
     super.key,
     required this.place,
+    required this.city,
+    required this.step,
   });
 
   final PlaceModel place;
+  final String city;
+  final int step;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        BlocProvider.of<OrganizingTripCubit>(context)
+            .updateTripSchedule(city, step, place);
+         Get.to(SchedulePage());
         //go back to schedualing page and add the place to the day list
       },
       child: Container(
