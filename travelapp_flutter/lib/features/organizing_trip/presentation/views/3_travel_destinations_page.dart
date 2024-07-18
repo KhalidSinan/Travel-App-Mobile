@@ -18,12 +18,7 @@ class DestinationsSelection extends StatelessWidget {
           ],
           leading: const CustomBackButton(),
         ),
-<<<<<<< HEAD
-        //test
-        body: const StepThreeBody(),
-=======
         body: const DestinationsSelectionBody(),
->>>>>>> 64579de454e03216da550a8a3da9fb3392e8a1e2
       ),
     );
   }
