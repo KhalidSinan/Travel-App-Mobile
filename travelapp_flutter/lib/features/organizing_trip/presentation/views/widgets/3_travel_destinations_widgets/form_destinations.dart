@@ -117,45 +117,45 @@ class _FormDestinationsState extends State<FormDestinations> {
                         if (_formKey.currentState!.validate()) {
                           searchcontroller2.text = "";
                           searchcontroller1.text = "";
-
-                          if (BlocProvider.of<OrganizingTripCubit>(context)
-                                  .destinationsDaysAreInValid() ==
-                              false) {
-                            BlocProvider.of<OrganizingTripCubit>(context)
-                                .addDestination();
-                          }
-
-                          if (BlocProvider.of<OrganizingTripCubit>(context)
-                              .destinationsDaysAreInValid()) {
+                          if (!BlocProvider.of<OrganizingTripCubit>(context)
+                              .saveValidDestination(
+                                  BlocProvider.of<OrganizingTripCubit>(context)
+                                      .destinations,
+                                  BlocProvider.of<OrganizingTripCubit>(context)
+                                      .numberOfDaysDes)) {
                             showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return CustomShowDialog(
-                                    title: Icon(
-                                      FontAwesomeIcons.exclamation,
-                                      size: 25,
-                                      color: Themes.third,
-                                      fill: 0.8,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return CustomShowDialog(
+                                  title: Icon(
+                                    FontAwesomeIcons.exclamation,
+                                    size: 25,
+                                    color: Themes.third,
+                                    fill: 0.8,
+                                  ),
+                                  content: const Text(
+                                    "Your Details Inppropriate",
+                                    style: TextStyle(
+                                      fontSize: 16,
                                     ),
-                                    content:
-                                        const Text("Your Details Inppropriate",
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                            )),
-                                    childTextButton: TextButton(
-                                      onPressed: () {
-                                        Get.back();
-                                      },
-                                      child: Text(
-                                        "ok",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color: Themes.primary),
-                                      ),
+                                  ),
+                                  childTextButton: TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    child: Text(
+                                      "ok",
+                                      style: TextStyle(
+                                          fontSize: 16, color: Themes.primary),
                                     ),
-                                  );
-                                });
+                                  ),
+                                );
+                              },
+                            );
                           }
+
+                          BlocProvider.of<OrganizingTripCubit>(context)
+                              .addDestination();
                         }
                       },
                       label: "Save",

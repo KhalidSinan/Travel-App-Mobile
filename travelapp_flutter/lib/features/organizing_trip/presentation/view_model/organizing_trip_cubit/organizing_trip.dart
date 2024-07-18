@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -10,7 +8,6 @@ import 'package:travelapp_flutter/features/organizing_trip/data/models/filtering
 import 'package:travelapp_flutter/features/organizing_trip/data/models/place_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/trip_Info_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip_states.dart';
-
 import '../../../data/models/cities_airline_model.dart';
 import '../../../data/repos/organizing_trip_repo_impl.dart';
 
@@ -30,8 +27,8 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   //////////////////////////////
   String? source;
   String? classType;
-  int? numberDays;
-  int? numberPerson;
+  int? numberDays = 1;
+  int? numberPerson = 1;
   String? startDate;
   bool returnHome = false;
   RangeValues? prices = const RangeValues(0, 1500);
@@ -41,10 +38,11 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   String? destination;
   int? numberOfDaysDes;
 
-  static int valid = 0;
+  int valid = 0;
   List<DestinationsModel> destinations = [];
-    List<String> startDates = [];
-
+  List<String> startDates = [];
+  Map<String, List<Map<String, List<PlaceModel?>>>> tripSchedule = {};
+  List<int> currentSteps = [];
 
   // List<FilterModel>? filter = [];
   late CheckFlightModel checkFlightModel;
@@ -59,7 +57,6 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
       airlines = response['airlines'];
       for (var i = 0; i < response['cities'].length; i++) {
         cities.add(CountryModel.fromJson(response["cities"][i]));
-        print(cities[i]);
       }
       emit(SuccessCheckAvailableFlight());
     });
@@ -69,8 +66,9 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
     emit(LoadingOrganizingTrip());
     tripGeneralInfo = TripOrgModel(
         startDate: startDate, numOfDays: numberDays, numOfSeats: numberPerson);
-        print("pppppppppppppppppp");
-        print(tripGeneralInfo.startDate);
+    // print("pppppppppppppppppp");
+    // print(tripGeneralInfo.startDate);
+    printDestinationsList();
     checkFlightModel = CheckFlightModel(
         source: source!,
         destinations: destinations,
@@ -106,11 +104,13 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
         (failure) => emit(
               FailureOrganizingTrip(failure: failure),
             ), (res) {
+      availableFlightModel = [];
+      destinationsoSend = [];
       for (var i = 0; i < res['data'].length; i++) {
         availableFlightModel.add(AvailableFlightModel.fromJson(res["data"][i]));
-        print(cities[i]);
+        // print(cities[i]);
       }
-      print(availableFlightModel);
+      print(destinations);
       emit(SuccessCheckAvailableFlight());
     });
   }
@@ -128,22 +128,35 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   }
 
   void deleteDestination(int index) {
-    valid = valid - destinations[index].days;
     destinations.removeAt(index);
     emit(DeleteDestination());
   }
 
   void addDestination() {
-    destinations.add(DestinationsModel(
-        city: destination!,
-        days: numberOfDaysDes!,
-        filter: FilterModel(
-            timeStart: null,
-            timeEnd: null,
-            airline: null,
-            maxPrice: null,
-            minPrice: null)));
-    emit(AddDestination());
+    if (saveValidDestination(destinations, numberOfDaysDes)) {
+      destinations.add(DestinationsModel(
+          city: destination!,
+          days: numberOfDaysDes!,
+          filter: FilterModel(
+              timeStart: null,
+              timeEnd: null,
+              airline: null,
+              maxPrice: null,
+              minPrice: null)));
+      emit(AddDestination());
+    }
+  }
+
+  bool saveValidDestination(
+      List<DestinationsModel> destinations, numberOfDaysDestinaton) {
+    dynamic daysVisibility = 0;
+    for (var i = 0; i < destinations.length; i++) {
+      daysVisibility = daysVisibility + destinations[i].days;
+    }
+    if (daysVisibility + numberOfDaysDestinaton > numberDays) {
+      return false;
+    }
+    return true;
   }
 
   bool visibilityButton() {
@@ -158,19 +171,16 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
     }
   }
 
-  bool destinationsDaysAreInValid() {
-    int totalDays =
-        destinations.fold(0, (sum, destination) => sum + destination.days);
-
-    return valid > numberDays!;
-  }
+  // bool destinationsDaysAreInValid() {
+  //   print("numberValide ${valid}");
+  //   return valid > numberDays!;
+  // }
 
   void setdestination(String des) {
-    this.destination = des;
+    destination = des;
   }
 
   void setNumberOfDaysDes(int numDays) {
-    valid = valid + numDays;
     numberOfDaysDes = numDays;
   }
 
@@ -184,12 +194,10 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
 
   void setStartDate(String startDate) {
     this.startDate = startDate;
-    print(startDate);
   }
 
   void setReturnHome(bool returnhome) {
-    this.returnHome = returnhome;
-    print(startDate);
+    returnHome = returnhome;
   }
 
   void setSoucre(String source) {
@@ -212,7 +220,8 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
         return '';
     }
   }
-    Future<void> getPlaces(
+
+  Future<void> getPlaces(
       {required String city, required String category}) async {
     emit(LoadingOrganizingTrip());
     var response =
@@ -230,6 +239,7 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
       },
     );
   }
+
   void getStartDate() {
     startDates.add(startDate!);
     calculateStartDate();
@@ -243,5 +253,28 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
       String formattedDate = outputFormat.format(date);
       startDates.add(formattedDate);
     }
+  }
+
+void createCurrentSteps(){
+
+  currentSteps = List.filled(destinations.length, 0); 
+}
+  
+  void createTripSchedule() {
+    for (var city in destinations) {
+      List<Map<String, List<PlaceModel?>>> daysList = [];
+      for (var i = 1; i <= city.days; i++) {
+        daysList.add({'day$i': []});
+      }
+      tripSchedule[city.city] = daysList;
+    }
+  }
+
+  void updateTripSchedule(String city, int step, PlaceModel place) {
+    tripSchedule[city]![step]['day${step + 1}']!.add(place);
+  }
+
+  void deleteFromTripSchedule(String city, int step, int i) {
+    tripSchedule[city]![step]['day${step + 1}']!.removeAt(i);
   }
 }

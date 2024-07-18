@@ -49,7 +49,6 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
           idback: widget.idback,
         ),
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           leading: const CustomBackButton(),
         ),

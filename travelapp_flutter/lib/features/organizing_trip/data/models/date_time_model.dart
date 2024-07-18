@@ -1,10 +1,10 @@
-class Date {
+class DateModel {
   final String date;
-  final String time;
+  final String? time;
 
-  Date({required this.date, required this.time});
+  DateModel({required this.date, required this.time});
 
-  factory Date.fromJson(jsonData) {
-    return Date(date: jsonData['date'], time: jsonData['time']);
+  factory DateModel.fromJson(jsonData) {
+    return DateModel(date: jsonData['date'], time: jsonData['time']);
   }
 }
