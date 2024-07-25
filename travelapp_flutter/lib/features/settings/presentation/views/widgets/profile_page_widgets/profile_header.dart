@@ -28,13 +28,16 @@ class ProfileHeader extends StatelessWidget {
           CircleAvatar(
             radius: 70,
             backgroundColor: Colors.grey,
+            backgroundImage: photo != null
+                ? NetworkImage('http://10.0.2.2:5000/$photo')
+                : null,
             child: photo == null
                 ? const Icon(
                     Icons.person_rounded,
                     size: 100,
                     color: Colors.white,
                   )
-                : Image.asset(photo!, fit: BoxFit.fill),
+                : null,
           ),
           const SizedBox(height: 22),
           Text(
