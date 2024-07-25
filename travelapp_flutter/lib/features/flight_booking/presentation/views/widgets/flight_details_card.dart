@@ -120,7 +120,7 @@ class FlightDetailsCard extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 25),
+        const SizedBox(height: 20),
         SizedBox(
           height: 80,
           child: Row(
@@ -143,14 +143,14 @@ class FlightDetailsCard extends StatelessWidget {
                           Text(
                             departure!.date,
                             style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 15,
                             ),
                           ),
                           const SizedBox(width: 8),
                           Text(
                             departure!.time!,
                             style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 15,
                             ),
                           ),
                         ],
@@ -180,14 +180,14 @@ class FlightDetailsCard extends StatelessWidget {
                           Text(
                             arrival!.date,
                             style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 15,
                             ),
                           ),
                           const SizedBox(width: 8),
                           Text(
                             arrival!.time!,
                             style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 15,
                             ),
                           ),
                         ],

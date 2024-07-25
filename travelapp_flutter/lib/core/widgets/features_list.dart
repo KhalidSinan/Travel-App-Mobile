@@ -23,7 +23,7 @@ class FeaturesList extends StatelessWidget {
         itemCount: features!.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.only(right: 20),
+            padding: const EdgeInsets.only(right: 12),
             child: CustomTag(
               roomTag: roomTag,
               text: features![index],
