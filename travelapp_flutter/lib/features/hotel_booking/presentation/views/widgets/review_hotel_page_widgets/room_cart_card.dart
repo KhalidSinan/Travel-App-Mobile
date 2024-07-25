@@ -23,7 +23,7 @@ class RoomCartCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.all(8),
+      margin: const EdgeInsets.all(10),
       decoration: getRoomCardDecoration(),
       child: Column(
         children: [
@@ -36,6 +36,7 @@ class RoomCartCard extends StatelessWidget {
                   roomCart.room.bedOptions!,
                   style: Styles.heading.copyWith(fontSize: 20),
                 ),
+                const SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -81,12 +82,16 @@ class RoomCartCard extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(height: 5),
+                Text(
+                  roomCart.room.view!,
+                  style: Styles.content.copyWith(fontSize: 16),
+                ),
                 const SizedBox(height: 16),
                 FeaturesList(
+                  roomTag: true,
                   features: roomCart.room.amenities,
-                  getFeatures: (feature) {
-                    return null;
-                  },
+                  getFeatures: getFeatureIcon,
                 ),
               ],
             ),
@@ -113,5 +118,20 @@ class RoomCartCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(radius),
       border: Border.all(color: color ?? Themes.primary, width: 3),
     );
+  }
+
+  IconData? getFeatureIcon(String feature) {
+    switch (feature) {
+      case 'Mini Bar':
+        return Icons.local_bar;
+      case 'Free WiFi':
+        return Icons.wifi;
+      case 'TV':
+        return Icons.live_tv;
+      case 'Room Service':
+        return Icons.room_service;
+      default:
+        return null;
+    }
   }
 }

@@ -137,7 +137,7 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                         flightdetails!.flightback != null
                             ? Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(vertical: 16),
+                                    const EdgeInsets.symmetric(vertical: 10),
                                 child: SmoothPageIndicator(
                                   controller: controller,
                                   count: 2,
@@ -158,7 +158,7 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                         Visibility(
                           visible: widget.visible ?? true,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            padding: const EdgeInsets.symmetric(vertical: 15),
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width,
                               child: CustomButton(

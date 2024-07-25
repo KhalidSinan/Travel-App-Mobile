@@ -57,6 +57,7 @@ class _EditContainerState extends State<EditContainer> {
         height: widget.heightCard,
         child: Card(
           color: Colors.white,
+          surfaceTintColor: Colors.white,
           shape: RoundedRectangleBorder(
             side: BorderSide(color: Themes.third, width: 2),
             borderRadius: BorderRadius.all(
