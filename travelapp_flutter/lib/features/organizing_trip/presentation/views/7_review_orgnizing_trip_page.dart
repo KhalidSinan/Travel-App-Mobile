@@ -31,7 +31,7 @@ class ReviewOrgnizingTrip extends StatelessWidget {
                     CustomStepCircular(
                       progress: 0.875,
                       text: "7/8",
-                      color: Colors.white,
+                      //color: Colors.white,
                     ),
                   ],
                 ),

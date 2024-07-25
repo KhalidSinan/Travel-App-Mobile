@@ -49,8 +49,8 @@ String? validateNumber(value) {
   if (value!.isEmpty) {
     return 'this field is required';
   }
-  if (value.length < 9) {
-    return 'phone number must be 9 digits';
+  if (value.length < 5 || value.length > 12) {
+    return 'number must be between 5 and 12';
   }
   return null;
 }
