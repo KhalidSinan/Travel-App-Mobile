@@ -111,7 +111,37 @@ class SettingsRepoImpl extends SettingsRepo {
     }
   }
 
-  // @override
-  // Future<Either<Failure, Map<String, dynamic>>> setGender({required String gender})async {
-  // }
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> setGender(
+      {required Map<String, dynamic> body}) async {
+    try {
+      Map<String, dynamic> response =
+          await apiService.put(endPoint: "/users/gender", body: body);
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      } else {
+        return left(Failure(errMessage: 'Something went wrong'));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> changeImage(
+      {required dynamic body}) async {
+    try {
+      Map<String, dynamic> response =
+          await apiService.put(endPoint: "/users/profile-pic", body: body);
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      } else {
+        return left(Failure(errMessage: 'Something went wrong'));
+      }
+    }
+  }
 }

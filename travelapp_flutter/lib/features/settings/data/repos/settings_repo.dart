@@ -15,9 +15,12 @@ abstract class SettingsRepo {
   Future<Either<Failure, Map<String, dynamic>>> changeName(
       {required Map<String, dynamic> body});
 
-//  Future<Either<Failure, Map<String, dynamic>>> setGender(
-//       {required String gender});
+  Future<Either<Failure, Map<String, dynamic>>> setGender(
+      {required Map<String, dynamic> body});
 
   Future<Either<Failure, Map<String, dynamic>>> changeDate(
       {required Map<String, dynamic> body});
+
+  Future<Either<Failure, Map<String, dynamic>>> changeImage(
+      {required dynamic body});
 }

@@ -6,10 +6,9 @@ import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit_state.dart';
-import 'package:travelapp_flutter/features/settings/presentation/views/widgets/profile_page_widgets/editing_page_body.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/profile_page_widgets/profile_page_body.dart';
+import 'package:travelapp_flutter/features/settings/presentation/views/editing_page.dart';
 
-// ignore: must_be_immutable
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -33,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
         actions: [
           ElevatedButton(
             onPressed: () {
-              BlocProvider.of<ProfilePageCubit>(context).editState();
+              Get.to(const EditingPage());
             },
             style: ButtonStyle(
                 elevation: const MaterialStatePropertyAll(0),
@@ -54,12 +53,12 @@ class _ProfilePageState extends State<ProfilePage> {
       body: SafeArea(
         child: BlocConsumer<ProfilePageCubit, ProfileStates>(
           builder: (context, state) {
-            if (state is EditingState) {
-              return const EditingPageBody();
-            } else if (state is ProfileSuccessState) {
-              return const ProfilePageBody();
+            if (state is ProfileLoadingState) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             } else {
-              return Text(state.toString());
+              return const ProfilePageBody();
             }
           },
           listener: (context, state) {

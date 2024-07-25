@@ -12,8 +12,3 @@ class ProfileFailureState extends ProfileStates {
   final Failure failure;
   ProfileFailureState({required this.failure});
 }
-class CitiesSuccessState extends ProfileStates{}  
-
-class ChangeSuccessState extends ProfileStates{}  
-
-class EditingState extends ProfileStates{}  

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/utils/themes.dart';
 
 class LocationCities extends SearchDelegate {
   List<dynamic> countries = [];
@@ -63,6 +64,11 @@ class LocationCities extends SearchDelegate {
                 children: [
                   ListTile(
                     contentPadding: const EdgeInsets.symmetric(horizontal: 25),
+                    leading: Icon(
+                      Icons.location_city,
+                      color: Themes.primary,
+                      size: 30,
+                    ),
                     title: Text(
                       cities[index],
                       style: const TextStyle(
@@ -103,6 +109,11 @@ class LocationCities extends SearchDelegate {
                 children: [
                   ListTile(
                     contentPadding: const EdgeInsets.symmetric(horizontal: 25),
+                    leading: Icon(
+                      Icons.location_city,
+                      color: Themes.primary,
+                      size: 30,
+                    ),
                     title: Text(
                       cities[index],
                       style: const TextStyle(

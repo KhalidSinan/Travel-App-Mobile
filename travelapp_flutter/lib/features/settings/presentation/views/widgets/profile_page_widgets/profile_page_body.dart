@@ -38,9 +38,8 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
           ),
           UserData(
             icon: Icons.call_outlined,
-            text: 
-            //'${profile!.number?.code}  ${profile!.number?.number}',
-            '+${BlocProvider.of<ProfilePageCubit>(context).editCode}  ${BlocProvider.of<ProfilePageCubit>(context).editNumber}',
+            text:
+                '+${BlocProvider.of<ProfilePageCubit>(context).editCode}  ${BlocProvider.of<ProfilePageCubit>(context).editNumber}',
             type: 'number',
           ),
           UserData(
@@ -50,9 +49,11 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
             type: 'location',
           ),
           UserData(
-            icon: profile!.gender == 'Female'
+            icon: BlocProvider.of<ProfilePageCubit>(context).editGender ==
+                    'Female'
                 ? Icons.female_outlined
-                : profile!.gender == 'Male'
+                : BlocProvider.of<ProfilePageCubit>(context).editGender ==
+                        'Male'
                     ? Icons.male_outlined
                     : Icons.question_mark_outlined,
             text: profile!.gender,

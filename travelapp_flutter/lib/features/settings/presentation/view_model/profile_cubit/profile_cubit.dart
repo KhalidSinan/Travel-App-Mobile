@@ -1,6 +1,8 @@
+// ignore_for_file: avoid_print
+import 'dart:io';
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/cities_airline_model.dart';
-import 'package:travelapp_flutter/features/settings/data/models/location_model.dart';
 import 'package:travelapp_flutter/features/settings/data/models/profile_model.dart';
 import 'package:travelapp_flutter/features/settings/data/repos/settings_repo_impl.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit_state.dart';
@@ -10,34 +12,17 @@ class ProfilePageCubit extends Cubit<ProfileStates> {
 
   final SettingsRepoImpl settingsRepoImpl;
   List<CountryModel> cities = [];
-  LocationModel? location;
   ProfileModel? profile;
-  bool? onEditing;
+  FormData? body;
+  File? editImage;
   String? editCity,
       editCountry,
       editDate,
+      editGender,
       editNumber,
       editCode,
       editFname,
       editLname;
-
-  void editState() {
-    onEditing = true;
-    emit(EditingState());
-    print('name : $editFname $editLname');
-    print('number : $editCode $editNumber');
-    print('location : $editCity, $editCountry');
-    print('date : $editDate');
-  }
-
-  void saveState() {
-    onEditing = false;
-    emit(ProfileSuccessState());
-    print('name : $editFname $editLname');
-    print('number : $editCode $editNumber');
-    print('location : $editCity, $editCountry');
-    print('date : $editDate');
-  }
 
   Future<void> getCountries() async {
     var response = await settingsRepoImpl.getCities();
@@ -47,7 +32,7 @@ class ProfilePageCubit extends Cubit<ProfileStates> {
         for (var i = 0; i < response['cities'].length; i++) {
           cities.add(CountryModel.fromJson(response["cities"][i]));
         }
-        emit(EditingState());
+        emit(ProfileSuccessState());
       },
     );
   }
@@ -66,6 +51,7 @@ class ProfilePageCubit extends Cubit<ProfileStates> {
         editCode = profile!.number?.code;
         editFname = profile!.name.first;
         editLname = profile!.name.last;
+        editGender = profile!.gender;
         emit(ProfileSuccessState());
       },
     );
@@ -80,9 +66,6 @@ class ProfilePageCubit extends Cubit<ProfileStates> {
     response.fold(
       (failure) => emit(ProfileFailureState(failure: failure)),
       (response) {
-        location = LocationModel.fromJson(response['location']);
-        editCity = location!.city;
-        editCountry = location!.country;
         emit(ProfileSuccessState());
       },
     );
@@ -91,7 +74,7 @@ class ProfilePageCubit extends Cubit<ProfileStates> {
   Future<void> changeNumber() async {
     emit(ProfileLoadingState());
     var response = await settingsRepoImpl.changeNumber(body: {
-      "country_code": editCode?.substring(1),
+      "country_code": editCode,
       "number": editNumber,
     });
     response.fold(
@@ -127,5 +110,59 @@ class ProfilePageCubit extends Cubit<ProfileStates> {
         emit(ProfileSuccessState());
       },
     );
+  }
+
+  Future<void> changeGender() async {
+    emit(ProfileLoadingState());
+    var response = await settingsRepoImpl.setGender(body: {
+      "gender": editGender,
+    });
+    response.fold(
+      (failure) => emit(ProfileFailureState(failure: failure)),
+      (response) {
+        emit(ProfileSuccessState());
+      },
+    );
+  }
+
+  Future<void> changeImage() async {
+    emit(ProfileLoadingState());
+    var response = await settingsRepoImpl.changeImage(
+      body: FormData.fromMap(
+        {
+          "profile_pic": await MultipartFile.fromFile(
+            editImage!.path,
+            filename: editImage!.path.split('/').last,
+          ),
+        },
+      ),
+    );
+    response.fold(
+      (failure) => emit(ProfileFailureState(failure: failure)),
+      (response) {
+        emit(ProfileSuccessState());
+      },
+    );
+  }
+
+  Future<void> updating() async {
+    if (editCity != null && editCountry != null) {
+      await changeLocation();
+    }
+    if (editGender != null) {
+      await changeGender();
+    }
+    if (editImage != null) {
+      await changeImage();
+    }
+    if (editFname != null && editLname != null) {
+      await changeName();
+    }
+    if (editDate != null) {
+      await changeDate();
+    }
+    if (editCode != null && editNumber != null) {
+      await changeNumber();
+    }
   }
 }

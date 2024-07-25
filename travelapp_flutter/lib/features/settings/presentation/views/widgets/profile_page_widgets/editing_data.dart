@@ -23,7 +23,6 @@ class _EditingDataState extends State<EditingData> {
   TextEditingController searchcontroller2 = TextEditingController();
   TextEditingController datecontroller = TextEditingController();
   TextEditingController numbercontroller = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,9 +36,6 @@ class _EditingDataState extends State<EditingData> {
           child: Row(
             children: [
               Icon(
-                // widget.text == null
-                //     ? Icons.question_mark_outlined
-                //     :
                 widget.icon,
                 size: 32,
                 color: Themes.primary,
@@ -50,28 +46,26 @@ class _EditingDataState extends State<EditingData> {
                     ? Row(
                         children: [
                           CustomCountryCodes(),
-                          Form(
-                            key: formKey,
-                            child: SizedBox(
-                              width: 150,
-                              child: TextFormField(
-                                initialValue:
-                                    BlocProvider.of<ProfilePageCubit>(context)
-                                            .editNumber ??
-                                        '',
-                                keyboardType: TextInputType.phone,
-                                style: const TextStyle(fontSize: 20),
-                                decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.only(bottom: 2),
-                                  enabledBorder: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                ),
-                                onChanged: (value) {
+                          SizedBox(
+                            width: 200,
+                            child: TextFormField(
+                              initialValue:
                                   BlocProvider.of<ProfilePageCubit>(context)
-                                      .editNumber = value;
-                                },
-                                validator: validateNumber,
+                                          .editNumber ??
+                                      '',
+                              keyboardType: TextInputType.phone,
+                              style: const TextStyle(fontSize: 20),
+                              decoration: const InputDecoration(
+                                contentPadding: EdgeInsets.only(bottom: 2),
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+
                               ),
+                              onChanged: (value) {
+                                BlocProvider.of<ProfilePageCubit>(context)
+                                    .editNumber = value;
+                              },
+                              validator: validateNumber,
                             ),
                           ),
                         ],
@@ -111,7 +105,97 @@ class _EditingDataState extends State<EditingData> {
                             : widget.type == 'gender'
                                 ? GestureDetector(
                                     onTap: () {
-                                      if (widget.text == 'Male/Female') {
+                                      if (BlocProvider.of<ProfilePageCubit>(
+                                                  context)
+                                              .editGender ==
+                                          null) {
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                backgroundColor: Colors.white,
+                                                elevation: 0,
+                                                shadowColor: Themes.primary,
+                                                content: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          BlocProvider.of<
+                                                                      ProfilePageCubit>(
+                                                                  context)
+                                                              .editGender = 'Male';
+                                                          // BlocProvider.of<
+                                                          //             ProfilePageCubit>(
+                                                          //         context)
+                                                          //     .editState();
+                                                        });
+                                                        Navigator.pop(context);
+                                                      },
+                                                      style: ButtonStyle(
+                                                        backgroundColor:
+                                                            const MaterialStatePropertyAll(
+                                                                Colors.white),
+                                                        elevation:
+                                                            const MaterialStatePropertyAll(
+                                                                0),
+                                                        overlayColor:
+                                                            MaterialStatePropertyAll(
+                                                          Themes.third
+                                                              .withOpacity(0.1),
+                                                        ),
+                                                      ),
+                                                      child: Text(
+                                                        'Male',
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            color:
+                                                                Themes.primary),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(width: 10),
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          BlocProvider.of<ProfilePageCubit>(
+                                                                      context)
+                                                                  .editGender =
+                                                              'Female';
+                                                          // BlocProvider.of<
+                                                          //             ProfilePageCubit>(
+                                                          //         context)
+                                                          //     .editState();
+                                                        });
+                                                        Navigator.pop(context);
+                                                      },
+                                                      style: ButtonStyle(
+                                                        backgroundColor:
+                                                            const MaterialStatePropertyAll(
+                                                                Colors.white),
+                                                        elevation:
+                                                            const MaterialStatePropertyAll(
+                                                                0),
+                                                        overlayColor:
+                                                            MaterialStatePropertyAll(
+                                                          Themes.third
+                                                              .withOpacity(0.1),
+                                                        ),
+                                                      ),
+                                                      child: Text(
+                                                        'Female',
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            color:
+                                                                Themes.primary),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            });
                                       } else {
                                         Get.snackbar(
                                           'Sorry !',
@@ -130,7 +214,9 @@ class _EditingDataState extends State<EditingData> {
                                       }
                                     },
                                     child: Text(
-                                      widget.text!,
+                                      BlocProvider.of<ProfilePageCubit>(context)
+                                              .editGender ??
+                                          'Male/Female',
                                       style: const TextStyle(fontSize: 20),
                                     ),
                                   )
@@ -174,7 +260,8 @@ class _EditingDataState extends State<EditingData> {
   void search() async {
     var searchResult = await showSearch(
       context: context,
-      delegate: LocationCities(
+      delegate: 
+       LocationCities(
           countries: BlocProvider.of<ProfilePageCubit>(context).cities),
     );
     if (searchResult != null) {

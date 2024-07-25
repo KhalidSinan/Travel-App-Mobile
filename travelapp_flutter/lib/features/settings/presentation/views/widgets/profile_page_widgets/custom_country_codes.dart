@@ -26,11 +26,11 @@ class CustomCountryCodes extends StatelessWidget {
           color: Colors.white, borderRadius: BorderRadius.circular(15)),
       initialSelection: BlocProvider.of<ProfilePageCubit>(context).editCode != null ?
           '+${BlocProvider.of<ProfilePageCubit>(context).editCode}' : '+963',
-      // onInit: (initial) {
-      //   initial = CountryCode(
-      //       dialCode:
-      //           '+${BlocProvider.of<ProfilePageCubit>(context).editCode}');
-      // },
+      onInit: (initial) {
+        initial = CountryCode(
+            dialCode:
+                '+${BlocProvider.of<ProfilePageCubit>(context).editCode ?? '+963'}');
+      },
       onChanged: (value) {
         BlocProvider.of<ProfilePageCubit>(context).editCode =
             value.toString().substring(1);
