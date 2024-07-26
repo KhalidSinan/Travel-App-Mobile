@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/available_flight_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/destinations_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip_states.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_selection_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/4_tickets_review_widgets/tickets_row.dart';
 import 'package:travelapp_flutter/core/widgets/next_button.dart';
 
@@ -22,7 +24,8 @@ class _TicketsReviewBodyState extends State<TicketsReviewBody> {
       builder: (context, state) {
         flights =
             BlocProvider.of<OrganizingTripCubit>(context).availableFlightModel;
-        destinations = BlocProvider.of<OrganizingTripCubit>(context).destinations;
+        destinations =
+            BlocProvider.of<OrganizingTripCubit>(context).destinations;
         if (state is LoadingOrganizingTrip) {
           return const Center(child: CircularProgressIndicator());
         } else {
@@ -37,7 +40,9 @@ class _TicketsReviewBodyState extends State<TicketsReviewBody> {
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
-                          TicketsRow(flightData: flights![index], filters: destinations![index].filter!),
+                          TicketsRow(
+                              flightData: flights![index],
+                              filters: destinations![index].filter!),
                           if (allAvailable() == true &&
                               index == flights!.length - 1)
                             Column(
@@ -50,7 +55,6 @@ class _TicketsReviewBodyState extends State<TicketsReviewBody> {
                                             ? MediaQuery.of(context)
                                                     .size
                                                     .height *
-
                                                 0.25
                                             : flights!.length == 3
                                                 ? MediaQuery.of(context)
@@ -58,16 +62,22 @@ class _TicketsReviewBodyState extends State<TicketsReviewBody> {
                                                         .height *
                                                     0.05
                                                 : 0),
-                               Padding(
-                              padding: const EdgeInsets.only(bottom: 20),
-                              child: NextButton(onTap: () {
-                                BlocProvider.of<OrganizingTripCubit>(context)
-                                    .getStartDate();
-                                BlocProvider.of<OrganizingTripCubit>(context)
-                                    .createTripSchedule();
-                                BlocProvider.of<OrganizingTripCubit>(context)
-                                    .createCurrentSteps();
-                              }),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 20),
+                                  child: NextButton(onTap: () {
+                                    BlocProvider.of<OrganizingTripCubit>(
+                                            context)
+                                        .getStartDate();
+                                    BlocProvider.of<OrganizingTripCubit>(
+                                            context)
+                                        .createTripSchedule();
+                                    BlocProvider.of<OrganizingTripCubit>(
+                                            context)
+                                        .createCurrentSteps();
+                                    Get.to(HotelSelectionPage(
+                                        bloc: BlocProvider.of<
+                                            OrganizingTripCubit>(context)));
+                                  }),
                                 )
                               ],
                             )

@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final String _baseUrl = 'http://192.168.1.105:5000';
+  final String _baseUrl = 'http://10.0.2.2:5000';
   //10.0.2.2
   final Dio _dio;
   final String token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTJhN2NkOGZkZDNkMDUxZWU1OTUxMSIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IlNhcmFoIiwibGFzdF9uYW1lIjoibmFqYXRpIn0sImlhdCI6MTcyMTgzOTg0MH0.WwpECkSQu24JqWgk57zXqod1__G__2_G75WYRr-suUU';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTdlZWRlNzY1NDhjMzBhM2EwNWVhNCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MjE5ODQ3OTV9.6ryrGuI7PL5YoO52tB8OncnUPJInyzZi21frFkwgmss';
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get(
