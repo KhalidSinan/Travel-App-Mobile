@@ -8,6 +8,18 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
       : super(OrganizedGroupTripInitialState());
   final OrganizingGroupTripImpl organizingGroupTripImpl;
   late List<AllOrganizedGroupTrip> allOrganizedGroupTrip;
+  late List<String> allCountries;
+
+  Future<void> getAllCountries() async {
+    emit(LoadingOrganizedGroupTripState());
+    dynamic response = await organizingGroupTripImpl.getAllCountries();
+    response.fold(
+        (failure) => emit(FailureOrganizedGroupTripState(failure: failure)),
+        (response) {
+      allCountries = response;
+      emit(SuccessOrganizedGroupTripState());
+    });
+  }
 
   Future<void> getAllOrganizedTrips() async {
     emit(LoadingOrganizedGroupTripState());

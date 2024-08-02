@@ -22,12 +22,25 @@ class OrganizingGroupTripImpl extends OrganizingGroupTripRepo {
             "organizedTripsShown": "All",
             "filterDestinations": [],
             "filterType": [],
-            "filterDate": {
-              "start_date": "",
-              "end_date": ""
-            },
+            "filterDate": {"start_date": "", "end_date": ""},
             "filterPrice": {"start_price": "", "end_price": ""},
           });
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      } else {
+        return left(Failure(errMessage: "something went wrong"));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> getAllCountries() async {
+    try {
+      Map<String, dynamic> response = await apiService.get(
+          endPoint: "http://localhost:5000/organized-trips/countries");
       return right(response);
     } catch (e) {
       if (e is DioException) {
