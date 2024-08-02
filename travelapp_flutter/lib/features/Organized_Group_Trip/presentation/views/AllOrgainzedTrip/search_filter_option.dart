@@ -33,18 +33,20 @@ class _OptionsSearchAndFilterState extends State<OptionsSearchAndFilter> {
                   outlineInputBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Themes.primary),
                       borderRadius: BorderRadius.circular(15)),
-                  prefixIcon: const Padding(
-                    padding: EdgeInsets.only(top: 15, left: 16),
-                    child: Text("Search by source city"),
-                  ),
+                  hintText: "Search by source city",
                   onTap: () async {
                     var searchResult = await showSearch(
                       context: context,
-                      delegate: CustomSearchCitiesGroupTrip(countries: BlocProvider.of<OrganizedGroupCubit>(context).allCountries),
+                      delegate: CustomSearchCitiesGroupTrip(
+                          countries:
+                              BlocProvider.of<OrganizedGroupCubit>(context)
+                                  .allCountries),
                     );
                     if (searchResult != null) {
                       setState(() {
                         searchController1.text = searchResult.toString();
+                        BlocProvider.of<OrganizedGroupCubit>(context).source=searchController1.text;
+                       
                       });
                     }
                   },
