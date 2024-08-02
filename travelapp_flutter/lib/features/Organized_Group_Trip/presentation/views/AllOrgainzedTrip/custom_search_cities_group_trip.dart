@@ -3,16 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 
 class CustomSearchCitiesGroupTrip extends SearchDelegate {
-  // final List<> countries;
-//{required this.countries}
-final List<String> countries =[
-  "Syria",
-  "America",
-  "Japan",
-  "Korea",
-  "China"
-];
-  CustomSearchCitiesGroupTrip();
+  final List<String> countries;
+
+  CustomSearchCitiesGroupTrip({required this.countries});
+
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -43,37 +37,23 @@ final List<String> countries =[
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<Map<String, String>> filteredCities = [];
-
-    if (query.isEmpty) {
-      for (var country in countries) {
-        for (var city in countries) {
-          filteredCities.add({"city": city, "country": country});
-        }
-      }
-    } else {
-      for (var country in countries) {
-        for (var city in countries) {
-          if (city.toLowerCase().contains(query.toLowerCase())) {
-            filteredCities.add({"city": city, "country": country});
-          }
-        }
-      }
-    }
+    print(countries);
+    List<String> filteredCountries = query.isEmpty
+        ? countries
+        : countries.where((country) => country.toLowerCase().contains(query.toLowerCase())).toList();
 
     return ListView.builder(
-      itemCount: filteredCities.length,
+      itemCount: filteredCountries.length,
       itemBuilder: (context, index) {
         return ListTile(
           leading: Icon(
+            FontAwesomeIcons.flag,
             size: 18,
-            FontAwesomeIcons.city,
             color: Themes.primary,
           ),
-          title: Text(filteredCities[index]["city"]!),
-          subtitle: Text(filteredCities[index]["country"]!),
+          title: Text(filteredCountries[index]),
           onTap: () {
-            close(context, filteredCities[index]["city"]);
+            close(context, filteredCountries[index]);
           },
         );
       },

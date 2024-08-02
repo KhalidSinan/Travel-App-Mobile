@@ -39,8 +39,8 @@ class OrganizingGroupTripImpl extends OrganizingGroupTripRepo {
   @override
   Future<Either<Failure, Map<String, dynamic>>> getAllCountries() async {
     try {
-      Map<String, dynamic> response = await apiService.get(
-          endPoint: "http://localhost:5000/organized-trips/countries");
+      Map<String, dynamic> response =
+          await apiService.get(endPoint: "/organized-trips/countries");
       return right(response);
     } catch (e) {
       if (e is DioException) {
