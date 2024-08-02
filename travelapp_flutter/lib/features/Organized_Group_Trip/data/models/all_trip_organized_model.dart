@@ -1,4 +1,4 @@
-class AllOrganizedTrip {
+class AllOrganizedGroupTrip {
   final int id;
   final String organizerName;
   final String source;
@@ -10,7 +10,7 @@ class AllOrganizedTrip {
   final bool isAnnounced;
   final List<String> destinations;
 
-  AllOrganizedTrip(
+  AllOrganizedGroupTrip(
       {required this.id,
       required this.organizerName,
       required this.source,
@@ -22,8 +22,8 @@ class AllOrganizedTrip {
       required this.isAmostComplete,
       required this.isAnnounced});
 
-  factory AllOrganizedTrip.fromJson(jsonData) {
-    return AllOrganizedTrip(
+  factory AllOrganizedGroupTrip.fromJson(jsonData) {
+    return AllOrganizedGroupTrip(
         id: jsonData["id"],
         organizerName: jsonData["organizer_name"],
         source: jsonData["starting_place"],
