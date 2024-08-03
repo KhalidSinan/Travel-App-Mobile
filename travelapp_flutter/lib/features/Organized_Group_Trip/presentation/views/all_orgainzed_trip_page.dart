@@ -17,7 +17,7 @@ class AllOrganizedGroupTrips extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           OrganizedGroupCubit(getIt.get<OrganizingGroupTripImpl>())
-            ..getAllCountries(),
+            ..getAllCountries()..getAllOrganizedTrips(),
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
