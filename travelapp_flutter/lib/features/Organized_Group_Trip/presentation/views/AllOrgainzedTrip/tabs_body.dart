@@ -9,12 +9,35 @@ import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/vie
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/AllOrgainzedTrip/organized_group_non_advertisment.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/AllOrgainzedTrip/pagination_trips.dart';
 
-class TabsBody extends StatelessWidget {
-  const TabsBody({super.key});
+class TabsBody extends StatefulWidget {
+  final String tab;
+
+  const TabsBody({super.key, required this.tab});
 
   static const List<bool> data = [
-    true, false, true, false, true, true, false, false, true, false
+    true,
+    false,
+    true,
+    false,
+    true,
+    true,
+    false,
+    false,
+    true,
+    false
   ];
+
+  @override
+  State<TabsBody> createState() => _TabsBodyState();
+}
+
+class _TabsBodyState extends State<TabsBody> {
+  @override
+  initState() {
+    super.initState();
+    BlocProvider.of<OrganizedGroupCubit>(context)
+        .getAllOrganizedTrips(tab: widget.tab);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +74,10 @@ class TabsBody extends StatelessWidget {
             mainAxisSpacing: 20,
             crossAxisSpacing: 10,
             itemBuilder: (BuildContext context, int index) {
-              return data[index] ? _buildShimmerBox() : _buildShimmerBox(height: MediaQuery.of(context).size.height * 0.4);
+              return TabsBody.data[index]
+                  ? _buildShimmerBox()
+                  : _buildShimmerBox(
+                      height: MediaQuery.of(context).size.height * 0.4);
             },
           ),
         ],
@@ -80,6 +106,7 @@ class TabsBody extends StatelessWidget {
   }
 
   Widget _buildTripsList(List<AllOrganizedGroupTrip> allTrips) {
+    print(allTrips.length);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListView(

@@ -7,7 +7,7 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
   OrganizedGroupCubit(this.organizingGroupTripImpl)
       : super(OrganizedGroupTripInitialState());
   final OrganizingGroupTripImpl organizingGroupTripImpl;
-  late List<AllOrganizedGroupTrip> allOrganizedGroupTrip = [];
+  List<AllOrganizedGroupTrip> allOrganizedGroupTrip = [];
   late List<String> allCountries = [];
 
   String? source;
@@ -27,7 +27,7 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
 
   Future<void> getAllOrganizedTrips({String? tab, int? page}) async {
     print(tab);
-
+    allOrganizedGroupTrip = [];
     emit(LoadingOrganizedGroupTripState());
     dynamic response = await organizingGroupTripImpl.getAllOrganizedTrips(
         page: 1, source: source ?? "", tab: tab ?? "All");
@@ -38,7 +38,7 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
       for (var i = 0; i < response["data"].length; i++) {
         allOrganizedGroupTrip
             .add(AllOrganizedGroupTrip.fromJson(response['data'][i]));
-        print(response['data']);
+
         print(allOrganizedGroupTrip[i]);
       }
       emit(SuccessOrganizedGroupTripState());
