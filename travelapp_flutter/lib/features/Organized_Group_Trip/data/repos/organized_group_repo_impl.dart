@@ -13,13 +13,15 @@ class OrganizingGroupTripImpl extends OrganizingGroupTripRepo {
 
   @override
   Future<Either<Failure, Map<String, dynamic>>> getAllOrganizedTrips(
-      {required int page, required String source}) async {
+      {required int page, required String source, required String tab}) async {
     try {
+      print("0000000000");
+      print(tab);
       Map<String, dynamic> response = await apiService.post(
           endPoint: "/organized-trips/?page=${page}",
           body: {
-            "starting_country": "",
-            "organizedTripsShown": "All",
+            "starting_country": source,
+            "organizedTripsShown": tab,
             "filterDestinations": [],
             "filterType": [],
             "filterDate": {"start_date": "", "end_date": ""},

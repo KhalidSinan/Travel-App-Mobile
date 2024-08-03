@@ -8,8 +8,9 @@ import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/vie
 class OrganizedTripPagination extends StatelessWidget {
   const OrganizedTripPagination({
     super.key,
+    required this.totalTrips
   });
-
+final int totalTrips;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OrganizedGroupCubit, OrganizedGroupCubitState>(
