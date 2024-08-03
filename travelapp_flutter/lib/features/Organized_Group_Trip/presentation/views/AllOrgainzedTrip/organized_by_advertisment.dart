@@ -77,14 +77,17 @@ final AllOrganizedGroupTrip oneTrip;
                                   color: Themes.primary,
                                 ),
                                 const SizedBox(width: 16),
-                                 Text(
-                                  oneTrip.source,
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                                 Flexible(
+                                   child: Text(
+                                    oneTrip.source,
+                                    maxLines: 2,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                                                   ),
+                                 ),
                               ],
                             ),
                             const SizedBox(height: 8),
@@ -122,7 +125,7 @@ final AllOrganizedGroupTrip oneTrip;
                                   ),
                                   TextSpan(
                                     text:
-                                       '${oneTrip.tripType[0]}-${oneTrip.tripType[1]}-${oneTrip.tripType[2]}',
+                                       '${oneTrip.tripType[0]}}}',
                                     style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,

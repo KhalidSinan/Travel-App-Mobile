@@ -1,9 +1,9 @@
 class AllOrganizedGroupTrip {
-  final int id;
+  final String id;
   final String organizerName;
   final String source;
   final List<String> tripType;
-  final double price;
+  final String price;
   final String date;
   final String numOfParticipating;
   final bool isAmostComplete;

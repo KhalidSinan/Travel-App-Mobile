@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
@@ -87,12 +88,15 @@ class OrganizedGroupNonAdvertisment extends StatelessWidget {
                                 SizedBox(
                                   width: padding,
                                 ),
-                                Text(
-                                  oneTrip.source,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: isLargeScreen ? 18 : 16,
-                                    fontWeight: FontWeight.bold,
+                                Flexible(
+                                  child: Text(
+                                    oneTrip.source,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: isLargeScreen ? 18 : 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -137,7 +141,8 @@ class OrganizedGroupNonAdvertisment extends StatelessWidget {
                                     ),
                                   ),
                                   TextSpan(
-                                    text: '${oneTrip.tripType[0]}-${oneTrip.tripType[1]}',
+                                    text:
+                                        '${oneTrip.tripType[0]}}',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: isLargeScreen ? 18 : 16,
