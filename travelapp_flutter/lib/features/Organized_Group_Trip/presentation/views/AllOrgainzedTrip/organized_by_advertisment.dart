@@ -22,7 +22,7 @@ class OrganizedByAdvertisment extends StatelessWidget {
         return LayoutBuilder(
           builder: (context, constraints) {
             final width = constraints.maxWidth;
-            // final isLargeScreen = width > 600;
+            final isLargeScreen = width > 600;
 
             return Stack(
               children: [
