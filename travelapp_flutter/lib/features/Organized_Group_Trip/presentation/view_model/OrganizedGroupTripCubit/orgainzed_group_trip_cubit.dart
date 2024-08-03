@@ -25,7 +25,8 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
     });
   }
 
-  Future<void> getAllOrganizedTrips({String? tab, int? page}) async {
+  Future<void> getAllOrganizedTrips(
+      {String? tab, int? page, String? source}) async {
     print(tab);
     allOrganizedGroupTrip = [];
     emit(LoadingOrganizedGroupTripState());
