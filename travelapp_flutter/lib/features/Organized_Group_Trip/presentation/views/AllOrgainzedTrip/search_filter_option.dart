@@ -45,8 +45,11 @@ class _OptionsSearchAndFilterState extends State<OptionsSearchAndFilter> {
                     if (searchResult != null) {
                       setState(() {
                         searchController1.text = searchResult.toString();
-                        BlocProvider.of<OrganizedGroupCubit>(context).source=searchController1.text;
-                       
+                        BlocProvider.of<OrganizedGroupCubit>(context).source =
+                            searchController1.text;
+                        BlocProvider.of<OrganizedGroupCubit>(context)
+                            .getAllOrganizedTrips(
+                                source: searchController1.text);
                       });
                     }
                   },

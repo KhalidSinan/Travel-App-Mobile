@@ -33,8 +33,9 @@ class TabsBody extends StatefulWidget {
 
 class _TabsBodyState extends State<TabsBody> {
   @override
-  initState() {
+  void initState() {
     super.initState();
+    // Fetch trips for the initial tab
     BlocProvider.of<OrganizedGroupCubit>(context)
         .getAllOrganizedTrips(tab: widget.tab);
   }
@@ -106,27 +107,32 @@ class _TabsBodyState extends State<TabsBody> {
   }
 
   Widget _buildTripsList(List<AllOrganizedGroupTrip> allTrips) {
-    print(allTrips.length);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListView(
         children: [
-          MasonryGridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
+          SizedBox(
+            child: MasonryGridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate:
+                  const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+              ),
+              itemCount: allTrips.length,
+              mainAxisSpacing: 20,
+              crossAxisSpacing: 10,
+              itemBuilder: (BuildContext context, int index) {
+                return allTrips[index].isAnnounced
+                    ? OrganizedByAdvertisment(oneTrip: allTrips[index])
+                    : OrganizedGroupNonAdvertisment(oneTrip: allTrips[index]);
+              },
             ),
-            itemCount: allTrips.length,
-            mainAxisSpacing: 20,
-            crossAxisSpacing: 10,
-            itemBuilder: (BuildContext context, int index) {
-              return allTrips[index].isAnnounced
-                  ? OrganizedByAdvertisment(oneTrip: allTrips[index])
-                  : OrganizedGroupNonAdvertisment(oneTrip: allTrips[index]);
-            },
           ),
-          OrganizedTripPagination(totalTrips: allTrips.length),
+          const SizedBox(
+            height: 100,
+          ),
+          OrganizedTripPagination(),
         ],
       ),
     );
