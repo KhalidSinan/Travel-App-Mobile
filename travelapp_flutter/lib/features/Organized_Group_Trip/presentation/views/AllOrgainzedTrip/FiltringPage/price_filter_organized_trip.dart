@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/orgainzed_group_trip_cubit.dart';
 
 class PriceFilterTripGroup extends StatefulWidget {
   const PriceFilterTripGroup({super.key});
@@ -9,43 +11,58 @@ class PriceFilterTripGroup extends StatefulWidget {
 }
 
 class _PriceFilterTripGroupState extends State<PriceFilterTripGroup> {
-  // late RangeValues prices;
+  late RangeValues prices;
+
   @override
   void initState() {
     super.initState();
+
+    final cubit = BlocProvider.of<OrganizedGroupCubit>(context);
+    prices = RangeValues(
+      cubit.minPrice ?? 0,
+      cubit.maxPrice ?? 10000,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    RangeLabels labels = const RangeLabels(
-      "100",
-      "3000",
+    RangeLabels labels = RangeLabels(
+      prices.start.toInt().toString(),
+      prices.end.toInt().toString(),
     );
+
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            Text('Select Price:',
-                style: Styles.heading2.copyWith(color: Colors.black)),
+            Text(
+              'By Price',
+              style: Styles.heading2,
+            ),
             const SizedBox(width: 16),
             Text(
-              '(${"10"}\$ - ${"3000"}\$)',
+              '(${prices.start.toInt()}\$ - ${prices.end.toInt()}\$)',
               style: Styles.content,
             ),
           ],
         ),
         const SizedBox(height: 8),
         RangeSlider(
-          values: RangeValues(50, 3000),
+          values: prices,
           labels: labels,
-          min: 10,
-          max: 3000,
-          divisions: 30,
+          min: 0,
+          max: 10000,
+          divisions: 100,
           activeColor: Colors.grey,
           onChanged: (newValue) {
             setState(() {
-              // prices = newValue;
+              prices = newValue;
             });
+
+            BlocProvider.of<OrganizedGroupCubit>(context)
+              ..minPrice = newValue.start
+              ..maxPrice = newValue.end;
           },
         ),
       ],
