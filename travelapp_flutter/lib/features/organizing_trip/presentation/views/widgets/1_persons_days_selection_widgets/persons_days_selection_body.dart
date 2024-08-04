@@ -19,8 +19,8 @@ class PersonsDaysSelectionBody extends StatefulWidget {
 }
 
 class _PersonsDaysSelectionBodyState extends State<PersonsDaysSelectionBody> {
-   int numberOfPerson=1;
-   int numberDays=1;
+  int numberOfPerson = 1;
+  int numberDays = 1;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -85,15 +85,16 @@ class _PersonsDaysSelectionBodyState extends State<PersonsDaysSelectionBody> {
               ),
             ),
           ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.28),
+          const Spacer(),
           NextButton(onTap: () {
             BlocProvider.of<OrganizingTripCubit>(context)
                 .setNumberPerson(numberOfPerson);
             BlocProvider.of<OrganizingTripCubit>(context)
                 .setNumberDays(numberDays);
 
-            Get.to(const DateSelection());
-          })
+            Get.to(() => const DateSelection());
+          }),
+          const SizedBox(height: 16),
         ],
       ),
     );

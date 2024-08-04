@@ -4,11 +4,15 @@ import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/features_list.dart';
+import 'package:travelapp_flutter/features/hotel_booking/data/models/room_cart_model.dart';
 
 class RoomCardReview extends StatelessWidget {
   const RoomCardReview({
     super.key,
+    required this.room,
   });
+
+  final RoomCartModel room;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +27,7 @@ class RoomCardReview extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Double Bed",
+                  room.room.bedOptions!,
                   style: Styles.heading.copyWith(fontSize: 20),
                 ),
                 const SizedBox(height: 5),
@@ -31,7 +35,7 @@ class RoomCardReview extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Budget",
+                      room.room.type!,
                       style: Styles.content.copyWith(
                         fontSize: 16,
                         color: Colors.grey[400],
@@ -46,7 +50,7 @@ class RoomCardReview extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          '${3}',
+                          '${room.room.sleepsCount}',
                           style: TextStyle(
                             color: Themes.third,
                             fontWeight: FontWeight.bold,
@@ -61,7 +65,7 @@ class RoomCardReview extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          "2",
+                          "${room.room.bedOptionsCount}",
                           style: TextStyle(
                             color: Themes.third,
                             fontWeight: FontWeight.bold,
@@ -74,13 +78,13 @@ class RoomCardReview extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "City View",
+                  room.room.view!,
                   style: Styles.content.copyWith(fontSize: 16),
                 ),
                 const SizedBox(height: 16),
                 FeaturesList(
                   roomTag: true,
-                  features: const ["Free WiFi"],
+                  features: room.room.amenities,
                   getFeatures: getFeatureIcon,
                 ),
               ],

@@ -71,6 +71,7 @@ class _TileContentState extends State<TileContent> {
                                   onPressed: () async {
                                     if (isForm) {
                                       formCubit.removePassenger(widget.index);
+                                      Navigator.pop(context);
                                     } else {
                                       await formCubit.cancleReservation(
                                         personId: formCubit

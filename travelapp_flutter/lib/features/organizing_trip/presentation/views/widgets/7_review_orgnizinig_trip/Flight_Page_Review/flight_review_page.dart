@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/7_review_orgnizinig_trip/Flight_Page_Review/flight_review_body.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FlightPageReview extends StatelessWidget {
   const FlightPageReview({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final trip = BlocProvider.of<OrganizingTripCubit>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -41,23 +44,23 @@ class FlightPageReview extends StatelessWidget {
                 const SizedBox(
                   height: 32,
                 ),
-                const Text(
-                  "Total journey Number Flight : ${5}",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                Text(
+                  "Total journey Number Flight : ${trip.destinations.length - 1}",
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 const SizedBox(
                   height: 13,
                 ),
-                const Text(
-                  "Total Price of Flights : 2500\$",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                Text(
+                  "Total Price of Flights : ${trip.getTotalFlightsPrice()}\$",
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 const SizedBox(
                   height: 13,
                 ),
-                const Text(
-                  "Class Type : Economy",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                Text(
+                  "Class Type : ${trip.getSeatClass()}",
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
                 )
               ],
             ),

@@ -11,6 +11,7 @@ import 'package:travelapp_flutter/features/flight_booking/presentation/view_mode
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/confirm_flight_reservation_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/plane_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/form_page_body.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 
 // ignore: must_be_immutable
 class FormPage extends StatefulWidget {
@@ -22,6 +23,7 @@ class FormPage extends StatefulWidget {
     this.reservationType,
     this.passengers,
     this.reservationId,
+    this.tripFrom,
   });
 
   final List<String>? flightsId;
@@ -30,6 +32,7 @@ class FormPage extends StatefulWidget {
   final int seats;
   final List<PassengerModel>? passengers;
   final String? reservationId;
+  final bool? tripFrom;
   @override
   State<FormPage> createState() => _FormPageState();
 }
@@ -63,6 +66,7 @@ class _FormPageState extends State<FormPage> {
                   reservationType: widget.reservationType,
                   classType: widget.classType,
                   seats: numberOfSeats,
+                  tripForm: widget.tripFrom,
                   // isInitial: state is FormInitial,
                 );
               }

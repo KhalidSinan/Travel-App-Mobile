@@ -17,30 +17,30 @@ class PlacesPage extends StatelessWidget {
   final int step;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => OrganizingTripCubit(getIt.get<OrganizingTripImpl>()),
-      child: DefaultTabController(
-        length: 10,
-        child: Scaffold(
-          appBar: AppBar(
-            leading: const CustomBackButton(),
-            title: Text('Select activities in $city'),
-            titleTextStyle:
-                Styles.heading2.copyWith(color: Themes.third, fontSize: 25),
-          ),
-          body: SafeArea(
-            child: BlocListener<OrganizingTripCubit, OrganizingTripStates>(
-              listener: (context, state) {
-                if (state is FailureOrganizingTrip) {
-                  Get.to(
-                    () => FailurePage(
-                      error: state.failure,
-                      onPressed: () {},
-                    ),
-                  );
-                }
-              },
-              child: PlacesPageBody(city: city , step: step,),
+    return DefaultTabController(
+      length: 10,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: const CustomBackButton(),
+          title: Text('Select activities in $city'),
+          titleTextStyle:
+              Styles.heading2.copyWith(color: Themes.third, fontSize: 25),
+        ),
+        body: SafeArea(
+          child: BlocListener<OrganizingTripCubit, OrganizingTripStates>(
+            listener: (context, state) {
+              if (state is FailureOrganizingTrip) {
+                Get.to(
+                  () => FailurePage(
+                    error: state.failure,
+                    onPressed: () {},
+                  ),
+                );
+              }
+            },
+            child: PlacesPageBody(
+              city: city,
+              step: step,
             ),
           ),
         ),

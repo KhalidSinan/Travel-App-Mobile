@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/organizing_trip/data/models/place_model.dart';
 
 class PlaceCardReview extends StatelessWidget {
   const PlaceCardReview({
     super.key,
+    required this.place,
   });
+
+  final PlaceModel place;
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +27,17 @@ class PlaceCardReview extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Romeo's Pizzeria",
+          Text(
+            place.name,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontSize: 23),
+            style: const TextStyle(fontSize: 23),
           ),
           const SizedBox(height: 8),
-          const Text(
-            "Description for Places",
+          Text(
+            place.description,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: Colors.grey, fontSize: 18),
+            style: const TextStyle(color: Colors.grey, fontSize: 18),
           ),
           const SizedBox(height: 8),
           Row(
@@ -42,11 +46,13 @@ class PlaceCardReview extends StatelessWidget {
                 Icons.location_pin,
                 color: Themes.third,
               ),
-              const SizedBox(width: 6),
-              const Text(
-                "20481 N 7th Street",
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 18),
+              // const SizedBox(width: 6),
+              Expanded(
+                child: Text(
+                  "${place.address.city} ${place.address.country} ${place.address.address}",
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontSize: 18),
+                ),
               ),
             ],
           ),
@@ -61,9 +67,9 @@ class PlaceCardReview extends StatelessWidget {
                     color: Themes.third,
                   ),
                   const SizedBox(width: 6),
-                  const Text(
-                    '+${963} ${9999994560}',
-                    style: TextStyle(fontSize: 18),
+                  Text(
+                    '+${place.phoneNumber.countryCode} ${place.phoneNumber.number}',
+                    style: const TextStyle(fontSize: 18),
                   ),
                 ],
               ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_step_circular.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/7_review_orgnizinig_trip/review_orgnizing_trip_body.dart';
 
 class ReviewOrgnizingTrip extends StatelessWidget {
@@ -9,6 +11,7 @@ class ReviewOrgnizingTrip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final trip = BlocProvider.of<OrganizingTripCubit>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -48,31 +51,31 @@ class ReviewOrgnizingTrip extends StatelessWidget {
                 const SizedBox(
                   height: 32,
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Trip Days : ${5}",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      "Trip Days : ${trip.numberDays}",
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
                     Text(
-                      "Start Date : 24/9/2024",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      "Start Date : ${trip.startDate}",
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ],
                 ),
                 const SizedBox(
                   height: 8,
                 ),
-                const Text(
-                  "Number Of Travelers : ${3}",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                Text(
+                  "Number Of Travelers : ${trip.numberPerson}",
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 const SizedBox(
                   height: 8,
                 ),
                 const Text(
-                  "Total Trip Price : 2500\$",
+                  "Total Trip Price : ${5000}\$",
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ],

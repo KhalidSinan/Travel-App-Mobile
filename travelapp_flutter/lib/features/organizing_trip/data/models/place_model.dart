@@ -28,4 +28,11 @@ class PlaceModel {
       address: AddressModel.fromJson(jsonData['address']),
     );
   }
+
+  Map<String, String> toJson() {
+    return {
+      "place": id,
+      "description": category,
+    };
+  }
 }

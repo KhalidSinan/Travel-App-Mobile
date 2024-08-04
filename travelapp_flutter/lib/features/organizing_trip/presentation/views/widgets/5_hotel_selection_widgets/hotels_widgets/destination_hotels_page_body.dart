@@ -27,21 +27,22 @@ class DestinationHotelsPageBody extends StatelessWidget {
               return const SliverFillRemaining(
                   child: Center(child: CircularProgressIndicator()));
             } else if (state is NoHotelsState) {
-              return const SliverToBoxAdapter(child: Text('No hotels found'));
+              return const SliverFillRemaining(
+                  child: Center(child: Text('No hotels found')));
             } else {
               return const HotelSelectionList();
             }
           },
         ),
-        BlocBuilder<HotelReservationCubit, HotelReservationState>(
-          builder: (context, state) {
-            if (state is HotelReservationSuccessState) {
-              return const HotelSelectionPagination();
-            } else {
-              return const SliverToBoxAdapter(child: SizedBox());
-            }
-          },
-        )
+        // BlocBuilder<HotelReservationCubit, HotelReservationState>(
+        //   builder: (context, state) {
+        //     if (state is HotelReservationSuccessState) {
+        //       return const HotelSelectionPagination();
+        //     } else {
+        //       return const SliverToBoxAdapter(child: SizedBox());
+        //     }
+        //   },
+        // )
       ],
     );
   }

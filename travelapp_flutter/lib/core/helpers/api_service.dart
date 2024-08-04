@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final String _baseUrl = 'http://10.0.2.2:5000';
+  final String baseUrl = 'http://10.0.2.2:5000';
   //10.0.2.2
   final Dio _dio;
   final String token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTdlZWRlNzY1NDhjMzBhM2EwNWVhNCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFiZCIsImxhc3RfbmFtZSI6IkF1c2hhciJ9LCJpYXQiOjE3MjE5ODQ3OTV9.6ryrGuI7PL5YoO52tB8OncnUPJInyzZi21frFkwgmss';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZjZWRhZjJjZmY3YzdhOWVkMGZmMTBhZiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkdyZWdnIiwibGFzdF9uYW1lIjoiQnJla2tlIn0sImlhdCI6MTcyMjc4NjcyMn0.wmoEYfGClt2OEjBRNWUmBXGGHoRtNhn4pUYiPYD82Vo';
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get(
@@ -13,7 +13,7 @@ class ApiService {
       Map<String, dynamic>? headers,
       Map<String, dynamic>? extra}) async {
     var response = await _dio.get(
-      '$_baseUrl$endPoint',
+      '$baseUrl$endPoint',
       options: Options(
         headers: headers ??
             {
@@ -33,7 +33,7 @@ class ApiService {
     Map<String, dynamic>? queryParameters,
   }) async {
     var response = await _dio.post(
-      '$_baseUrl$endPoint',
+      '$baseUrl$endPoint',
       data: body,
       queryParameters: queryParameters,
       options: Options(
@@ -54,7 +54,7 @@ class ApiService {
     Map<String, dynamic>? headers,
   }) async {
     var response = await _dio.delete(
-      '$_baseUrl$endPoint',
+      '$baseUrl$endPoint',
       data: body,
       options: Options(
         headers: headers,
@@ -71,7 +71,7 @@ class ApiService {
     Map<String, dynamic>? queryParameters,
   }) async {
     var response = await _dio.put(
-      '$_baseUrl$endPoint',
+      '$baseUrl$endPoint',
       data: body,
       queryParameters: queryParameters,
       options: Options(
