@@ -12,6 +12,8 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
 
   String? source;
   int page = 1;
+  String? startDate;
+  String? endDate;
 
   Future<void> getAllCountries() async {
     emit(LoadingOrganizedGroupTripState());
@@ -26,12 +28,20 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
   }
 
   Future<void> getAllOrganizedTrips(
-      {String? tab, int? page, String? source}) async {
+      {String? tab,
+      int? page,
+      String? source,
+      String? startDate,
+      String? endDate}) async {
     print(tab);
     allOrganizedGroupTrip = [];
     emit(LoadingOrganizedGroupTripState());
     dynamic response = await organizingGroupTripImpl.getAllOrganizedTrips(
-        page: 1, source: source ?? "", tab: tab ?? "All");
+        page: 1,
+        source: source ?? "",
+        tab: tab ?? "All",
+        startDate: startDate ?? "",
+        endDate: endDate ?? "");
 
     response
         .fold((failue) => emit(FailureOrganizedGroupTripState(failure: failue)),

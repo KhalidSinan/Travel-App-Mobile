@@ -14,27 +14,22 @@ class AllOrganizedGroupTrips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          OrganizedGroupCubit(getIt.get<OrganizingGroupTripImpl>())
-            ..getAllCountries()..getAllOrganizedTrips(),
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            leading: const CustomBackButton(),
-          ),
-          body: BlocListener<OrganizedGroupCubit, OrganizedGroupCubitState>(
-            listener: (context, state) {
-              if(state is FailureOrganizedGroupTripState){
-                Get.to(FailurePage(error: state.failure, onPressed:()async{
-                  await BlocProvider.of<OrganizedGroupCubit>(context).getAllOrganizedTrips();
-                } ));
-              }
-            },
-            child: const Padding(
-              padding: EdgeInsets.all(0.8),
-              child: AllOrganizedGroupTripsBody(),
-            ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: const CustomBackButton(),
+        ),
+        body: BlocListener<OrganizedGroupCubit, OrganizedGroupCubitState>(
+          listener: (context, state) {
+            if(state is FailureOrganizedGroupTripState){
+              Get.to(FailurePage(error: state.failure, onPressed:()async{
+                await BlocProvider.of<OrganizedGroupCubit>(context).getAllOrganizedTrips();
+              } ));
+            }
+          },
+          child: const Padding(
+            padding: EdgeInsets.all(0.8),
+            child: AllOrganizedGroupTripsBody(),
           ),
         ),
       ),

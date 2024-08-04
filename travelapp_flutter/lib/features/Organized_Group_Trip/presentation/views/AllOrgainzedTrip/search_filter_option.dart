@@ -20,6 +20,7 @@ class OptionsSearchAndFilter extends StatefulWidget {
 class _OptionsSearchAndFilterState extends State<OptionsSearchAndFilter> {
   String? src;
   TextEditingController searchController1 = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OrganizedGroupCubit, OrganizedGroupCubitState>(
@@ -31,25 +32,24 @@ class _OptionsSearchAndFilterState extends State<OptionsSearchAndFilter> {
               Expanded(
                 child: CustomTextFormField(
                   outlineInputBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Themes.primary),
-                      borderRadius: BorderRadius.circular(15)),
+                    borderSide: BorderSide(color: Themes.primary),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
                   hintText: "Search by source city",
                   onTap: () async {
                     var searchResult = await showSearch(
                       context: context,
                       delegate: CustomSearchCitiesGroupTrip(
-                          countries:
-                              BlocProvider.of<OrganizedGroupCubit>(context)
-                                  .allCountries),
+                        countries: BlocProvider.of<OrganizedGroupCubit>(context).allCountries,
+                      ),
                     );
                     if (searchResult != null) {
                       setState(() {
                         searchController1.text = searchResult.toString();
-                        BlocProvider.of<OrganizedGroupCubit>(context).source =
-                            searchController1.text;
-                        BlocProvider.of<OrganizedGroupCubit>(context)
-                            .getAllOrganizedTrips(
-                                source: searchController1.text);
+                        BlocProvider.of<OrganizedGroupCubit>(context).source = searchController1.text;
+                        BlocProvider.of<OrganizedGroupCubit>(context).getAllOrganizedTrips(
+                          source: searchController1.text,
+                        );
                       });
                     }
                   },
@@ -65,12 +65,11 @@ class _OptionsSearchAndFilterState extends State<OptionsSearchAndFilter> {
               ),
               IconButton(
                 onPressed: () {
-                  Get.to(const FilteringPage());
+                  Get.to(() => const FilteringPage());
                 },
-                style: IconButton.styleFrom(),
                 icon: Icon(
-                  size: 30,
                   FontAwesomeIcons.filter,
+                  size: 30,
                   color: Themes.third,
                 ),
               ),
