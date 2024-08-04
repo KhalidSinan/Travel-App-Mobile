@@ -9,27 +9,23 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/view_mod
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/hotel_selection_body.dart';
 
 class HotelSelectionPage extends StatelessWidget {
-  const HotelSelectionPage({super.key, required this.bloc});
-
- final OrganizingTripCubit bloc;
+  const HotelSelectionPage({super.key});
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider.value(
-          value: bloc,
-        ),
         BlocProvider(
-            create: (context) =>
-                HotelInformationCubit(HotelformationInitialState()))
+            create: (context) => HotelInformationCubit(
+                  HotelformationInitialState(),
+                  destinations: BlocProvider.of<OrganizingTripCubit>(context)
+                      .destinations
+                      .length,
+                )..initialize())
       ],
       child: Scaffold(
           appBar: AppBar(
             actions: const [
-              CustomStepCircular(
-                progress: 0.625,
-                text: '5/8'
-              ),
+              CustomStepCircular(progress: 0.625, text: '5/8'),
               SizedBox(width: 15)
             ],
             leading: const CustomBackButton(),

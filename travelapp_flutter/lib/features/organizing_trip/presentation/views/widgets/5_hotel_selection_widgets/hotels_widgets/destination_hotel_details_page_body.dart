@@ -9,6 +9,7 @@ import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/image_slider.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/hotel_description.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/stars_list.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_information_cubit/hotel_information_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_reservation_cubit/hotel_reservation_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/hotels_widgets/rooms_selection_page.dart';
 
@@ -91,7 +92,10 @@ class HotelSelectionDetailsPageBody extends StatelessWidget {
           child: CustomButton(
             onPressed: () {
               Get.to(
-                () => RoomsSelectionPage(bloc: hotelRes),
+                () => RoomsSelectionPage(
+                  bloc: hotelRes,
+                  bloc2: BlocProvider.of<HotelInformationCubit>(context),
+                ),
               );
             },
             label: "Select Room(s)",

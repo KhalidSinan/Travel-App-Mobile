@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/organizing_trip/data/models/hotel_for_destination_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/7_review_orgnizinig_trip/Hotel_Page_Review/stars_list_review.dart';
 
 class HotelCardReview extends StatelessWidget {
   const HotelCardReview({
     super.key,
+    required this.hotel,
   });
+
+  final HotelForDestinationModel hotel;
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +34,17 @@ class HotelCardReview extends StatelessWidget {
               width: 135,
             ),
           ),
-          const Expanded(
+          Expanded(
             child: Padding(
-              padding: EdgeInsets.all(6.0),
+              padding: const EdgeInsets.all(6.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Flexible(
                     child: Text(
-                      "Shirogane Park Hills",
-                      style: TextStyle(fontSize: 16),
+                      hotel.hotelName,
+                      style: const TextStyle(fontSize: 16),
                       softWrap: true,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -48,17 +52,17 @@ class HotelCardReview extends StatelessWidget {
                   ),
                   Flexible(
                     child: Text(
-                      "Korea|${3.5} Km from center",
-                      style: TextStyle(fontSize: 13),
+                      "${hotel.hotelLocation}|${hotel.distanceFromCityCenter} Km from center",
+                      style: const TextStyle(fontSize: 13),
                       softWrap: true,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   StarsListReview(
-                    stars: 3,
+                    stars: hotel.hotelStars,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                 ],

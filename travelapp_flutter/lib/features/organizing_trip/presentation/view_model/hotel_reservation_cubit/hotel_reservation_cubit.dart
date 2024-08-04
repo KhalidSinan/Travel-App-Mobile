@@ -104,6 +104,7 @@ class HotelReservationCubit extends Cubit<HotelReservationState> {
       (res) {
         if (res['data']['totalHotelsFound'] == 0) {
           emit(NoHotelsState());
+          return;
         }
         hotels = AllHotelModel.fromJson(res['data']);
         print(res['data']);

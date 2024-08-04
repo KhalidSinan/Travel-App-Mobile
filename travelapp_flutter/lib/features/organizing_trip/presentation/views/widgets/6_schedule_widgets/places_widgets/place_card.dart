@@ -24,7 +24,7 @@ class PlaceCard extends StatelessWidget {
       onTap: () {
         BlocProvider.of<OrganizingTripCubit>(context)
             .updateTripSchedule(city, step, place);
-         Get.to(SchedulePage());
+        Get.back();
         //go back to schedualing page and add the place to the day list
       },
       child: Container(

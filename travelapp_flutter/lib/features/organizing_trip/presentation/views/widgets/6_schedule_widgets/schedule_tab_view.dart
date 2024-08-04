@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/review_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/destinations_model.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/7_review_orgnizing_trip_page.dart';
 
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/6_schedule_widgets/schedule_view_content.dart';
 
@@ -13,7 +16,7 @@ class ScheduleTabbarView extends StatefulWidget {
 
   final TabController tabController;
   final List<DestinationsModel> cities;
-  final List<int> currentSteps; 
+  final List<int> currentSteps;
 
   @override
   State<ScheduleTabbarView> createState() => _ScheduleTabbarViewState();
@@ -47,8 +50,7 @@ class _ScheduleTabbarViewState extends State<ScheduleTabbarView> {
     if (currentIndex < widget.cities.length - 1) {
       widget.tabController.animateTo(currentIndex + 1);
     } else {
-
-          // go to page's of tima
+      Get.to(() => const ReviewOrgnizingTrip());
     }
   }
 }

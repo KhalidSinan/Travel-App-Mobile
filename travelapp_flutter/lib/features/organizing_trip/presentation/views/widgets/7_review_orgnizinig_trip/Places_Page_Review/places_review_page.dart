@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/7_review_orgnizinig_trip/Places_Page_Review/places_review_body.dart';
 
 class PlacesPageReview extends StatelessWidget {
@@ -8,7 +10,8 @@ class PlacesPageReview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    final places = BlocProvider.of<OrganizingTripCubit>(context).places;
+    return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(290),
@@ -41,18 +44,17 @@ class PlacesPageReview extends StatelessWidget {
                 const SizedBox(
                   height: 32,
                 ),
-                const Text(
-                  "Total journey Number Activity : ${5}",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                Text(
+                  "Total journey Number Activity : ${places.length}",
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 const SizedBox(
                   height: 16,
                 ),
-                
               ],
             ),
           )),
-      body: const PlacesReviewBody() ,
+      body: const PlacesReviewBody(),
     );
   }
 }

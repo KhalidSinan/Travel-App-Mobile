@@ -10,6 +10,7 @@ import 'package:travelapp_flutter/core/helpers/notification_service.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/Announcements/presentation/views/announcements_subscriptions_page.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
@@ -17,6 +18,7 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/register
 import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/1_persons_days_selection_page.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_selection_page.dart';
 import 'package:travelapp_flutter/features/settings/data/repos/settings_repo_impl.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
@@ -78,6 +80,9 @@ class _TravelAppState extends State<TravelApp> {
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
+        getPages: [
+          GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
+        ],
         theme: ThemeData(
           textSelectionTheme: TextSelectionThemeData(
               cursorColor: Themes.primary,
@@ -91,7 +96,7 @@ class _TravelAppState extends State<TravelApp> {
         // home: rememberMe == true
         //     ? FetchProfileDataPage(token: token)
         //     : const LoginPage(),
-        home: const PersonsDaysSelection()
+        home: const PersonsDaysSelection(),
       ),
     );
   }

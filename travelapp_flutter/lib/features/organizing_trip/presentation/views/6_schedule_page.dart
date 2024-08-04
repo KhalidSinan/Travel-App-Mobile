@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_step_circular.dart';
@@ -17,16 +19,21 @@ class SchedulePage extends StatefulWidget {
 
 class _SchedulePageState extends State<SchedulePage>
     with TickerProviderStateMixin {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<OrganizingTripCubit>(context).createTripSchedule();
+    BlocProvider.of<OrganizingTripCubit>(context).createCurrentSteps();
+  }
 
   @override
   Widget build(BuildContext context) {
+    List<int> currentSteps =
+        BlocProvider.of<OrganizingTripCubit>(context).currentSteps;
 
-    List<int> currentSteps = BlocProvider.of<OrganizingTripCubit>(context).currentSteps; 
-    
-  List<DestinationsModel> cities =
-      BlocProvider.of<OrganizingTripCubit>(context).destinations;
- 
-    
+    List<DestinationsModel> cities =
+        BlocProvider.of<OrganizingTripCubit>(context).destinations;
+
     TabController tabController =
         TabController(length: cities.length, vsync: this);
 
@@ -51,7 +58,16 @@ class _SchedulePageState extends State<SchedulePage>
           ],
           backgroundColor: Colors.white,
           surfaceTintColor: Colors.white,
-          leading: const CustomBackButton(),
+          leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(
+              FontAwesomeIcons.chevronLeft,
+              size: 20,
+              color: Themes.primary,
+            ),
+          ),
         ),
         body: SafeArea(
           child: DefaultTabController(
