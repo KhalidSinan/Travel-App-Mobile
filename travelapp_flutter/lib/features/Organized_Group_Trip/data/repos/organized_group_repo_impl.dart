@@ -12,24 +12,42 @@ class OrganizingGroupTripImpl extends OrganizingGroupTripRepo {
   OrganizingGroupTripImpl(this.apiService);
 
   @override
-  Future<Either<Failure, Map<String, dynamic>>> getAllOrganizedTrips(
-      {required int page,
-      required String source,
-      required String tab,
-      required String startDate,
-      required String endDate}) async {
+  Future<Either<Failure, Map<String, dynamic>>> getAllOrganizedTrips({
+    required int page,
+    required String source,
+    required String tab,
+    required String startDate,
+    required String endDate,
+    required double startPrice,
+    required double endPrice,
+    required List<String> types,
+    required List<String> countries,
+  }) async {
     try {
-      print("0000000000");
-      print(tab);
-      Map<String, dynamic> response = await apiService
-          .post(endPoint: "/organized-trips/?page=$page", body: {
+      Map<String, dynamic> requestBody = {
         "starting_country": source,
+        "filterType": types,
+        "filterPrice": {
+          "start_price": startPrice,
+          "end_price": endPrice,
+        },
+        "filterDate": {
+          "start_date": startDate,
+          "end_date": endDate,
+        },
+        "filterDestinations": countries,
         "organizedTripsShown": tab,
-        "filterDestinations": [],
-        "filterType": [],
-        "filterDate": {"start_date": startDate, "end_date": endDate},
-        "filterPrice": {"start_price": "", "end_price": ""},
-      });
+      };
+
+      Map<String, dynamic> response = await apiService.post(
+        endPoint: "/organized-trips/?page=$page",
+        body: requestBody,
+      );
+
+      // Debugging print statements
+      print("Request body: $requestBody");
+      print("Response: $response");
+
       return right(response);
     } catch (e) {
       if (e is DioException) {

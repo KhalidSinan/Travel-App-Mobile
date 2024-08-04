@@ -79,9 +79,9 @@ class _TravelAppState extends State<TravelApp> {
         ),
         BlocProvider(
           create: (context) =>
-              OrganizedGroupCubit(getIt.get<OrganizingGroupTripImpl>())
-                ..getAllCountries()
-                ..getAllOrganizedTrips(),
+            OrganizedGroupCubit(getIt.get<OrganizingGroupTripImpl>())
+                // ..getAllCountries()
+                // ..getAllOrganizedTrips(),
         )
       ],
       child: GetMaterialApp(
