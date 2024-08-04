@@ -27,7 +27,7 @@ class OrganizedTripPagination extends StatelessWidget {
             initialPage: BlocProvider.of<OrganizedGroupCubit>(context).page - 1,
             onPageChange: (index) async {
               await BlocProvider.of<OrganizedGroupCubit>(context)
-                  .changPage(index + 1);
+                  .changePage(index +1);
             },
             config: NumberPaginatorUIConfig(
               buttonSelectedBackgroundColor: Themes.primary,

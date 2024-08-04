@@ -5,62 +5,89 @@ import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/vie
 
 class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
   OrganizedGroupCubit(this.organizingGroupTripImpl)
-      : super(OrganizedGroupTripInitialState());
+      : super(OrganizedGroupTripInitialState()) {
+    // selectedTypes = [];
+    // selectedCountries = [];
+  }
+
   final OrganizingGroupTripImpl organizingGroupTripImpl;
   List<AllOrganizedGroupTrip> allOrganizedGroupTrip = [];
-  late List<String> allCountries = [];
+  List<String> allCountries = [];
 
   String? source;
   int page = 1;
   String? startDate;
   String? endDate;
+  double? minPrice;
+  double? maxPrice;
+  List<String> selectedTypes=[];
+  List<String> selectedCountries=[];
 
-  
-  double ? minPrice;
-  double ? maxPrice;
+  void updateSelectedTypes(String type, bool isSelected) {
+    if (isSelected) {
+      selectedTypes.add(type);
+    } else {
+      selectedTypes.remove(type);
+    }
+    emit(OrganizedGroupCubitUpdated(List.from(selectedTypes)));
+  }
+
+  void updateSelectedCountries(String country, bool isSelected) {
+    if (isSelected) {
+      selectedCountries.add(country);
+    } else {
+      selectedCountries.remove(country);
+    }
+    emit(OrganizedGroupCubitUpdated(List.from(selectedCountries)));
+  }
 
   Future<void> getAllCountries() async {
     emit(LoadingOrganizedGroupTripState());
-    dynamic response = await organizingGroupTripImpl.getAllCountries();
+    final response = await organizingGroupTripImpl.getAllCountries();
     response.fold(
         (failure) => emit(FailureOrganizedGroupTripState(failure: failure)),
         (response) {
       allCountries = List<String>.from(response['data']);
-      // print(allCountries);
       emit(SuccessOrganizedGroupTripState());
     });
   }
 
-  Future<void> getAllOrganizedTrips(
-      {String? tab,
-      int? page,
-      String? source,
-      String? startDate,
-      String? endDate}) async {
-    print(tab);
+  Future<void> getAllOrganizedTrips({
+    String? tab,
+    int? page,
+    String? source,
+    String? startDate,
+    String? endDate,
+    double? startPrice,
+    double? endPrice,
+    List<String>? types,
+    List<String>? countries,
+  }) async {
     allOrganizedGroupTrip = [];
     emit(LoadingOrganizedGroupTripState());
-    dynamic response = await organizingGroupTripImpl.getAllOrganizedTrips(
-        page: 1,
-        source: source ?? "",
-        tab: tab ?? "All",
-        startDate: startDate ?? "",
-        endDate: endDate ?? "");
-
-    response
-        .fold((failue) => emit(FailureOrganizedGroupTripState(failure: failue)),
-            (response) {
-      for (var i = 0; i < response["data"].length; i++) {
+    final response = await organizingGroupTripImpl.getAllOrganizedTrips(
+      page: page ?? 1,
+      source: source ?? "",
+      tab: tab ?? "All",
+      startDate: startDate ?? "",
+      endDate: endDate ?? "",
+      startPrice: startPrice ?? 0,
+      endPrice: endPrice ?? 0,
+      types: types ?? [],
+      countries: countries ?? [],
+    );
+    response.fold(
+        (failure) => emit(FailureOrganizedGroupTripState(failure: failure)),
+        (response) {
+      for (var item in response["data"]) {
         allOrganizedGroupTrip
-            .add(AllOrganizedGroupTrip.fromJson(response['data'][i]));
-
-        print(allOrganizedGroupTrip[i]);
+            .add(AllOrganizedGroupTrip.fromJson(item));
       }
       emit(SuccessOrganizedGroupTripState());
     });
   }
 
-  Future<void> changPage(int page) async {
+  Future<void> changePage(int page) async {
     this.page = page;
     await getAllOrganizedTrips(page: page);
   }

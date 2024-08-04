@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/orgainzed_group_trip_cubit.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/organized_group_trip_states.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/AllOrgainzedTrip/FiltringPage/date_calender_filter.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/AllOrgainzedTrip/FiltringPage/price_filter_organized_trip.dart';
 
@@ -15,11 +19,11 @@ class FiltringOrganizedBody extends StatefulWidget {
 
 class _FiltringOrganizedBodyState extends State<FiltringOrganizedBody> {
   final List<String> chipLabels = [
-    'Educational',
-    'Artistic',
+    'Entertainment',
     'Exploratory',
     'Therapeutic',
-    'Entertainment',
+    'Artistic',
+    'Educational',
   ];
 
   final List<bool> selected = [false, false, false, false, false];
@@ -250,116 +254,141 @@ class _FiltringOrganizedBodyState extends State<FiltringOrganizedBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Select Date:',
-                style: Styles.heading2.copyWith(color: Colors.black)),
-            const SizedBox(height: 16),
-            const DateFiltering(),
-            const SizedBox(height: 16),
-            const PriceFilterTripGroup(),
-            const SizedBox(height: 16),
-            Text('Select Types:',
-                style: Styles.heading2.copyWith(color: Colors.black)),
-            const SizedBox(height: 16),
-            Wrap(
-              spacing: 8.0,
-              runSpacing: 4.0,
-              children: List<Widget>.generate(chipLabels.length, (int index) {
-                return ChoiceChip(
-                  label: Text(
-                    chipLabels[index],
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  selected: selected[index],
-                  onSelected: (bool isSelected) {
-                    setState(() {
-                      selected[index] = isSelected;
-                    });
-                  },
-                  selectedColor: const Color(0xffffb156),
-                  backgroundColor: const Color(0xff205E61).withOpacity(0.9),
-                );
-              }).toList(),
-            ),
-            const SizedBox(height: 16),
-            Text('Select Countries:',
-                style: Styles.heading2.copyWith(color: Colors.black)),
-            const SizedBox(height: 8.0),
-            Column(
+    return BlocBuilder<OrganizedGroupCubit, OrganizedGroupCubitState>(
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.all(16),
+          child: SingleChildScrollView(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: continentCountries.entries.map((entry) {
-                String continent = entry.key;
-                List<String> countries = entry.value;
-
-                // if (continent == 'Antarctica') {
-                //   return Column(
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-                //       Text(
-                //         continent,
-                //         style: const TextStyle(
-                //           fontSize: 16,
-                //           fontWeight: FontWeight.bold,
-                //         ),
-                //       ),
-                //       // Display text instead of chips for Antarctica
-                //       Text(
-                //         'No countries, only territorial claims by various nations.',
-                //         style: TextStyle(fontSize: 16, color: Themes.third),
-                //       ),
-                //       const SizedBox(height: 16),
-                //     ],
-                //   );
-                // }
-                // For other continents
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      continent,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+              children: [
+                Text('Select Date:',
+                    style: Styles.heading2.copyWith(color: Colors.black)),
+                const SizedBox(height: 16),
+                const DateFiltering(),
+                const SizedBox(height: 16),
+                const PriceFilterTripGroup(),
+                const SizedBox(height: 16),
+                Text('Select Types:',
+                    style: Styles.heading2.copyWith(color: Colors.black)),
+                const SizedBox(height: 16),
+                Wrap(
+                  spacing: 8.0,
+                  runSpacing: 4.0,
+                  children:
+                      List<Widget>.generate(chipLabels.length, (int index) {
+                    return ChoiceChip(
+                      label: Text(
+                        chipLabels[index],
+                        style: const TextStyle(color: Colors.white),
                       ),
-                    ),
-                    Wrap(
-                      spacing: 8.0,
-                      runSpacing: 4.0,
-                      children:
-                          List<Widget>.generate(countries.length, (int index) {
-                        return ChoiceChip(
-                          label: Text(
-                            countries[index],
-                            style: const TextStyle(color: Colors.white),
+                      selected: BlocProvider.of<OrganizedGroupCubit>(context)
+                          .selectedTypes
+                          .contains(chipLabels[index]),
+                      onSelected: (bool isSelected) {
+                        BlocProvider.of<OrganizedGroupCubit>(context)
+                            .updateSelectedTypes(chipLabels[index], isSelected);
+                      },
+                      selectedColor: const Color(0xffffb156),
+                      backgroundColor: const Color(0xff205E61).withOpacity(0.9),
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(height: 16),
+                Text('Select Countries:',
+                    style: Styles.heading2.copyWith(color: Colors.black)),
+                const SizedBox(height: 8.0),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: continentCountries.entries.map((entry) {
+                    String continent = entry.key;
+                    List<String> countries = entry.value;
+
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          continent,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
-                          selected: continentSelected[continent]![index],
-                          onSelected: (bool isSelected) {
-                            setState(() {
-                              continentSelected[continent]![index] = isSelected;
-                            });
-                          },
-                          selectedColor: const Color(0xffffb156),
-                          backgroundColor:
-                              const Color(0xff205E61).withOpacity(0.9),
-                        );
-                      }).toList(),
-                    ),
-                    const SizedBox(height: 16),
-                  ],
-                );
-              }).toList(),
+                        ),
+                        Wrap(
+                          spacing: 8.0,
+                          runSpacing: 4.0,
+                          children: List<Widget>.generate(countries.length,
+                              (int index) {
+                            return ChoiceChip(
+                              label: Text(
+                                countries[index],
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                              selected:
+                                  BlocProvider.of<OrganizedGroupCubit>(context)
+                                      .selectedCountries
+                                      .contains(countries[index]),
+                              onSelected: (bool isSelected) {
+                                BlocProvider.of<OrganizedGroupCubit>(context)
+                                    .updateSelectedCountries(
+                                        countries[index], isSelected);
+
+                                for (var i = 0;
+                                    i <
+                                        BlocProvider.of<OrganizedGroupCubit>(
+                                                context)
+                                            .selectedCountries
+                                            .length;
+                                    i++) {
+                                  print(BlocProvider.of<OrganizedGroupCubit>(
+                                          context)
+                                      .selectedCountries[i]);
+                                }
+                              },
+                              selectedColor: const Color(0xffffb156),
+                              backgroundColor:
+                                  const Color(0xff205E61).withOpacity(0.9),
+                            );
+                          }).toList(),
+                        ),
+                        const SizedBox(height: 16),
+                      ],
+                    );
+                  }).toList(),
+                ),
+                SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: CustomButton(
+                        onPressed: () async {
+                          await BlocProvider.of<OrganizedGroupCubit>(context)
+                              .getAllOrganizedTrips(
+                                  startDate: BlocProvider.of<OrganizedGroupCubit>(
+                                          context)
+                                      .startDate,
+                                  endDate: BlocProvider.of<OrganizedGroupCubit>(
+                                          context)
+                                      .endDate,
+                                  startPrice: BlocProvider.of<
+                                          OrganizedGroupCubit>(context)
+                                      .minPrice,
+                                  endPrice: BlocProvider.of<
+                                          OrganizedGroupCubit>(context)
+                                      .maxPrice,
+                                  types: BlocProvider.of<OrganizedGroupCubit>(
+                                          context)
+                                      .selectedTypes,
+                                  countries:
+                                      BlocProvider.of<OrganizedGroupCubit>(
+                                              context)
+                                          .selectedCountries);
+                          Get.back();
+                        },
+                        label: "Apply Filtering"))
+              ],
             ),
-            SizedBox(
-                width: MediaQuery.sizeOf(context).width,
-                child: CustomButton(onPressed: () {}, label: "Apply Filtring"))
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
