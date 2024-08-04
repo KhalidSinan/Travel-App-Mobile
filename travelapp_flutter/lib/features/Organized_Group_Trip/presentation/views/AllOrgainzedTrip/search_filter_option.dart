@@ -40,16 +40,20 @@ class _OptionsSearchAndFilterState extends State<OptionsSearchAndFilter> {
                     var searchResult = await showSearch(
                       context: context,
                       delegate: CustomSearchCitiesGroupTrip(
-                        countries: BlocProvider.of<OrganizedGroupCubit>(context).allCountries,
+                        countries: BlocProvider.of<OrganizedGroupCubit>(context)
+                            .allCountries,
                       ),
                     );
                     if (searchResult != null) {
                       setState(() {
                         searchController1.text = searchResult.toString();
-                        BlocProvider.of<OrganizedGroupCubit>(context).source = searchController1.text;
-                        BlocProvider.of<OrganizedGroupCubit>(context).getAllOrganizedTrips(
+                        BlocProvider.of<OrganizedGroupCubit>(context).source =
+                            searchController1.text;
+                        BlocProvider.of<OrganizedGroupCubit>(context)
+                            .getAllOrganizedTrips(
                           source: searchController1.text,
                         );
+                        searchController1.text = "";
                       });
                     }
                   },

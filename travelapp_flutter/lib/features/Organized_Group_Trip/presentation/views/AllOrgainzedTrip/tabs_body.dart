@@ -36,8 +36,7 @@ class _TabsBodyState extends State<TabsBody> {
   void initState() {
     super.initState();
     // Fetch trips for the initial tab
-    BlocProvider.of<OrganizedGroupCubit>(context)
-        .getAllOrganizedTrips(tab: widget.tab);
+    BlocProvider.of<OrganizedGroupCubit>(context).getAllOrganizedTrips();
   }
 
   @override

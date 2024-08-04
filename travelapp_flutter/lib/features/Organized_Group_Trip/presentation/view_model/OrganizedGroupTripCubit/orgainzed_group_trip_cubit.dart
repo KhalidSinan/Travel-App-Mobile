@@ -5,10 +5,7 @@ import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/vie
 
 class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
   OrganizedGroupCubit(this.organizingGroupTripImpl)
-      : super(OrganizedGroupTripInitialState()) {
-    // selectedTypes = [];
-    // selectedCountries = [];
-  }
+      : super(OrganizedGroupTripInitialState());
 
   final OrganizingGroupTripImpl organizingGroupTripImpl;
   List<AllOrganizedGroupTrip> allOrganizedGroupTrip = [];
@@ -23,6 +20,7 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
   List<String> selectedTypes = [];
   List<String> selectedCountries = [];
   int count = 0;
+  String currentTab = "All";
 
   void updateSelectedTypes(String type, bool isSelected) {
     if (isSelected) {
@@ -64,12 +62,11 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
     List<String>? types,
     List<String>? countries,
   }) async {
-    allOrganizedGroupTrip = [];
     emit(LoadingOrganizedGroupTripState());
     final response = await organizingGroupTripImpl.getAllOrganizedTrips(
       page: page ?? 1,
       source: source ?? "",
-      tab: tab ?? "All",
+      tab: tab ?? currentTab, // Use the currentTab if tab is not provided
       startDate: startDate ?? "",
       endDate: endDate ?? "",
       startPrice: startPrice ?? 0,
@@ -82,6 +79,7 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
         (response) {
       count = response['count'];
       print(count);
+      allOrganizedGroupTrip = [];
       for (var item in response["data"]) {
         allOrganizedGroupTrip.add(AllOrganizedGroupTrip.fromJson(item));
       }
@@ -92,5 +90,10 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
   Future<void> changePage(int page) async {
     this.page = page;
     await getAllOrganizedTrips(page: page);
+  }
+
+  void changeTab(String tab) {
+    currentTab = tab;
+    emit(OrganizedGroupCubitTabChanged(tab)); // New state to handle tab change
   }
 }
