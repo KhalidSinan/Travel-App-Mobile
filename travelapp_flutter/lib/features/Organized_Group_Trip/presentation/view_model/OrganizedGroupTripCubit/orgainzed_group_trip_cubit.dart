@@ -15,6 +15,10 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
   String? startDate;
   String? endDate;
 
+  
+  double ? minPrice;
+  double ? maxPrice;
+
   Future<void> getAllCountries() async {
     emit(LoadingOrganizedGroupTripState());
     dynamic response = await organizingGroupTripImpl.getAllCountries();
