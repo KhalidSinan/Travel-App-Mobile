@@ -13,20 +13,23 @@ class OrganizingGroupTripImpl extends OrganizingGroupTripRepo {
 
   @override
   Future<Either<Failure, Map<String, dynamic>>> getAllOrganizedTrips(
-      {required int page, required String source, required String tab}) async {
+      {required int page,
+      required String source,
+      required String tab,
+      required String startDate,
+      required String endDate}) async {
     try {
       print("0000000000");
       print(tab);
-      Map<String, dynamic> response = await apiService.post(
-          endPoint: "/organized-trips/?page=${page}",
-          body: {
-            "starting_country": source,
-            "organizedTripsShown": tab,
-            "filterDestinations": [],
-            "filterType": [],
-            "filterDate": {"start_date": "", "end_date": ""},
-            "filterPrice": {"start_price": "", "end_price": ""},
-          });
+      Map<String, dynamic> response = await apiService
+          .post(endPoint: "/organized-trips/?page=$page", body: {
+        "starting_country": source,
+        "organizedTripsShown": tab,
+        "filterDestinations": [],
+        "filterType": [],
+        "filterDate": {"start_date": startDate, "end_date": endDate},
+        "filterPrice": {"start_price": "", "end_price": ""},
+      });
       return right(response);
     } catch (e) {
       if (e is DioException) {

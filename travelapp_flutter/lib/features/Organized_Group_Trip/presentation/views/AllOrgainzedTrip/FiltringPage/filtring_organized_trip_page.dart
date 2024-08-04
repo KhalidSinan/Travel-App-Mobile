@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/orgainzed_group_trip_cubit.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/AllOrgainzedTrip/FiltringPage/filtring_organized_body.dart';
 
 class FilteringPage extends StatelessWidget {
@@ -7,13 +9,17 @@ class FilteringPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          leading: const CustomBackButton(),
+    return BlocProvider.value(
+      value: BlocProvider.of<OrganizedGroupCubit>(context),
+    
+      child: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            leading: const CustomBackButton(),
+          ),
+          body: const Padding(
+              padding: EdgeInsets.all(0.8), child: FiltringOrganizedBody()),
         ),
-        body: const Padding(
-            padding: EdgeInsets.all(0.8), child: FiltringOrganizedBody()),
       ),
     );
   }
