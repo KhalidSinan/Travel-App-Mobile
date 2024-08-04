@@ -14,6 +14,7 @@ class AllOrganizedGroupTripsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<OrganizedGroupCubit, OrganizedGroupCubitState>(
       builder: (context, state) {
+        dynamic cubit = BlocProvider.of<OrganizedGroupCubit>(context);
         return DefaultTabController(
           length: 3,
           child: Column(
@@ -43,15 +44,42 @@ class AllOrganizedGroupTripsBody extends StatelessWidget {
                   switch (index) {
                     case 0:
                       cubit.changeTab("All");
-                      await cubit.getAllOrganizedTrips(tab: "All");
+                      await cubit.getAllOrganizedTrips(
+                          tab: "All",
+                          page: cubit.page,
+                          source: cubit.source,
+                          startDate: cubit.startDate,
+                          endDate: cubit.endDate,
+                          startPrice: cubit.minPrice,
+                          endPrice: cubit.maxPrice,
+                          types: cubit.selectedTypes,
+                          countries: cubit.selectedCountries);
                       break;
                     case 1:
                       cubit.changeTab("AlmostComplete");
-                      await cubit.getAllOrganizedTrips(tab: "AlmostComplete");
+                      await cubit.getAllOrganizedTrips(
+                          tab: "AlmostComplete",
+                          page: cubit.page,
+                          source: cubit.source,
+                          startDate: cubit.startDate,
+                          endDate: cubit.endDate,
+                          startPrice: cubit.minPrice,
+                          endPrice: cubit.maxPrice,
+                          types: cubit.selectedTypes,
+                          countries: cubit.selectedCountries);
                       break;
                     case 2:
                       cubit.changeTab("AnnouncedTrips");
-                      await cubit.getAllOrganizedTrips(tab: "AnnouncedTrips");
+                      await cubit.getAllOrganizedTrips(
+                          tab: "AnnouncedTrips",
+                          page: cubit.page,
+                          source: cubit.source,
+                          startDate: cubit.startDate,
+                          endDate: cubit.endDate,
+                          startPrice: cubit.minPrice,
+                          endPrice: cubit.maxPrice,
+                          types: cubit.selectedTypes,
+                          countries: cubit.selectedCountries);
                       break;
                   }
                 },
