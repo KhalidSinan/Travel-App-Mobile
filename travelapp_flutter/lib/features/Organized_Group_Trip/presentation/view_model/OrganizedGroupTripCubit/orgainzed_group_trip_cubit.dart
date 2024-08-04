@@ -20,8 +20,9 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
   String? endDate;
   double? minPrice;
   double? maxPrice;
-  List<String> selectedTypes=[];
-  List<String> selectedCountries=[];
+  List<String> selectedTypes = [];
+  List<String> selectedCountries = [];
+  int count = 0;
 
   void updateSelectedTypes(String type, bool isSelected) {
     if (isSelected) {
@@ -79,9 +80,10 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
     response.fold(
         (failure) => emit(FailureOrganizedGroupTripState(failure: failure)),
         (response) {
+      count = response['count'];
+      print(count);
       for (var item in response["data"]) {
-        allOrganizedGroupTrip
-            .add(AllOrganizedGroupTrip.fromJson(item));
+        allOrganizedGroupTrip.add(AllOrganizedGroupTrip.fromJson(item));
       }
       emit(SuccessOrganizedGroupTripState());
     });

@@ -9,6 +9,7 @@ class AllOrganizedGroupTrip {
   final bool isAmostComplete;
   final bool isAnnounced;
   final List<String> destinations;
+ 
 
   AllOrganizedGroupTrip(
       {required this.id,
@@ -20,7 +21,9 @@ class AllOrganizedGroupTrip {
       required this.destinations,
       required this.numOfParticipating,
       required this.isAmostComplete,
-      required this.isAnnounced});
+      required this.isAnnounced
+      
+      });
 
   factory AllOrganizedGroupTrip.fromJson(jsonData) {
     return AllOrganizedGroupTrip(
