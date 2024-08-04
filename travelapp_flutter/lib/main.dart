@@ -10,15 +10,24 @@ import 'package:travelapp_flutter/core/helpers/notification_service.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+<<<<<<< HEAD
 import 'package:travelapp_flutter/features/Announcements/presentation/views/announcements_subscriptions_page.dart';
+=======
+import 'package:travelapp_flutter/features/Organized_Group_Trip/data/repos/organized_group_repo_impl.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/orgainzed_group_trip_cubit.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/all_orgainzed_trip_page.dart';
+>>>>>>> a0c58ef9330a32ac614a84e257ecb8625b42c33b
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
+<<<<<<< HEAD
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/1_persons_days_selection_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_selection_page.dart';
+=======
+>>>>>>> a0c58ef9330a32ac614a84e257ecb8625b42c33b
 import 'package:travelapp_flutter/features/settings/data/repos/settings_repo_impl.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
@@ -76,9 +85,16 @@ class _TravelAppState extends State<TravelApp> {
                   ..getCountriesAndAirlines()),
         BlocProvider(
           create: (context) => ProfilePageCubit(getIt.get<SettingsRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (context) =>
+            OrganizedGroupCubit(getIt.get<OrganizingGroupTripImpl>())
+                // ..getAllCountries()
+                // ..getAllOrganizedTrips(),
         )
       ],
       child: GetMaterialApp(
+<<<<<<< HEAD
         debugShowCheckedModeBanner: false,
         getPages: [
           GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
@@ -98,6 +114,23 @@ class _TravelAppState extends State<TravelApp> {
         //     : const LoginPage(),
         home: const PersonsDaysSelection(),
       ),
+=======
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            textSelectionTheme: TextSelectionThemeData(
+                cursorColor: Themes.primary,
+                selectionColor: Themes.primary,
+                selectionHandleColor: Themes.primary),
+            appBarTheme: const AppBarTheme(
+                color: Colors.white, surfaceTintColor: Colors.white),
+            scaffoldBackgroundColor: Colors.white,
+            textTheme: GoogleFonts.aBeeZeeTextTheme(),
+          ),
+          // home: rememberMe == true
+          //     ? FetchProfileDataPage(token: token)
+          //     : const LoginPage(),
+          home: const AllOrganizedGroupTrips()),
+>>>>>>> a0c58ef9330a32ac614a84e257ecb8625b42c33b
     );
   }
 }
