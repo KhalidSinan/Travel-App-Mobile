@@ -45,7 +45,7 @@ class FlightPageReview extends StatelessWidget {
                   height: 32,
                 ),
                 Text(
-                  "Total journey Number Flight : ${trip.destinations.length - 1}",
+                  "Total journey Number Flight : ${trip.availableFlightModel.length}",
                   style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 const SizedBox(
