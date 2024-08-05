@@ -1,7 +1,11 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
+<<<<<<< HEAD
   final String baseUrl = 'http://10.0.2.2:5000';
+=======
+  final String _baseUrl = 'http://192.168.1.5:5000';
+>>>>>>> 58d6a61ed8b2128410da3e275dc4f2ff9a140982
   //10.0.2.2
   final Dio _dio;
   final String token =

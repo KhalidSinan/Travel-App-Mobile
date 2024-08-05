@@ -19,7 +19,7 @@ class OrganizedGroupNonAdvertisment extends StatelessWidget {
     return BlocBuilder<OrganizedGroupCubit, OrganizedGroupCubitState>(
       builder: (context, state) {
         final screenWidth = MediaQuery.of(context).size.width;
-        final containerHeight = oneTrip?.isAnnounced ?? false ? 360.0 : 356.0;
+        final containerHeight = oneTrip?.isAnnounced ?? false ? 380.0 : 380.0;
         final padding = screenWidth * 0.02;
         final isLargeScreen = screenWidth > 600;
 
@@ -157,10 +157,10 @@ class OrganizedGroupNonAdvertisment extends StatelessWidget {
                       Icon(
                         FontAwesomeIcons.dollarSign,
                         color: Themes.primary,
-                        size: isLargeScreen ? 20 : 16,
+                        size: isLargeScreen ? 18 : 16,
                       ),
                       Text(
-                        '${oneTrip!.price}',
+                        oneTrip!.price,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: isLargeScreen ? 18 : 16,
@@ -173,21 +173,21 @@ class OrganizedGroupNonAdvertisment extends StatelessWidget {
                 ],
               ),
             ),
-            // if (oneTrip!.isAmostComplete)
-            //   Positioned(
-            //     top: -10,
-            //     right: -10,
-            //     child: Container(
-            //       width: isLargeScreen ? 50 : 40,
-            //       height: isLargeScreen ? 50 : 40,
-            //       decoration: BoxDecoration(
-            //         color: Colors.white,
-            //         shape: BoxShape.circle,
-            //         border: Border.all(color: Colors.red, width: 2),
-            //       ),
-            //       child: Lottie.asset('assets/animations/time.json'),
-            //     ),
-            //   ),
+            if (oneTrip!.isAmostComplete)
+              Positioned(
+                top: -10,
+                right: -10,
+                child: Container(
+                  width: isLargeScreen ? 50 : 40,
+                  height: isLargeScreen ? 50 : 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.red, width: 2),
+                  ),
+                  child: Lottie.asset('assets/animations/time.json'),
+                ),
+              ),
           ],
         );
       },

@@ -33,13 +33,13 @@ class _AllOrganizedGroupTripsState extends State<AllOrganizedGroupTrips> {
         body: BlocListener<OrganizedGroupCubit, OrganizedGroupCubitState>(
           listener: (context, state) {
             if (state is FailureOrganizedGroupTripState) {
-              print(state.failure.errMessage);
               Get.to(() => FailurePage(
-                error: state.failure,
-                onPressed: () async {
-                  await BlocProvider.of<OrganizedGroupCubit>(context).getAllOrganizedTrips();
-                },
-              ));
+                    error: state.failure,
+                    onPressed: () async {
+                      await BlocProvider.of<OrganizedGroupCubit>(context)
+                          .getAllOrganizedTrips();
+                    },
+                  ));
             }
           },
           child: const Padding(

@@ -27,6 +27,7 @@ class OrganizedByAdvertisment extends StatelessWidget {
             return Stack(
               children: [
                 Container(
+                  // height: 380,
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 216, 216, 216),
@@ -39,7 +40,7 @@ class OrganizedByAdvertisment extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: oneTrip!.isAnnounced ? 17 : 8),
+                      SizedBox(height: oneTrip!.isAnnounced ? 16 : 8),
                       Text(
                         "Organizer ${oneTrip!.organizerName}",
                         style: const TextStyle(
@@ -165,21 +166,21 @@ class OrganizedByAdvertisment extends StatelessWidget {
                   ),
                 ),
                 // Uncomment and use the following block if `isAmostComplete` is available in your model
-                // if (oneTrip!.isAmostComplete)
-                //   Positioned(
-                //     top: -10,
-                //     right: -10,
-                //     child: Container(
-                //       width: isLargeScreen ? 50 : 40,
-                //       height: isLargeScreen ? 50 : 40,
-                //       decoration: BoxDecoration(
-                //         color: Colors.white,
-                //         shape: BoxShape.circle,
-                //         border: Border.all(color: Colors.red, width: 2),
-                //       ),
-                //       child: Lottie.asset('assets/animations/time.json'),
-                //     ),
-                //   ),
+                if (oneTrip!.isAmostComplete)
+                  Positioned(
+                    top: -10,
+                    right: -10,
+                    child: Container(
+                      width: isLargeScreen ? 60 : 30,
+                      height: isLargeScreen ? 60 : 30,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.red, width: 2),
+                      ),
+                      child: Lottie.asset('assets/animations/time.json'),
+                    ),
+                  ),
               ],
             );
           },

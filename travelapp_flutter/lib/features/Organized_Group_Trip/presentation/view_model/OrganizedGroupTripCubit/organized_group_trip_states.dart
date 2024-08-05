@@ -8,13 +8,16 @@ class LoadingOrganizedGroupTripState extends OrganizedGroupCubitState {}
 
 class SuccessOrganizedGroupTripState extends OrganizedGroupCubitState {}
 
+class OrganizedGroupCubitTabChanged extends OrganizedGroupCubitState {
+  OrganizedGroupCubitTabChanged(String tab);
+}
+
 class OrganizedGroupCubitUpdated extends OrganizedGroupCubitState {
   OrganizedGroupCubitUpdated(List list);
 }
 
 class FailureOrganizedGroupTripState extends OrganizedGroupCubitState {
   final Failure failure;
-  
 
   FailureOrganizedGroupTripState({required this.failure});
 }
