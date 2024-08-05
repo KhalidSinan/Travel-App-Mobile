@@ -362,6 +362,7 @@ class _FiltringOrganizedBodyState extends State<FiltringOrganizedBody> {
                         onPressed: () async {
                           await BlocProvider.of<OrganizedGroupCubit>(context)
                               .getAllOrganizedTrips(
+                                source: BlocProvider.of<OrganizedGroupCubit>(context).source,
                                   startDate: BlocProvider.of<OrganizedGroupCubit>(
                                           context)
                                       .startDate,

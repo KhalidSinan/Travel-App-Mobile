@@ -49,11 +49,30 @@ class _OptionsSearchAndFilterState extends State<OptionsSearchAndFilter> {
                         searchController1.text = searchResult.toString();
                         BlocProvider.of<OrganizedGroupCubit>(context).source =
                             searchController1.text;
-                        BlocProvider.of<OrganizedGroupCubit>(context)
-                            .getAllOrganizedTrips(
-                          source: searchController1.text,
-                        );
-                        searchController1.text = "";
+                        BlocProvider.of<OrganizedGroupCubit>(context).getAllOrganizedTrips(
+                            source: BlocProvider.of<OrganizedGroupCubit>(context)
+                                .source,
+                            page: BlocProvider.of<OrganizedGroupCubit>(context)
+                                .page,
+                            startDate:
+                                BlocProvider.of<OrganizedGroupCubit>(context)
+                                    .startDate,
+                            endDate:
+                                BlocProvider.of<OrganizedGroupCubit>(context)
+                                    .endDate,
+                            startPrice:
+                                BlocProvider.of<OrganizedGroupCubit>(context)
+                                    .minPrice,
+                            endPrice:
+                                BlocProvider.of<OrganizedGroupCubit>(context)
+                                    .maxPrice,
+                            types: BlocProvider.of<OrganizedGroupCubit>(context)
+                                .selectedTypes,
+                            countries:
+                                BlocProvider.of<OrganizedGroupCubit>(context)
+                                    .selectedCountries,
+                            tab: BlocProvider.of<OrganizedGroupCubit>(context)
+                                .currentTab);
                       });
                     }
                   },

@@ -36,7 +36,16 @@ class _TabsBodyState extends State<TabsBody> {
   void initState() {
     super.initState();
     // Fetch trips for the initial tab
-    BlocProvider.of<OrganizedGroupCubit>(context).getAllOrganizedTrips();
+    BlocProvider.of<OrganizedGroupCubit>(context).getAllOrganizedTrips(
+        page: BlocProvider.of<OrganizedGroupCubit>(context).page,
+        source: BlocProvider.of<OrganizedGroupCubit>(context).source,
+        startDate: BlocProvider.of<OrganizedGroupCubit>(context).startDate,
+        endDate: BlocProvider.of<OrganizedGroupCubit>(context).endDate,
+        startPrice: BlocProvider.of<OrganizedGroupCubit>(context).minPrice,
+        endPrice: BlocProvider.of<OrganizedGroupCubit>(context).maxPrice,
+        types: BlocProvider.of<OrganizedGroupCubit>(context).selectedTypes,
+        countries:
+            BlocProvider.of<OrganizedGroupCubit>(context).selectedCountries);
   }
 
   @override
@@ -106,6 +115,15 @@ class _TabsBodyState extends State<TabsBody> {
   }
 
   Widget _buildTripsList(List<AllOrganizedGroupTrip> allTrips) {
+    if (allTrips.isEmpty) {
+      return const Center(
+        child: Text(
+          'No data available',
+          style: TextStyle(fontSize: 18, color: Colors.grey),
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListView(
