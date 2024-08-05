@@ -2,11 +2,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/utils/assets.dart';
+import 'package:travelapp_flutter/features/organizing_trip/data/models/flight_model.dart';
 
 class CardTicketFlightReview extends StatelessWidget {
   const CardTicketFlightReview({
     super.key,
+    required this.flight,
   });
+  final Flight flight;
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -31,10 +34,10 @@ class CardTicketFlightReview extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Flexible(
+            Flexible(
               child: AutoSizeText(
-                "AirlinAsia Syria",
-                style: TextStyle(color: Colors.white),
+                flight.airline.name,
+                style: const TextStyle(color: Colors.white),
                 softWrap: true,
                 maxLines: 1,
                 minFontSize: 9,
@@ -49,10 +52,10 @@ class CardTicketFlightReview extends StatelessWidget {
               "Departure",
               style: TextStyle(color: Colors.white54, fontSize: 13),
             ),
-            const Flexible(
+            Flexible(
               child: AutoSizeText(
-                "Aleppo International AirPort",
-                style: TextStyle(color: Colors.white),
+                flight.srcAirport,
+                style: const TextStyle(color: Colors.white),
                 softWrap: true,
                 maxLines: 1,
                 minFontSize: 9,
@@ -63,24 +66,24 @@ class CardTicketFlightReview extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Syria",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  flight.source,
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
                 Row(
                   children: [
                     Text(
-                      "12/5/2024,11am",
-                      style: TextStyle(fontSize: 15, color: Colors.white),
+                      flight.departureDate.date,
+                      style: const TextStyle(fontSize: 15, color: Colors.white),
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Text(
-                      "12:50",
-                      style: TextStyle(fontSize: 15, color: Colors.white),
+                      flight.departureDate.time!,
+                      style: const TextStyle(fontSize: 15, color: Colors.white),
                     ),
                   ],
                 ),
@@ -102,10 +105,10 @@ class CardTicketFlightReview extends StatelessWidget {
               "Arrival",
               style: TextStyle(color: Colors.white54, fontSize: 13),
             ),
-            const Flexible(
+            Flexible(
               child: AutoSizeText(
-                "Jejo International Airport",
-                style: TextStyle(color: Colors.white),
+                flight.desAirport,
+                style: const TextStyle(color: Colors.white),
                 softWrap: true,
                 maxLines: 1,
                 minFontSize: 9,
@@ -116,24 +119,24 @@ class CardTicketFlightReview extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Korea",
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+                  flight.destination,
+                  style: const TextStyle(color: Colors.white, fontSize: 15),
                 ),
                 Row(
                   children: [
                     Text(
-                      "12/5/2024, 12pm",
-                      style: TextStyle(fontSize: 15, color: Colors.white),
+                      flight.arrivalDate.date,
+                      style: const TextStyle(fontSize: 15, color: Colors.white),
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Text(
-                      "02:50",
-                      style: TextStyle(fontSize: 15, color: Colors.white),
+                      flight.arrivalDate.time!,
+                      style: const TextStyle(fontSize: 15, color: Colors.white),
                     ),
                   ],
                 ),
@@ -148,9 +151,9 @@ class CardTicketFlightReview extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                       children: [
-                        WidgetSpan(
+                        const WidgetSpan(
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 2.0),
                             child: Icon(
@@ -161,15 +164,15 @@ class CardTicketFlightReview extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                            text: "21:50",
-                            style:
-                                TextStyle(fontSize: 20, color: Colors.white)),
+                            text: flight.duration,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white)),
                       ],
                     ),
                   ),
-                  const Text(
-                    "${144.03}\$",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  Text(
+                    "${flight.price}\$",
+                    style: const TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ],
               ),

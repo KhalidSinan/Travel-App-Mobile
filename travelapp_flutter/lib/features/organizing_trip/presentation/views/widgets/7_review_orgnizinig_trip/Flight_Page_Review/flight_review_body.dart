@@ -18,9 +18,11 @@ class FlightReviewBody extends StatelessWidget {
           color: Themes.primary,
         ),
         itemCount: flights.length,
-        itemBuilder: (context, index) => const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: CardTicketFlightReview(),
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CardTicketFlightReview(
+            flight: flights[index].flight!,
+          ),
         ),
       ),
     );

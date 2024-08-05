@@ -74,9 +74,9 @@ class ReviewOrgnizingTrip extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
-                const Text(
-                  "Total Trip Price : ${5000}\$",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                Text(
+                  "Total Trip Price : ${trip.getTotalTripPrice()}\$",
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ],
             ),

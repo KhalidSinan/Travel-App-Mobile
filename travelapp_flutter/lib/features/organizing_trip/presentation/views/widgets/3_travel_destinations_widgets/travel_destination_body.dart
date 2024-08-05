@@ -107,7 +107,7 @@ class _DestinationsSelectionBodyState extends State<DestinationsSelectionBody> {
                         if (_formKey.currentState!.validate()) {
                           await BlocProvider.of<OrganizingTripCubit>(context)
                               .checkFlightsForTrip();
-                          Get.to(const TicketsReviewPage());
+                          Get.to(() => const TicketsReviewPage());
                         }
                       },
                       label: "Check",

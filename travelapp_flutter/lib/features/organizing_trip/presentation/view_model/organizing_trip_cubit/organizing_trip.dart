@@ -149,6 +149,10 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
     emit(DeleteDestination());
   }
 
+  double getTotalTripPrice() {
+    return getTotalFlightsPrice() + allHotels!.getAllHotelsPrice();
+  }
+
   void addDestination() {
     if (saveValidDestination(destinations, numberOfDaysDes)) {
       destinations.add(DestinationsModel(
