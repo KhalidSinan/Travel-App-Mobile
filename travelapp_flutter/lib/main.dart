@@ -17,6 +17,7 @@ import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
+import 'package:travelapp_flutter/features/chat/presentation/views/WelcomeChat/welcome_chat.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/settings/data/repos/settings_repo_impl.dart';
@@ -99,7 +100,7 @@ class _TravelAppState extends State<TravelApp> {
           // home: rememberMe == true
           //     ? FetchProfileDataPage(token: token)
           //     : const LoginPage(),
-          home: const AllOrganizedGroupTrips()),
+          home: const WelcomeChat()),
     );
   }
 }
