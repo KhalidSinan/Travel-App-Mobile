@@ -171,8 +171,8 @@ class OrganizedByAdvertisment extends StatelessWidget {
                     top: -10,
                     right: -10,
                     child: Container(
-                      width: isLargeScreen ? 60 : 30,
-                      height: isLargeScreen ? 60 : 30,
+                      width: isLargeScreen ? 50: 40,
+                      height: isLargeScreen ? 50 : 40,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
