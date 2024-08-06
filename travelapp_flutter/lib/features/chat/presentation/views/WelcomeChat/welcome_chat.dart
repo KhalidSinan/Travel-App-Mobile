@@ -30,22 +30,21 @@ class WelcomeChat extends StatelessWidget {
                 child: Text(
                   "Do you want to create a conversation that joins all travelers?",
                   style: Styles.heading2.copyWith(
-                    fontSize: screenWidth *
-                        0.05, 
+                    fontSize: screenWidth * 0.05,
                   ),
                   textAlign: TextAlign.center,
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
+                padding: const EdgeInsets.only(
+                    left: 16, right: 16, bottom: 8, top: 32),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
                       child: CustomTextButton(onPressed: () {}, label: "Later"),
                     ),
-                    const SizedBox(width: 16), 
+                    const SizedBox(width: 16),
                     Expanded(
                       child: CustomButton(
                         onPressed: () {},
