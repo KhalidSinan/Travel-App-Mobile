@@ -1,5 +1,6 @@
 import 'package:travelapp_flutter/features/hotel_booking/data/models/location_model.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/room_model.dart';
+
 class HotelModel {
   final String id;
   final String name;
@@ -7,42 +8,44 @@ class HotelModel {
   final int stars;
   final String description;
   final List<RoomTypeModel> roomType;
-  final int roomsNumber;
+  final int? roomsNumber;
   final double? distanceFromCityCenter;
   final List<String> images;
   final dynamic startsFrom;
 
-  HotelModel(
-      {required this.id,
-      required this.name,
-      required this.location,
-      required this.stars,
-      required this.description,
-      required this.roomType,
-      required this.roomsNumber,
-      required this.distanceFromCityCenter,
-      required this.images,
-      required this.startsFrom,
-      });
-      
+  HotelModel({
+    required this.id,
+    required this.name,
+    required this.location,
+    required this.stars,
+    required this.description,
+    required this.roomType,
+    required this.roomsNumber,
+    required this.distanceFromCityCenter,
+    required this.images,
+    required this.startsFrom,
+  });
+
   factory HotelModel.fromJson(jsonData) {
     List<RoomTypeModel>? roomTypes;
-    if (jsonData['room_types'] != null) {
+    var rooms = jsonData['room_types'] ?? jsonData['rooms_reserved'];
+    if (rooms != null) {
       roomTypes = [];
-      for (int i = 0; i < jsonData['room_types'].length; i++) {
-        roomTypes.add(RoomTypeModel.fromJson(jsonData['room_types'][i]));
+      for (int i = 0; i < rooms.length; i++) {
+        roomTypes.add(RoomTypeModel.fromJson(rooms[i]));
       }
     }
     return HotelModel(
-        id: jsonData["_id"],
-        name: jsonData["name"],
-        location: LocationModel.fromJson(jsonData["location"]),
-        stars: jsonData["stars"],
-        description: jsonData["description"],
+        id: jsonData["_id"] ?? jsonData['hotel_id'],
+        name: jsonData["name"] ?? jsonData['hotel_name'],
+        location: LocationModel.fromJson(
+            jsonData["location"] ?? jsonData['hotel_location']),
+        stars: jsonData["stars"] ?? jsonData['hotel_stars'],
+        description: jsonData["description"] ?? jsonData['hotel_description'],
         roomType: roomTypes!,
         roomsNumber: jsonData["rooms_number"],
         distanceFromCityCenter: jsonData["distance_from_city_center"],
         images: List<String>.from(jsonData["images"]),
-        startsFrom: jsonData["starts_from"]);
+        startsFrom: jsonData["starts_from"] ?? jsonData['overall_price']);
   }
 }

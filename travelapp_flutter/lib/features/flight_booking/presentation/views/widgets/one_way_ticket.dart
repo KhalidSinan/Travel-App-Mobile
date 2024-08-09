@@ -16,21 +16,25 @@ class OneWayTicket extends StatelessWidget {
   const OneWayTicket({
     super.key,
     required this.flight,
+    this.enable = true,
   });
   final OneWayFlightModel flight;
-
+  final bool enable;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Get.to(
-          () => FlightDetailsPage(
-            id: flight.id!,
-            classType: BlocProvider.of<AllFlightsCubit>(context).seatsClass!,
-            seats: BlocProvider.of<AllFlightsCubit>(context).seats!,
-          ),
-        );
-      },
+      onTap: enable
+          ? () {
+              Get.to(
+                () => FlightDetailsPage(
+                  id: flight.id!,
+                  classType:
+                      BlocProvider.of<AllFlightsCubit>(context).seatsClass!,
+                  seats: BlocProvider.of<AllFlightsCubit>(context).seats!,
+                ),
+              );
+            }
+          : null,
       child: ClipPath(
         clipper: CustomOneWayTicketShape(),
         child: Container(

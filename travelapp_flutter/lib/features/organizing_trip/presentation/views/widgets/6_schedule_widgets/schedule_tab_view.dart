@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/review_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/destinations_model.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/7_review_orgnizing_trip_page.dart';
-
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/schedule_cubit/schedule_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/6_schedule_widgets/schedule_view_content.dart';
 
 class ScheduleTabbarView extends StatefulWidget {
@@ -12,11 +10,13 @@ class ScheduleTabbarView extends StatefulWidget {
     required this.tabController,
     required this.cities,
     required this.currentSteps,
+    required this.onScheduleDone,
   });
 
   final TabController tabController;
   final List<DestinationsModel> cities;
   final List<int> currentSteps;
+  final Function(dynamic schedule, dynamic places) onScheduleDone;
 
   @override
   State<ScheduleTabbarView> createState() => _ScheduleTabbarViewState();
@@ -50,7 +50,10 @@ class _ScheduleTabbarViewState extends State<ScheduleTabbarView> {
     if (currentIndex < widget.cities.length - 1) {
       widget.tabController.animateTo(currentIndex + 1);
     } else {
-      Get.to(() => const ReviewOrgnizingTrip());
+      widget.onScheduleDone(
+        BlocProvider.of<ScheduleCubit>(context).tripSchedule,
+        BlocProvider.of<ScheduleCubit>(context).places,
+      );
     }
   }
 }

@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:travelapp_flutter/core/utils/constants.dart';
+import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({
+class CustomOvalButton extends StatelessWidget {
+  const CustomOvalButton({
     super.key,
-    required this.onPressed,
     required this.label,
+    required this.onPressed,
     this.color,
-    this.isFlat,
-    this.colorText,
   });
-  final VoidCallback? onPressed;
+
   final String label;
+  final VoidCallback onPressed;
   final Color? color;
-  final Color? colorText;
-  final bool? isFlat;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -23,21 +20,19 @@ class CustomButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: color ?? Themes.primary,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            (isFlat == null || isFlat == false) ? radius : 0,
-          ),
+          borderRadius: BorderRadius.circular(50),
         ),
         padding: const EdgeInsets.symmetric(
-          horizontal: 8,
+          horizontal: 16,
           vertical: 16,
         ),
       ),
       child: Text(
         label,
-        style: TextStyle(
-          color: colorText ?? Colors.white,
+        style: Styles.content.copyWith(
+          color: Colors.white,
+          overflow: TextOverflow.ellipsis,
           fontSize: 16,
-          fontWeight: FontWeight.bold,
         ),
       ),
     );

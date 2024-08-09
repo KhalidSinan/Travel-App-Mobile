@@ -6,6 +6,7 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/view_mod
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_information_cubit/hotel_information_states.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/6_schedule_page.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/7_review_orgnizing_trip_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/city_and_hotel_select_card_.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/widgets/next_button.dart';
@@ -61,7 +62,17 @@ class _HotelSelectionBodyState extends State<HotelSelectionBody> {
               allHotels:
                   BlocProvider.of<HotelInformationCubit>(context).allHotels,
             );
-            Get.to(const SchedulePage());
+            Get.to(() => SchedulePage(
+                  destinations: BlocProvider.of<OrganizingTripCubit>(context)
+                      .destinations,
+                  onScheduleDone: (schedule, places) {
+                    BlocProvider.of<OrganizingTripCubit>(context)
+                        .setTripSchedule(schedule);
+                    BlocProvider.of<OrganizingTripCubit>(context)
+                        .setPlaces(places);
+                    Get.to(() => const ReviewOrgnizingTrip());
+                  },
+                ));
           }),
           const SizedBox(
             height: 20,
