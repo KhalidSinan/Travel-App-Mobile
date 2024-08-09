@@ -53,10 +53,6 @@ class _TicketsReviewBodyState extends State<TicketsReviewBody> {
                           onTap: () {
                             BlocProvider.of<OrganizingTripCubit>(context)
                                 .getStartDate();
-                            BlocProvider.of<OrganizingTripCubit>(context)
-                                .createTripSchedule();
-                            BlocProvider.of<OrganizingTripCubit>(context)
-                                .createCurrentSteps();
                             Get.toNamed('/hotels');
                           },
                         ),

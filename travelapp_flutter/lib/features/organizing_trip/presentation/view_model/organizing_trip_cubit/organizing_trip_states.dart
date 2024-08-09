@@ -1,4 +1,3 @@
-import 'package:flutter/physics.dart';
 import 'package:travelapp_flutter/core/helpers/failure.dart';
 
 abstract class OrganizingTripStates {}

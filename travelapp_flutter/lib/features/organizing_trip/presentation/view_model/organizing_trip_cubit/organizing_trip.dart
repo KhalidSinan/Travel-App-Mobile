@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
-import 'package:travelapp_flutter/features/hotel_booking/data/repos/hotel_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/available_flight_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/check_flight_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/destinations_model.dart';
@@ -11,7 +9,6 @@ import 'package:travelapp_flutter/features/organizing_trip/data/models/filtering
 import 'package:travelapp_flutter/features/organizing_trip/data/models/hotel_reservation_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/place_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/trip_Info_model.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_reservation_cubit/hotel_reservation_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip_states.dart';
 import '../../../data/models/cities_airline_model.dart';
 import '../../../data/repos/organizing_trip_repo_impl.dart';
@@ -47,7 +44,6 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   List<DestinationsModel> destinations = [];
   List<String> startDates = [];
   Map<String, List<Map<String, List<PlaceModel?>>>> tripSchedule = {};
-  List<int> currentSteps = [];
   HotelReservationModel? allHotels;
 
   // List<FilterModel>? filter = [];
@@ -150,7 +146,8 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   }
 
   double getTotalTripPrice() {
-    return getTotalFlightsPrice() + allHotels!.getAllHotelsPrice();
+    return 9.00;
+    // return getTotalFlightsPrice() + allHotels!.getAllHotelsPrice();
   }
 
   void addDestination() {
@@ -242,6 +239,15 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
     this.classType = getClass(selectedClass: classType);
   }
 
+  void setPlaces(List<PlaceModel> places) {
+    this.places = places;
+  }
+
+  void setTripSchedule(
+      Map<String, List<Map<String, List<PlaceModel?>>>> tripSchedule) {
+    this.tripSchedule = tripSchedule;
+  }
+
   String getClass({required String selectedClass}) {
     switch (selectedClass) {
       case 'First':
@@ -268,25 +274,6 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
     }
   }
 
-  Future<void> getPlaces(
-      {required String city, required String category}) async {
-    emit(LoadingOrganizingTrip());
-    var response =
-        await organizingTripImpl.getPlaces(category: category, city: city);
-    response.fold(
-      (failure) {
-        emit(FailureOrganizingTrip(failure: failure));
-      },
-      (response) {
-        places = [];
-        for (int i = 0; i < response['data'].length; i++) {
-          places.add(PlaceModel.fromJson(response['data'][i]));
-        }
-        emit(PlacesSuccess());
-      },
-    );
-  }
-
   void getStartDate() {
     startDates = [];
     startDates.add(startDate!);
@@ -303,30 +290,6 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
       String formattedDate = outputFormat.format(date);
       startDates.add(formattedDate);
     }
-  }
-
-  void createCurrentSteps() {
-    currentSteps = List.filled(destinations.length, 0);
-  }
-
-  void createTripSchedule() {
-    for (var city in destinations) {
-      List<Map<String, List<PlaceModel?>>> daysList = [];
-      for (var i = 1; i <= city.days; i++) {
-        daysList.add({'day$i': []});
-      }
-      tripSchedule[city.city] = daysList;
-    }
-  }
-
-  void updateTripSchedule(String city, int step, PlaceModel place) {
-    tripSchedule[city]![step]['day${step + 1}']!.add(place);
-    emit(EditScheduleState());
-  }
-
-  void deleteFromTripSchedule(String city, int step, int i) {
-    tripSchedule[city]![step]['day${step + 1}']!.removeAt(i);
-    emit(EditScheduleState());
   }
 
   List<Map<String, String>> getAllPlacesForDestination(

@@ -1,10 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/destinations_model.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/6_schedule_widgets/content_of_step.dart';
 
 class ScheduleViewContent extends StatefulWidget {
