@@ -13,15 +13,19 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/Announcements/presentation/views/announcements_subscriptions_page.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/data/repos/organized_group_repo_impl.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/orgainzed_group_trip_cubit.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/group_trip_details_cubit/group_trip_details_cubit.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/all_orgainzed_trip_page.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/organized_group_trip_details_page.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
+import 'package:travelapp_flutter/features/chat/presentation/views/create_chat_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/1_persons_days_selection_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_selection_page.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/6_schedule_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/7_review_orgnizing_trip_page.dart';
 import 'package:travelapp_flutter/features/settings/data/repos/settings_repo_impl.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
@@ -95,18 +99,23 @@ class _TravelAppState extends State<TravelApp> {
         ],
         theme: ThemeData(
           textSelectionTheme: TextSelectionThemeData(
-              cursorColor: Themes.primary,
-              selectionColor: Themes.primary,
-              selectionHandleColor: Themes.primary),
+            cursorColor: Themes.primary,
+            selectionColor: Themes.primary,
+            selectionHandleColor: Themes.primary,
+          ),
           appBarTheme: const AppBarTheme(
-              color: Colors.white, surfaceTintColor: Colors.white),
+            color: Colors.white,
+            surfaceTintColor: Colors.white,
+          ),
           scaffoldBackgroundColor: Colors.white,
           textTheme: GoogleFonts.aBeeZeeTextTheme(),
         ),
         // home: rememberMe == true
         //     ? FetchProfileDataPage(token: token)
         //     : const LoginPage(),
-        home: const ReviewOrgnizingTrip(),
+        home: const OrganizedGroupTripDetailsPage(
+          tripId: '66b5e99b7a604121637e91dd',
+        ),
       ),
     );
   }
