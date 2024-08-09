@@ -12,5 +12,9 @@ abstract class OrganizingGroupTripRepo {
       required double endPrice,
       required List<String> types,
       required List<String> countries});
+
+  Future<Either<Failure, Map<String, dynamic>>> getGroupTripDetails({
+    required String tripId,
+  });
   Future<Either<Failure, Map<String, dynamic>>> getAllCountries();
 }

@@ -3,14 +3,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/features_list.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/room_model.dart';
 
-class RoomCard extends StatelessWidget {
-  const RoomCard({super.key, required this.room, this.onRoomAdd});
+class RoomTripCard extends StatelessWidget {
+  const RoomTripCard({super.key, required this.room});
+
   final RoomTypeModel room;
-  final VoidCallback? onRoomAdd;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -86,14 +86,6 @@ class RoomCard extends StatelessWidget {
                   getFeatures: getFeatureIcon,
                 ),
               ],
-            ),
-          ),
-          SizedBox(
-            width: double.infinity,
-            child: CustomButton(
-              label: '+ Add \$${room.price}',
-              isFlat: true,
-              onPressed: onRoomAdd,
             ),
           ),
         ],
