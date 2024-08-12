@@ -25,8 +25,9 @@ class ContentOfStep extends StatelessWidget {
       builder: (context, state) => Column(
         children: [
           BlocProvider.of<ScheduleCubit>(context)
-                  .tripSchedule[city]![step]['day${step + 1}']!
-                  .isEmpty
+                      .tripSchedule[city]![step]['day${step + 1}']!
+                      .isEmpty &&
+                  BlocProvider.of<ScheduleCubit>(context).isEditable
               ? Text(
                   'Add Your Places !',
                   style: TextStyle(

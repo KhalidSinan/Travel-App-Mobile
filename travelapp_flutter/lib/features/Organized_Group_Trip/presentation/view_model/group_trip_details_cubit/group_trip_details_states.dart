@@ -13,3 +13,17 @@ class GroupTripDetailsFailureState extends GroupTripDetailsState {
 }
 
 class GroupTripDetailsSuccessState extends GroupTripDetailsState {}
+
+class GroupTripChangeDestinationState extends GroupTripDetailsState {}
+
+class DeleteGroupTripSuccessState extends GroupTripDetailsState {}
+
+class LoadingJoinGroupChatState extends GroupTripDetailsState {}
+
+class FailureJoinGroupChatState extends GroupTripDetailsState {
+  final Failure failure;
+
+  FailureJoinGroupChatState({required this.failure});
+}
+
+class SuccessJoinGroupChatState extends GroupTripDetailsState {}

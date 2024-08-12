@@ -25,8 +25,7 @@ class ChatImplRepo extends ChatRepo {
       return right(response);
     } on Exception catch (e) {
       if (e is DioException) {
-        return left(
-            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+        return left(Failure.fromDioException(e, CreateChatStatusCodeHandler()));
       }
       return left(Failure(errMessage: 'Something Went Wrong'));
     }

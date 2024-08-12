@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/group_trip_details_cubit/group_trip_details_cubit.dart';
 
 class TripTypesList extends StatelessWidget {
   const TripTypesList({
@@ -8,13 +10,8 @@ class TripTypesList extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    const tripTypes = [
-      "Artistic",
-      "Educational",
-      "Entertainment",
-      "Therapeutic",
-      "Exploratory"
-    ];
+    final tripTypes =
+        BlocProvider.of<GroupTripDetailsCubit>(context).groupTrip!.types;
     return Wrap(
       children: List.generate(tripTypes.length, (index) {
         return Padding(

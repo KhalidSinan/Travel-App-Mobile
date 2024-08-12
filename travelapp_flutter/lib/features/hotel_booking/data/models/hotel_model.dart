@@ -45,7 +45,7 @@ class HotelModel {
         roomType: roomTypes!,
         roomsNumber: jsonData["rooms_number"],
         distanceFromCityCenter: jsonData["distance_from_city_center"],
-        images: List<String>.from(jsonData["images"]),
-        startsFrom: jsonData["starts_from"] ?? jsonData['overall_price']);
+        images: List<String>.from(jsonData["images"] ?? [jsonData['image']]),
+        startsFrom: jsonData["starts_from"] ?? jsonData['price']);
   }
 }

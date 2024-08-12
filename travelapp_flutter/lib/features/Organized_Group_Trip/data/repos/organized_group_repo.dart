@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:travelapp_flutter/core/helpers/failure.dart';
+import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';
 
 abstract class OrganizingGroupTripRepo {
   Future<Either<Failure, Map<String, dynamic>>> getAllOrganizedTrips(
@@ -17,4 +18,26 @@ abstract class OrganizingGroupTripRepo {
     required String tripId,
   });
   Future<Either<Failure, Map<String, dynamic>>> getAllCountries();
+
+  Future<Either<Failure, Map<String, dynamic>>> reserveGroupTrip({
+    required String tripId,
+    required int numOfParticipants,
+    required List<PassengerModel> participants,
+  });
+  Future<Either<Failure, Map<String, dynamic>>> getTripParticipantsOrganizer({
+    required String tripId,
+  });
+  Future<Either<Failure, Map<String, dynamic>>> getTripParticipantsUser({
+    required String tripId,
+  });
+  Future<Either<Failure, Map<String, dynamic>>> cancelGroupTripReservation({
+    required String tripId,
+    required List<String> participantsId,
+  });
+  Future<Either<Failure, Map<String, dynamic>>> joinChat({
+    required String tripId,
+  });
+  Future<Either<Failure, Map<String, dynamic>>> cancelGroupTrip({
+    required String tripId,
+  });
 }

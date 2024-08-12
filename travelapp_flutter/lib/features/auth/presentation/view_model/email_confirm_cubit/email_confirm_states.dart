@@ -13,3 +13,5 @@ class FailureEmailConfirmState extends EmailConfirmStates {
 
   FailureEmailConfirmState({required this.failure});
 }
+
+class SuccessResendCodeState extends EmailConfirmStates {}

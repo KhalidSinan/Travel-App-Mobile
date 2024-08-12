@@ -8,7 +8,10 @@ import 'package:travelapp_flutter/features/flight_booking/presentation/views/wid
 class TripDestinationFlight extends StatelessWidget {
   const TripDestinationFlight({
     super.key,
+    required this.ticket,
   });
+
+  final OneWayFlightModel ticket;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class TripDestinationFlight extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         OneWayTicket(
-          flight: OneWayFlightModel.fromJson(flight),
+          flight: ticket,
           enable: false,
         ),
       ],

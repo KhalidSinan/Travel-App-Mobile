@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/group_trip_subscribe_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/form_model.dart';
+import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/form_cubit/form_cubit.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/tile_content.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
@@ -17,6 +19,7 @@ class FormPageBody extends StatelessWidget {
     this.flightsId,
     this.reservationType,
     this.tripForm,
+    this.subscribeFormId,
   });
 
   FormModel? formModel;
@@ -26,6 +29,7 @@ class FormPageBody extends StatelessWidget {
   final String classType;
   final int seats;
   bool? tripForm = false;
+  String? subscribeFormId;
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +127,15 @@ class FormPageBody extends StatelessWidget {
                       onPressed: () async {
                         if (BlocProvider.of<FormCubit>(context)
                             .checkFormValidity()) {
-                          // isInitial = false;
+                          if (subscribeFormId != null) {
+                            Get.to(() => GroupTripSubscribePage(
+                                  tripId: subscribeFormId!,
+                                  participantsNum:
+                                      BlocProvider.of<FormCubit>(context).seats,
+                                  participants: getPassengers(context),
+                                ));
+                            return;
+                          }
                           if (tripForm == true) {
                             Get.to(() => TripPaymentPage(
                                   trip: BlocProvider.of<OrganizingTripCubit>(
@@ -164,5 +176,15 @@ class FormPageBody extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  List<PassengerModel> getPassengers(BuildContext context) {
+    List<PassengerModel> passengers = [];
+    BlocProvider.of<FormCubit>(context).passengers.forEach((passenger) {
+      if (passenger != null) {
+        passengers.add(passenger);
+      }
+    });
+    return passengers;
   }
 }

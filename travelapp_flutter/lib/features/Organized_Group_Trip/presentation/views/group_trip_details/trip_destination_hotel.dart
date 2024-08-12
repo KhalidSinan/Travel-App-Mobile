@@ -12,7 +12,10 @@ import 'package:travelapp_flutter/features/hotel_booking/data/models/room_model.
 class TripDestinationHotel extends StatefulWidget {
   const TripDestinationHotel({
     super.key,
+    required this.hotel,
   });
+
+  final HotelModel hotel;
 
   @override
   State<TripDestinationHotel> createState() => _TripDestinationHotelState();
@@ -42,18 +45,18 @@ class _TripDestinationHotelState extends State<TripDestinationHotel> {
           ],
         ),
         const SizedBox(height: 8),
-        HotelTripCard(hotel: HotelModel.fromJson(hotel)),
+        HotelTripCard(hotel: widget.hotel),
         const SizedBox(height: 16),
         SizedBox(
           height: 250,
           child: ListView.builder(
             controller: controller,
             scrollDirection: Axis.horizontal,
-            itemCount: rooms.length,
+            itemCount: widget.hotel.roomType.length,
             itemExtent: MediaQuery.sizeOf(context).width - 50,
             itemBuilder: (context, index) {
               return RoomTripCard(
-                room: RoomTypeModel.fromJson(rooms[index]),
+                room: widget.hotel.roomType[index],
               );
             },
           ),

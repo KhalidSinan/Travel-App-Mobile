@@ -47,7 +47,8 @@ class HotelReviewPageBody extends StatelessWidget {
                   hotelImage: hotelRes.currentHotel!.images[0],
                   hotelLocation: hotelRes.currentHotel!.location.city!,
                   hotelStars: hotelRes.currentHotel!.stars,
-                  distanceFromCityCenter: hotelRes.currentHotel!.distanceFromCityCenter!,
+                  distanceFromCityCenter:
+                      hotelRes.currentHotel!.distanceFromCityCenter!,
                   hotelName: hotelRes.currentHotel!.name,
                   hotelId: hotelRes.currentHotel!.id,
                   selectedRooms: hotelRes.selectedRooms,

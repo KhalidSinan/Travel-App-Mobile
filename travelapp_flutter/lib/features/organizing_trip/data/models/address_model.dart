@@ -1,8 +1,8 @@
 class AddressModel {
   final String city;
   final String country;
-  final String address;
-  final String id;
+  final String? address;
+  final String? id;
 
   AddressModel({
     required this.city,

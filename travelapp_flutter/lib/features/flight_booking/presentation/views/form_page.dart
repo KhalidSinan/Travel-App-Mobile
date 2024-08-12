@@ -24,6 +24,7 @@ class FormPage extends StatefulWidget {
     this.passengers,
     this.reservationId,
     this.tripFrom,
+    this.subscribeFormId,
   });
 
   final List<String>? flightsId;
@@ -33,6 +34,7 @@ class FormPage extends StatefulWidget {
   final List<PassengerModel>? passengers;
   final String? reservationId;
   final bool? tripFrom;
+  final String? subscribeFormId;
   @override
   State<FormPage> createState() => _FormPageState();
 }
@@ -67,6 +69,7 @@ class _FormPageState extends State<FormPage> {
                   classType: widget.classType,
                   seats: numberOfSeats,
                   tripForm: widget.tripFrom,
+                  subscribeFormId: widget.subscribeFormId,
                   // isInitial: state is FormInitial,
                 );
               }

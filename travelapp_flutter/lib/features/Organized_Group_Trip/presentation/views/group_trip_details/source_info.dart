@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 
 class SourceInfo extends StatelessWidget {
@@ -20,6 +21,7 @@ class SourceInfo extends StatelessWidget {
             overflow: TextOverflow.clip,
           ),
         ),
+        //const JoinChatButton(),
       ],
     );
   }

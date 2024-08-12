@@ -24,4 +24,17 @@ class EmailConfirmCubit extends Cubit<EmailConfirmStates> {
       },
     );
   }
+
+  Future<void> resendCode({required String email}) async {
+    emit(LoadingEmailConfirmState());
+    var response = await _authRepoImpl.resendCode(email: email);
+    response.fold(
+      (failure) {
+        emit(FailureEmailConfirmState(failure: failure));
+      },
+      (res) {
+        emit(SuccessResendCodeState());
+      },
+    );
+  }
 }

@@ -32,8 +32,8 @@ class HotelTripCard extends StatelessWidget {
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(radius),
-                child: Image.asset(
-                  "assets/images/hotel.jpg",
+                child: Image.network(
+                  'http://10.0.2.2:5000/${hotel.images[0]}',
                 ),
               ),
             ),

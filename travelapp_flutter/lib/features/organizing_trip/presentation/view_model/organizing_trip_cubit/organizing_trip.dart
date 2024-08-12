@@ -69,17 +69,19 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   Future<void> checkFlightsForTrip() async {
     emit(LoadingOrganizingTrip());
     tripGeneralInfo = TripOrgModel(
-        startDate: startDate, numOfDays: numberDays, numOfSeats: numberPerson);
-    // print("pppppppppppppppppp");
-    // print(tripGeneralInfo.startDate);
+      startDate: startDate,
+      numOfDays: numberDays,
+      numOfSeats: numberPerson,
+    );
     printDestinationsList();
     checkFlightModel = CheckFlightModel(
-        source: sourceCity!,
-        destinations: destinations,
-        classOfSeat: classType!,
-        isReturn: returnHome,
-        daysTrip: numberDays!,
-        startDate: startDate!);
+      source: sourceCity!,
+      destinations: destinations,
+      classOfSeat: classType!,
+      isReturn: returnHome,
+      daysTrip: numberDays!,
+      startDate: startDate!,
+    );
     List<Map<String, dynamic>> destinationsoSend = [];
 
     for (var i = 0; i < destinations.length; i++) {
@@ -105,19 +107,20 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
         daysTrip: numberDays!,
         numPersons: numberPerson!);
     response.fold(
-        (failure) => emit(
-              FailureOrganizingTrip(failure: failure),
-            ), (res) {
-      availableFlightModel = [];
-      destinationsoSend = [];
-      print(res['data']);
-      for (var i = 0; i < res['data'].length; i++) {
-        availableFlightModel.add(AvailableFlightModel.fromJson(res["data"][i]));
-        // print(cities[i]);
-      }
-      print(destinations);
-      emit(SuccessCheckAvailableFlight());
-    });
+      (failure) => emit(
+        FailureOrganizingTrip(failure: failure),
+      ),
+      (res) {
+        availableFlightModel = [];
+        destinationsoSend = [];
+        print(res['data']);
+        for (var i = 0; i < res['data'].length; i++) {
+          availableFlightModel
+              .add(AvailableFlightModel.fromJson(res["data"][i]));
+        }
+        emit(SuccessCheckAvailableFlight());
+      },
+    );
   }
 
   double getTotalFlightsPrice() {

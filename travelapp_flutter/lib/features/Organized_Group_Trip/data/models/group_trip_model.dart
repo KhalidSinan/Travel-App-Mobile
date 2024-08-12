@@ -15,6 +15,7 @@ class GroupTripModel {
   final List<String> types;
   final TripStatus status;
   final double price;
+  final double priceWithCommission;
 
   GroupTripModel({
     required this.id,
@@ -29,6 +30,7 @@ class GroupTripModel {
     required this.types,
     required this.status,
     required this.price,
+    required this.priceWithCommission,
   });
 
   factory GroupTripModel.fromJson(jsonData) {
@@ -40,16 +42,17 @@ class GroupTripModel {
     return GroupTripModel(
       id: jsonData['id'],
       organizer: jsonData['organizer_name'],
-      source: jsonData['source'],
+      source: CountryModel.fromJson(jsonData['source']),
       destinations: destinations,
       startDate: jsonData['start_date'],
       endDate: jsonData['end_date'],
       days: jsonData['num_of_days'],
       overallSeats: jsonData['overall_seats'],
       participants: jsonData['num_of_people_participating'],
-      types: jsonData['trip_type'],
+      types: List<String>.from(jsonData['trip_type']),
       status: getTripStatus(jsonData['status_of_trip']),
       price: jsonData['price'],
+      priceWithCommission: jsonData['price_with_commission'],
     );
   }
 

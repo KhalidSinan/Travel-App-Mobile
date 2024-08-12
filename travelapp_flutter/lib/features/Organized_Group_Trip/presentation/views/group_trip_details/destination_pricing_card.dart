@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/data/models/trip_destination_model.dart';
 
 class DestinationPricingCard extends StatelessWidget {
   const DestinationPricingCard({super.key, required this.destination});
-
-  final String destination;
+  final TripDestinationModel destination;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class DestinationPricingCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          destination,
+          destination.destination.city,
           style: Styles.content.copyWith(
             color: Colors.black,
             fontSize: 20,
@@ -22,19 +23,15 @@ class DestinationPricingCard extends StatelessWidget {
         const SizedBox(height: 8),
         costRow(
           rowName: 'Ticket Cost',
-          cost: '300',
+          cost: destination.ticket.flightPrice.toString(),
         ),
         costRow(
           rowName: 'Hotel Cost',
-          cost: '400',
-        ),
-        costRow(
-          rowName: 'Activities Cost',
-          cost: '200',
+          cost: destination.hotel.startsFrom.toString(),
         ),
         costRow(
           rowName: 'Total',
-          cost: '900',
+          cost: destination.price,
           total: true,
         ),
       ],
