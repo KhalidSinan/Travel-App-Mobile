@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:travelapp_flutter/core/helpers/failure.dart';
 
@@ -56,6 +58,30 @@ class ReservationHotelStatusCodeHandler extends StatusCodeHandler {
     return Failure(
       errMessage: problems,
       errTitle: message,
+      errType: DioExceptionType.badResponse,
+    );
+  }
+}
+
+class CreateChatStatusCodeHandler extends StatusCodeHandler {
+  @override
+  Failure handleError(int statusCode, data) {
+    data = json.decode(data.toString());
+    return Failure(
+      errTitle: 'Error',
+      errMessage: data['message'],
+      errType: DioExceptionType.badResponse,
+    );
+  }
+}
+
+class SubscribeGroupTripStatusCodeHandler extends StatusCodeHandler {
+  @override
+  Failure handleError(int statusCode, data) {
+    data = json.decode(data.toString());
+    return Failure(
+      errTitle: 'Error',
+      errMessage: data['message'],
       errType: DioExceptionType.badResponse,
     );
   }

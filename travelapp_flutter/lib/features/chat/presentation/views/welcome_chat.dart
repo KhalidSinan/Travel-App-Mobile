@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
+import 'package:travelapp_flutter/features/chat/presentation/views/create_chat_page.dart';
 
 class WelcomeChat extends StatelessWidget {
   const WelcomeChat({super.key});
@@ -20,7 +22,7 @@ class WelcomeChat extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: isPortrait ? screenHeight * 0.3 : screenHeight * 0.5,
                 child: Lottie.asset("assets/animations/chat.json"),
               ),
@@ -47,7 +49,12 @@ class WelcomeChat extends StatelessWidget {
                     const SizedBox(width: 16),
                     Expanded(
                       child: CustomButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(
+                            () => const CreateChatPage(),
+                            transition: Transition.fade,
+                          );
+                        },
                         label: "YES",
                         isFlat: true,
                       ),

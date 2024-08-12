@@ -20,8 +20,35 @@ class ScheduleCubit extends Cubit<ScheduleStates> {
   bool isEditable;
   bool isShowDetails;
 
-  void getTripSchedule() {
-    // TODO
+  Future<void> getTripSchedule({required String? tripId}) async {
+    if (tripId == null || !isShowDetails) return;
+    emit(GetPlacesLoading());
+    var response = await organizingTripImpl.getTripSchedule(tripId: tripId);
+    response.fold(
+      (failure) {
+        emit(GetPlacesFailure(failure: failure));
+      },
+      (res) {
+        for (var destination in res['data']) {
+          Map<String, dynamic> activities = destination['activities'];
+          List<Map<String, List<PlaceModel?>>> daysList = List.generate(
+            destination['num_of_days'],
+            (index) {
+              return {"day${index + 1}": []};
+            },
+          );
+          activities.forEach((day, listOfActivities) {
+            List<PlaceModel?> places = [];
+            for (var jsonPlace in listOfActivities) {
+              places.add(PlaceModel.fromJson(jsonPlace));
+            }
+            daysList[int.parse(day) - 1] = {'day$day': places};
+          });
+          tripSchedule[destination['city']] = daysList;
+        }
+        emit(GetPlacesSuccess());
+      },
+    );
   }
 
   void createCurrentSteps() {

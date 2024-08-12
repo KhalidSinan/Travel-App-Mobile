@@ -23,8 +23,6 @@ class _TicketsReviewBodyState extends State<TicketsReviewBody> {
       builder: (context, state) {
         flights =
             BlocProvider.of<OrganizingTripCubit>(context).availableFlightModel;
-        bool returnHome =
-            BlocProvider.of<OrganizingTripCubit>(context).returnHome;
         destinations =
             BlocProvider.of<OrganizingTripCubit>(context).destinations;
         if (state is LoadingOrganizingTrip) {
@@ -37,7 +35,7 @@ class _TicketsReviewBodyState extends State<TicketsReviewBody> {
                 Expanded(
                   child: ListView.builder(
                     physics: const BouncingScrollPhysics(),
-                    itemCount: flights!.length - (returnHome ? 1 : 0),
+                    itemCount: flights!.length,
                     itemBuilder: (context, index) {
                       return TicketsRow(
                         flightData: flights![index],

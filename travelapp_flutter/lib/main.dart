@@ -20,11 +20,11 @@ import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
-<<<<<<< HEAD
+import 'package:travelapp_flutter/features/auth/presentation/views/email_confirmation_page.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/register_page.dart';
 import 'package:travelapp_flutter/features/chat/presentation/views/create_chat_page.dart';
-=======
-import 'package:travelapp_flutter/features/chat/presentation/views/WelcomeChat/welcome_chat.dart';
->>>>>>> 1f33d0e4552ea9e3e76f06f36ae54f34a14351cb
+import 'package:travelapp_flutter/features/chat/presentation/views/welcome_chat.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/1_persons_days_selection_page.dart';
@@ -59,12 +59,14 @@ class TravelApp extends StatefulWidget {
 }
 
 class _TravelAppState extends State<TravelApp> {
-  bool? rememberMe;
-  String? token;
+  bool? rememberMe, emailVerify;
+  String? token, emailToVerify;
   @override
   void initState() {
     super.initState();
     final prefs = getIt.get<SharedPreferences>();
+    emailVerify = prefs.getBool('email-verify');
+    emailToVerify = prefs.getString('email-to-verify');
     rememberMe = prefs.getBool(rememberMeKey);
     token = prefs.getString(tokenKey);
   }
@@ -107,7 +109,6 @@ class _TravelAppState extends State<TravelApp> {
             selectionColor: Themes.primary,
             selectionHandleColor: Themes.primary,
           ),
-<<<<<<< HEAD
           appBarTheme: const AppBarTheme(
             color: Colors.white,
             surfaceTintColor: Colors.white,
@@ -118,16 +119,16 @@ class _TravelAppState extends State<TravelApp> {
         // home: rememberMe == true
         //     ? FetchProfileDataPage(token: token)
         //     : const LoginPage(),
-        home: const OrganizedGroupTripDetailsPage(
-          tripId: '66b5e99b7a604121637e91dd',
-        ),
+        // home: const OrganizedGroupTripDetailsPage(
+        //   tripId: '66ba0eb360e2f6d63923d080',
+        //   isOrganizer: true,
+        // ),
+        home: emailVerify == true
+            ? EmailConfirmationPage(
+                email: emailToVerify!,
+              )
+            : const LoginPage(),
       ),
-=======
-          // home: rememberMe == true
-          //     ? FetchProfileDataPage(token: token)
-          //     : const LoginPage(),
-          home: const WelcomeChat()),
->>>>>>> 1f33d0e4552ea9e3e76f06f36ae54f34a14351cb
     );
   }
 }

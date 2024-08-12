@@ -21,4 +21,6 @@ abstract class OrganizingTripRepo {
     required List<String> flightsReservations,
     required List<String> hotelsReservations,
   });
+  Future<Either<Failure, Map<String, dynamic>>> getTripSchedule(
+      {required String tripId});
 }

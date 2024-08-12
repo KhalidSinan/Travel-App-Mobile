@@ -10,7 +10,7 @@ class TripDestinationModel {
   final int days;
   final OneWayFlightModel ticket;
   final HotelModel hotel;
-  final double price;
+  final String price;
 
   TripDestinationModel({
     required this.destination,

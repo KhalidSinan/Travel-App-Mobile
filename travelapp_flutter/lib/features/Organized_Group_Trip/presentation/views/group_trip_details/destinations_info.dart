@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/data/models/trip_destination_model.dart';
 
 class DestinationsInfo extends StatelessWidget {
   const DestinationsInfo({
@@ -9,7 +10,7 @@ class DestinationsInfo extends StatelessWidget {
     required this.destinations,
   });
 
-  final List<String> destinations;
+  final List<TripDestinationModel> destinations;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class DestinationsInfo extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: List.generate(
-              destinations.length - 1,
+              destinations.length,
               (index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4),
@@ -34,7 +35,7 @@ class DestinationsInfo extends StatelessWidget {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          destinations[index + 1],
+                          destinations[index].destination.city,
                           style: Styles.content.copyWith(
                             fontSize: 24,
                             color: Colors.black,

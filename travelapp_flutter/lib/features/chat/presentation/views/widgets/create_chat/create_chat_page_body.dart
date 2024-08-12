@@ -12,7 +12,7 @@ import 'package:travelapp_flutter/features/chat/presentation/view_model/chat_cub
 
 class CreateChatPageBody extends StatefulWidget {
   const CreateChatPageBody(
-      {super.key, this.tripId = '66b203507854e2435307b2a4'});
+      {super.key, this.tripId = '66b5e99b7a604121637e91dd'});
   final String tripId;
   @override
   State<CreateChatPageBody> createState() => _CreateChatPageBodyState();
@@ -92,6 +92,12 @@ class _CreateChatPageBodyState extends State<CreateChatPageBody> {
       showCustomSnackBar(
         title: 'Success',
         message: 'Made the $groupName Group',
+      );
+    }
+    if (state is CreatedChatFailureState) {
+      showCustomSnackBar(
+        title: state.failure.errTitle!,
+        message: state.failure.errMessage,
       );
     }
   }

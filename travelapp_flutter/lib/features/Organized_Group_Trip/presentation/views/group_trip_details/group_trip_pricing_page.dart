@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/dash_line_divider.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/group_trip_details_cubit/group_trip_details_cubit.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/group_trip_details/destination_pricing_card.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/3_travel_destinations_page.dart';
 
@@ -12,6 +14,7 @@ class GroupTripPricingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final groupTrip = BlocProvider.of<GroupTripDetailsCubit>(context).groupTrip;
     return Padding(
       padding: const EdgeInsets.all(24),
       child: SingleChildScrollView(
@@ -21,7 +24,7 @@ class GroupTripPricingPage extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '(7/20)',
+                  '(${groupTrip!.participants}/${groupTrip.overallSeats})',
                   style: Styles.heading.copyWith(color: Themes.third),
                 ),
                 const SizedBox(width: 8),
@@ -60,33 +63,21 @@ class GroupTripPricingPage extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  const DestinationPricingCard(
-                    destination: 'Damascus',
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    child: DashLineDivider(),
-                  ),
-                  const DestinationPricingCard(
-                    destination: 'Asyut',
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    child: DashLineDivider(),
-                  ),
-                  const DestinationPricingCard(
-                    destination: 'Asyut',
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    child: DashLineDivider(),
-                  ),
-                  const DestinationPricingCard(
-                    destination: 'Asyut',
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    child: DashLineDivider(),
+                  ...List.generate(
+                    groupTrip.destinations.length,
+                    (index) {
+                      return Column(
+                        children: [
+                          DestinationPricingCard(
+                            destination: groupTrip.destinations[index],
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16),
+                            child: DashLineDivider(),
+                          ),
+                        ],
+                      );
+                    },
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,7 +87,23 @@ class GroupTripPricingPage extends StatelessWidget {
                         style: Styles.content,
                       ),
                       Text(
-                        '\$1800',
+                        '\$${groupTrip.price}',
+                        style: Styles.content,
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Total Cost With Commission',
+                          style: Styles.content,
+                        ),
+                      ),
+                      Text(
+                        '\$${groupTrip.priceWithCommission}',
                         style: Styles.content,
                       )
                     ],

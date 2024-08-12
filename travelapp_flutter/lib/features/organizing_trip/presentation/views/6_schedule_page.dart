@@ -18,11 +18,13 @@ class SchedulePage extends StatefulWidget {
     this.isShowDetails = false,
     this.initialDestination = 0,
     required this.onScheduleDone,
+    this.tripId,
   });
   final List<DestinationsModel> destinations;
   final int initialDestination;
   final bool isEditable;
   final bool isShowDetails;
+  final String? tripId;
   final Function(dynamic schedule, dynamic places) onScheduleDone;
   @override
   State<SchedulePage> createState() => _SchedulePageState();
@@ -53,7 +55,8 @@ class _SchedulePageState extends State<SchedulePage>
           organizingTripImpl: getIt.get<OrganizingTripImpl>(),
         )
           ..createCurrentSteps()
-          ..createTripSchedule();
+          ..createTripSchedule()
+          ..getTripSchedule(tripId: widget.tripId);
       },
       child: Scaffold(
           appBar: AppBar(

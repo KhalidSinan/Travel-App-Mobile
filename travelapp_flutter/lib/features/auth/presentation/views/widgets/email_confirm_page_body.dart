@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
+import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/email_confirm_cubit/email_confirm_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/email_confirm_cubit/email_confirm_states.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/fetch_profile_data_page.dart';
@@ -29,7 +34,6 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Spacer(flex: 1),
             Text(
               'Email Verification',
               style: Styles.heading,
@@ -74,7 +78,16 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
                       label: 'Verify',
                     ),
                   ),
-            const Spacer(flex: 4),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.center,
+              child: CustomTextButton(
+                onPressed: resendCode,
+                label: 'Resend Code',
+                color: Themes.primary,
+              ),
+            ),
+            const Spacer(flex: 5),
           ],
         ),
       ),
@@ -89,6 +102,14 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
     if (state is SuccessEmailConfirmState) {
       // showCustomSnackBar(title: 'Success', message: 'Registered successfully');
       Get.off(() => const FetchProfileDataPage());
+      final prefs = getIt.get<SharedPreferences>();
+      await prefs.remove('email-verify');
+      await prefs.remove('email-to-verify');
+    }
+    if (state is SuccessResendCodeState) {
+      showCustomSnackBar(
+          title: 'Verification Code',
+          message: 'Verification Code has been sent Successfully');
     }
   }
 
@@ -109,5 +130,10 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
         message: 'All code fields are required',
       );
     }
+  }
+
+  void resendCode() async {
+    await BlocProvider.of<EmailConfirmCubit>(context)
+        .resendCode(email: widget.email);
   }
 }

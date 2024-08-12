@@ -189,4 +189,24 @@ class AuthRepoImpl extends AuthRepo {
       return left(Failure(errMessage: 'Something went wrong'));
     }
   }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> resendCode(
+      {required String email}) async {
+    try {
+      Map<String, dynamic> response = await apiService.post(
+        endPoint: '/auth/resend-code',
+        body: {
+          "email": email,
+        },
+      );
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      }
+      return left(Failure(errMessage: 'Something went wrong'));
+    }
+  }
 }
