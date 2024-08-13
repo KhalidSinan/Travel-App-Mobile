@@ -21,7 +21,7 @@ class ScheduleTabs extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: TabBar(
           dividerColor: Colors.white,
-controller: tabController,
+          controller: tabController,
           isScrollable: true,
           indicatorSize: TabBarIndicatorSize.tab,
           tabAlignment: TabAlignment.center,
