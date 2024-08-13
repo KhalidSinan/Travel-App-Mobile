@@ -4,8 +4,7 @@ class ApiService {
   final String _baseUrl = 'http://10.0.2.2:5000';
   //10.0.2.2
   final Dio _dio;
-  final String token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhN2I2NDQzMTgyZmQzYzhmYmViYTQ4MiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkdhcmxhbmQiLCJsYXN0X25hbWUiOiJEdUJ1cXVlIn0sImlhdCI6MTcyMjYyMjUzMn0.wKDEo9VW78fhyAno14yz-bYQbzSI54fW631NAYOHNIg';
+  final String token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1MDZhYTBjMGI2YzIzZmE0NmM4NGJkYiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IlNoYWluYSIsImxhc3RfbmFtZSI6IldlYmVyIn0sImlhdCI6MTcyMzU0MTc3N30.P48tFx8yEb6kAmoDg_b2aFrx-CaFGxS0_puXYYCCywY';
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get(
@@ -51,13 +50,16 @@ class ApiService {
   Future<Map<String, dynamic>> delete({
     required String endPoint,
     required dynamic body,
-    Map<String, dynamic>? headers,
+    
   }) async {
     var response = await _dio.delete(
       '$_baseUrl$endPoint',
       data: body,
       options: Options(
-        headers: headers,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
       ),
     );
     print(response.statusCode);

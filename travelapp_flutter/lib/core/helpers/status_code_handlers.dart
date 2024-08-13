@@ -16,9 +16,23 @@ class DefaultStatusCodeHandler extends StatusCodeHandler {
         errMessage: data.toString(),
         errType: DioExceptionType.badResponse,
       );
+    } else if (statusCode == 400 || statusCode == 401) {
+      dynamic message;
+      if (data.data is Map<String, dynamic>) {
+        final dataMap = data.data as Map<String, dynamic>;
+        message = dataMap['message'] ?? 'An error occurred';
+      } else {
+        message = 'An error occurred!';
+        print(statusCode);
+        print(data.data);
+      }
+      return Failure(
+        errMessage: message,
+        errTitle: 'Error',
+        errType: DioExceptionType.badResponse,
+      );
     } else {
       print(statusCode);
-      print(data);
       return Failure(
         errTitle: 'Error',
         errMessage: data['message'],
@@ -60,3 +74,40 @@ class ReservationHotelStatusCodeHandler extends StatusCodeHandler {
     );
   }
 }
+
+class BecomeOrganizerStatusCodeHandler extends StatusCodeHandler {
+  @override
+  Failure handleError(int statusCode, data) {
+    dynamic message;
+    if (data.data is Map<String, dynamic>) {
+      final dataMap = data.data as Map<String, dynamic>;
+      message = dataMap['message'] ?? 'An error occurred';
+    } else {
+      message = 'An error occurred';
+    }
+    return Failure(
+      errMessage: message,
+      errTitle: 'Error',
+      errType: DioExceptionType.badResponse,
+    );
+  }
+}
+
+// class ChangePsswordStatusCodeHandler extends StatusCodeHandler {
+//   @override
+//   Failure handleError(int statusCode, data) {
+//     dynamic message;
+//     if (data.data is Map<String, dynamic>) {
+//       final dataMap = data.data as Map<String, dynamic>;
+//        message =
+//           dataMap['message'] ?? 'An error occurred'; 
+//     } else {
+//       message = 'An error occurred'; 
+//     }
+//     return Failure(
+//       errMessage: message,
+//       errTitle: 'Error',
+//       errType: DioExceptionType.badResponse,
+//     );
+//   }
+// }

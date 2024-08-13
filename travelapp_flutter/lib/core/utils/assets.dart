@@ -8,4 +8,5 @@ class Assets {
   static String greenSky = "assets/images/green_sky.png";
   static String noInterent = "assets/images/no-internet.jpg";
   static String somethingWrong = "assets/images/something-wrong.jpg";
+  static String personal = "assets/images/personal.png";
 }

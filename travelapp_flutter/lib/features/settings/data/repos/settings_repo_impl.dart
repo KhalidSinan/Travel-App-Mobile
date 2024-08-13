@@ -144,4 +144,103 @@ class SettingsRepoImpl extends SettingsRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> becomeOrganizer(
+      {required dynamic body}) async {
+    try {
+      Map<String, dynamic> response = await apiService.post(
+          endPoint: "/users/become-organizer", body: body);
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, BecomeOrganizerStatusCodeHandler()));
+      } else {
+        return left(Failure(errMessage: 'Something went wrong'));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> changePassword(
+      {required Map<String, dynamic> body}) async {
+    try {
+      Map<String, dynamic> response =
+          await apiService.put(endPoint: "/users/password", body: body);
+      return Right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      }
+      return left(Failure(errMessage: 'Something went wrong'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> checkPassword(
+      {required Map<String, dynamic> body}) async {
+    try {
+      Map<String, dynamic> response = await apiService.post(
+          endPoint: "/users/request-delete-account", body: body);
+      return Right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      }
+      return left(Failure(errMessage: 'Something went wrong'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> deleteAccount(
+      {required Map<String, dynamic> body}) async {
+    try {
+      Map<String, dynamic> response = await apiService.delete(
+        endPoint: "/users/delete-account",
+        body: body,
+      );
+      return Right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      }
+      return left(Failure(errMessage: 'Something went wrong'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> reportAnBug(
+      {required Map<String, dynamic> body}) async {
+    try {
+      Map<String, dynamic> response =
+          await apiService.post(endPoint: "/reports/app", body: body);
+      return Right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      }
+      return left(Failure(errMessage: 'Something went wrong'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> ratingApp(
+      {required Map<String, dynamic> body}) async {
+    try {
+      Map<String, dynamic> response =
+          await apiService.post(endPoint: "/ratings", body: body);
+      return Right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      }
+      return left(Failure(errMessage: 'Something went wrong'));
+    }
+  }
 }

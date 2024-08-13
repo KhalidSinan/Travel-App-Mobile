@@ -22,7 +22,7 @@ class HotelSelectionBody extends StatelessWidget {
     HotelReservationModel? allHotels =
         BlocProvider.of<HotelInformationCubit>(context).allHotels;
 
-    List<HotelForDestinationModel>? hotels = allHotels!.hotels;
+    List<HotelForDestinationModel>? hotels = allHotels?.hotels;
 
     return SafeArea(
       child: Column(
@@ -37,7 +37,7 @@ class HotelSelectionBody extends StatelessWidget {
                   numDays: destinations[i]['days'],
                   startDate: startDates[i],
                   numberPerson: numberPerson!,
-                  hotelForDestinationModel: hotels[i],
+                  hotelForDestinationModel: hotels![i],
                 );
               },
             ),

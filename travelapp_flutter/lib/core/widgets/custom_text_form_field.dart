@@ -18,6 +18,7 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.labeltext,
     this.outlineInputBorder,
+    this.contentPadding, this.minLines, this.maxLines,
   });
   final String? hintText;
   final String? Function(String?)? validator;
@@ -32,6 +33,9 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final String? labeltext;
   final OutlineInputBorder? outlineInputBorder;
+  final EdgeInsetsGeometry? contentPadding;
+  final int? minLines;
+  final int? maxLines;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -44,7 +48,10 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obsecureText ?? false,
       keyboardType: textInputType,
       cursorColor: Themes.primary,
+      minLines: minLines ?? 1,
+      maxLines: maxLines ?? 1,
       decoration: InputDecoration(
+        contentPadding: contentPadding,
         labelText: labeltext,
         filled: true,
         fillColor: Colors.grey[100],
