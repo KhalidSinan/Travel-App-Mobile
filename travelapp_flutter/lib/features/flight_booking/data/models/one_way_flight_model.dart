@@ -42,7 +42,7 @@ class OneWayFlightModel {
       destination: CountryModel.fromJson(jsonData['destination']),
       departure: DateInfo.fromJson(jsonData['departure_date']),
       arrival: DateInfo.fromJson(jsonData['arrival_date']),
-      duration: jsonData['duration'],
+      duration: jsonData['duration'].toString(),
       reservations: reservations,
       flightPrice: jsonData['price'] ?? jsonData['flight_price'],
     );

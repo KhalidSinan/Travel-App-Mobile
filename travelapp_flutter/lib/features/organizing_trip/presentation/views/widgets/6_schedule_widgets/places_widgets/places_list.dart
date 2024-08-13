@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/place_model.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip_states.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/schedule_cubit/schedule_cubit.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/schedule_cubit/schedule_states.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/6_schedule_widgets/places_widgets/place_card.dart';
 
 class PlacesList extends StatefulWidget {
-  const PlacesList({super.key, required this.category, required this.city, required this.step});
+  const PlacesList(
+      {super.key,
+      required this.category,
+      required this.city,
+      required this.step});
   final String category, city;
   final int step;
 
@@ -23,11 +27,11 @@ class _PlacesListState extends State<PlacesList> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<OrganizingTripCubit, OrganizingTripStates>(
+    return BlocBuilder<ScheduleCubit, ScheduleStates>(
       builder: (context, state) {
-        if (state is PlacesSuccess) {
+        if (state is GetPlacesSuccess) {
           List<PlaceModel> places =
-              BlocProvider.of<OrganizingTripCubit>(context).places;
+              BlocProvider.of<ScheduleCubit>(context).places;
           if (places.isNotEmpty) {
             return ListView.builder(
               itemCount: places.length,
@@ -35,7 +39,12 @@ class _PlacesListState extends State<PlacesList> {
                 return Column(
                   children: [
                     if (index == 0) const SizedBox(height: 10),
-                    PlaceCard(place: places[index] , city: widget.city, step: widget.step,),
+                    PlaceCard(
+                      schedule: BlocProvider.of(context),
+                      place: places[index],
+                      city: widget.city,
+                      step: widget.step,
+                    ),
                   ],
                 );
               },
@@ -58,7 +67,7 @@ class _PlacesListState extends State<PlacesList> {
   }
 
   void getPlaces() async {
-    await BlocProvider.of<OrganizingTripCubit>(context)
+    await BlocProvider.of<ScheduleCubit>(context)
         .getPlaces(city: widget.city, category: widget.category);
   }
 }

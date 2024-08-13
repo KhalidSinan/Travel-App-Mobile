@@ -29,6 +29,9 @@ abstract class AuthRepo {
   Future<Either<Failure, Map<String, dynamic>>> fogotPassword({
     required String email,
   });
+  Future<Either<Failure, Map<String, dynamic>>> resendCode({
+    required String email,
+  });
   Future<Either<Failure, Map<String, dynamic>>> resetPassword({
     required String newPassword,
     required String newPasswordConfirm,

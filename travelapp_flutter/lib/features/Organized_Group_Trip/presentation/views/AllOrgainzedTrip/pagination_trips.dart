@@ -15,9 +15,8 @@ class OrganizedTripPagination extends StatelessWidget {
     return BlocBuilder<OrganizedGroupCubit, OrganizedGroupCubitState>(
       builder: (context, state) {
         if (state is SuccessOrganizedGroupTripState) {
-          int totalTrips = BlocProvider.of<OrganizedGroupCubit>(context)
-              .allOrganizedGroupTrip
-              .length;
+          int totalTrips = BlocProvider.of<OrganizedGroupCubit>(context).count
+              ;
           int numberPages = (totalTrips / 10).ceil();
           if (numberPages <= 1) {
             return const SizedBox();
@@ -27,7 +26,7 @@ class OrganizedTripPagination extends StatelessWidget {
             initialPage: BlocProvider.of<OrganizedGroupCubit>(context).page - 1,
             onPageChange: (index) async {
               await BlocProvider.of<OrganizedGroupCubit>(context)
-                  .changPage(index + 1);
+                  .changePage(index +1);
             },
             config: NumberPaginatorUIConfig(
               buttonSelectedBackgroundColor: Themes.primary,

@@ -60,9 +60,12 @@ class _FormDestinationsState extends State<FormDestinations> {
                   );
                   if (searchResult != null) {
                     setState(() {
-                      searchcontroller1.text = searchResult.toString();
+                      searchcontroller1.text = searchResult['city'].toString();
+
                       BlocProvider.of<OrganizingTripCubit>(context)
-                          .setdestination(searchcontroller1.text);
+                          .setDestinationCity(searchcontroller1.text);
+                      BlocProvider.of<OrganizingTripCubit>(context)
+                          .setDestinationCountry(searchResult['country']);
                     });
                   }
                 },

@@ -1,10 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/destinations_model.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/6_schedule_widgets/content_of_step.dart';
 
 class ScheduleViewContent extends StatefulWidget {
@@ -13,7 +11,7 @@ class ScheduleViewContent extends StatefulWidget {
       required this.tabController,
       required this.cities,
       required this.currentSteps,
-       required this.city,
+      required this.city,
       required this.index,
       this.navigateToNextCity});
 
@@ -30,7 +28,6 @@ class ScheduleViewContent extends StatefulWidget {
 class _ScheduleViewContentState extends State<ScheduleViewContent> {
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<OrganizingTripCubit>(context).tripSchedule;
     return Theme(
       data: Theme.of(context)
           .copyWith(colorScheme: ColorScheme.light(primary: Themes.primary)),
@@ -150,4 +147,3 @@ class _ScheduleViewContentState extends State<ScheduleViewContent> {
     return steps;
   }
 }
-

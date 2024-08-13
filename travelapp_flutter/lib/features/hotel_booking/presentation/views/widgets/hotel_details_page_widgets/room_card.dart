@@ -8,9 +8,9 @@ import 'package:travelapp_flutter/core/widgets/features_list.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/room_model.dart';
 
 class RoomCard extends StatelessWidget {
-  const RoomCard({super.key, required this.room, required this.onRoomAdd});
+  const RoomCard({super.key, required this.room, this.onRoomAdd});
   final RoomTypeModel room;
-  final VoidCallback onRoomAdd;
+  final VoidCallback? onRoomAdd;
   @override
   Widget build(BuildContext context) {
     return Container(

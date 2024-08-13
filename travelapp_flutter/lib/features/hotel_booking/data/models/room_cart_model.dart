@@ -10,6 +10,13 @@ class RoomCartModel {
     return RoomCartModel(room: json['room'], count: json['count']);
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      "code": room.code,
+      "count": count,
+    };
+  }
+
   void increaseCount() {
     count++;
   }

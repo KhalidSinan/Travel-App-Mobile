@@ -1,7 +1,7 @@
 class PhoneNumberModel {
   final String number;
   final String countryCode;
-  final String id;
+  final String? id;
 
   PhoneNumberModel({
     required this.number,

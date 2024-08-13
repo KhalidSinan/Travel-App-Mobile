@@ -4,13 +4,13 @@ import 'package:travelapp_flutter/features/organizing_trip/data/models/place_mod
 
 class ScheduleCard extends StatelessWidget {
   const ScheduleCard({super.key, required this.place});
- final PlaceModel place;
+  final PlaceModel place;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.fromLTRB(15, 8, 15, 8),
-      padding: const EdgeInsets.only(top: 8, left: 16, bottom: 8),
-      width: 240,
+      padding: const EdgeInsets.only(top: 8, left: 16, bottom: 8, right: 16),
+      // width: 240,
       decoration: BoxDecoration(
         color: Themes.secondary,
         border: Border.symmetric(
@@ -22,10 +22,10 @@ class ScheduleCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text(
+          Text(
             place.name,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
           ),
           const SizedBox(height: 8),
           Row(
@@ -35,9 +35,9 @@ class ScheduleCard extends StatelessWidget {
                 color: Themes.third,
               ),
               const SizedBox(width: 6),
-             Text(
-                 '+${place.phoneNumber.countryCode} ${place.phoneNumber.number}',
-                style: TextStyle(fontSize: 18),
+              Text(
+                '+${place.phoneNumber.countryCode} ${place.phoneNumber.number}',
+                style: const TextStyle(fontSize: 18),
               ),
             ],
           ),

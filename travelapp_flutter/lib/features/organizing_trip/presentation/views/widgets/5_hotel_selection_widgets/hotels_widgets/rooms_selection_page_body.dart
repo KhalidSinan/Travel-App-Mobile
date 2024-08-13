@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_information_cubit/hotel_information_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_reservation_cubit/hotel_reservation_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_reservation_cubit/hotel_reservations_states.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/hotels_widgets/hotel_review_page.dart';
@@ -32,7 +33,11 @@ class RoomsSelectionPageBody extends StatelessWidget {
                     ),
                     onPressed: () {
                       Get.to(
-                        () => HotelReviewPage(bloc: hotelRes),
+                        () => HotelReviewPage(
+                          bloc: hotelRes,
+                          bloc2:
+                              BlocProvider.of<HotelInformationCubit>(context),
+                        ),
                       );
                     },
                   ),

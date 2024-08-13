@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:intl/intl.dart';
 import 'package:travelapp_flutter/core/helpers/api_service.dart';
 import 'package:travelapp_flutter/core/helpers/failure.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/helpers/status_code_handlers.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 
 class OrganizingTripImpl extends OrganizingTripRepo {
   final ApiService apiService;
@@ -26,7 +28,7 @@ class OrganizingTripImpl extends OrganizingTripRepo {
       }
     }
   }
-  
+
   @override
   Future<Either<Failure, Map<String, dynamic>>> checkFlightsForTrip({
     required String source,
@@ -65,6 +67,71 @@ class OrganizingTripImpl extends OrganizingTripRepo {
     try {
       Map<String, dynamic> response = await apiService.get(
           endPoint: "/places/city?city=$city&category=$category");
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      } else {
+        return left(Failure(errMessage: 'Something went wrong'));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> makeTrip({
+    required OrganizingTripCubit trip,
+    required List<String> flightsReservations,
+    required List<String> hotelsReservations,
+  }) async {
+    DateTime date = DateFormat('dd/MM/yyyy').parse(trip.startDate!);
+    String formattedStartDate = DateFormat('MM-dd-yyyy').format(date);
+    List<Map<String, dynamic>> destinations = [];
+    for (var destination in trip.destinations) {
+      destinations.add({
+        "country_name": destination.country,
+        "city_name": destination.city,
+        "num_of_days": destination.days,
+        "activities": trip.getAllPlacesForDestination(
+          destination: destination.city,
+        ),
+      });
+    }
+    try {
+      Map<String, dynamic> response = await apiService.post(
+        endPoint: '/trips/create',
+        body: {
+          "overall_num_of_days": trip.numberDays,
+          "num_of_people": trip.numberPerson,
+          "start_date": formattedStartDate,
+          "starting_place": {
+            "country": trip.sourceCountry,
+            "city": trip.sourceCity,
+          },
+          "destinations": destinations,
+          "flights": flightsReservations,
+          "hotels": hotelsReservations,
+        },
+      );
+      print(response);
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      } else {
+        return left(Failure(errMessage: 'Something went wrong'));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> getTripSchedule(
+      {required String tripId}) async {
+    try {
+      Map<String, dynamic> response =
+          await apiService.get(endPoint: '/organized-trips/$tripId/schedule');
+      print(response);
       return right(response);
     } catch (e) {
       if (e is DioException) {

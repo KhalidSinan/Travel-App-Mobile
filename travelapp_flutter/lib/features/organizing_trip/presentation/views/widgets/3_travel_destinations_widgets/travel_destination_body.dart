@@ -47,7 +47,7 @@ class _DestinationsSelectionBodyState extends State<DestinationsSelectionBody> {
                               .copyWith(color: Themes.third, fontSize: 25),
                         ),
                       ),
-                      SourceForm(),
+                      const SourceForm(),
                       const Padding(
                         padding: EdgeInsets.all(15),
                         child: Row(
@@ -107,7 +107,7 @@ class _DestinationsSelectionBodyState extends State<DestinationsSelectionBody> {
                         if (_formKey.currentState!.validate()) {
                           await BlocProvider.of<OrganizingTripCubit>(context)
                               .checkFlightsForTrip();
-                          Get.to(const TicketsReviewPage());
+                          Get.to(() => const TicketsReviewPage());
                         }
                       },
                       label: "Check",

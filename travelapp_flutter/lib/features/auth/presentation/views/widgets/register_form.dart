@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
@@ -92,7 +94,7 @@ class _RegisterFormState extends State<RegisterForm> {
     );
   }
 
-  void registerListener(context, state) {
+  void registerListener(context, state) async {
     if (state is FailureRegisterState) {
       showCustomSnackBar(
         title: state.failure.errTitle ?? 'Error',
@@ -101,6 +103,9 @@ class _RegisterFormState extends State<RegisterForm> {
     }
     if (state is SuccessRegisterState) {
       Get.to(() => EmailConfirmationPage(email: email!));
+      final prefs = getIt.get<SharedPreferences>();
+      await prefs.setBool('email-verify', true);
+      await prefs.setString('email-to-verify', email!);
     }
   }
 

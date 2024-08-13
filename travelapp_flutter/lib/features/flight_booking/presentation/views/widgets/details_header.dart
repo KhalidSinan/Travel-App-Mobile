@@ -42,7 +42,7 @@ class DetailsHeader extends StatelessWidget {
                                   .reservationId,
                           passengers: reservation.flight.reservations!,
                           classType:
-                              reservation.flight.reservations![0].seatClass,
+                              reservation.flight.reservations![0].seatClass!,
                           seats: reservation.seat!,
                         ));
                   },
@@ -93,7 +93,7 @@ class DetailsHeader extends StatelessWidget {
                   (reservation == null &&
                           state is LoadingConfirmFlightReservationState)
                       ? ''
-                      : reservation!.flight.reservations![0].seatClass,
+                      : reservation!.flight.reservations![0].seatClass!,
                   style: TextStyle(
                       fontSize: 18,
                       color: Themes.primary,

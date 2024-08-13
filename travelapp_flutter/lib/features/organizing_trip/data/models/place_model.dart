@@ -23,9 +23,16 @@ class PlaceModel {
       name: jsonData['name'],
       category: jsonData['category'],
       description: jsonData['description'],
-      id: jsonData['_id'],
+      id: jsonData['_id'] ?? jsonData['id'],
       phoneNumber: PhoneNumberModel.fromJson(jsonData['phone_number']),
       address: AddressModel.fromJson(jsonData['address']),
     );
+  }
+
+  Map<String, String> toJson() {
+    return {
+      "place": id,
+      "description": category,
+    };
   }
 }

@@ -67,7 +67,10 @@ class CustomSearchCities extends SearchDelegate {
           title: Text(filteredCities[index]["city"]!),
           subtitle: Text(filteredCities[index]["country"]!),
           onTap: () {
-            close(context, filteredCities[index]["city"]);
+            close(context, {
+              "city": filteredCities[index]["city"],
+              "country": filteredCities[index]['country'],
+            });
           },
         );
       },

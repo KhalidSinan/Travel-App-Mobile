@@ -13,20 +13,15 @@ class OrganizedGroupNonAdvertisment extends StatelessWidget {
 
   final AllOrganizedGroupTrip? oneTrip;
 
-@override
-
-
   @override
-
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<OrganizedGroupCubit, OrganizedGroupCubitState>(
       builder: (context, state) {
         final screenWidth = MediaQuery.of(context).size.width;
-        final containerHeight = oneTrip?.isAnnounced ?? false ? 360.0 : 356.0;
+        final containerHeight = oneTrip?.isAnnounced ?? false ? 380.0 : 380.0;
         final padding = screenWidth * 0.02;
         final isLargeScreen = screenWidth > 600;
-
-      
 
         return Stack(
           children: [
@@ -37,14 +32,15 @@ class OrganizedGroupNonAdvertisment extends StatelessWidget {
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 216, 216, 216),
                 border: Border.all(
-                    color: oneTrip!.isAnnounced ? Colors.red : Colors.grey,
+                    color: oneTrip!.isAnnounced ? Themes.third : Colors.grey,
                     width: 1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: oneTrip!.isAnnounced ? padding : padding / 2),
+                  SizedBox(
+                      height: oneTrip!.isAnnounced ? padding : padding / 2),
                   Text(
                     "Organizer ${oneTrip!.organizerName}",
                     style: TextStyle(
@@ -109,10 +105,10 @@ class OrganizedGroupNonAdvertisment extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: '${oneTrip!.tripType[0]}',
+                          text: type(oneTrip!.tripType),
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: isLargeScreen ? 18 : 16,
+                            fontSize: isLargeScreen ? 18 : 15,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -146,7 +142,7 @@ class OrganizedGroupNonAdvertisment extends StatelessWidget {
                         size: isLargeScreen ? 20 : 16,
                       ),
                       Text(
-                        oneTrip!.date,
+                        " ${oneTrip!.date}",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: isLargeScreen ? 18 : 16,
@@ -161,10 +157,10 @@ class OrganizedGroupNonAdvertisment extends StatelessWidget {
                       Icon(
                         FontAwesomeIcons.dollarSign,
                         color: Themes.primary,
-                        size: isLargeScreen ? 20 : 16,
+                        size: isLargeScreen ? 18 : 16,
                       ),
                       Text(
-                        '${oneTrip!.price}',
+                        oneTrip!.price,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: isLargeScreen ? 18 : 16,
@@ -177,24 +173,28 @@ class OrganizedGroupNonAdvertisment extends StatelessWidget {
                 ],
               ),
             ),
-            // if (oneTrip!.isAmostComplete)
-            //   Positioned(
-            //     top: -10,
-            //     right: -10,
-            //     child: Container(
-            //       width: isLargeScreen ? 50 : 40,
-            //       height: isLargeScreen ? 50 : 40,
-            //       decoration: BoxDecoration(
-            //         color: Colors.white,
-            //         shape: BoxShape.circle,
-            //         border: Border.all(color: Colors.red, width: 2),
-            //       ),
-            //       child: Lottie.asset('assets/animations/time.json'),
-            //     ),
-            //   ),
+            if (oneTrip!.isAmostComplete)
+              Positioned(
+                top: -10,
+                right: -10,
+                child: Container(
+                  width: isLargeScreen ? 50 : 40,
+                  height: isLargeScreen ? 50 : 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.red, width: 2),
+                  ),
+                  child: Lottie.asset('assets/animations/time.json'),
+                ),
+              ),
           ],
         );
       },
     );
   }
+}
+
+String type(List<String> types) {
+  return types.join('-');
 }

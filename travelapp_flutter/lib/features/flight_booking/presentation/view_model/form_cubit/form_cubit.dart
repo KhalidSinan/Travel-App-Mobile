@@ -3,6 +3,7 @@ import 'package:travelapp_flutter/core/helpers/failure.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/form_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 part 'form_states.dart';
 
 class FormCubit extends Cubit<FormCubitState> {
@@ -29,6 +30,20 @@ class FormCubit extends Cubit<FormCubitState> {
     this.passengers = List.filled(seats, null);
   }
 
+  bool checkFormValidity() {
+    List<Map<String, String>> reservations = [];
+    for (int i = 0; i < passengers.length; i++) {
+      if (passengers[i] != null) {
+        reservations.add(passengers[i]!.toJson());
+      }
+    }
+    if (reservations.length != seats) {
+      emit(FormNotFilled());
+      return false;
+    }
+    return true;
+  }
+
   Future<void> makeReservation({
     required List<String> flights,
     required String reservationType,
@@ -39,10 +54,6 @@ class FormCubit extends Cubit<FormCubitState> {
       if (passengers[i] != null) {
         reservations.add(passengers[i]!.toJson());
       }
-    }
-    if (reservations.length != seats) {
-      emit(FormNotFilled());
-      return;
     }
     var response = await flightBookingImp.makeReservation(
       flights: flights,
@@ -59,6 +70,11 @@ class FormCubit extends Cubit<FormCubitState> {
         emit(FormSuccess(reservationId: formModel!.id));
       },
     );
+  }
+
+  Future<void> makeTripReservations(OrganizingTripCubit trip) async {
+    emit(FormLoading());
+    // var response = await
   }
 
   Future<void> cancleReservation({

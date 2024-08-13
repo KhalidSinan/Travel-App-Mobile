@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/orgainzed_group_trip_cubit.dart';
@@ -13,6 +14,7 @@ class AllOrganizedGroupTripsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<OrganizedGroupCubit, OrganizedGroupCubitState>(
       builder: (context, state) {
+        dynamic cubit = BlocProvider.of<OrganizedGroupCubit>(context);
         return DefaultTabController(
           length: 3,
           child: Column(
@@ -37,17 +39,47 @@ class AllOrganizedGroupTripsBody extends StatelessWidget {
                     child: Tab(text: 'Announced Trips'),
                   ),
                 ],
-                onTap: (index) async{
+                onTap: (index) async {
                   final cubit = BlocProvider.of<OrganizedGroupCubit>(context);
                   switch (index) {
                     case 0:
-                   await   cubit.getAllOrganizedTrips(tab: "All");
+                      cubit.changeTab("All");
+                      await cubit.getAllOrganizedTrips(
+                          tab: "All",
+                          page: cubit.page,
+                          source: cubit.source,
+                          startDate: cubit.startDate,
+                          endDate: cubit.endDate,
+                          startPrice: cubit.minPrice,
+                          endPrice: cubit.maxPrice,
+                          types: cubit.selectedTypes,
+                          countries: cubit.selectedCountries);
                       break;
                     case 1:
-                    await  cubit.getAllOrganizedTrips(tab: "AlmostComplete");
+                      cubit.changeTab("AlmostComplete");
+                      await cubit.getAllOrganizedTrips(
+                          tab: "AlmostComplete",
+                          page: cubit.page,
+                          source: cubit.source,
+                          startDate: cubit.startDate,
+                          endDate: cubit.endDate,
+                          startPrice: cubit.minPrice,
+                          endPrice: cubit.maxPrice,
+                          types: cubit.selectedTypes,
+                          countries: cubit.selectedCountries);
                       break;
                     case 2:
-                   await   cubit.getAllOrganizedTrips(tab: "AnnouncedTrips");
+                      cubit.changeTab("AnnouncedTrips");
+                      await cubit.getAllOrganizedTrips(
+                          tab: "AnnouncedTrips",
+                          page: cubit.page,
+                          source: cubit.source,
+                          startDate: cubit.startDate,
+                          endDate: cubit.endDate,
+                          startPrice: cubit.minPrice,
+                          endPrice: cubit.maxPrice,
+                          types: cubit.selectedTypes,
+                          countries: cubit.selectedCountries);
                       break;
                   }
                 },
@@ -55,9 +87,9 @@ class AllOrganizedGroupTripsBody extends StatelessWidget {
               const Expanded(
                 child: TabBarView(
                   children: [
-                    TabsBody(tab: 'All',),
-                    TabsBody(tab: 'AlmostComplete',),
-                    TabsBody(tab: 'AnnouncedTrips',),
+                    TabsBody(tab: 'All'),
+                    TabsBody(tab: 'AlmostComplete'),
+                    TabsBody(tab: 'AnnouncedTrips'),
                   ],
                 ),
               ),
