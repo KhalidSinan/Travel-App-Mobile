@@ -91,35 +91,33 @@ class _TravelAppState extends State<TravelApp> {
             )
       ],
       child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        getPages: [
-          GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
-        ],
-        theme: ThemeData(
-          textSelectionTheme: TextSelectionThemeData(
-            cursorColor: Themes.primary,
-            selectionColor: Themes.primary,
-            selectionHandleColor: Themes.primary,
+          debugShowCheckedModeBanner: false,
+          getPages: [
+            GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
+          ],
+          theme: ThemeData(
+            textSelectionTheme: TextSelectionThemeData(
+              cursorColor: Themes.primary,
+              selectionColor: Themes.primary,
+              selectionHandleColor: Themes.primary,
+            ),
+            appBarTheme: const AppBarTheme(
+              color: Colors.white,
+              surfaceTintColor: Colors.white,
+            ),
+            scaffoldBackgroundColor: Colors.white,
+            textTheme: GoogleFonts.aBeeZeeTextTheme(),
           ),
-          appBarTheme: const AppBarTheme(
-            color: Colors.white,
-            surfaceTintColor: Colors.white,
+          // home: rememberMe == true
+          //     ? FetchProfileDataPage(token: token)
+          //     : const LoginPage(),
+          home: const OrganizerReportPage()
+          // home: emailVerify == true
+          //     ? EmailConfirmationPage(
+          //         email: emailToVerify!,
+          //       )
+          //     : const LoginPage(),
           ),
-          scaffoldBackgroundColor: Colors.white,
-          textTheme: GoogleFonts.aBeeZeeTextTheme(),
-        ),
-        // home: rememberMe == true
-        //     ? FetchProfileDataPage(token: token)
-        //     : const LoginPage(),
-        home: const AnnouncementsSubscriptionsPage(
-          tripId: '66bb38449f317cc07428d130',
-        ),
-        // home: emailVerify == true
-        //     ? EmailConfirmationPage(
-        //         email: emailToVerify!,
-        //       )
-        //     : const LoginPage(),
-      ),
     );
   }
 }
