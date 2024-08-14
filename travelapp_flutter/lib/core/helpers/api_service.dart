@@ -4,8 +4,7 @@ class ApiService {
   final String baseUrl = 'http://10.0.2.2:5000';
   //10.0.2.2
   final Dio _dio;
-  final String token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJlZDJkMWYzMWViNmNmOTZiM2Y0YTYyNiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkhhZGxleSIsImxhc3RfbmFtZSI6IkJyZWtrZSJ9LCJpYXQiOjE3MjM2MTc5NzB9.3Fh26C5i8MnO_eXjmyzhvIG9zZqqTrKumuIulEp6KJI';
+  final String token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRiZjlhMjdmOTg1MjBjNTA4YWJjMTYwMiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IlNjb3R0eSIsImxhc3RfbmFtZSI6IldpbGwifSwiaWF0IjoxNzIzNjYzMTI1fQ.-evnCZ6SQROxoveGMPqzak2jAefpN1MmjcLJ5AXru_0';
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get({
@@ -24,7 +23,7 @@ class ApiService {
       ),
     );
     print(response.statusCode);
-    print(response);
+    // print(response);
     return response.data;
   }
 

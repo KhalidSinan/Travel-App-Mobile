@@ -5,7 +5,7 @@ class ProfileModel {
   final String lastName;
   final String? middleName;
   final String? gender;
-  final DateTime? dateOfBirth;
+  final String? dateOfBirth;
   final bool? isGuide;
   final String? avatar;
 

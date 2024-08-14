@@ -36,12 +36,12 @@ final List<Map<String, dynamic>> settingsItems = [
     "color": Colors.red,
     "onTap": (BuildContext context) {}
   },
-  {
-    "title": "Notification",
-    "icon": Icons.notifications,
-    "color": Colors.orange,
-    "onTap": (BuildContext context) {}
-  },
+  // {
+  //   "title": "Notification",
+  //   "icon": Icons.notifications,
+  //   "color": Colors.orange,
+  //   "onTap": (BuildContext context) {}
+  // },
   {
     "title": "Become Organizer",
     "icon": FontAwesomeIcons.personChalkboard,

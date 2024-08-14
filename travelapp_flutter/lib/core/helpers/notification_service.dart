@@ -1,9 +1,112 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:travelapp_flutter/features/settings/presentation/views/notifi_page.dart';
+import 'package:travelapp_flutter/main.dart';
 
 class NotificationService {
-  static final _firebaseMessaging = FirebaseMessaging.instance;
+  final _firebaseMessaging = FirebaseMessaging.instance;
 
-  static Future initialize() async {
+  static dynamic token;
+
+  final _androiChannel = const AndroidNotificationChannel(
+      'high_importance_channel', 'High Importance Notifications',
+      description: 'This Channel is used for important notification',
+      importance: Importance.defaultImportance);
+
+  final _localNotifications = FlutterLocalNotificationsPlugin();
+
+  static void handleMessage(RemoteMessage? message) {
+    if (message == null) return;
+
+    // Get.to(() => NotifiPage());
+
+
+
+    // ScrollController scrollController = ScrollController();
+    // Get.to(() => HomePage(controller : scrollController));
+
+
+
+
+    // NotifiPage.notifi();
+
+    //  message.data['type'] == "/notification-screen" {
+    //   Get.to(() => );
+    //  }
+
+    //  message.data['type'] == "/myTrips-screen" {
+    //   Get.to(() => );
+    //  }
+
+    //  message.data['type'] == "/home-screen" {
+    //   Get.to(() => );
+    //  }
+
+    //  message.data['type'] == "/myReservations-screen" {
+    //   Get.to(() => );
+    //  }
+
+
+    // navigatorKey.currentState?.pushNamed(
+    //   NotifiPage.route,
+    // );
+  }
+
+  Future initLocalNotifications() async {
+    const android = AndroidInitializationSettings('@drawable/ic_launcher');
+
+    const setting = InitializationSettings(
+      android: android,
+    );
+
+    await _localNotifications.initialize(setting,
+        onDidReceiveNotificationResponse: onTap);
+
+    final platForm = _localNotifications.resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>();
+
+    await platForm?.createNotificationChannel(_androiChannel);
+  }
+
+  Future initPushNotifications() async {
+    await _firebaseMessaging.setForegroundNotificationPresentationOptions(
+        alert: true, badge: true, sound: true);
+
+    RemoteMessage? initialMessage =
+        await _firebaseMessaging.getInitialMessage();
+    if (initialMessage != null) {
+      handleMessage(initialMessage);
+    }
+
+    FirebaseMessaging.onMessageOpenedApp.listen(handleMessage);
+
+    FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
+
+    FirebaseMessaging.onMessage.listen((message) {
+      final notification = message.notification;
+      if (notification == null) return;
+
+      _localNotifications.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+                _androiChannel.id, _androiChannel.name,
+                channelDescription: _androiChannel.description,
+                icon: '@drawable/ic_launcher'),
+          ),
+          payload: jsonEncode(message.toMap()));
+    });
+  }
+
+  Future<void> initialize() async {
     await _firebaseMessaging.requestPermission(
       alert: true,
       announcement: false,
@@ -13,7 +116,30 @@ class NotificationService {
       provisional: false,
       sound: true,
     );
-    final token = await _firebaseMessaging.getToken();
+    token = await _firebaseMessaging.getToken();
     print("device token:$token");
+
+    initPushNotifications();
+    initLocalNotifications();
+  }
+}
+
+Future<void> handleBackgroundMessage(RemoteMessage message) async {
+  if (message.notification != null) {
+    print(message.data);
+    print('some notification received');
+  }
+}
+
+onTap(NotificationResponse notificationResponse) {
+  final payload = notificationResponse.payload;
+  if (payload != null) {
+    try {
+      final message = RemoteMessage.fromMap(jsonDecode(payload));
+
+      NotificationService.handleMessage(message);
+    } catch (e) {
+      print("Error decoding payload: $e");
+    }
   }
 }

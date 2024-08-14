@@ -90,9 +90,11 @@ class BecomeOrganizerStatusCodeHandler extends StatusCodeHandler {
     return Failure(
       errMessage: message,
       errTitle: 'Error',
+     errType: DioExceptionType.badResponse
     );
   }
 }
+
 
 class CreateChatStatusCodeHandler extends StatusCodeHandler {
   @override
@@ -105,6 +107,7 @@ class CreateChatStatusCodeHandler extends StatusCodeHandler {
     );
   }
 }
+
 
 // class ChangePsswordStatusCodeHandler extends StatusCodeHandler {
 //   @override

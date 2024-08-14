@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelapp_flutter/core/helpers/api_service.dart';
 import 'package:travelapp_flutter/core/helpers/failure.dart';
+import 'package:travelapp_flutter/core/helpers/notification_service.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/helpers/status_code_handlers.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
@@ -23,6 +24,7 @@ class AuthRepoImpl extends AuthRepo {
         body: {
           'email': email,
           'password': password,
+          'device_token' : NotificationService.token 
         },
       );
       token = response['token'];
