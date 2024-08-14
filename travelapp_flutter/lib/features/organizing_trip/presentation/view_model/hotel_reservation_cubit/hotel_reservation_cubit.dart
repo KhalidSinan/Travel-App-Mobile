@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/all_hotels_model.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/hotel_model.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/room_cart_model.dart';
@@ -20,6 +23,7 @@ class HotelReservationCubit extends Cubit<HotelReservationState> {
   final int numDays, numRooms;
   int page = 1;
   AllHotelModel? hotels;
+
   List<RoomCartModel> selectedRooms = [];
   Map<String, dynamic> availableRooms = {};
   String selectedRoomType = "Budget";
@@ -44,6 +48,7 @@ class HotelReservationCubit extends Cubit<HotelReservationState> {
   Future<void> changePage(int newPage) async {
     page = newPage;
     await getAllHotels();
+    emit(ChangePageState());
   }
 
   void addRoom(RoomCartModel roomCart) {
@@ -65,6 +70,14 @@ class HotelReservationCubit extends Cubit<HotelReservationState> {
       totalRooms += element.count;
     }
     return totalRooms;
+  }
+
+  int getTotalNumberPages() {
+    if (state is ChangePageState || state is HotelReservationSuccessState) {
+      return (hotels!.totalHotels / flightsInSinglePage).ceil();
+    } else {
+      return 1;
+    }
   }
 
   double getTotalPrice() {
@@ -111,5 +124,16 @@ class HotelReservationCubit extends Cubit<HotelReservationState> {
         emit(HotelReservationSuccessState());
       },
     );
+  }
+
+  void onNext() {
+    emit(NextPageState());
+  }
+
+  void onPrevious({bool deleteRooms = false}) {
+    if (deleteRooms) {
+      selectedRooms = [];
+    }
+    emit(PreviousPageState());
   }
 }

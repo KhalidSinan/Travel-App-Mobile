@@ -32,7 +32,6 @@ class PlaceModel {
   Map<String, String> toJson() {
     return {
       "place": id,
-      "description": category,
     };
   }
 }

@@ -23,14 +23,17 @@ class HotelSelectionPage extends StatelessWidget {
                 )..initialize())
       ],
       child: Scaffold(
-          appBar: AppBar(
-            actions: const [
-              CustomStepCircular(progress: 0.625, text: '5/8'),
-              SizedBox(width: 15)
-            ],
-            leading: const CustomBackButton(),
+        appBar: AppBar(
+          actions: const [
+            CustomStepCircular(progress: 0.625, text: '5/8'),
+            SizedBox(width: 15)
+          ],
+          leading: CustomBackButton(
+            onBack: BlocProvider.of<OrganizingTripCubit>(context).onPrevious,
           ),
-          body: const HotelSelectionBody()),
+        ),
+        body: const HotelSelectionBody(),
+      ),
     );
   }
 }

@@ -7,7 +7,7 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/views/wi
 class TicketsRow extends StatelessWidget {
   const TicketsRow({super.key, required this.flightData, required this.filters});
   final AvailableFlightModel flightData;
-  final FilterModel filters;
+  final FilterModel? filters;
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/hotel_for_destination_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/hotel_reservation_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_information_cubit/hotel_information_cubit.dart';
@@ -36,7 +37,14 @@ class _HotelSelectionBodyState extends State<HotelSelectionBody> {
     return SafeArea(
       child: Column(
         children: [
-          BlocBuilder<HotelInformationCubit, HotelInformationState>(
+          BlocConsumer<HotelInformationCubit, HotelInformationState>(
+            listener: (context, state) {
+              if (state is NotValidState) {
+                showCustomSnackBar(
+                    title: 'Hotels Are required',
+                    message: 'You must choose hotel for each destination');
+              }
+            },
             builder: (context, state) => Expanded(
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
@@ -58,21 +66,25 @@ class _HotelSelectionBodyState extends State<HotelSelectionBody> {
             height: 10,
           ),
           NextButton(onTap: () {
+            if (BlocProvider.of<HotelInformationCubit>(context).notValid()) {
+              return;
+            }
             BlocProvider.of<OrganizingTripCubit>(context).saveHotels(
               allHotels:
                   BlocProvider.of<HotelInformationCubit>(context).allHotels,
             );
-            Get.to(() => SchedulePage(
-                  destinations: BlocProvider.of<OrganizingTripCubit>(context)
-                      .destinations,
-                  onScheduleDone: (schedule, places) {
-                    BlocProvider.of<OrganizingTripCubit>(context)
-                        .setTripSchedule(schedule);
-                    BlocProvider.of<OrganizingTripCubit>(context)
-                        .setPlaces(places);
-                    Get.to(() => const ReviewOrgnizingTrip());
-                  },
-                ));
+            // Get.to(() => SchedulePage(
+            //       destinations: BlocProvider.of<OrganizingTripCubit>(context)
+            //           .destinations,
+            //       onScheduleDone: (schedule, places) {
+            //         BlocProvider.of<OrganizingTripCubit>(context)
+            //             .setTripSchedule(schedule);
+            //         BlocProvider.of<OrganizingTripCubit>(context)
+            //             .setPlaces(places);
+            //         // Get.to(() => const ReviewOrgnizingTrip());
+            //       },
+            //     ));
+            BlocProvider.of<OrganizingTripCubit>(context).onNext();
           }),
           const SizedBox(
             height: 20,

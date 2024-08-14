@@ -30,14 +30,7 @@ class ReviewOrgnizingTripBody extends StatelessWidget {
               width: double.infinity,
               child: CustomButton(
                   onPressed: () {
-                    Get.to(() => FormPage(
-                          seats: BlocProvider.of<OrganizingTripCubit>(context)
-                              .numberPerson!,
-                          classType:
-                              BlocProvider.of<OrganizingTripCubit>(context)
-                                  .getSeatClass(),
-                          tripFrom: true,
-                        ));
+                    BlocProvider.of<OrganizingTripCubit>(context).onNext();
                   },
                   label: "Reviewed")),
         ],

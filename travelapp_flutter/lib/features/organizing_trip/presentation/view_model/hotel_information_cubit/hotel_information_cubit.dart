@@ -18,6 +18,19 @@ class HotelInformationCubit extends Cubit<HotelInformationState> {
     );
   }
 
+  bool notValid() {
+    if (allHotels.hotels
+        .where((element) => element == null)
+        .toList()
+        .isNotEmpty) {
+      emit(NotValidState());
+    }
+    return allHotels.hotels
+        .where((element) => element == null)
+        .toList()
+        .isNotEmpty;
+  }
+
   void onHotelTap({required int index}) {
     currentHotel = index;
   }

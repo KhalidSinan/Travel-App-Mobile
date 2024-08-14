@@ -20,3 +20,10 @@ class FailureOrganizingTrip extends OrganizingTripStates {
 }
 
 class EditScheduleState extends OrganizingTripStates {}
+
+class NextPageState extends OrganizingTripStates {
+  int? page;
+  NextPageState(this.page);
+}
+
+class PreviousPageState extends OrganizingTripStates {}

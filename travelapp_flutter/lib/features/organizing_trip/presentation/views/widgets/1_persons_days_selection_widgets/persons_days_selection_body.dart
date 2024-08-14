@@ -92,7 +92,8 @@ class _PersonsDaysSelectionBodyState extends State<PersonsDaysSelectionBody> {
             BlocProvider.of<OrganizingTripCubit>(context)
                 .setNumberDays(numberDays);
 
-            Get.to(() => const DateSelection());
+            // Get.to(() => const DateSelection());
+            BlocProvider.of<OrganizingTripCubit>(context).onNext();
           }),
           const SizedBox(height: 16),
         ],

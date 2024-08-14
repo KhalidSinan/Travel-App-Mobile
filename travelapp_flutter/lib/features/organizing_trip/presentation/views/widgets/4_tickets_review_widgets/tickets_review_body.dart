@@ -37,10 +37,10 @@ class _TicketsReviewBodyState extends State<TicketsReviewBody> {
                     physics: const BouncingScrollPhysics(),
                     itemCount: flights!.length,
                     itemBuilder: (context, index) {
-                      return TicketsRow(
-                        flightData: flights![index],
-                        filters: destinations![index].filter!,
-                      );
+                        return TicketsRow(
+                          flightData: flights![index],
+                          filters: destinations?[index].filter,
+                        );
                     },
                   ),
                 ),
@@ -51,7 +51,9 @@ class _TicketsReviewBodyState extends State<TicketsReviewBody> {
                           onTap: () {
                             BlocProvider.of<OrganizingTripCubit>(context)
                                 .getStartDate();
-                            Get.toNamed('/hotels');
+                            // Get.toNamed('/hotels');
+                            BlocProvider.of<OrganizingTripCubit>(context)
+                                .onNext();
                           },
                         ),
                       )

@@ -5,7 +5,11 @@ class AllHotelModel {
   final int currentPage;
   final List<HotelModel> hotels;
 
-  AllHotelModel( {required this.totalHotels, required this.hotels,required this.currentPage,});
+  AllHotelModel({
+    required this.totalHotels,
+    required this.hotels,
+    required this.currentPage,
+  });
 
   factory AllHotelModel.fromJson(jsonData) {
     List<HotelModel>? hotels;
@@ -16,6 +20,9 @@ class AllHotelModel {
       }
     }
     return AllHotelModel(
-        totalHotels: jsonData['totalHotelsFound'], hotels: hotels!, currentPage: jsonData['current_page']);
+      totalHotels: jsonData['totalHotelsFound'],
+      hotels: hotels!,
+      currentPage: jsonData['current_page'],
+    );
   }
 }

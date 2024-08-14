@@ -23,8 +23,9 @@ class FormPage extends StatefulWidget {
     this.reservationType,
     this.passengers,
     this.reservationId,
-    this.tripFrom,
+    this.trip,
     this.subscribeFormId,
+    this.onBack,
   });
 
   final List<String>? flightsId;
@@ -33,8 +34,9 @@ class FormPage extends StatefulWidget {
   final int seats;
   final List<PassengerModel>? passengers;
   final String? reservationId;
-  final bool? tripFrom;
+  final OrganizingTripCubit? trip;
   final String? subscribeFormId;
+  final VoidCallback? onBack;
   @override
   State<FormPage> createState() => _FormPageState();
 }
@@ -52,7 +54,9 @@ class _FormPageState extends State<FormPage> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          leading: const CustomBackButton(),
+          leading: CustomBackButton(
+            onBack: widget.onBack ?? () => Get.back(),
+          ),
         ),
         body: SafeArea(
           child: BlocConsumer<FormCubit, FormCubitState>(
@@ -68,7 +72,7 @@ class _FormPageState extends State<FormPage> {
                   reservationType: widget.reservationType,
                   classType: widget.classType,
                   seats: numberOfSeats,
-                  tripForm: widget.tripFrom,
+                  trip: widget.trip,
                   subscribeFormId: widget.subscribeFormId,
                   // isInitial: state is FormInitial,
                 );

@@ -1,5 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/7_review_orgnizinig_trip/Hotel_Page_Review/hotel_review_page.dart';
 
 class OpenHotel extends StatelessWidget {
@@ -9,6 +11,7 @@ class OpenHotel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final trip = BlocProvider.of<OrganizingTripCubit>(context);
     return OpenContainer(
         transitionDuration: const Duration(seconds: 1),
         transitionType: ContainerTransitionType.fadeThrough,
@@ -31,7 +34,10 @@ class OpenHotel extends StatelessWidget {
           );
         },
         openBuilder: (context, action) {
-          return const HotelPageReview();
+          return BlocProvider.value(
+            value: trip,
+            child: const HotelPageReview(),
+          );
         });
   }
 }

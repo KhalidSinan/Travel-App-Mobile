@@ -32,13 +32,14 @@ class RoomsSelectionPageBody extends StatelessWidget {
                       size: 32,
                     ),
                     onPressed: () {
-                      Get.to(
-                        () => HotelReviewPage(
-                          bloc: hotelRes,
-                          bloc2:
-                              BlocProvider.of<HotelInformationCubit>(context),
-                        ),
-                      );
+                      // Get.to(
+                      //   () => HotelReviewPage(
+                      //     bloc: hotelRes,
+                      //     bloc2:
+                      //         BlocProvider.of<HotelInformationCubit>(context),
+                      //   ),
+                      // );
+                      BlocProvider.of<HotelReservationCubit>(context).onNext();
                     },
                   ),
                   BlocBuilder<HotelReservationCubit, HotelReservationState>(
@@ -51,7 +52,9 @@ class RoomsSelectionPageBody extends StatelessWidget {
               ),
             )
           ],
-          leading: const CustomBackButton(),
+          leading: CustomBackButton(
+              onBack:
+                  BlocProvider.of<HotelReservationCubit>(context).onPrevious),
           pinned: true,
           title: Text(
             hotelRes.currentHotel!.name,

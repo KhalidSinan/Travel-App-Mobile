@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -84,7 +85,7 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
     );
     List<Map<String, dynamic>> destinationsoSend = [];
 
-    for (var i = 0; i < destinations.length; i++) {
+    for (var i = 0; i < destinations.length - (returnHome ? 1 : 0); i++) {
       destinationsoSend.add({
         "city": destinations[i].city,
         "days": destinations[i].days,
@@ -113,6 +114,7 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
       (res) {
         availableFlightModel = [];
         destinationsoSend = [];
+        print('===================');
         print(res['data']);
         for (var i = 0; i < res['data'].length; i++) {
           availableFlightModel
@@ -145,12 +147,15 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
 
   void deleteDestination(int index) {
     destinations.removeAt(index);
+    if (index < availableFlightModel.length) {
+      availableFlightModel.removeAt(index);
+    }
     emit(DeleteDestination());
   }
 
   double getTotalTripPrice() {
-    return 9.00;
-    // return getTotalFlightsPrice() + allHotels!.getAllHotelsPrice();
+    // return 9.00;
+    return getTotalFlightsPrice() + allHotels!.getAllHotelsPrice();
   }
 
   void addDestination() {
@@ -228,6 +233,14 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
 
   void setReturnHome(bool returnhome) {
     returnHome = returnhome;
+    destinations.removeWhere((destination) => destination.city == sourceCity);
+    if (returnHome) {
+      destinations.add(DestinationsModel(
+        city: sourceCity!,
+        country: sourceCountry!,
+        days: 0,
+      ));
+    }
   }
 
   void setSourceCity(String source) {
@@ -295,19 +308,28 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
     }
   }
 
-  List<Map<String, String>> getAllPlacesForDestination(
-      {required String destination}) {
+  List<List<Map<String, String>>> getAllPlacesForDestination({
+    required String destination,
+  }) {
     var days = tripSchedule[destination];
-    List<Map<String, String>> places = [];
+    List<List<Map<String, String>>> places = [];
     for (var day in days!) {
       day.forEach((key, newPlaces) {
         List<Map<String, String>> formattedPlaces = [];
         for (var place in newPlaces) {
           formattedPlaces.add(place!.toJson());
         }
-        places.addAll(formattedPlaces);
+        places.addAll([formattedPlaces]);
       });
     }
     return places;
+  }
+
+  void onNext({int? page}) {
+    emit(NextPageState(page));
+  }
+
+  void onPrevious() {
+    emit(PreviousPageState());
   }
 }

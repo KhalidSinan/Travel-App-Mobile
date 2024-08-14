@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/helpers/api_service.dart';
+import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/hotel_model.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/stars_list.dart';
@@ -30,9 +32,10 @@ class HotelCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
-              child: const Image(
+              child: Image(
                 fit: BoxFit.cover,
-                image: AssetImage("assets/images/hotel.jpg"),
+                image: NetworkImage(
+                    '${getIt.get<ApiService>().baseUrl}/${hotel.images[0]}'),
                 height: 150,
                 width: 135,
               ),

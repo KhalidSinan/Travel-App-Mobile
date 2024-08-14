@@ -6,8 +6,10 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/view_mod
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/Destination_Filter/destination_filter_body.dart';
 
 class DestinaionsFilterPage extends StatefulWidget {
-  const DestinaionsFilterPage({super.key, required this.index});
+  const DestinaionsFilterPage(
+      {super.key, required this.index, required this.trip});
   final int index;
+  final OrganizingTripCubit trip;
   @override
   State<DestinaionsFilterPage> createState() => _DestinaionsFilterPageState();
 }
@@ -15,20 +17,23 @@ class DestinaionsFilterPage extends StatefulWidget {
 class _DestinaionsFilterPageState extends State<DestinaionsFilterPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<OrganizingTripCubit, OrganizingTripStates>(
-      builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-            appBar: AppBar(
-              leading: const CustomBackButton(),
+    return BlocProvider.value(
+      value: widget.trip,
+      child: BlocBuilder<OrganizingTripCubit, OrganizingTripStates>(
+        builder: (context, state) {
+          return SafeArea(
+            child: Scaffold(
+              appBar: AppBar(
+                leading: const CustomBackButton(),
+              ),
+              body: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DestinationsFilterBody(index: widget.index),
+              ),
             ),
-            body: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: DestinationsFilterBody(index: widget.index),
-            ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
