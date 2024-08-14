@@ -34,15 +34,7 @@ class DestinationHotelsPageBody extends StatelessWidget {
             }
           },
         ),
-        // BlocBuilder<HotelReservationCubit, HotelReservationState>(
-        //   builder: (context, state) {
-        //     if (state is HotelReservationSuccessState) {
-        //       return const HotelSelectionPagination();
-        //     } else {
-        //       return const SliverToBoxAdapter(child: SizedBox());
-        //     }
-        //   },
-        // )
+        const HotelSelectionPagination(),
       ],
     );
   }

@@ -26,7 +26,9 @@ class HotelReviewPageBody extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             slivers: [
               SliverAppBar(
-                leading: const CustomBackButton(),
+                leading: CustomBackButton(
+                    onBack: BlocProvider.of<HotelReservationCubit>(context)
+                        .onPrevious),
                 title: Text(
                   'Review Rooms',
                   style: Styles.heading2,
@@ -56,7 +58,9 @@ class HotelReviewPageBody extends StatelessWidget {
                   numDays: hotelRes.numDays,
                   totalPrice: hotelRes.getTotalPrice(),
                 );
-                Get.until((route) => route.settings.name == '/hotels');
+                Get.back();
+                Get.back();
+                // Get.until((route) => route.settings.name == '/hotels');
               },
               label: 'Done (\$${hotelRes.getTotalPrice()})',
               isFlat: true,

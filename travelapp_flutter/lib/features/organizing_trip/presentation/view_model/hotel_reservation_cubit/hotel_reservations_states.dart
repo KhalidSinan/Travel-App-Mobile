@@ -15,3 +15,9 @@ class HotelReservationFailureState extends HotelReservationState {}
 class HotelReservationSuccessState extends HotelReservationState {}
 
 class NoHotelsState extends HotelReservationState {}
+
+class NextPageState extends HotelReservationState {}
+
+class ChangePageState extends HotelReservationState {}
+
+class PreviousPageState extends HotelReservationState {}

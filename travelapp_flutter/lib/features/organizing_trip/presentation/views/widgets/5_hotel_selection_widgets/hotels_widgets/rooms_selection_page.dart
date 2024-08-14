@@ -8,22 +8,12 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/views/wi
 class RoomsSelectionPage extends StatelessWidget {
   const RoomsSelectionPage({
     super.key,
-    required this.bloc,
-    required this.bloc2,
   });
-  final HotelReservationCubit bloc;
-  final HotelInformationCubit bloc2;
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider.value(value: bloc),
-        BlocProvider.value(value: bloc2),
-      ],
-      child: const Scaffold(
-        body: SafeArea(
-          child: RoomsSelectionPageBody(),
-        ),
+    return const Scaffold(
+      body: SafeArea(
+        child: RoomsSelectionPageBody(),
       ),
     );
   }

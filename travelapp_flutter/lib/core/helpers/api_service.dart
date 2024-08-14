@@ -4,7 +4,8 @@ class ApiService {
   final String baseUrl = 'http://10.0.2.2:5000';
   //10.0.2.2
   final Dio _dio;
-  final String token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1MDZhYTBjMGI2YzIzZmE0NmM4NGJkYiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IlNoYWluYSIsImxhc3RfbmFtZSI6IldlYmVyIn0sImlhdCI6MTcyMzU0MTc3N30.P48tFx8yEb6kAmoDg_b2aFrx-CaFGxS0_puXYYCCywY';
+  final String token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNiYzRmYWVlYmI5YmMzZWI4ZmVhNGUwYyIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFydmlkIiwibGFzdF9uYW1lIjoiS296ZXkifSwiaWF0IjoxNzIzNTY2MzkwfQ.KLbi7ARgj50OPDusDB39aN3D53GMSSTKWyynNmUOdoQ';
 
   ApiService(this._dio);
 
@@ -52,7 +53,6 @@ class ApiService {
   Future<Map<String, dynamic>> delete({
     required String endPoint,
     required dynamic body,
-    
   }) async {
     var response = await _dio.delete(
       '$baseUrl$endPoint',

@@ -28,9 +28,10 @@ class HotelSelectionDetailsPageBody extends StatelessWidget {
               elevation: 0,
               expandedHeight: MediaQuery.sizeOf(context).height * 0.25,
               leading: getBackButton(),
-              flexibleSpace: const FlexibleSpaceBar(
+              flexibleSpace: FlexibleSpaceBar(
                 background: ImageSlider(
-                  images: ["assets/images/hotel.jpg"],
+                  images: hotel!.images,
+                  network: true,
                 ),
               ),
             ),
@@ -42,7 +43,7 @@ class HotelSelectionDetailsPageBody extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        hotel!.name,
+                        hotel.name,
                         style: Styles.heading,
                       ),
                       StarsList(
@@ -91,12 +92,13 @@ class HotelSelectionDetailsPageBody extends StatelessWidget {
           right: 0,
           child: CustomButton(
             onPressed: () {
-              Get.to(
-                () => RoomsSelectionPage(
-                  bloc: hotelRes,
-                  bloc2: BlocProvider.of<HotelInformationCubit>(context),
-                ),
-              );
+              // Get.to(
+              //   () => RoomsSelectionPage(
+              //     bloc: hotelRes,
+              //     bloc2: BlocProvider.of<HotelInformationCubit>(context),
+              //   ),
+              // );
+              BlocProvider.of<HotelReservationCubit>(context).onNext();
             },
             label: "Select Room(s)",
             isFlat: true,

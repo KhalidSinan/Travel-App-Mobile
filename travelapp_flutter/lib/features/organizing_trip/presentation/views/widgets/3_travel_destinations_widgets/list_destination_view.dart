@@ -71,6 +71,8 @@ class ListDestinationView extends StatelessWidget {
                                 onPressed: () {
                                   Get.to(DestinaionsFilterPage(
                                     index: index,
+                                    trip: BlocProvider.of<OrganizingTripCubit>(
+                                        context),
                                   ));
                                 },
                                 icon: Icon(

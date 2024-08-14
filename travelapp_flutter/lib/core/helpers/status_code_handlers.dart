@@ -10,7 +10,6 @@ abstract class StatusCodeHandler {
 class DefaultStatusCodeHandler extends StatusCodeHandler {
   @override
   Failure handleError(int statusCode, data) {
-    data = json.decode(data.toString());
     if (statusCode == 404) {
       print(statusCode);
       print(data.toString());
@@ -114,9 +113,9 @@ class CreateChatStatusCodeHandler extends StatusCodeHandler {
 //     if (data.data is Map<String, dynamic>) {
 //       final dataMap = data.data as Map<String, dynamic>;
 //        message =
-//           dataMap['message'] ?? 'An error occurred'; 
+//           dataMap['message'] ?? 'An error occurred';
 //     } else {
-//       message = 'An error occurred'; 
+//       message = 'An error occurred';
 //     }
 //     return Failure(
 //       errMessage: message,

@@ -14,16 +14,16 @@ class TicketCard extends StatelessWidget {
   const TicketCard(
       {super.key, required this.flightData, required this.filters});
   final AvailableFlightModel flightData;
-  final FilterModel filters;
+  final FilterModel? filters;
 
   @override
   Widget build(BuildContext context) {
-    String timeStart = filters.timeStart ?? '00:00 AM';
-    String timeEnd = filters.timeEnd ?? '11:59 PM';
-    double minPrice = filters.minPrice ?? 0;
-    double? maxPrice = filters.maxPrice == 0.0 || filters.maxPrice == null
+    String timeStart = filters?.timeStart ?? '00:00 AM';
+    String timeEnd = filters?.timeEnd ?? '11:59 PM';
+    double minPrice = filters?.minPrice ?? 0;
+    double? maxPrice = filters?.maxPrice == 0.0 || filters?.maxPrice == null
         ? 1500
-        : filters.maxPrice;
+        : filters?.maxPrice;
     return Container(
       height: flightData.reason == 'No Flights Available' ? 100 : 220,
       width: MediaQuery.of(context).size.width * 0.8,
@@ -150,7 +150,7 @@ class TicketCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    filters.airline ?? 'All airlines',
+                    filters?.airline ?? 'All airlines',
                     style: const TextStyle(fontSize: 20, color: Colors.black54),
                   ),
                   const SizedBox(height: 8),

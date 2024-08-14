@@ -15,6 +15,7 @@ class CardTicketFlightReview extends StatelessWidget {
     var screenSize = MediaQuery.of(context).size;
     var screenWidth = screenSize.width;
     var screenHeight = screenSize.height;
+    print(flight.arrivalDate.date);
 
     return Container(
       padding: const EdgeInsets.all(16),

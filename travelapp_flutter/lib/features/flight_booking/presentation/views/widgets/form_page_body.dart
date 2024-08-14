@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/data/repos/organized_group_repo_impl.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/group_trip_subscribe_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/form_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/form_cubit/form_cubit.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/tile_content.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/organizing_trip_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/trip_payment_page.dart';
 
 // ignore: must_be_immutable
@@ -18,7 +20,7 @@ class FormPageBody extends StatelessWidget {
     required this.seats,
     this.flightsId,
     this.reservationType,
-    this.tripForm,
+    this.trip,
     this.subscribeFormId,
   });
 
@@ -28,7 +30,7 @@ class FormPageBody extends StatelessWidget {
   final String? reservationType;
   final String classType;
   final int seats;
-  bool? tripForm = false;
+  OrganizingTripCubit? trip;
   String? subscribeFormId;
 
   @override
@@ -136,10 +138,9 @@ class FormPageBody extends StatelessWidget {
                                 ));
                             return;
                           }
-                          if (tripForm == true) {
+                          if (trip != null) {
                             Get.to(() => TripPaymentPage(
-                                  trip: BlocProvider.of<OrganizingTripCubit>(
-                                      context),
+                                  trip: trip!,
                                   seats:
                                       BlocProvider.of<FormCubit>(context).seats,
                                   passengers:

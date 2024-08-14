@@ -34,7 +34,8 @@ class DateSelectionBody extends StatelessWidget {
               //SizedBox(height: MediaQuery.of(context).size.height * 0.25),
               const Spacer(),
               NextButton(onTap: () {
-                Get.to(() => const DestinationsSelection());
+                BlocProvider.of<OrganizingTripCubit>(context).onNext();
+                // Get.to(() => const DestinationsSelection());
               })
             ],
           ),

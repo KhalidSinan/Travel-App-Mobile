@@ -25,13 +25,15 @@ class ReviewOrgnizingTrip extends StatelessWidget {
             ),
             child: Column(
               children: [
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomBackButton(
                       color: Colors.white,
+                      onBack: BlocProvider.of<OrganizingTripCubit>(context)
+                          .onPrevious,
                     ),
-                    CustomStepCircular(
+                    const CustomStepCircular(
                       progress: 0.875,
                       text: "7/8",
                       //color: Colors.white,

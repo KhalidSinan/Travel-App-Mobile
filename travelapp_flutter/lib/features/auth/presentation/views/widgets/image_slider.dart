@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/helpers/api_service.dart';
+import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 
 class ImageSlider extends StatelessWidget {
   const ImageSlider({
@@ -34,7 +36,7 @@ class ImageSlider extends StatelessWidget {
       width: double.infinity,
       child: network
           ? Image.network(
-              imageUrl,
+              '${getIt.get<ApiService>().baseUrl}/$imageUrl',
               fit: BoxFit.fill,
             )
           : Image.asset(

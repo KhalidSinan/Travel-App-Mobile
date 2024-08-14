@@ -19,6 +19,7 @@ class SchedulePage extends StatefulWidget {
     this.initialDestination = 0,
     required this.onScheduleDone,
     this.tripId,
+    this.onScheduleBack,
   });
   final List<DestinationsModel> destinations;
   final int initialDestination;
@@ -26,6 +27,7 @@ class SchedulePage extends StatefulWidget {
   final bool isShowDetails;
   final String? tripId;
   final Function(dynamic schedule, dynamic places) onScheduleDone;
+  final VoidCallback? onScheduleBack;
   @override
   State<SchedulePage> createState() => _SchedulePageState();
 }
@@ -82,9 +84,10 @@ class _SchedulePageState extends State<SchedulePage>
             backgroundColor: Colors.white,
             surfaceTintColor: Colors.white,
             leading: IconButton(
-              onPressed: () {
-                Get.back();
-              },
+              onPressed: widget.onScheduleBack ??
+                  () {
+                    Get.back();
+                  },
               icon: Icon(
                 FontAwesomeIcons.chevronLeft,
                 size: 20,

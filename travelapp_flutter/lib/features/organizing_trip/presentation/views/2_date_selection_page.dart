@@ -20,7 +20,9 @@ class DateSelection extends StatelessWidget {
               CustomStepCircular(progress: 0.25, text: '2/8'),
               SizedBox(width: 15)
             ],
-            leading: const CustomBackButton(),
+            leading: CustomBackButton(
+              onBack: BlocProvider.of<OrganizingTripCubit>(context).onPrevious,
+            ),
           ),
           body: const SafeArea(child: DateSelectionBody()),
         );
