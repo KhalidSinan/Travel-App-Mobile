@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -52,7 +53,8 @@ class GroupTripSubscribePage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state is FailureSubscribeState) {
-              return Center(
+              return Padding(
+                padding: const EdgeInsets.all(24),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -61,14 +63,17 @@ class GroupTripSubscribePage extends StatelessWidget {
                       style: Styles.content,
                     ),
                     const SizedBox(height: 16),
-                    CustomButton(
-                      onPressed: () {
-                        Get.back();
-                        Get.back();
-                      },
-                      color: Themes.secondary,
-                      colorText: Themes.primary,
-                      label: 'Back',
+                    SizedBox(
+                      width: double.infinity,
+                      child: CustomButton(
+                        onPressed: () {
+                          Get.back();
+                          Get.back();
+                        },
+                        color: Themes.secondary,
+                        colorText: Themes.primary,
+                        label: 'Back',
+                      ),
                     )
                   ],
                 ),

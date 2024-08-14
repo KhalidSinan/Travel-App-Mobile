@@ -17,21 +17,25 @@ class CountryInfo extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          source,
-          style: GoogleFonts.quattrocento().copyWith(
-            color: Themes.primary,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+        Expanded(
+          child: Text(
+            source,
+            style: GoogleFonts.quattrocento().copyWith(
+              color: Themes.primary,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         const SizedBox(height: 8),
-        Text(
-          destination,
-          style: GoogleFonts.quattrocento().copyWith(
-            color: Themes.primary,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+        Expanded(
+          child: Text(
+            destination,
+            style: GoogleFonts.quattrocento().copyWith(
+              color: Themes.primary,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ],

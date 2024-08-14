@@ -10,6 +10,7 @@ abstract class StatusCodeHandler {
 class DefaultStatusCodeHandler extends StatusCodeHandler {
   @override
   Failure handleError(int statusCode, data) {
+    data = json.decode(data.toString());
     if (statusCode == 404) {
       print(statusCode);
       print(data.toString());
@@ -76,6 +77,18 @@ class CreateChatStatusCodeHandler extends StatusCodeHandler {
 }
 
 class SubscribeGroupTripStatusCodeHandler extends StatusCodeHandler {
+  @override
+  Failure handleError(int statusCode, data) {
+    data = json.decode(data.toString());
+    return Failure(
+      errTitle: 'Error',
+      errMessage: data['message'],
+      errType: DioExceptionType.badResponse,
+    );
+  }
+}
+
+class DeleteGroupTripStatusCodeHandler extends StatusCodeHandler {
   @override
   Failure handleError(int statusCode, data) {
     data = json.decode(data.toString());
