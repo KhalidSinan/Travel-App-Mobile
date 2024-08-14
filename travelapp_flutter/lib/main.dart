@@ -12,37 +12,25 @@ import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/data/repos/organized_group_repo_impl.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/orgainzed_group_trip_cubit.dart';
-<<<<<<< HEAD
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/organized_group_trip_details_page.dart';
 import 'package:travelapp_flutter/features/announcements/presentation/views/announcement_success_page.dart';
 import 'package:travelapp_flutter/features/announcements/presentation/views/announcements_subscriptions_page.dart';
-=======
-<<<<<<< HEAD
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/info_organized_group_trip_page.dart';
-=======
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/group_trip_details_cubit/group_trip_details_cubit.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/all_orgainzed_trip_page.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/organized_group_trip_details_page.dart';
->>>>>>> a4d71f9698209f4f49308153e0ee49ccef7d5529
->>>>>>> 2c44f886ba263ab71a8c6d9cf8f90252042a60ea
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
-<<<<<<< HEAD
 import 'package:travelapp_flutter/features/organizer_report/presentation/views/organizer_report_page.dart';
-=======
-<<<<<<< HEAD
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
 import 'package:travelapp_flutter/features/chat/presentation/views/GroupChat/button_chat.dart';
-=======
 import 'package:travelapp_flutter/features/auth/presentation/views/email_confirmation_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/register_page.dart';
 import 'package:travelapp_flutter/features/chat/presentation/views/create_chat_page.dart';
 import 'package:travelapp_flutter/features/chat/presentation/views/welcome_chat.dart';
->>>>>>> a4d71f9698209f4f49308153e0ee49ccef7d5529
->>>>>>> 2c44f886ba263ab71a8c6d9cf8f90252042a60ea
 import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_selection_page.dart';
@@ -113,7 +101,6 @@ class _TravelAppState extends State<TravelApp> {
           create: (context) => ProfilePageCubit(getIt.get<SettingsRepoImpl>()),
         ),
         BlocProvider(
-<<<<<<< HEAD
           create: (context) =>
               OrganizedGroupCubit(getIt.get<OrganizingGroupTripImpl>())
                 ..getAllCountries()
@@ -123,57 +110,24 @@ class _TravelAppState extends State<TravelApp> {
           create: (context) => DeleteAccountCubit(getIt.get<
               SettingsRepoImpl>()), // Ensure you inject the necessary dependencies
         ),
-        BlocProvider(create: (context) => ReportAndRatingCubit(getIt.get<SettingsRepoImpl>()))
-=======
-            create: (context) =>
-                OrganizedGroupCubit(getIt.get<OrganizingGroupTripImpl>())
-            // ..getAllCountries()
-            // ..getAllOrganizedTrips(),
-            )
->>>>>>> a4d71f9698209f4f49308153e0ee49ccef7d5529
+        BlocProvider(
+          create: (context) => ReportAndRatingCubit(
+            getIt.get<SettingsRepoImpl>(),
+          ),
+        )
       ],
       child: GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          getPages: [
-            GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
-          ],
-          theme: ThemeData(
-            textSelectionTheme: TextSelectionThemeData(
-              cursorColor: Themes.primary,
-              selectionColor: Themes.primary,
-              selectionHandleColor: Themes.primary,
-            ),
-            appBarTheme: const AppBarTheme(
-              color: Colors.white,
-              surfaceTintColor: Colors.white,
-            ),
-            scaffoldBackgroundColor: Colors.white,
-            textTheme: GoogleFonts.aBeeZeeTextTheme(),
+        debugShowCheckedModeBanner: false,
+        getPages: [
+          GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
+          GetPage(name: '/LogIn', page: () => const LoginPage())
+        ],
+        theme: ThemeData(
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: Themes.primary,
+            selectionColor: Themes.primary,
+            selectionHandleColor: Themes.primary,
           ),
-<<<<<<< HEAD
-          // home: rememberMe == true
-          //     ? FetchProfileDataPage(token: token)
-          //     : const LoginPage(),
-          home: const OrganizerReportPage()
-          // home: emailVerify == true
-          //     ? EmailConfirmationPage(
-          //         email: emailToVerify!,
-          //       )
-          //     : const LoginPage(),
-          ),
-=======
-<<<<<<< HEAD
-          getPages: [
-            GetPage(
-                name: '/LogIn',
-                page: () => const LoginPage()
-                )
-          ],
-          // home: rememberMe == true
-          //     ? FetchProfileDataPage(token: token)
-          //     : const LoginPage(),
-          home: ServicePolicyPage()),
-=======
           appBarTheme: const AppBarTheme(
             color: Colors.white,
             surfaceTintColor: Colors.white,
@@ -184,18 +138,13 @@ class _TravelAppState extends State<TravelApp> {
         // home: rememberMe == true
         //     ? FetchProfileDataPage(token: token)
         //     : const LoginPage(),
-        // home: const OrganizedGroupTripDetailsPage(
-        //   tripId: '66ba0eb360e2f6d63923d080',
-        //   isOrganizer: true,
-        // ),
-        home: emailVerify == true
-            ? EmailConfirmationPage(
-                email: emailToVerify!,
-              )
-            : const LoginPage(),
+        // home: emailVerify == true
+        //     ? EmailConfirmationPage(
+        //         email: emailToVerify!,
+        //       )
+        //     : const LoginPage(),
+        home: const ServicePolicyPage(),
       ),
->>>>>>> a4d71f9698209f4f49308153e0ee49ccef7d5529
->>>>>>> 2c44f886ba263ab71a8c6d9cf8f90252042a60ea
     );
   }
 }
