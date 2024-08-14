@@ -53,21 +53,6 @@ class GroupTripDetailsCubit extends Cubit<GroupTripDetailsState> {
     );
   }
 
-  Future<void> joinChat() async {
-    if (!joinedChat || !subscribed) return;
-    emit(LoadingJoinGroupChatState());
-    var response = await organizingGroupTripImpl.joinChat(tripId: tripId);
-    response.fold(
-      (failure) {
-        emit(FailureJoinGroupChatState(failure: failure));
-      },
-      (res) {
-        joinedChat = true;
-        emit(SuccessJoinGroupChatState());
-      },
-    );
-  }
-
   void setCurrentDestination(String destination) {
     currentDestination = destination;
     emit(GroupTripChangeDestinationState());

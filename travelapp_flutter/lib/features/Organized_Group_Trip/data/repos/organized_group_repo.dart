@@ -35,9 +35,6 @@ abstract class OrganizingGroupTripRepo {
     required String mainReservationId,
     required List<String> participantsId,
   });
-  Future<Either<Failure, Map<String, dynamic>>> joinChat({
-    required String tripId,
-  });
   Future<Either<Failure, Map<String, dynamic>>> cancelGroupTrip({
     required String tripId,
   });
