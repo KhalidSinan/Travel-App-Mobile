@@ -7,6 +7,6 @@ void showCustomSnackBar({
   Get.snackbar(
     title,
     message,
-    snackPosition: SnackPosition.BOTTOM,
+    snackPosition: SnackPosition.BOTTOM,  
   );
 }

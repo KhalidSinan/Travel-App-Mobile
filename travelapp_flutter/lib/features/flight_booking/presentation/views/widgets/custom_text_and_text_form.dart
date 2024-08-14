@@ -19,7 +19,8 @@ class CustomTextAndTextForm extends StatefulWidget {
       this.controller,
       this.width,
       this.labelText,
-      this.hight, this.outlineInputBorder});
+      this.hight,
+      this.outlineInputBorder, this.contentPadding, this.minLines, this.maxLines});
   final String? hintText;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
@@ -36,6 +37,9 @@ class CustomTextAndTextForm extends StatefulWidget {
   final double? hight;
   final OutlineInputBorder? outlineInputBorder;
   final String? labelText;
+  final EdgeInsetsGeometry? contentPadding;
+    final int? minLines;
+  final int? maxLines;
 
   @override
   State<CustomTextAndTextForm> createState() => _CustomTextAndTextFormState();
@@ -72,6 +76,10 @@ class _CustomTextAndTextFormState extends State<CustomTextAndTextForm> {
               validator: validateName,
               onTap: widget.onTap,
               outlineInputBorder: widget.outlineInputBorder,
+              obsecureText: widget.obsecureText,
+              contentPadding: widget.contentPadding,
+              minLines:widget.minLines ,
+              maxLines: widget.maxLines,
             ),
           ),
         ],

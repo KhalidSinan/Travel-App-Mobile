@@ -41,6 +41,7 @@ Future<void> setup() async {
     getIt.get<ApiService>(),
   ));
 
+
   getIt.registerSingleton<DefaultStatusCodeHandler>(DefaultStatusCodeHandler());
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   getIt.registerSingleton<SharedPreferences>(prefs);

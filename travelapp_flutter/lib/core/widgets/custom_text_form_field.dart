@@ -18,7 +18,11 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.labeltext,
     this.outlineInputBorder,
+<<<<<<< HEAD
     this.maxLines = 1,
+=======
+    this.contentPadding, this.minLines, this.maxLines,
+>>>>>>> 2c44f886ba263ab71a8c6d9cf8f90252042a60ea
   });
   final String? hintText;
   final String? Function(String?)? validator;
@@ -33,6 +37,11 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final String? labeltext;
   final OutlineInputBorder? outlineInputBorder;
+<<<<<<< HEAD
+=======
+  final EdgeInsetsGeometry? contentPadding;
+  final int? minLines;
+>>>>>>> 2c44f886ba263ab71a8c6d9cf8f90252042a60ea
   final int? maxLines;
   @override
   Widget build(BuildContext context) {
@@ -46,8 +55,14 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obsecureText ?? false,
       keyboardType: textInputType,
       cursorColor: Themes.primary,
+<<<<<<< HEAD
       maxLines: maxLines,
+=======
+      minLines: minLines ?? 1,
+      maxLines: maxLines ?? 1,
+>>>>>>> 2c44f886ba263ab71a8c6d9cf8f90252042a60ea
       decoration: InputDecoration(
+        contentPadding: contentPadding,
         labelText: labeltext,
         filled: true,
         fillColor: Colors.grey[100],
