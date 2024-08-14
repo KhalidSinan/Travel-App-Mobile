@@ -41,4 +41,6 @@ abstract class SettingsRepo {
 
   Future<Either<Failure, Map<String, dynamic>>> ratingApp(
       {required Map<String, dynamic> body});
+
+  Future<Either<Failure, Map<String, dynamic>>> getAllNotifications();
 }

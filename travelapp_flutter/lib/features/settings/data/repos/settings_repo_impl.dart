@@ -243,4 +243,19 @@ class SettingsRepoImpl extends SettingsRepo {
       return left(Failure(errMessage: 'Something went wrong'));
     }
   }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> getAllNotifications() async {
+    try {
+      Map<String, dynamic> response =
+          await apiService.get(endPoint: '/notifications');
+      return Right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      }
+      return left(Failure(errMessage: 'Something went wrong'));
+    }
+  }
 }

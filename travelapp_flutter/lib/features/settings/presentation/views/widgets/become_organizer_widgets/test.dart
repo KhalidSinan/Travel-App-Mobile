@@ -14,9 +14,11 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/password_eye.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/custom_text_and_text_form.dart';
 import 'package:travelapp_flutter/features/settings/data/repos/settings_repo_impl.dart';
+import 'package:travelapp_flutter/features/settings/presentation/view_model/become_organizer_cubit/become_organizer_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/delete_account_cubit/delete_account_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/delete_account_cubit/delete_account_cubit_states.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/becom_organizer_page.dart';
+import 'package:travelapp_flutter/features/settings/presentation/views/notifi_page.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/settings_page.dart';
 
 class Tests extends StatefulWidget {
@@ -45,12 +47,7 @@ class _TestsState extends State<Tests> with TickerProviderStateMixin {
         body: Center(
       child: CustomButton(
         onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (_) {
-                return Text('data');
-              });
+          Get.to(() => Tests());
         },
         label: 'click',
       ),

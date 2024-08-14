@@ -37,14 +37,7 @@ class _HotelSelectionBodyState extends State<HotelSelectionBody> {
     return SafeArea(
       child: Column(
         children: [
-          BlocConsumer<HotelInformationCubit, HotelInformationState>(
-            listener: (context, state) {
-              if (state is NotValidState) {
-                showCustomSnackBar(
-                    title: 'Hotels Are required',
-                    message: 'You must choose hotel for each destination');
-              }
-            },
+          BlocBuilder<HotelInformationCubit, HotelInformationState>(
             builder: (context, state) => Expanded(
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
