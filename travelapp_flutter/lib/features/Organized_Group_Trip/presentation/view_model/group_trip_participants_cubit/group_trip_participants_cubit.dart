@@ -69,11 +69,13 @@ class GroupTripParticipantsCubit extends Cubit<GroupTripParticipantsStates> {
   }
 
   Future<void> cancelGroupTripReservation({
+    required String mainReservationId,
     required String participantId,
   }) async {
     emit(LoadingCancelReservationState());
     var response = await organizingGroupTripImpl.cancelGroupTripReservation(
       tripId: tripId,
+      mainReservationId: mainReservationId,
       participantsId: [participantId],
     );
     response.fold(
@@ -83,6 +85,11 @@ class GroupTripParticipantsCubit extends Cubit<GroupTripParticipantsStates> {
       (res) {
         participants!
             .removeWhere((participant) => participant.id == participantId);
+        if (participants!.isEmpty) {
+          emit(SuccessParticipantsState());
+          emit(NoParticipantsState());
+          return;
+        }
         emit(SuccessCancelReservationState());
       },
     );

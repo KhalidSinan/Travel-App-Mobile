@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,44 +53,50 @@ class ParticipantCard extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 24),
-          IconButton(
-              onPressed: () {
-                final participants =
-                    BlocProvider.of<GroupTripParticipantsCubit>(context);
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return BlocProvider.value(
-                      value: participants,
-                      child: AlertDialog(
-                        backgroundColor: Colors.white,
-                        title: const Text(
-                          "Cancel Reservation",
-                        ),
-                        content: Text(
-                            "Are you sure you want to cancel reservation for ${participant.personName}?"),
-                        actions: [
-                          CustomTextButton(
-                              onPressed: () => Get.back(), label: 'Back'),
-                          CustomTextButton(
-                            onPressed: () async {
-                              await participants.cancelGroupTripReservation(
-                                  participantId: participant.id!);
-                              Get.back();
-                            },
-                            label: 'Yes',
-                            color: Themes.primary,
+          Offstage(
+            offstage: BlocProvider.of<GroupTripParticipantsCubit>(context)
+                .isOrganizer,
+            child: IconButton(
+                onPressed: () {
+                  final participants =
+                      BlocProvider.of<GroupTripParticipantsCubit>(context);
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return BlocProvider.value(
+                        value: participants,
+                        child: AlertDialog(
+                          backgroundColor: Colors.white,
+                          title: const Text(
+                            "Cancel Reservation",
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                );
-              },
-              icon: const Icon(
-                FontAwesomeIcons.remove,
-                color: Colors.red,
-              ))
+                          content: Text(
+                              "Are you sure you want to cancel reservation for ${participant.personName}?"),
+                          actions: [
+                            CustomTextButton(
+                                onPressed: () => Get.back(), label: 'Back'),
+                            CustomTextButton(
+                              onPressed: () async {
+                                await participants.cancelGroupTripReservation(
+                                  participantId: participant.id!,
+                                  mainReservationId: participant.reservationId!,
+                                );
+                                Get.back();
+                              },
+                              label: 'Yes',
+                              color: Themes.primary,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+                icon: const Icon(
+                  FontAwesomeIcons.remove,
+                  color: Colors.red,
+                )),
+          )
         ],
       ),
     );

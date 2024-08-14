@@ -173,18 +173,20 @@ class OrganizingGroupTripImpl extends OrganizingGroupTripRepo {
   @override
   Future<Either<Failure, Map<String, dynamic>>> cancelGroupTripReservation({
     required String tripId,
+    required String mainReservationId,
     required List<String> participantsId,
   }) async {
     try {
-      Map<String, dynamic> response = await apiService
-          .post(endPoint: '/trips-reservation/$tripId/cancel', body: {
-        "reservations": participantsId,
-      });
+      Map<String, dynamic> response = await apiService.post(
+          endPoint: '/trips-reservation/$tripId/cancel/$mainReservationId',
+          body: {
+            "reservations": participantsId,
+          });
       return right(response);
     } catch (e) {
       if (e is DioException) {
         return left(
-            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+            Failure.fromDioException(e, DeleteGroupTripStatusCodeHandler()));
       } else {
         return left(Failure(errMessage: 'Something went wrong'));
       }
@@ -224,7 +226,7 @@ class OrganizingGroupTripImpl extends OrganizingGroupTripRepo {
     } catch (e) {
       if (e is DioException) {
         return left(
-            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+            Failure.fromDioException(e, DeleteGroupTripStatusCodeHandler()));
       } else {
         return left(Failure(errMessage: 'Something went wrong'));
       }

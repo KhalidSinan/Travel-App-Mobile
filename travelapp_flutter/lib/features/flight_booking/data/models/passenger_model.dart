@@ -7,6 +7,7 @@ class PassengerModel {
   final double? price;
   final String? passport;
   final String? id;
+  final String? reservationId;
 
   PassengerModel({
     required this.personName,
@@ -15,17 +16,20 @@ class PassengerModel {
     required this.price,
     required this.passport,
     required this.id,
+    required this.reservationId,
   });
 
   factory PassengerModel.fromJson(jsonData) {
     return PassengerModel(
-        personName: jsonData['person_name'] ?? jsonData['name'],
-        seatClass: jsonData['seat_class'],
-        seatNumber: jsonData['seat_number'],
-        price: jsonData['price'],
-        passport: jsonData['person_passport'] ??
-            jsonData['passport_number'].toString(),
-        id: jsonData['_id'] ?? jsonData['id']);
+      personName: jsonData['person_name'] ?? jsonData['name'],
+      seatClass: jsonData['seat_class'],
+      seatNumber: jsonData['seat_number'],
+      price: jsonData['price'],
+      passport:
+          jsonData['person_passport'] ?? jsonData['passport_number'].toString(),
+      id: jsonData['_id'] ?? jsonData['id'],
+      reservationId: jsonData['main_reservation_id'],
+    );
   }
 
   Map<String, String> toJson() {

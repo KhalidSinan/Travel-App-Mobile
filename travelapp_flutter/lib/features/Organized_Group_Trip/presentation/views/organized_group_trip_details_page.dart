@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
+import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/data/repos/organized_group_repo_impl.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/group_trip_details_cubit/group_trip_details_cubit.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/group_trip_details_cubit/group_trip_details_states.dart';
@@ -47,9 +49,23 @@ class OrganizedGroupTripDetailsPage extends StatelessWidget {
               );
             } else if (state is GroupTripDetailsFailureState) {
               return Center(
-                child: Text(
-                  state.failure.errMessage.toString(),
-                  style: Styles.content,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      state.failure.errMessage.toString(),
+                      style: Styles.content,
+                    ),
+                    const SizedBox(height: 16),
+                    CustomButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      color: Themes.secondary,
+                      colorText: Themes.primary,
+                      label: 'Back',
+                    )
+                  ],
                 ),
               );
             } else {
