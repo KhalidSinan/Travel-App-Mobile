@@ -194,23 +194,6 @@ class OrganizingGroupTripImpl extends OrganizingGroupTripRepo {
   }
 
   @override
-  Future<Either<Failure, Map<String, dynamic>>> joinChat(
-      {required String tripId}) async {
-    try {
-      Map<String, dynamic> response =
-          await apiService.get(endPoint: '/chats/$tripId/join');
-      return right(response);
-    } catch (e) {
-      if (e is DioException) {
-        return left(
-            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
-      } else {
-        return left(Failure(errMessage: 'Something went wrong'));
-      }
-    }
-  }
-
-  @override
   Future<Either<Failure, Map<String, dynamic>>> cancelGroupTrip(
       {required String tripId}) async {
     try {
