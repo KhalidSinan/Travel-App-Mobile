@@ -8,7 +8,7 @@ class ProfileModel {
   final String? gender;
   final String? birthDate;
   final String? photo;
-  final bool guide;
+  final bool organizer;
   final NameModel name;
   final LocationModel location;
   final NumberModel? number;
@@ -19,7 +19,7 @@ class ProfileModel {
     required this.birthDate,
     required this.number,
     required this.photo,
-    required this.guide,
+    required this.organizer,
     required this.name,
     required this.location,
   });
@@ -33,7 +33,7 @@ class ProfileModel {
           ? NumberModel.fromJson(jsonData['phone_number'])
           : null,
       photo: jsonData['profile_pic'],
-      guide: jsonData['is_organizer'],
+      organizer: jsonData['is_organizer'],
       name: NameModel.fromJson(jsonData['name']),
       location: LocationModel.fromJson(jsonData['location']),
     );

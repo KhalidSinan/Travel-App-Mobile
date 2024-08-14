@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/main_container.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/top_container.dart';
 
@@ -17,6 +18,13 @@ class _PlanePageState extends State<PlanePage> {
         child: Stack(
           children: [
             TopContainer(),
+            Positioned(
+              top: 30,
+              left: 6,
+              child: CustomBackButton(
+                color: Colors.white,
+              ),
+            ),
             MainContainer(),
           ],
         ),

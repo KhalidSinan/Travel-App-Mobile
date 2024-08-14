@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/search_hotel_page_widgets/search_page_sheet.dart';
 
 class HotelSearchPageBody extends StatelessWidget {
@@ -11,11 +11,7 @@ class HotelSearchPageBody extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       slivers: [
         SliverAppBar(
-          leading: const Icon(
-            FontAwesomeIcons.chevronLeft,
-            size: 20,
-            color: Colors.white,
-          ),
+          leading: const CustomBackButton(color: Colors.white),
           expandedHeight: 275,
           flexibleSpace: FlexibleSpaceBar(
             background: Stack(

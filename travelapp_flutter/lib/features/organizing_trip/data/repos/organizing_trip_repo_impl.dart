@@ -142,4 +142,21 @@ class OrganizingTripImpl extends OrganizingTripRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> shareTrip(
+      {required String tripId}) async {
+    try {
+      Map<String, dynamic> response =
+          await apiService.get(endPoint: '/trips/$tripId/share');
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      } else {
+        return left(Failure(errMessage: 'Something went wrong'));
+      }
+    }
+  }
 }

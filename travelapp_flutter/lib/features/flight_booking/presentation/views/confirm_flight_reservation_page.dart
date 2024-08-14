@@ -9,11 +9,12 @@ import 'package:travelapp_flutter/features/flight_booking/presentation/view_mode
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/confirm_flight_reservation_page_body.dart';
 
 class ConfirmFlightReservationPage extends StatelessWidget {
-  const ConfirmFlightReservationPage({
+   const ConfirmFlightReservationPage({
     super.key,
-    required this.reservationId,
+    required this.reservationId,  this.completed
   });
   final String reservationId;
+  final bool? completed;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -37,7 +38,7 @@ class ConfirmFlightReservationPage extends StatelessWidget {
                 ));
               }
             },
-            child: const ConfirmFlightReservationPageBody(),
+            child: ConfirmFlightReservationPageBody(completed: completed),
           ),
         ),
       ),

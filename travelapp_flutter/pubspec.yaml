@@ -58,6 +58,7 @@ dependencies:
   intl: ^0.19.0
   local_auth: ^2.2.0
   lottie: ^3.1.0
+  text_marquee: ^0.0.2
   number_paginator: ^0.4.1
   percent_indicator: ^4.2.3
   path: ^1.9.0

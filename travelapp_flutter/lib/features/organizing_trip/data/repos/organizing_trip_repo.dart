@@ -4,6 +4,9 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/view_mod
 
 abstract class OrganizingTripRepo {
   Future<Either<Failure, Map<String, dynamic>>> getCitiesAndAirlines();
+
+  Future<Either<Failure, Map<String, dynamic>>> shareTrip({required String tripId});
+
   Future<Either<Failure, Map<String, dynamic>>> checkFlightsForTrip({
     required String source,
     required bool isReturn,

@@ -5,8 +5,7 @@ class ApiService {
   //10.0.2.2
   final Dio _dio;
   final String token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNiYzRmYWVlYmI5YmMzZWI4ZmVhNGUwYyIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFydmlkIiwibGFzdF9uYW1lIjoiS296ZXkifSwiaWF0IjoxNzIzNTY2MzkwfQ.KLbi7ARgj50OPDusDB39aN3D53GMSSTKWyynNmUOdoQ';
-
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJlZDJkMWYzMWViNmNmOTZiM2Y0YTYyNiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkhhZGxleSIsImxhc3RfbmFtZSI6IkJyZWtrZSJ9LCJpYXQiOjE3MjM2MTc5NzB9.3Fh26C5i8MnO_eXjmyzhvIG9zZqqTrKumuIulEp6KJI';
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get({

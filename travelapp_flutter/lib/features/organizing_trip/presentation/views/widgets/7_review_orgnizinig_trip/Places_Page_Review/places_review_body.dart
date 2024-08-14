@@ -10,6 +10,7 @@ class PlacesReviewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final places = BlocProvider.of<OrganizingTripCubit>(context).places;
     final destinations =
         BlocProvider.of<OrganizingTripCubit>(context).destinations;

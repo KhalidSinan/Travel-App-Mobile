@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:text_marquee/text_marquee.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/schedule_cubit/schedule_cubit.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/place_model.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/6_schedule_page.dart';
 
 class PlaceCard extends StatelessWidget {
   const PlaceCard({
@@ -53,10 +51,9 @@ class PlaceCard extends StatelessWidget {
                 style: const TextStyle(fontSize: 23),
               ),
               const SizedBox(height: 8),
-              Text(
+              TextMarquee(
                 place.description,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+                spaceSize: 40,
                 style: const TextStyle(color: Colors.grey, fontSize: 18),
               ),
               const SizedBox(height: 8),

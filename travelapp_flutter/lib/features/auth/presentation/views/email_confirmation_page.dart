@@ -4,11 +4,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
-import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/email_confirm_cubit/email_confirm_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
-import 'package:travelapp_flutter/features/auth/presentation/views/register_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/email_confirm_page_body.dart';
 
 class EmailConfirmationPage extends StatelessWidget {
