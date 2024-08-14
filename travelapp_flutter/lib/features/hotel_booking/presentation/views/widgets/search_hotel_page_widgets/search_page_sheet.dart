@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/search_hotel_page_widgets/search_citys.dart';
@@ -33,7 +34,7 @@ class _SearchPageSheetState extends State<SearchPageSheet> {
       child: BlocBuilder<AllHotelsCubit, AllHotelStates>(
         builder: (context, state) {
           if (state is LoadingAllHotelStates) {
-            return const Center(child: CircularProgressIndicator());
+            return const CustomLoading();
           } else {
             bool? availableTrips = BlocProvider.of<AllHotelsCubit>(context)
                 .destinations!
@@ -46,7 +47,7 @@ class _SearchPageSheetState extends State<SearchPageSheet> {
               children: [
                 const SearchFields(),
                 if (availableTrips == true)
-                  SearchDest(destination: destination),
+                SearchDest(destination: destination),
                 SearchCitys(),
               ],
             );

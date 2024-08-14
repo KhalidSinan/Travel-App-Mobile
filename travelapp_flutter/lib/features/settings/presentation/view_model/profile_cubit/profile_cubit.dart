@@ -15,6 +15,7 @@ class ProfilePageCubit extends Cubit<ProfileStates> {
   ProfileModel? profile;
   FormData? body;
   File? editImage;
+  bool? organizer;
   String? editCity,
       editCountry,
       editDate,
@@ -44,6 +45,7 @@ class ProfilePageCubit extends Cubit<ProfileStates> {
       (failure) => emit(ProfileFailureState(failure: failure)),
       (response) {
         profile = ProfileModel.fromJson(response['profile']);
+        organizer = profile!.organizer;
         editCity = profile!.location.city;
         editCountry = profile!.location.country;
         editDate = profile!.birthDate;

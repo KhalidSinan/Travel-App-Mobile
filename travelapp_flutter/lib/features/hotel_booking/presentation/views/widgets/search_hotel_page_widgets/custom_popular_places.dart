@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
+
 class PopularCitys extends StatelessWidget {
   const PopularCitys({super.key, required this.image, required this.city});
   final String image;
@@ -12,7 +13,6 @@ class PopularCitys extends StatelessWidget {
       onTap: () async {
         await BlocProvider.of<AllHotelsCubit>(context)
             .getAllHotelData(nameHotelOrCity: city);
-        //Get.to(() => AllHotelsPage(nameHotelOrCity: city));
       },
       child: Padding(
         padding: const EdgeInsets.only(right: 15),
@@ -33,7 +33,7 @@ class PopularCitys extends StatelessWidget {
             Center(
               child: Text(
                 city,
-                style: const TextStyle(fontSize: 18, color: Colors.black54),
+                style: TextStyle(fontSize: 17, color: Colors.grey[700]),
               ),
             ),
           ],

@@ -18,6 +18,10 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
 import 'package:travelapp_flutter/features/chat/presentation/views/all_chats.dart';
+import 'package:travelapp_flutter/features/home/data/repos/home_repo_impl.dart';
+import 'package:travelapp_flutter/features/home/presentation/view_model/home_cubit/home_cubit.dart';
+import 'package:travelapp_flutter/features/home/presentation/view_model/my_reservations_cubit/my_reservations_cubit.dart';
+import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips_cubit/my_trips_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/1_persons_days_selection_page.dart';
@@ -83,7 +87,8 @@ class _TravelAppState extends State<TravelApp> {
         //     create: (context) =>
         //         OrganizingTripCubit(getIt.get<OrganizingTripImpl>())..getCountriesAndAirlines()),
         BlocProvider(
-          create: (context) => ProfilePageCubit(getIt.get<SettingsRepoImpl>()),
+          create: (context) =>
+              ProfilePageCubit(getIt.get<SettingsRepoImpl>())..getUserData(),
         ),
         BlocProvider(
           create: (context) =>
@@ -99,7 +104,16 @@ class _TravelAppState extends State<TravelApp> {
           create: (context) => ReportAndRatingCubit(
             getIt.get<SettingsRepoImpl>(),
           ),
-        )
+        ),
+        BlocProvider(
+          create: (context) => HomeCubit(getIt.get<HomeRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (context) => MyReservationsCubit(getIt.get<HomeRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (context) => MyTripsCubit(getIt.get<HomeRepoImpl>()),
+        ),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -112,24 +126,27 @@ class _TravelAppState extends State<TravelApp> {
             cursorColor: Themes.primary,
             selectionColor: Themes.primary,
             selectionHandleColor: Themes.primary,
+             ),
+            appBarTheme: const AppBarTheme(
+              color: Colors.white,
+              surfaceTintColor: Colors.white,
+            ),
+            scaffoldBackgroundColor: Colors.white,
+            textTheme: GoogleFonts.aBeeZeeTextTheme(),
           ),
-          appBarTheme: const AppBarTheme(
-            color: Colors.white,
-            surfaceTintColor: Colors.white,
-          ),
-          scaffoldBackgroundColor: Colors.white,
-          textTheme: GoogleFonts.aBeeZeeTextTheme(),
-        ),
-        // home: rememberMe == true
-        //     ? FetchProfileDataPage(token: token)
-        //     : const LoginPage(),
-        // home: emailVerify == true
-        //     ? EmailConfirmationPage(
-        //         email: emailToVerify!,
-        //       )
-        //     : const LoginPage(),
-        home: const AllChatsPage(),
-      ),
-    );
+          // home: rememberMe == true
+          //     ? FetchProfileDataPage(token: token)
+          //     : const LoginPage(),
+          // home: const OrganizedGroupTripDetailsPage(
+          //   tripId: '66ba0eb360e2f6d63923d080',
+          //   isOrganizer: true,
+          // ),
+          home: const LoginPage()
+          // emailVerify == true
+          //     ? EmailConfirmationPage(
+          //         email: emailToVerify!,
+          //       )
+          //     : const LoginPage(),
+          ));
   }
 }

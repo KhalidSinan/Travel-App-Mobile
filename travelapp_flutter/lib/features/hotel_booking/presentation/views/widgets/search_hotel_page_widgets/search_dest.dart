@@ -59,7 +59,7 @@ class SearchDest extends StatelessWidget {
                       child: Card(
                         shadowColor: Themes.primary,
                         color: Colors.white,
-                        elevation: 0.5,
+                        elevation: 1,
                         child: Padding(
                           padding: const EdgeInsets.all(10),
                           child: Column(
@@ -74,9 +74,8 @@ class SearchDest extends StatelessWidget {
                                   const SizedBox(width: 10),
                                   Text(
                                     destination[index].city,
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(fontSize: 20),
                                   ),
                                 ],
                               ),
@@ -90,9 +89,7 @@ class SearchDest extends StatelessWidget {
                                   const SizedBox(width: 10),
                                   Text(
                                     destination[index].date,
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                    ),
+                                    style: const TextStyle(fontSize: 20),
                                   ),
                                 ],
                               ),
@@ -107,7 +104,7 @@ class SearchDest extends StatelessWidget {
             },
           ),
         ),
-        const SizedBox(height: 25),
+        const SizedBox(height: 30),
       ],
     );
   }

@@ -8,6 +8,7 @@ import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
+
 class SearchFields extends StatefulWidget {
   const SearchFields({super.key});
 
@@ -33,6 +34,7 @@ class _SearchFieldsState extends State<SearchFields> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 5),
             Text(
               'Look for a hotel',
               style: Styles.heading2,
@@ -128,7 +130,7 @@ class _SearchFieldsState extends State<SearchFields> {
                 }
               },
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 38),
           ],
         ),
       ),

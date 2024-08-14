@@ -44,15 +44,3 @@ class HotelSearchPage extends StatelessWidget {
     );
   }
 }
-// void searchFunction() async {
-//     var searchResult = await showSearch(
-//         context: context,
-//         delegate: CitiesSearch(
-//             countries:
-//                 BlocProvider.of<OrganizingTripCubit>(context).countries!));
-//     if (searchResult != null) {
-//       setState(() {
-//         searchController.text = searchResult.toString();
-//       });
-//     }
-//   }

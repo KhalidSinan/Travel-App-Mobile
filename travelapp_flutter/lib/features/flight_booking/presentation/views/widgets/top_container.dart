@@ -3,9 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:travelapp_flutter/core/utils/assets.dart';
 
 class TopContainer extends StatelessWidget {
-  const TopContainer({
-    super.key,
-  });
+  const TopContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +11,7 @@ class TopContainer extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(
-            Assets.flight1,
+            Assets.flight,
             fit: BoxFit.fill,
             height: MediaQuery.of(context).size.height * 0.33,
             width: double.infinity,

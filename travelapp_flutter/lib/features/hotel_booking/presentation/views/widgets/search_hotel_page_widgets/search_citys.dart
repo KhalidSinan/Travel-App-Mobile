@@ -60,6 +60,7 @@ class SearchCitys extends StatelessWidget {
             },
           ),
         ),
+        const SizedBox(height: 20)
       ],
     );
   }

@@ -6,11 +6,9 @@ import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
-import 'package:travelapp_flutter/features/organizing_trip/data/models/hotel_for_destination_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_information_cubit/hotel_information_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_reservation_cubit/hotel_reservation_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_reservation_cubit/hotel_reservations_states.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/6_schedule_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/hotels_widgets/room_cart_list.dart';
 
 class HotelReviewPageBody extends StatelessWidget {

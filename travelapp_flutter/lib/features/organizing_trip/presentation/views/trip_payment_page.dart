@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-import 'package:travelapp_flutter/core/helpers/api_service.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/core/widgets/paypal_widget.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/repos/hotel_booking_impl_repo.dart';

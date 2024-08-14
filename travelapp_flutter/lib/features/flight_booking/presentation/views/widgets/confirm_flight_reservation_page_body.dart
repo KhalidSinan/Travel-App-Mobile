@@ -7,15 +7,15 @@ import 'package:travelapp_flutter/features/flight_booking/presentation/views/wid
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/passengers_list.dart';
 
 class ConfirmFlightReservationPageBody extends StatelessWidget {
-  const ConfirmFlightReservationPageBody({
-    super.key,
-  });
+  const ConfirmFlightReservationPageBody(
+      {super.key,this.completed});
 
+  final bool? completed;
   @override
   Widget build(BuildContext context) {
-    return const Stack(
+    return Stack(
       children: [
-        CustomScrollView(
+        const CustomScrollView(
           slivers: [
             AppBarDetailsCard(),
             SliverToBoxAdapter(
@@ -29,7 +29,8 @@ class ConfirmFlightReservationPageBody extends StatelessWidget {
             )
           ],
         ),
-        ConfirmationStepButtons(),
+        if (completed != true)
+          const ConfirmationStepButtons(),
       ],
     );
   }

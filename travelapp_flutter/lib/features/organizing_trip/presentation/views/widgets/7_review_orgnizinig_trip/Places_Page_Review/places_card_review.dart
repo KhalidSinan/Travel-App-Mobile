@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:text_marquee/text_marquee.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/place_model.dart';
 
@@ -33,11 +34,10 @@ class PlaceCardReview extends StatelessWidget {
             style: const TextStyle(fontSize: 23),
           ),
           const SizedBox(height: 8),
-          Text(
+          TextMarquee(
             place.description,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
             style: const TextStyle(color: Colors.grey, fontSize: 18),
+            spaceSize: 40,
           ),
           const SizedBox(height: 8),
           Row(
