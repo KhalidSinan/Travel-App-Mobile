@@ -31,7 +31,7 @@ class AnnouncementSubscriptionCard extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: const [
               BoxShadow(
-                color: Colors.black,
+                color: Colors.black38,
                 offset: Offset(-3, 3),
                 blurRadius: 4,
               )
