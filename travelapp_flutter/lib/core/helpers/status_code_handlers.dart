@@ -78,7 +78,6 @@ class ReservationHotelStatusCodeHandler extends StatusCodeHandler {
   }
 }
 
-<<<<<<< HEAD
 class BecomeOrganizerStatusCodeHandler extends StatusCodeHandler {
   @override
   Failure handleError(int statusCode, data) {
@@ -92,7 +91,10 @@ class BecomeOrganizerStatusCodeHandler extends StatusCodeHandler {
     return Failure(
       errMessage: message,
       errTitle: 'Error',
-=======
+    );
+  }
+}
+
 class CreateChatStatusCodeHandler extends StatusCodeHandler {
   @override
   Failure handleError(int statusCode, data) {
@@ -100,13 +102,11 @@ class CreateChatStatusCodeHandler extends StatusCodeHandler {
     return Failure(
       errTitle: 'Error',
       errMessage: data['message'],
->>>>>>> a4d71f9698209f4f49308153e0ee49ccef7d5529
       errType: DioExceptionType.badResponse,
     );
   }
 }
 
-<<<<<<< HEAD
 // class ChangePsswordStatusCodeHandler extends StatusCodeHandler {
 //   @override
 //   Failure handleError(int statusCode, data) {
@@ -125,7 +125,7 @@ class CreateChatStatusCodeHandler extends StatusCodeHandler {
 //     );
 //   }
 // }
-=======
+
 class SubscribeGroupTripStatusCodeHandler extends StatusCodeHandler {
   @override
   Failure handleError(int statusCode, data) {
@@ -137,7 +137,6 @@ class SubscribeGroupTripStatusCodeHandler extends StatusCodeHandler {
     );
   }
 }
-<<<<<<< HEAD
 
 class DeleteGroupTripStatusCodeHandler extends StatusCodeHandler {
   @override
@@ -150,6 +149,3 @@ class DeleteGroupTripStatusCodeHandler extends StatusCodeHandler {
     );
   }
 }
-=======
->>>>>>> a4d71f9698209f4f49308153e0ee49ccef7d5529
->>>>>>> 2c44f886ba263ab71a8c6d9cf8f90252042a60ea

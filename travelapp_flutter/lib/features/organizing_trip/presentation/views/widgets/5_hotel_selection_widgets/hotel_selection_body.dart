@@ -31,30 +31,11 @@ class _HotelSelectionBodyState extends State<HotelSelectionBody> {
     HotelReservationModel? allHotels =
         BlocProvider.of<HotelInformationCubit>(context).allHotels;
 
-<<<<<<< HEAD
-    List<HotelForDestinationModel>? hotels = allHotels?.hotels;
-=======
     List<HotelForDestinationModel?> hotels = allHotels.hotels;
->>>>>>> a4d71f9698209f4f49308153e0ee49ccef7d5529
 
     return SafeArea(
       child: Column(
         children: [
-<<<<<<< HEAD
-          Expanded(
-            child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: destinations.length,
-              itemBuilder: (context, i) {
-                return CardCityAndSelectHotel(
-                  countryName: destinations[i]['city'],
-                  numDays: destinations[i]['days'],
-                  startDate: startDates[i],
-                  numberPerson: numberPerson!,
-                  hotelForDestinationModel: hotels![i],
-                );
-              },
-=======
           BlocBuilder<HotelInformationCubit, HotelInformationState>(
             builder: (context, state) => Expanded(
               child: ListView.builder(
@@ -71,7 +52,6 @@ class _HotelSelectionBodyState extends State<HotelSelectionBody> {
                   );
                 },
               ),
->>>>>>> a4d71f9698209f4f49308153e0ee49ccef7d5529
             ),
           ),
           const SizedBox(

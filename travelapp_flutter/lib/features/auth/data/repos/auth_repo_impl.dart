@@ -10,7 +10,7 @@ import 'package:travelapp_flutter/features/auth/data/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final ApiService apiService;
-  String? token ;
+  String? token;
   AuthRepoImpl(this.apiService);
   @override
   Future<Either<Failure, Map<String, dynamic>>> login({
@@ -190,10 +190,10 @@ class AuthRepoImpl extends AuthRepo {
     }
   }
 
-<<<<<<< HEAD
   void add() {
     token = null;
-=======
+  }
+
   @override
   Future<Either<Failure, Map<String, dynamic>>> resendCode(
       {required String email}) async {
@@ -212,6 +212,5 @@ class AuthRepoImpl extends AuthRepo {
       }
       return left(Failure(errMessage: 'Something went wrong'));
     }
->>>>>>> a4d71f9698209f4f49308153e0ee49ccef7d5529
   }
 }

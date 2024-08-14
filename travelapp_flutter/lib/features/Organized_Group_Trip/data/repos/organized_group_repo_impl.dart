@@ -217,10 +217,6 @@ class OrganizingGroupTripImpl extends OrganizingGroupTripRepo {
       Map<String, dynamic> response = await apiService.delete(
         endPoint: '/organized-trips/$tripId',
         body: {},
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${getIt.get<ApiService>().token}',
-        },
       );
       return right(response);
     } catch (e) {
