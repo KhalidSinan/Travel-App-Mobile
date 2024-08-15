@@ -8,6 +8,7 @@ import 'package:travelapp_flutter/features/organizing_trip/data/models/hotel_res
 import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/trip_payment_cubit/trip_payment_states.dart';
+import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit_state.dart';
 
 class TripPaymentCubit extends Cubit<TripPaymentState> {
   TripPaymentCubit({
@@ -17,6 +18,7 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
     required this.seats,
     required this.passengers,
     required this.trip,
+    this.groupTrip = false,
   }) : super(InitialTripPaymentState());
 
   final OrganizingTripImpl organizingTripImpl;
@@ -25,6 +27,7 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
   final int seats;
   final List<PassengerModel?> passengers;
   final OrganizingTripCubit trip;
+  final bool groupTrip;
   List<String> flightsResIds = [];
   List<String> hotelsResIds = [];
   int step = 0;
@@ -57,7 +60,6 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
     required List<String> flightsResIds,
     required List<String> hotelsResIds,
   }) async {
-    emit(TripCreateLoadingState());
     var response = await organizingTripImpl.makeTrip(
       trip: trip,
       flightsReservations: flightsResIds,
@@ -67,8 +69,29 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
       (failure) {
         emit(TripCreateFailureState(errMessage: failure.errMessage));
       },
-      (res) {
+      (res) async {
         emit(TripCreateSuccessState(tripId: res['data']['id']));
+        if (groupTrip) {
+          await createGroupTrip(tripId: res['data']['id']);
+        }
+      },
+    );
+  }
+
+  Future<void> createGroupTrip({required String tripId}) async {
+    var response = await organizingTripImpl.makeGroupTrip(
+      tripId: tripId,
+      commission: int.parse(trip.profit!),
+      desc: trip.desc!,
+      types: trip.types!,
+    );
+    response.fold(
+      (failure) {
+        emit(TripCreateFailureState(errMessage: failure.errMessage));
+      },
+      (res) {
+        print(res);
+        emit(GroupTripCreateSuccessState(tripId: res['data']['id']));
       },
     );
   }
@@ -148,9 +171,13 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
         break;
       case 3:
         stepName = 'Creating The Trip...';
-        stepValue = 0.9;
+        stepValue = 0.8;
         break;
       case 4:
+        stepName = 'Trip Created Successfully';
+        stepValue = 1.0;
+        break;
+      case 5:
         stepName = 'Trip Created Successfully';
         stepValue = 1.0;
         break;

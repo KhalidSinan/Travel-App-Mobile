@@ -41,6 +41,8 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   String? destinationCity, destinationCountry;
   int? numberOfDaysDes;
 
+  String? profit, desc;
+  List<String>? types;
   int valid = 0;
   List<DestinationsModel> destinations = [];
   List<String> startDates = [];
@@ -50,7 +52,18 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
   // List<FilterModel>? filter = [];
   late CheckFlightModel checkFlightModel;
 
+  void setTripInfo({
+    required List<String> types,
+    required String profit,
+    required String desc,
+  }) {
+    this.desc = desc;
+    this.profit = profit;
+    this.types = types;
+  }
+
   Future<void> getCountriesAndAirlines() async {
+    print('here');
     emit(LoadingOrganizingTrip());
     var response = await organizingTripImpl.getCitiesAndAirlines();
 
@@ -63,6 +76,7 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
       for (var i = 0; i < response['cities'].length; i++) {
         cities.add(CountryModel.fromJson(response["cities"][i]));
       }
+      print(response);
       emit(SuccessCheckAvailableFlight());
     });
   }

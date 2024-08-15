@@ -159,4 +159,30 @@ class OrganizingTripImpl extends OrganizingTripRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> makeGroupTrip({
+    required String tripId,
+    required int commission,
+    required String desc,
+    required List<String> types,
+  }) async {
+    try {
+      Map<String, dynamic> response =
+          await apiService.post(endPoint: '/organized-trips/create', body: {
+        "trip_id": tripId,
+        "commission": commission.toInt(),
+        "type_of_trip": types,
+        "description": desc,
+      });
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(
+            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+      } else {
+        return left(Failure(errMessage: 'Something went wrong'));
+      }
+    }
+  }
 }
