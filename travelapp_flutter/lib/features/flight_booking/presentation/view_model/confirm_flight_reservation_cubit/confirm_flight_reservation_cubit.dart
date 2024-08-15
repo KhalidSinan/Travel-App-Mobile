@@ -25,7 +25,7 @@ class ConfirmFlightReservationCubit
       },
       (res) {
         reservation = ReservationModel.fromJson(res['reservation']);
-        print(res['reservation']);
+        isConfirmed = res['reservation']['is_confirmed'];
         emit(SuccessConfirmFlightReservationState());
       },
     );

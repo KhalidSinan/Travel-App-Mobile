@@ -101,7 +101,7 @@ class _AnnouncementsSliderState extends State<AnnouncementsSlider> {
                             ),
                             SizedBox(
                               height: 200,
-                              width: MediaQuery.of(context).size.width * 0.33,
+                              width: MediaQuery.of(context).size.width * 0.3,
                               child: Image.asset(
                                 getPhoto(Random().nextInt(4))!,
                                 fit: BoxFit.fill,

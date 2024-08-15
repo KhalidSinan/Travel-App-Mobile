@@ -3,7 +3,7 @@ class SingleTripsModel {
   final String source;
   final String date;
   final String destenations;
-  final double price;
+  final dynamic price;
   final int people;
   final int days;
   final bool completed;

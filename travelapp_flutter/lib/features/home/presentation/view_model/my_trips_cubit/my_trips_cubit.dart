@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart';
+import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/features/home/data/models/group_trips_model.dart';
 import 'package:travelapp_flutter/features/home/data/models/organizer_trips_model.dart';
 import 'package:travelapp_flutter/features/home/data/models/single_trips_model.dart';
@@ -52,7 +54,9 @@ class MyTripsCubit extends Cubit<MyTripsState> {
     emit(MyTripsLoading());
     var response = await homeRepoImpl.getMyGroupTrips();
     response.fold(
-      (failure) => emit(MyTripsFailure(failure: failure)),
+      (failure) {
+        emit(MyTripsFailure(failure: failure));
+      },
       (response) {
         groupTrips = [];
         for (var i = 0; i < response['data'].length; i++) {
@@ -103,4 +107,15 @@ class MyTripsCubit extends Cubit<MyTripsState> {
   void switchState() {
     emit(MyTripsSuccess());
   }
+<<<<<<< Updated upstream
+=======
+
+  Future<void> getTrips() async {
+    emit(MyTripsLoading());
+    await getMySingleTrips();
+    await getMyGroupTrips();
+    // await getOrganizerTrips();
+    emit(MyTripsSuccess());
+  }
+>>>>>>> Stashed changes
 }

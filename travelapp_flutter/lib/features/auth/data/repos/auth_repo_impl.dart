@@ -24,7 +24,7 @@ class AuthRepoImpl extends AuthRepo {
         body: {
           'email': email,
           'password': password,
-          'device_token' : NotificationService.token 
+          'device_token': NotificationService.token
         },
       );
       token = response['token'];

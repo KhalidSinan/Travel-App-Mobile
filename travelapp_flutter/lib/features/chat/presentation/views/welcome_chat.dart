@@ -52,7 +52,7 @@ class WelcomeChat extends StatelessWidget {
                     Expanded(
                       child: CustomButton(
                         onPressed: () {
-                          Get.to(
+                          Get.off(
                             () => const CreateChatPage(),
                             transition: Transition.fade,
                           );

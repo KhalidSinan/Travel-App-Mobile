@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/home_cubit/home_state.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/home_cubit/home_cubit.dart';
@@ -32,12 +33,8 @@ class _HomePageState extends State<HomePage> {
           BlocListener<HomeCubit, HomeState>(
             listener: (context, state) {
               if (state is HomeFailure) {
-                Get.to(
-                  () => FailurePage(
-                    error: state.failure,
-                    onPressed: () {},
-                  ),
-                );
+                showCustomSnackBar(
+                    title: '', message: state.failure.errMessage.toString());
               }
             },
             child: HomePageBody(controller: widget.controller),

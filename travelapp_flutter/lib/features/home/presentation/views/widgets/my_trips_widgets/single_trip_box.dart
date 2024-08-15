@@ -49,9 +49,11 @@ class SingleTripBox extends StatelessWidget {
                     size: 26,
                   ),
                   const SizedBox(width: 10),
-                  Text(
-                    single!.source,
-                    style: const TextStyle(fontSize: 20),
+                  Expanded(
+                    child: Text(
+                      single!.source,
+                      style: const TextStyle(fontSize: 20),
+                    ),
                   ),
                 ],
               ),

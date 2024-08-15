@@ -31,7 +31,7 @@ class ReserveButtons extends StatelessWidget {
                 height: 80,
                 child: GestureDetector(
                   onTap: () {
-                    Get.to(const PlanePage());
+                    Get.toNamed('flights');
                   },
                   child: Card(
                     surfaceTintColor: Themes.primary,

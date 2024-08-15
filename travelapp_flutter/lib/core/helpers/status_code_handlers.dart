@@ -47,11 +47,13 @@ class DefaultStatusCodeHandler extends StatusCodeHandler {
 class RegisterStatusCodeHandler extends StatusCodeHandler {
   @override
   Failure handleError(int statusCode, data) {
+    print(data);
+    data = jsonDecode(data.toString());
     Map<String, dynamic> errors = data['errors'];
-    if (statusCode == 500) {
+    if (errors['email'] != null) {
       return Failure(
         errTitle: errors.keys.first,
-        errMessage: errors['email'],
+        errMessage: errors['email'].toString(),
       );
     } else {
       return Failure(
@@ -88,13 +90,11 @@ class BecomeOrganizerStatusCodeHandler extends StatusCodeHandler {
       message = 'An error occurred';
     }
     return Failure(
-      errMessage: message,
-      errTitle: 'Error',
-     errType: DioExceptionType.badResponse
-    );
+        errMessage: message,
+        errTitle: 'Error',
+        errType: DioExceptionType.badResponse);
   }
 }
-
 
 class CreateChatStatusCodeHandler extends StatusCodeHandler {
   @override
@@ -107,7 +107,6 @@ class CreateChatStatusCodeHandler extends StatusCodeHandler {
     );
   }
 }
-
 
 // class ChangePsswordStatusCodeHandler extends StatusCodeHandler {
 //   @override

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:socket_io_client/socket_io_client.dart' as Io;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,69 +18,23 @@ import 'package:travelapp_flutter/features/chat/presentation/view_model/chat_cub
 import 'package:travelapp_flutter/features/chat/presentation/views/group_chat.dart';
 import 'package:travelapp_flutter/features/chat/presentation/views/widgets/all_chats/join_chat_dialog.dart';
 
-class ChatCard extends StatefulWidget {
+class ChatCard extends StatelessWidget {
   const ChatCard({
     super.key,
     this.joined = true,
     required this.chat,
+    this.socket,
+    this.lastMessage,
   });
 
   final bool joined;
+  final String? lastMessage;
   final ChatModel chat;
-
-  @override
-  State<ChatCard> createState() => _ChatCardState();
-}
-
-class _ChatCardState extends State<ChatCard> {
-  late Io.Socket socket;
-  String? errorMessage;
-  @override
-  void initState() {
-    super.initState();
-    initializeSocket();
-  }
-
-  void initializeSocket() {
-    socket = Io.io(
-      "https://faac-5-0-51-232.ngrok-free.app/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNmNhZDRhNzA2NmU5OGYxZmY1M2NiYiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkFkZGlzb24iLCJsYXN0X25hbWUiOiJFcmRtYW4ifSwiaWF0IjoxNzIzNjQyNzczfQ.F88wr-incOLvWn5ZrusX2F-9uc9TCLvCbz98E6hKsbk",
-      {
-        "transports": ['websocket'],
-        "autoConnect": false,
-      },
-    );
-
-    socket.onConnect((_) {
-      print('Connected with the server');
-    });
-
-    socket.on('chat-error', (data) {
-      print("Error occurred: $data");
-      showCustomSnackBar(title: 'Error', message: data['message']);
-    });
-
-    socket.onDisconnect((_) {
-      print('Disconnected from the server!');
-    });
-  }
-
-  void _handleButtonPressed() async {
-    if (!socket.connected) {
-      socket.connect();
-      await Future.delayed(const Duration(milliseconds: 500));
-    }
-    socket.emit('join-chat', widget.chat.id);
-    await Future.delayed(const Duration(milliseconds: 100));
-
-    if (errorMessage != null) {
-      showCustomSnackBar(title: 'Error', message: errorMessage!);
-    } else {
-      Get.to(() => GroupChat(socket: socket));
-    }
-  }
+  final Io.Socket? socket;
 
   @override
   Widget build(BuildContext context) {
+    print(chat.lastMessage);
     return Container(
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.only(bottom: 16),
@@ -96,11 +52,11 @@ class _ChatCardState extends State<ChatCard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                widget.chat.startDate,
+                chat.startDate,
                 style: Styles.subtitle,
               ),
               Text(
-                widget.chat.endDate,
+                chat.endDate,
                 style: Styles.subtitle,
               ),
             ],
@@ -111,12 +67,12 @@ class _ChatCardState extends State<ChatCard> {
             children: [
               Expanded(
                 child: Text(
-                  widget.chat.name,
+                  chat.name,
                   style: Styles.heading2,
                 ),
               ),
               Text(
-                '(${widget.chat.numberOfPeople})',
+                '(${chat.numberOfPeople})',
                 style: Styles.content,
               ),
             ],
@@ -126,7 +82,7 @@ class _ChatCardState extends State<ChatCard> {
             children: [
               Expanded(
                 child: Text(
-                  widget.chat.lastMessage,
+                  lastMessage ?? chat.lastMessage,
                   style: Styles.content.copyWith(
                     color: Colors.black,
                     fontSize: 16,
@@ -140,7 +96,7 @@ class _ChatCardState extends State<ChatCard> {
               Align(
                 alignment: Alignment.centerRight,
                 child: Offstage(
-                  offstage: widget.joined,
+                  offstage: joined,
                   child: JoinChatButton(
                     label: 'Join Chat',
                     onPressed: () {
@@ -152,7 +108,7 @@ class _ChatCardState extends State<ChatCard> {
                             value: chatCubit,
                             child: JoinChatDialog(
                               chatCubit: chatCubit,
-                              chat: widget.chat,
+                              chat: chat,
                             ),
                           );
                         },
@@ -164,10 +120,10 @@ class _ChatCardState extends State<ChatCard> {
               Align(
                 alignment: Alignment.centerRight,
                 child: Offstage(
-                  offstage: !widget.joined,
+                  offstage: !joined,
                   child: JoinChatButton(
                     label: 'Enter Chat',
-                    onPressed: _handleButtonPressed,
+                    onPressed: joinChat,
                   ),
                 ),
               ),
@@ -176,5 +132,22 @@ class _ChatCardState extends State<ChatCard> {
         ],
       ),
     );
+  }
+
+  void joinChat() async {
+    String? errorMessage;
+    socket!.on('chat-error', (data) {
+      print("Error occurred: $data");
+      errorMessage = data;
+      showCustomSnackBar(title: 'Error', message: data['message']);
+    });
+    socket!.emit('join-chat', chat.id);
+    await Future.delayed(const Duration(milliseconds: 100));
+
+    if (errorMessage != null) {
+      showCustomSnackBar(title: 'Chat Error', message: errorMessage!);
+    } else {
+      Get.to(() => GroupChat(socket: socket!));
+    }
   }
 }

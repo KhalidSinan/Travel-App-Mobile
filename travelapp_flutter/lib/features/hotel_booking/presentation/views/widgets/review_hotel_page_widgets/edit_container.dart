@@ -30,7 +30,8 @@ class _EditContainerState extends State<EditContainer> {
     //  اضافة القيم من واجهة سارة أي من الكيوبيت
     DateFormat startDateFormat = DateFormat('dd/MM/yyyy');
     String startDate = startDateFormat.format(DateTime.now());
-    if (BlocProvider.of<HotelDetailsCubit>(context).startDate!.isEmpty) {
+    if (BlocProvider.of<HotelDetailsCubit>(context).startDate != null ||
+        BlocProvider.of<HotelDetailsCubit>(context).startDate!.isEmpty) {
       BlocProvider.of<HotelDetailsCubit>(context).startDate = startDate;
     }
     dateController.text =

@@ -18,11 +18,16 @@ import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/fetch_profile_data_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
+import 'package:travelapp_flutter/features/chat/presentation/views/all_chats.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/all_flights_page.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/plane_page.dart';
 import 'package:travelapp_flutter/features/home/data/repos/home_repo_impl.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/home_cubit/home_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_reservations_cubit/my_reservations_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips_cubit/my_trips_cubit.dart';
+import 'package:travelapp_flutter/features/home/presentation/views/home_page.dart';
 import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/views/organizer_review_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
@@ -121,7 +126,8 @@ class _TravelAppState extends State<TravelApp> {
           debugShowCheckedModeBanner: false,
           getPages: [
             GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
-            GetPage(name: '/LogIn', page: () => const LoginPage())
+            GetPage(name: '/LogIn', page: () => const LoginPage()),
+            GetPage(name: '/flights', page: () => const PlanePage()),
           ],
           theme: ThemeData(
             textSelectionTheme: TextSelectionThemeData(
@@ -137,6 +143,7 @@ class _TravelAppState extends State<TravelApp> {
             textTheme: GoogleFonts.aBeeZeeTextTheme(),
           ),
 
+<<<<<<< Updated upstream
             // home: rememberMe == true
             //     ? FetchProfileDataPage(token: token)
             //     : const LoginPage(),
@@ -151,5 +158,24 @@ class _TravelAppState extends State<TravelApp> {
             //       )
             //     : const LoginPage(),
             ));
+=======
+          home: rememberMe == true
+              ? FetchProfileDataPage(token: token)
+              : const LoginPage(),
+          // home: const OrganizedGroupTripDetailsPage(
+          //   tripId: '66ba0eb360e2f6d63923d080',
+          //   isOrganizer: true,
+          // ),
+          // home: const OrganizerReviewPage(
+          //   tripId: '66bde5102c01e74d54006c7e',
+          //   organizerName: 'Khalid Sinan',
+          // )
+          // emailVerify == true
+          //     ? EmailConfirmationPage(
+          //         email: emailToVerify!,
+          //       )
+          //     : const LoginPage(),
+        ));
+>>>>>>> Stashed changes
   }
 }

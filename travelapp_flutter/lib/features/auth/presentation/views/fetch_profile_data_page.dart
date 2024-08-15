@@ -6,6 +6,7 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_states.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/test_page.dart';
+import 'package:travelapp_flutter/features/home/presentation/views/home_page.dart';
 
 class FetchProfileDataPage extends StatefulWidget {
   const FetchProfileDataPage({super.key, this.token});
@@ -35,11 +36,14 @@ class _FetchProfileDataPageState extends State<FetchProfileDataPage> {
       body: BlocListener<ProfileCubit, ProfileStates>(
         listener: (context, state) {
           if (state is GetDataFailure) {
-            showCustomSnackBar(title: 'Error', message: state.failure.errMessage);
+            showCustomSnackBar(
+                title: 'Error', message: state.failure.errMessage);
             Get.off(() => const LoginPage());
           }
           if (state is GetDataSuccess) {
-            Get.to(() => const TestPage());
+            Get.off(() => HomePage(
+                  controller: ScrollController(),
+                ));
           }
         },
         child: const Center(

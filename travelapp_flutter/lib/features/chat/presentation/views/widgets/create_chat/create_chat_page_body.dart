@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
@@ -9,6 +10,7 @@ import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 import 'package:travelapp_flutter/features/chat/presentation/view_model/chat_cubit.dart';
 import 'package:travelapp_flutter/features/chat/presentation/view_model/chat_cubit_states.dart';
+import 'package:travelapp_flutter/features/chat/presentation/views/all_chats.dart';
 
 class CreateChatPageBody extends StatefulWidget {
   const CreateChatPageBody(
@@ -93,6 +95,7 @@ class _CreateChatPageBodyState extends State<CreateChatPageBody> {
         title: 'Success',
         message: 'Made the $groupName Group',
       );
+      Get.off(() => const AllChatsPage());
     }
     if (state is CreatedChatFailureState) {
       showCustomSnackBar(
