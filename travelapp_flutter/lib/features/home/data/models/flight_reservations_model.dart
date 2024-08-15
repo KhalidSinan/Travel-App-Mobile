@@ -3,12 +3,12 @@ class FlightReservationsModel {
   final String source;
   final String destination;
   final String twoWay;
-  final double price;
+  final dynamic price;
   final int seats;
   final bool completed;
-  final String? date;
-  final String? sAirpost;
-  final String? dAirport;
+  final String date;
+  final String sAirpost;
+  final String dAirport;
 
   FlightReservationsModel({
     required this.id,
@@ -31,7 +31,7 @@ class FlightReservationsModel {
       twoWay: jsonData['reservation_type'],
       price: jsonData['overall_price'],
       seats: jsonData['num_of_reservations'],
-      date: jsonData['date'],
+      date: jsonData['departure_date'],
       sAirpost: jsonData['source_airport'],
       dAirport: jsonData['destination_airport'],
       completed: jsonData['completed'],

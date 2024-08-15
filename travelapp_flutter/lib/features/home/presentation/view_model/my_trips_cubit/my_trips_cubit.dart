@@ -8,8 +8,8 @@ import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips
 
 class MyTripsCubit extends Cubit<MyTripsState> {
   MyTripsCubit(this.homeRepoImpl) : super(MyTripsInitial());
-
   final HomeRepoImpl homeRepoImpl;
+
   List<SingleTripsModel> singleTrips = [];
   List<GroupTripsModel> groupTrips = [];
   List<OrganizerTripsModel> organizerTrips = [];
@@ -58,8 +58,8 @@ class MyTripsCubit extends Cubit<MyTripsState> {
         for (var i = 0; i < response['data'].length; i++) {
           groupTrips.add(GroupTripsModel.fromJson(response["data"][i]));
         }
-        currentSingle = [];
-        latestSingle = [];
+        currentGroup = [];
+        latestGroup = [];
         if (groupTrips.isNotEmpty) {
           for (var i = 0; i < groupTrips.length; i++) {
             if (groupTrips[i].completed) {
@@ -71,6 +71,7 @@ class MyTripsCubit extends Cubit<MyTripsState> {
         }
       },
     );
+    emit(MyTripsSuccess());
   }
 
   Future<void> getOrganizerTrips() async {
@@ -96,16 +97,10 @@ class MyTripsCubit extends Cubit<MyTripsState> {
         }
       },
     );
-  }
-
-  void switchState() {
     emit(MyTripsSuccess());
   }
 
-  Future<void> getTrips() async {
-    emit(MyTripsLoading());
-    await getMySingleTrips();
-    await getOrganizerTrips();
+  void switchState() {
     emit(MyTripsSuccess());
   }
 }

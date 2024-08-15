@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-// import 'package:travelapp_flutter/core/utils/styles.dart';
+import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/home/data/models/room_model.dart';
@@ -58,35 +58,35 @@ class _HotelReservationDetailsState extends State<HotelReservationDetails> {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    // if (index == 0)
-                    //   Container(
-                    //     margin: const EdgeInsets.symmetric(horizontal: 20),
-                    //     width: double.infinity,
-                    //     child: Column(
-                    //       crossAxisAlignment: CrossAxisAlignment.start,
-                    //       children: [
-                    //         Text(
-                    //           widget.name,
-                    //           style: Styles.heading2
-                    //               .copyWith(color: Colors.black, fontSize: 23),
-                    //         ),
-                    //         const SizedBox(height: 15),
-                    //         Row(
-                    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //           children: [
-                    //             Text(
-                    //               widget.date.substring(0, 10),
-                    //               style: const TextStyle(fontSize: 20),
-                    //             ),
-                    //             Text(
-                    //               '${widget.days} Days',
-                    //               style: const TextStyle(fontSize: 20),
-                    //             ),
-                    //           ],
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
+                    if (index == 0)
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 26),
+                        width: double.infinity,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.name,
+                              style: Styles.heading2
+                                  .copyWith(color: Colors.black, fontSize: 23),
+                            ),
+                            const SizedBox(height: 15),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  widget.date.substring(0, 10),
+                                  style: const TextStyle(fontSize: 20),
+                                ),
+                                Text(
+                                  '${widget.days} Days',
+                                  style: const TextStyle(fontSize: 20),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     ReservedRoomCard(room: rooms[index]),
                   ],
                 );

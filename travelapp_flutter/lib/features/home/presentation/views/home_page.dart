@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -11,9 +10,7 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.controller});
   final ScrollController controller;
 
-
-
-   navigatForNotification() {
+  navigatForNotification() {
     Get.to(() => HomePage(controller: controller));
   }
 
@@ -30,8 +27,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child:
-                Image.asset('assets/images/logo.jpg', width: 120, height: 70),
-          
+                Image.asset('assets/images/Logo.jpg', width: 120, height: 70),
           ),
           BlocListener<HomeCubit, HomeState>(
             listener: (context, state) {
@@ -44,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                 );
               }
             },
-            child: HomePageBody(controller: widget.controller!),
+            child: HomePageBody(controller: widget.controller),
           ),
         ],
       ),

@@ -5,6 +5,7 @@ import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/my_trips_widgets/current_trips.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/my_trips_widgets/latest_trips.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/my_trips_widgets/switcher.dart';
+import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
 
 class MyTripsBody extends StatefulWidget {
   const MyTripsBody({super.key});
@@ -13,10 +14,18 @@ class MyTripsBody extends StatefulWidget {
 }
 
 class _MyReservationsBodyState extends State<MyTripsBody> {
+  bool? isOrganizer;
+
   @override
   void initState() {
     super.initState();
-    getTrips();
+    isOrganizer = BlocProvider.of<ProfilePageCubit>(context).organizer;
+    getSingleTrips();
+    if (isOrganizer == true) {
+      getOrganizerTrips();
+    } else {
+      getGroupTrips();
+    }
   }
 
   @override
@@ -27,11 +36,10 @@ class _MyReservationsBodyState extends State<MyTripsBody> {
         BlocBuilder<MyTripsCubit, MyTripsState>(
           builder: (context, state) {
             if (state is MyTripsSuccess) {
-              if (BlocProvider.of<MyTripsCubit>(context).switcher ==
-                  false) {
-                return const CurrentTrips();
+              if (BlocProvider.of<MyTripsCubit>(context).switcher == false) {
+                return CurrentTrips(isOrganizer: isOrganizer!);
               } else {
-                return const LatestTrips();
+                return LatestTrips(isOrganizer: isOrganizer!);
               }
             } else {
               return const CircularProgressIndicator();
@@ -42,7 +50,15 @@ class _MyReservationsBodyState extends State<MyTripsBody> {
     );
   }
 
-  Future<void> getTrips() async {
-    await BlocProvider.of<MyTripsCubit>(context).getTrips();
+  Future<void> getSingleTrips() async {
+    await BlocProvider.of<MyTripsCubit>(context).getMySingleTrips();
+  }
+
+  Future<void> getGroupTrips() async {
+    await BlocProvider.of<MyTripsCubit>(context).getMyGroupTrips();
+  }
+
+  Future<void> getOrganizerTrips() async {
+    await BlocProvider.of<MyTripsCubit>(context).getOrganizerTrips();
   }
 }
