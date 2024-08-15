@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/all_orgainzed_trip_page.dart';
+import 'package:travelapp_flutter/features/chat/presentation/views/all_chats.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/home_page.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/home_page_widgets/custom_nav_bar.dart';
+import 'package:travelapp_flutter/features/settings/presentation/views/notifi_page.dart';
+import 'package:travelapp_flutter/features/settings/presentation/views/settings_page.dart';
 
 class NavBarPages extends StatefulWidget {
   const NavBarPages({super.key, this.initIndex});
 
- final int ?initIndex;
+  final int? initIndex;
   @override
   State<NavBarPages> createState() => _NavBarPagesState();
 }
@@ -23,8 +27,8 @@ class _NavBarPagesState extends State<NavBarPages>
   @override
   void initState() {
     super.initState();
-    tabController =
-        TabController(length: 5, vsync: this, initialIndex: widget.initIndex ?? 0);
+    tabController = TabController(
+        length: 5, vsync: this, initialIndex: widget.initIndex ?? 0);
     scrollController = ScrollController();
     scrollController.addListener(
       () {
@@ -69,10 +73,10 @@ class _NavBarPagesState extends State<NavBarPages>
             physics: const BouncingScrollPhysics(),
             children: [
               HomePage(controller: scrollController),
-              const CustomLoading(),
-              Container(),
-              Container(),
-              Container()
+              AllOrganizedGroupTrips(controller: scrollController),
+              AllChatsPage(controller: scrollController),
+              NotifiPage(controller: scrollController),
+              SettingsPage(controller: scrollController)
             ],
           ),
           Positioned(

@@ -6,8 +6,8 @@ import 'package:travelapp_flutter/features/chat/presentation/views/widgets/all_c
 import 'package:travelapp_flutter/features/chat/presentation/views/widgets/all_chats/not_joined_chats_tab.dart';
 
 class AllChatsPageBody extends StatelessWidget {
-  const AllChatsPageBody({super.key});
-
+  const AllChatsPageBody({super.key, required this.controller});
+  final ScrollController controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,11 +35,11 @@ class AllChatsPageBody extends StatelessWidget {
                 ),
               ],
             ),
-            const Expanded(
+            Expanded(
               child: TabBarView(
                 children: [
-                  AllChatsTab(),
-                  NotJoinedChatsTab(),
+                  AllChatsTab(controller: controller),
+                  NotJoinedChatsTab(controller: controller),
                 ],
               ),
             ),

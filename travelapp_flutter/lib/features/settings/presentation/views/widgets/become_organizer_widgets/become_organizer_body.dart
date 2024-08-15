@@ -16,6 +16,7 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/custom_text_and_text_form.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/become_organizer_cubit/become_organizer_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/become_organizer_cubit/become_organizer_cubit_state.dart';
+import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/become_organizer_widgets/custom_text_and_text_filled_organizer.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/become_organizer_widgets/dialog_becom_organizer.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/become_organizer_widgets/photo_with_button.dart';
@@ -47,7 +48,7 @@ File? personalPicture;
 class _BecomeOrganizerPageBodyState extends State<BecomeOrganizerPageBody> {
   @override
   Widget build(BuildContext context) {
-     String userName = BlocProvider.of<ProfileCubit>(context).profile!.fullName;
+     String userName = '${BlocProvider.of<ProfilePageCubit>(context).profile!.name.first} ${BlocProvider.of<ProfilePageCubit>(context).profile!.name.last}';
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,

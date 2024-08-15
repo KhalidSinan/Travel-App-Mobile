@@ -3,12 +3,12 @@ class AllOrganizedGroupTrip {
   final String organizerName;
   final String source;
   final List<String> tripType;
-  final String price;
+  final dynamic price;
   final String date;
   final String numOfParticipating;
   final bool isAmostComplete;
   final bool isAnnounced;
-  final List<String> destinations;
+  final List<dynamic> destinations;
  
 
   AllOrganizedGroupTrip(
@@ -33,7 +33,7 @@ class AllOrganizedGroupTrip {
         tripType: List<String>.from(jsonData["trip_type"]),
         price: jsonData["price"],
         date: jsonData["starting_date"],
-        destinations: List<String>.from(jsonData["destinations"]),
+        destinations: List<dynamic>.from(jsonData["destinations"]),
         numOfParticipating: jsonData["num_of_people_participating"],
         isAmostComplete: jsonData["is_almost_complete"],
         isAnnounced: jsonData["is_announced"]);

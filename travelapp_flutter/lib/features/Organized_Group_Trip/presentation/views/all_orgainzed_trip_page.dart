@@ -8,8 +8,8 @@ import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/vie
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/AllOrgainzedTrip/all_organized_trip_body.dart';
 
 class AllOrganizedGroupTrips extends StatefulWidget {
-  const AllOrganizedGroupTrips({super.key});
-
+  const AllOrganizedGroupTrips({super.key, required this.controller});
+  final ScrollController controller;
   @override
   _AllOrganizedGroupTripsState createState() => _AllOrganizedGroupTripsState();
 }
@@ -27,9 +27,9 @@ class _AllOrganizedGroupTripsState extends State<AllOrganizedGroupTrips> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          leading: const CustomBackButton(),
-        ),
+        // appBar: AppBar(
+        //leading: const CustomBackButton(),
+        //  ),
         body: BlocListener<OrganizedGroupCubit, OrganizedGroupCubitState>(
           listener: (context, state) {
             if (state is FailureOrganizedGroupTripState) {
@@ -42,9 +42,11 @@ class _AllOrganizedGroupTripsState extends State<AllOrganizedGroupTrips> {
                   ));
             }
           },
-          child: const Padding(
-            padding: EdgeInsets.all(0.8),
-            child: AllOrganizedGroupTripsBody(),
+          child: Padding(
+            padding: const EdgeInsets.all(0.8),
+            child: AllOrganizedGroupTripsBody(
+              controller: widget.controller,
+            ),
           ),
         ),
       ),

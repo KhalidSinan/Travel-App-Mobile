@@ -15,9 +15,9 @@ import 'package:travelapp_flutter/features/chat/presentation/views/widgets/all_c
 
 class NotJoinedChatsTab extends StatelessWidget {
   const NotJoinedChatsTab({
-    super.key,
+    super.key, required this.controller,
   });
-
+final ScrollController controller;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -54,6 +54,7 @@ class NotJoinedChatsTab extends StatelessWidget {
             final joinable = BlocProvider.of<ChatCubit>(context).joinable;
             final count = BlocProvider.of<ChatCubit>(context).count2;
             return ListView(
+              controller: controller,
               children: [
                 const SizedBox(height: 24),
                 ...List.generate(joinable!.length, (index) {

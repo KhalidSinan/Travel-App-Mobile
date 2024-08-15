@@ -8,13 +8,13 @@ import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/vie
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/AllOrgainzedTrip/tabs_body.dart';
 
 class AllOrganizedGroupTripsBody extends StatelessWidget {
-  const AllOrganizedGroupTripsBody({super.key});
-
+  const AllOrganizedGroupTripsBody({super.key, required this.controller});
+  final ScrollController controller;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OrganizedGroupCubit, OrganizedGroupCubitState>(
       builder: (context, state) {
-        dynamic cubit = BlocProvider.of<OrganizedGroupCubit>(context);
+        //dynamic cubit = BlocProvider.of<OrganizedGroupCubit>(context);
         return DefaultTabController(
           length: 3,
           child: Column(
@@ -84,12 +84,12 @@ class AllOrganizedGroupTripsBody extends StatelessWidget {
                   }
                 },
               ),
-              const Expanded(
+              Expanded(
                 child: TabBarView(
                   children: [
-                    TabsBody(tab: 'All'),
-                    TabsBody(tab: 'AlmostComplete'),
-                    TabsBody(tab: 'AnnouncedTrips'),
+                    TabsBody(tab: 'All', controller: controller),
+                    TabsBody(tab: 'AlmostComplete', controller: controller),
+                    TabsBody(tab: 'AnnouncedTrips', controller: controller),
                   ],
                 ),
               ),

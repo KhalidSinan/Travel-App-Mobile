@@ -160,7 +160,7 @@ class OrganizedGroupNonAdvertisment extends StatelessWidget {
                         size: isLargeScreen ? 18 : 16,
                       ),
                       Text(
-                        oneTrip!.price,
+                        oneTrip!.price.toString(),
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: isLargeScreen ? 18 : 16,
