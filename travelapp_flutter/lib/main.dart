@@ -23,15 +23,10 @@ import 'package:travelapp_flutter/features/home/data/repos/home_repo_impl.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/home_cubit/home_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_reservations_cubit/my_reservations_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips_cubit/my_trips_cubit.dart';
-<<<<<<< Updated upstream
-import 'package:travelapp_flutter/features/home/presentation/views/my_reservations_page.dart';
-import 'package:travelapp_flutter/features/home/presentation/views/my_trips.dart';
-=======
 import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/views/organizer_review_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/1_persons_days_selection_page.dart';
->>>>>>> Stashed changes
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_selection_page.dart';
 import 'package:travelapp_flutter/features/settings/data/repos/settings_repo_impl.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/delete_account_cubit/delete_account_cubit.dart';
@@ -114,7 +109,6 @@ class _TravelAppState extends State<TravelApp> {
           BlocProvider(
             create: (context) => MyTripsCubit(getIt.get<HomeRepoImpl>()),
           ),
-<<<<<<< Updated upstream
           BlocProvider(
               create: (context) =>
                   NotifiPageCubit(getIt.get<SettingsRepoImpl>())
@@ -122,57 +116,42 @@ class _TravelAppState extends State<TravelApp> {
           BlocProvider(
               create: (context) =>
                   ReportAndRatingCubit(getIt.get<SettingsRepoImpl>())),
-=======
->>>>>>> Stashed changes
         ],
         child: GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            getPages: [
-              GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
-              GetPage(name: '/LogIn', page: () => const LoginPage())
-            ],
-            theme: ThemeData(
-              textSelectionTheme: TextSelectionThemeData(
-                cursorColor: Themes.primary,
-                selectionColor: Themes.primary,
-                selectionHandleColor: Themes.primary,
-              ),
-<<<<<<< Updated upstream
-
-              // navigatorKey: navigatorKey,
-              // routes: {
-              //    NotifiPage.route :(context) => NotifiPage()
-              // },
-
-=======
->>>>>>> Stashed changes
-              appBarTheme: const AppBarTheme(
-                color: Colors.white,
-                surfaceTintColor: Colors.white,
-              ),
-              scaffoldBackgroundColor: Colors.white,
-              textTheme: GoogleFonts.aBeeZeeTextTheme(),
+          debugShowCheckedModeBanner: false,
+          getPages: [
+            GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
+            GetPage(name: '/LogIn', page: () => const LoginPage())
+          ],
+          theme: ThemeData(
+            textSelectionTheme: TextSelectionThemeData(
+              cursorColor: Themes.primary,
+              selectionColor: Themes.primary,
+              selectionHandleColor: Themes.primary,
             ),
-            // home: rememberMe == true
-            //     ? FetchProfileDataPage(token: token)
-            //     : const LoginPage(),
-            // home: const OrganizedGroupTripDetailsPage(
-            //   tripId: '66ba0eb360e2f6d63923d080',
-            //   isOrganizer: true,
-            // ),
-<<<<<<< Updated upstream
-            home: const MyReservationsPage()
-=======
-            home: const OrganizerReviewPage(
-              tripId: '66bde5102c01e74d54006c7e',
-              organizerName: 'Khalid Sinan',
-            )
->>>>>>> Stashed changes
-            // emailVerify == true
-            //     ? EmailConfirmationPage(
-            //         email: emailToVerify!,
-            //       )
-            //     : const LoginPage(),
-            ));
+            appBarTheme: const AppBarTheme(
+              color: Colors.white,
+              surfaceTintColor: Colors.white,
+            ),
+            scaffoldBackgroundColor: Colors.white,
+            textTheme: GoogleFonts.aBeeZeeTextTheme(),
+          ),
+          // home: rememberMe == true
+          //     ? FetchProfileDataPage(token: token)
+          //     : const LoginPage(),
+          // home: const OrganizedGroupTripDetailsPage(
+          //   tripId: '66ba0eb360e2f6d63923d080',
+          //   isOrganizer: true,
+          // ),
+          // home: const OrganizerReviewPage(
+          //   tripId: '66bde5102c01e74d54006c7e',
+          //   organizerName: 'Khalid Sinan',
+          // )
+          // emailVerify == true
+          //     ? EmailConfirmationPage(
+          //         email: emailToVerify!,
+          //       )
+          //     : const LoginPage(),
+        ));
   }
 }

@@ -20,9 +20,9 @@ import 'package:travelapp_flutter/features/Organized_Group_Trip/data/models/part
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/all_orgainzed_trip_page.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/group_trip_details/participant_card.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';
-import 'package:travelapp_flutter/features/organizer_report/presentation/view_model/organizer_report_cubit/organizer_report_states.dart';
 import 'package:travelapp_flutter/features/organizer_report_and_review/data/repos/organizer_report_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/view_model/organizer_report_cubit/organizer_report_cubit.dart';
+import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/view_model/organizer_report_cubit/organizer_report_states.dart';
 import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/views/widgets/organizer_report_page_body.dart';
 
 class OrganizerReportPage extends StatelessWidget {
