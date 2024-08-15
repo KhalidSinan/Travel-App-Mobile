@@ -6,7 +6,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:travelapp_flutter/core/widgets/nav_bar_pages.dart';
+import 'package:travelapp_flutter/features/home/presentation/views/my_reservations_page.dart';
+import 'package:travelapp_flutter/features/home/presentation/views/my_trips.dart';
+import 'package:travelapp_flutter/features/home/presentation/views/widgets/home_page_widgets/home_page_body.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/share_trip.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/notifi_page.dart';
+import 'package:travelapp_flutter/features/settings/presentation/views/our_team_page.dart';
 import 'package:travelapp_flutter/main.dart';
 
 class NotificationService {
@@ -24,38 +30,28 @@ class NotificationService {
   static void handleMessage(RemoteMessage? message) {
     if (message == null) return;
 
-    // Get.to(() => NotifiPage());
-
-
-
     // ScrollController scrollController = ScrollController();
     // Get.to(() => HomePage(controller : scrollController));
 
+    if (message.data['type'] == "/notification-screen") {
+      Get.to(() => const NavBarPages(initIndex: 3,));
+    }
 
+    if (message.data['type'] == "/home-screen") {
+      Get.to(() => const NavBarPages());
+    }
 
+    if (message.data['type'] == "/myTrips-screen") {
+      Get.to(() => const MyTripsPage());
+    }
 
-    // NotifiPage.notifi();
+    if (message.data['type'] == "/myReservations-screen") {
+      Get.to(() => const MyReservationsPage());
+    }
 
-    //  message.data['type'] == "/notification-screen" {
-    //   Get.to(() => );
-    //  }
-
-    //  message.data['type'] == "/myTrips-screen" {
-    //   Get.to(() => );
-    //  }
-
-    //  message.data['type'] == "/home-screen" {
-    //   Get.to(() => );
-    //  }
-
-    //  message.data['type'] == "/myReservations-screen" {
-    //   Get.to(() => );
-    //  }
-
-
-    // navigatorKey.currentState?.pushNamed(
-    //   NotifiPage.route,
-    // );
+    if (message.data['type'] == "/shareTrip-screen") {
+      Get.to(() => const ShareTripPage(id: ''));
+    }
   }
 
   Future initLocalNotifications() async {

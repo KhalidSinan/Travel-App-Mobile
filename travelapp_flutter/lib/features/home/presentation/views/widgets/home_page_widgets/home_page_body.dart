@@ -11,7 +11,7 @@ import 'package:travelapp_flutter/features/home/presentation/views/widgets/home_
 
 class HomePageBody extends StatefulWidget {
   const HomePageBody({super.key, required this.controller});
-  final ScrollController controller;
+   final ScrollController controller;
   @override
   State<HomePageBody> createState() => _HomePageBodyState();
 }

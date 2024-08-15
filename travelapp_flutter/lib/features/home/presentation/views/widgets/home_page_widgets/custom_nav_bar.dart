@@ -15,12 +15,12 @@ class CustomNavBar extends StatefulWidget {
 class _CustomNavBarState extends State<CustomNavBar> {
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
+    return AnimatedContainer(  
       height: widget.isVisible ? 70 : 0.0,
       duration: const Duration(milliseconds: 500),
       child: Wrap(
         children: [
-          BottomBar(
+          BottomBar(   
             start: 20,
             width: MediaQuery.of(context).size.width,
             barColor: Colors.transparent,

@@ -9,12 +9,7 @@ import 'package:travelapp_flutter/features/settings/presentation/view_model/noti
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/notifi_page_widgets/notifi_page_body.dart';
 
 class NotifiPage extends StatefulWidget {
-  const NotifiPage({super.key});
-  static const route = '/notification-screen';
-
-  // static void notifi() {
-  //   Get.to(() => NotifiPage());
-  // }
+  const NotifiPage({super.key, });
 
   @override
   State<NotifiPage> createState() => _NotifiPageState();
@@ -33,37 +28,23 @@ class _NotifiPageState extends State<NotifiPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Notifications',
-          style: TextStyle(color: Themes.primary, fontWeight: FontWeight.bold),
-        ),
-      ),
       body: BlocConsumer<NotifiPageCubit, NotifiStates>(
           listener: (context, state) {
         if (state is NotifiFailureState) {
           showCustomSnackBar(title: 'Error', message: state.failure.errMessage);
         }
-      },
-          // builder: (context, state) {
-          //   return (state is NotifiLoadingState)
-          //       ? const Center(child: CircularProgressIndicator())
-
-          //       :
-          //        NotifiPagebody(days: days, allNotifications: allNotifications);
-          // }
-
-          builder: (context, state) {
+      }, builder: (context, state) {
         if (state is NotifiSuccessState) {
-          return NotifiPagebody(
-              days: days, allNotifications: state.allNotifiModel);
+          return SafeArea(
+            child: NotifiPagebody(
+              days: days,
+              allNotifications: state.allNotifiModel,
+            ),
+          );
         } else {
           return const Center(child: CircularProgressIndicator());
         }
       }),
     );
   }
-
-
- 
 }

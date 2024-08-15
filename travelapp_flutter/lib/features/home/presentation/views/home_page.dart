@@ -10,6 +10,13 @@ import 'package:travelapp_flutter/features/home/presentation/views/widgets/home_
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.controller});
   final ScrollController controller;
+
+
+
+   navigatForNotification() {
+    Get.to(() => HomePage(controller: controller));
+  }
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -24,6 +31,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child:
                 Image.asset('assets/images/logo.jpg', width: 120, height: 70),
+          
           ),
           BlocListener<HomeCubit, HomeState>(
             listener: (context, state) {
@@ -36,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                 );
               }
             },
-            child: HomePageBody(controller: widget.controller),
+            child: HomePageBody(controller: widget.controller!),
           ),
         ],
       ),
