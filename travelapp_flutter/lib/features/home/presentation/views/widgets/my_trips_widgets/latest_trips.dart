@@ -30,9 +30,6 @@ class _LatestReservationsState extends State<LatestTrips> {
     single = BlocProvider.of<MyTripsCubit>(context).latestSingle;
     group = BlocProvider.of<MyTripsCubit>(context).latestGroup;
     organizer = BlocProvider.of<MyTripsCubit>(context).currentOrganizer;
-    print('single $single');
-    print('group $group');
-    print('organizer $organizer');
   }
 
   @override
@@ -83,7 +80,7 @@ class _LatestReservationsState extends State<LatestTrips> {
           ),
         if (group.isEmpty && organizer.isEmpty)
           SizedBox(
-            height: 200,
+            height: 225,
             width: MediaQuery.of(context).size.width,
             child: Center(
               child: Text(

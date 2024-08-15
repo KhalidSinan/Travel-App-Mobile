@@ -8,12 +8,12 @@ class NotifiPagebody extends StatelessWidget {
   const NotifiPagebody({
     super.key,
     required this.days,
-    required this.allNotifications,
+    required this.allNotifications, required this.controller,
   });
 
   final List<String> days;
   final AllNotifiModel? allNotifications;
-
+  final ScrollController controller;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,37 +33,41 @@ class NotifiPagebody extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: ListView.builder(
-              itemCount: days.length,
-              itemBuilder: (context, index) {
-                List<NotifiModel>? notificationsList;
-                switch (index) {
-                  case 0:
-                    notificationsList = allNotifications?.today;
-                    break;
-                  case 1:
-                    notificationsList = allNotifications?.yesterday;
-                    break;
-                  case 2:
-                    notificationsList = allNotifications?.week;
-                    break;
-                  case 3:
-                    notificationsList = allNotifications?.month;
-                    break;
-                  case 4:
-                    notificationsList = allNotifications?.year;
-                    break;
-                  case 5:
-                    notificationsList = allNotifications?.moreThanYear;
-                    break;
-                  default:
-                    notificationsList = [];
-                }
-                return CustomExpansionTile(
-                  tittle: days[index],
-                  listOfNotifiModel: notificationsList,
-                );
-              }),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: ListView.builder(
+              controller: controller,
+                itemCount: days.length,
+                itemBuilder: (context, index) {
+                  List<NotifiModel>? notificationsList;
+                  switch (index) {
+                    case 0:
+                      notificationsList = allNotifications?.today;
+                      break;
+                    case 1:
+                      notificationsList = allNotifications?.yesterday;
+                      break;
+                    case 2:
+                      notificationsList = allNotifications?.week;
+                      break;
+                    case 3:
+                      notificationsList = allNotifications?.month;
+                      break;
+                    case 4:
+                      notificationsList = allNotifications?.year;
+                      break;
+                    case 5:
+                      notificationsList = allNotifications?.moreThanYear;
+                      break;
+                    default:
+                      notificationsList = [];
+                  }
+                  return CustomExpansionTile(
+                    tittle: days[index],
+                    listOfNotifiModel: notificationsList,
+                  );
+                }),
+          ),
         ),
       ],
     );

@@ -9,8 +9,8 @@ import 'package:travelapp_flutter/features/settings/presentation/view_model/noti
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/notifi_page_widgets/notifi_page_body.dart';
 
 class NotifiPage extends StatefulWidget {
-  const NotifiPage({super.key, });
-
+  const NotifiPage({super.key, required this.controller, });
+  final ScrollController controller;
   @override
   State<NotifiPage> createState() => _NotifiPageState();
 }
@@ -38,7 +38,7 @@ class _NotifiPageState extends State<NotifiPage> {
           return SafeArea(
             child: NotifiPagebody(
               days: days,
-              allNotifications: state.allNotifiModel,
+              allNotifications: state.allNotifiModel, controller: widget.controller,
             ),
           );
         } else {

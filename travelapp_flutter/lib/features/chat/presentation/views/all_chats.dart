@@ -8,15 +8,15 @@ import 'package:travelapp_flutter/features/chat/presentation/view_model/chat_cub
 import 'package:travelapp_flutter/features/chat/presentation/views/widgets/all_chats/all_chats_page_body.dart';
 
 class AllChatsPage extends StatelessWidget {
-  const AllChatsPage({super.key});
-
+  const AllChatsPage({super.key, required this.controller});
+final ScrollController controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: const CustomBackButton(),
       ),
-      body: const AllChatsPageBody(),
+      body: AllChatsPageBody(controller: controller),
     );
   }
 }

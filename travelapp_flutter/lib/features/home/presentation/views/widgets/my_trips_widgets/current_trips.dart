@@ -62,9 +62,9 @@ class _CurrentReservationsState extends State<CurrentTrips> {
             const TitleRow(title: 'Group trips', type: 'current'),
             SizedBox(
               height: group.isNotEmpty
-                  ? group.length * 220
+                  ? group.length * 225
                   : organizer.isNotEmpty
-                      ? organizer.length * 220
+                      ? organizer.length * 225
                       : 200,
               child: group.isNotEmpty || organizer.isNotEmpty
                   ? ListView.builder(

@@ -11,8 +11,8 @@ import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/vie
 
 class TabsBody extends StatefulWidget {
   final String tab;
-
-  const TabsBody({super.key, required this.tab});
+  final ScrollController controller;
+  const TabsBody({super.key, required this.tab, required this.controller});
 
   static const List<bool> data = [
     true,
@@ -72,6 +72,7 @@ class _TabsBodyState extends State<TabsBody> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListView(
+        
         children: [
           MasonryGridView.builder(
             shrinkWrap: true,
@@ -127,6 +128,7 @@ class _TabsBodyState extends State<TabsBody> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListView(
+        controller: widget.controller,
         children: [
           SizedBox(
             child: MasonryGridView.builder(
@@ -149,7 +151,7 @@ class _TabsBodyState extends State<TabsBody> {
           const SizedBox(
             height: 100,
           ),
-          OrganizedTripPagination(),
+          const OrganizedTripPagination(),
         ],
       ),
     );

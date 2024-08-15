@@ -21,9 +21,9 @@ import 'package:travelapp_flutter/features/chat/presentation/views/widgets/all_c
 
 class AllChatsTab extends StatelessWidget {
   const AllChatsTab({
-    super.key,
+    super.key, required this.controller,
   });
-
+final ScrollController controller;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -77,6 +77,7 @@ class AllChatsTab extends StatelessWidget {
             final chats = BlocProvider.of<ChatCubit>(context).chats;
             final count = BlocProvider.of<ChatCubit>(context).count1;
             return ListView(
+              controller: controller,
               children: [
                 Align(
                   alignment: Alignment.centerRight,

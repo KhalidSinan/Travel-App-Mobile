@@ -11,9 +11,9 @@ import 'package:travelapp_flutter/features/settings/presentation/views/widgets/s
 
 class SettingPageBody extends StatelessWidget {
   const SettingPageBody({
-    super.key,
+    super.key, required this.controller,
   });
-
+final ScrollController controller;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,6 +47,7 @@ class SettingPageBody extends StatelessWidget {
         ),
         Expanded(
           child: ListView.builder(
+            controller: controller,
             itemCount: settingsItems.length,
             itemBuilder: (context, index) {
               if (settingsItems[index]["title"] == "Security") {

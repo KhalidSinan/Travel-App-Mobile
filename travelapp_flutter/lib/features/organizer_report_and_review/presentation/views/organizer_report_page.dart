@@ -64,7 +64,7 @@ class OrganizerReportPage extends StatelessWidget {
                 const SizedBox(height: 24),
                 CustomOvalButton(
                   onPressed: () {
-                    Get.off(() => const AllOrganizedGroupTrips());
+                   // Get.off(() => const AllOrganizedGroupTrips(controller: null,));
                   },
                   color: Themes.primary,
                   label: 'Participate with one',
