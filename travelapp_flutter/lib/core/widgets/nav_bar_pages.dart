@@ -68,8 +68,7 @@ class _NavBarPagesState extends State<NavBarPages>
             dragStartBehavior: DragStartBehavior.down,
             physics: const BouncingScrollPhysics(),
             children: [
-              //  HomePage(controller: scrollController),
-              Container(),
+              HomePage(controller: scrollController),
               const CustomLoading(),
               Container(),
               Container(),

@@ -8,10 +8,11 @@ import 'package:travelapp_flutter/features/home/presentation/views/widgets/home_
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/home_page_widgets/my_history.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/home_page_widgets/nearby_places.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/home_page_widgets/reserve_buttons.dart';
+import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
 
 class HomePageBody extends StatefulWidget {
   const HomePageBody({super.key, required this.controller});
-   final ScrollController controller;
+  final ScrollController controller;
   @override
   State<HomePageBody> createState() => _HomePageBodyState();
 }
@@ -21,6 +22,7 @@ class _HomePageBodyState extends State<HomePageBody> {
   void initState() {
     super.initState();
     getHomeData();
+    getUserData();
   }
 
   @override
@@ -57,5 +59,9 @@ class _HomePageBodyState extends State<HomePageBody> {
 
   Future<void> getHomeData() async {
     await BlocProvider.of<HomeCubit>(context).getHomeData();
+  }
+
+  Future<void> getUserData() async {
+    await BlocProvider.of<ProfilePageCubit>(context).getUserData();
   }
 }

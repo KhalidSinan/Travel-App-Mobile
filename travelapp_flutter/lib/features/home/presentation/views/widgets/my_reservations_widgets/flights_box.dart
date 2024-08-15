@@ -54,15 +54,19 @@ class FlightsBox extends StatelessWidget {
                     flight!.source,
                     style: const TextStyle(fontSize: 20),
                   ),
-                  Icon(
-                    flight!.twoWay == 'Two-Way'
-                        ? Icons.connecting_airports
-                        : FontAwesomeIcons.plane,
-                    color: Themes.primary,
-                    size: flight!.twoWay == 'Two-Way' ? 38 : 22,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Icon(
+                      flight!.twoWay == 'Two-Way'
+                          ? Icons.connecting_airports
+                          : FontAwesomeIcons.plane,
+                      color: Themes.primary,
+                      size: flight!.twoWay == 'Two-Way' ? 38 : 22,
+                    ),
                   ),
                   Text(
                     flight!.destination,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(fontSize: 20),
                   ),
                 ],
@@ -75,11 +79,10 @@ class FlightsBox extends StatelessWidget {
                     color: Colors.grey[800],
                   ),
                   const SizedBox(width: 10),
-                  const Text(
+                  Text(
                     overflow: TextOverflow.ellipsis,
-                    'Nelson Airport',
-                    //flight!.sAirpost,
-                    style: TextStyle(fontSize: 18),
+                    flight!.sAirpost,
+                    style: const TextStyle(fontSize: 18),
                   ),
                 ],
               ),
@@ -91,11 +94,10 @@ class FlightsBox extends StatelessWidget {
                     color: Colors.grey[800],
                   ),
                   const SizedBox(width: 10),
-                  const Text(
-                    'Rimouski airport',
-                    // flight!.dAirport,
+                  Text(
+                    flight!.dAirport,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 18),
                   ),
                 ],
               ),
@@ -103,10 +105,9 @@ class FlightsBox extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    '2024-07-23',
-                    // flight!.date,
-                    style: TextStyle(fontSize: 18),
+                  Text(
+                    flight!.date,
+                    style: const TextStyle(fontSize: 18),
                   ),
                   Text(
                     '\$${flight!.price}',

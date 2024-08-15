@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:text_marquee/text_marquee.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
@@ -6,9 +7,12 @@ import 'package:travelapp_flutter/features/home/data/models/group_trips_model.da
 import 'package:travelapp_flutter/features/home/data/models/organizer_trips_model.dart';
 
 class GroupTripBox extends StatelessWidget {
-  const GroupTripBox({super.key, this.group, this.organizer});
+  const GroupTripBox(
+      {super.key, this.group, this.organizer, required this.isOrganizer});
   final GroupTripsModel? group;
   final OrganizerTripsModel? organizer;
+  final bool isOrganizer;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -50,37 +54,71 @@ class GroupTripBox extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    group!.source,
+                    isOrganizer ? organizer!.source : group!.source,
                     style: const TextStyle(fontSize: 20),
                   ),
                 ],
               ),
               const SizedBox(height: 12),
               TextMarquee(
-                group!.destenations,
+                isOrganizer ? organizer!.destenations : group!.destenations,
                 style: const TextStyle(fontSize: 18),
                 spaceSize: 40,
+              ),
+              const SizedBox(height: 12),
+              SizedBox(
+                height: 28,
+                child: ListView.builder(
+                  itemCount:
+                      isOrganizer ? organizer!.type.length : group!.type.length,
+                  scrollDirection: Axis.horizontal,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: Text(
+                        isOrganizer ? organizer!.type[index] : group!.type[index],
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 18),
+                      ),
+                    );
+                  },
+                ),
               ),
               const SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if(organizer == null)
-                  Row(
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.userTie,
-                        color: Colors.grey[800],
-                        size: 24,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        group!.organizerName,
-                        style: const TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                  
+                  if (!isOrganizer)
+                    Row(
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.userTie,
+                          color: Colors.grey[800],
+                          size: 24,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          group!.organizerName,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                      ],
+                    ),
+                  if (isOrganizer)
+                    Row(
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.userGroup,
+                          color: Colors.grey[800],
+                          size: 24,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          organizer!.people,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                      ],
+                    ),
                   Row(
                     children: [
                       Padding(
@@ -93,7 +131,9 @@ class GroupTripBox extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        '${group!.days} Days',
+                        isOrganizer
+                            ? '${organizer!.days} Days'
+                            : '${group!.days} Days',
                         style: const TextStyle(fontSize: 18),
                       ),
                     ],
@@ -105,11 +145,11 @@ class GroupTripBox extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    group!.date,
+                    isOrganizer ? organizer!.date : group!.date,
                     style: const TextStyle(fontSize: 18),
                   ),
                   Text(
-                    '\$${group!.price}',
+                    isOrganizer ? '\$${organizer!.price}' : '\$${group!.price}',
                     style: const TextStyle(fontSize: 18),
                   ),
                 ],

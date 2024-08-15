@@ -10,10 +10,10 @@ import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/my_reservations_widgets/title_row.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/my_trips_widgets/group_trips_box.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/my_trips_widgets/single_trip_box.dart';
-import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
 
 class CurrentTrips extends StatefulWidget {
-  const CurrentTrips({super.key});
+  const CurrentTrips({super.key, required this.isOrganizer});
+  final bool isOrganizer;
 
   @override
   State<CurrentTrips> createState() => _CurrentReservationsState();
@@ -23,11 +23,10 @@ class _CurrentReservationsState extends State<CurrentTrips> {
   List<SingleTripsModel> single = [];
   List<GroupTripsModel> group = [];
   List<OrganizerTripsModel> organizer = [];
-  bool? isOrganizer;
+
   @override
   void initState() {
     super.initState();
-    isOrganizer = BlocProvider.of<ProfilePageCubit>(context).organizer;
     single = BlocProvider.of<MyTripsCubit>(context).currentSingle;
     group = BlocProvider.of<MyTripsCubit>(context).currentGroup;
     organizer = BlocProvider.of<MyTripsCubit>(context).currentOrganizer;
@@ -41,7 +40,7 @@ class _CurrentReservationsState extends State<CurrentTrips> {
           children: [
             const TitleRow(title: 'Single trips', type: 'current'),
             SizedBox(
-              height: single.isNotEmpty ? single.length * 200 : 200,
+              height: single.isNotEmpty ? single.length * 190 : 200,
               child: single.isNotEmpty
                   ? ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
@@ -62,24 +61,28 @@ class _CurrentReservationsState extends State<CurrentTrips> {
             ),
             const TitleRow(title: 'Group trips', type: 'current'),
             SizedBox(
-              height: group.isNotEmpty ? group.length * 200 : organizer.isNotEmpty ? organizer.length * 200 : 200,
-              child: group.isNotEmpty
+              height: group.isNotEmpty
+                  ? group.length * 220
+                  : organizer.isNotEmpty
+                      ? organizer.length * 220
+                      : 200,
+              child: group.isNotEmpty || organizer.isNotEmpty
                   ? ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: group.length,
+                      itemCount:
+                          group.isNotEmpty ? group.length : organizer.length,
                       itemBuilder: (context, index) {
-                        return GroupTripBox(group: group[index]);
+                        return GroupTripBox(
+                          group:
+                              widget.isOrganizer == false ? group[index] : null,
+                          organizer: widget.isOrganizer == true
+                              ? organizer[index]
+                              : null,
+                          isOrganizer: widget.isOrganizer,
+                        );
                       },
                     )
-                  : organizer.isNotEmpty
-                  ? ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: organizer.length,
-                      itemBuilder: (context, index) {
-                        return GroupTripBox(organizer: organizer[index]);
-                      },
-                    ) :
-                  SizedBox(
+                  : SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Center(
                         child: Text(
@@ -89,7 +92,6 @@ class _CurrentReservationsState extends State<CurrentTrips> {
                       ),
                     ),
             ),
-           
           ],
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/features/home/data/models/flight_reservations_model.dart';
 import 'package:travelapp_flutter/features/home/data/models/group_trips_model.dart';
 import 'package:travelapp_flutter/features/home/data/models/hotel_reservations_model.dart';
+import 'package:travelapp_flutter/features/home/data/models/organizer_trips_model.dart';
 import 'package:travelapp_flutter/features/home/data/models/single_trips_model.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/my_reservations_widgets/flights_box.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/my_reservations_widgets/hotel_box.dart';
@@ -11,18 +12,21 @@ import 'package:travelapp_flutter/features/home/presentation/views/widgets/my_tr
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/my_trips_widgets/single_trip_box.dart';
 
 class AllCardsPage extends StatelessWidget {
-  const AllCardsPage(
-      {super.key,
-      this.type,
-      this.flights,
-      this.hotels,
-      this.single,
-      this.group});
+  const AllCardsPage({
+    super.key,
+    this.type,
+    this.flights,
+    this.hotels,
+    this.single,
+    this.group,
+    this.organizer,
+  });
   final String? type;
   final List<FlightReservationsModel>? flights;
   final List<HotelReservationsModel>? hotels;
   final List<SingleTripsModel>? single;
   final List<GroupTripsModel>? group;
+  final List<OrganizerTripsModel>? organizer;
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +73,11 @@ class AllCardsPage extends StatelessWidget {
             return HotelBox(hotel: hotels![index]);
           } else if (type == 'single') {
             return SingleTripBox(single: single![index]);
-          } 
-          else {
-            return GroupTripBox(group: group![index]);
+          } else if (type == 'group') {
+            return GroupTripBox(group: group![index], isOrganizer: false);
+          } else {
+            return GroupTripBox(
+                organizer: organizer![index], isOrganizer: true);
           }
         },
       ),

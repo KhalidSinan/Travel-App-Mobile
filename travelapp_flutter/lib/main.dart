@@ -83,7 +83,7 @@ class _TravelAppState extends State<TravelApp> {
           //         OrganizingTripCubit(getIt.get<OrganizingTripImpl>())..getCountriesAndAirlines()),
           BlocProvider(
             create: (context) =>
-                ProfilePageCubit(getIt.get<SettingsRepoImpl>())..getUserData(),
+                ProfilePageCubit(getIt.get<SettingsRepoImpl>()),
           ),
           BlocProvider(
             create: (context) =>
@@ -136,22 +136,20 @@ class _TravelAppState extends State<TravelApp> {
             scaffoldBackgroundColor: Colors.white,
             textTheme: GoogleFonts.aBeeZeeTextTheme(),
           ),
-          // home: rememberMe == true
-          //     ? FetchProfileDataPage(token: token)
-          //     : const LoginPage(),
-          // home: const OrganizedGroupTripDetailsPage(
-          //   tripId: '66ba0eb360e2f6d63923d080',
-          //   isOrganizer: true,
-          // ),
-          // home: const OrganizerReviewPage(
-          //   tripId: '66bde5102c01e74d54006c7e',
-          //   organizerName: 'Khalid Sinan',
-          // )
-          // emailVerify == true
-          //     ? EmailConfirmationPage(
-          //         email: emailToVerify!,
-          //       )
-          //     : const LoginPage(),
-        ));
+
+            // home: rememberMe == true
+            //     ? FetchProfileDataPage(token: token)
+            //     : const LoginPage(),
+            // home: const OrganizedGroupTripDetailsPage(
+            //   tripId: '66ba0eb360e2f6d63923d080',
+            //   isOrganizer: true,
+            // ),
+            home: const NavBarPages()
+            // emailVerify == true
+            //     ? EmailConfirmationPage(
+            //         email: emailToVerify!,
+            //       )
+            //     : const LoginPage(),
+            ));
   }
 }
