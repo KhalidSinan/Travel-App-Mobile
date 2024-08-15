@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
+import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/reservation_ticket_cubit/reservation_ticket_cubit.dart';
 
 class SelectTypeTrip extends StatefulWidget {
-  const SelectTypeTrip({super.key, this.text});
+  const SelectTypeTrip({
+    super.key,
+    this.text,
+    required this.onAddType,
+  });
   final String? text;
+  final void Function(String type) onAddType;
+
   @override
   State<SelectTypeTrip> createState() => _SelectTypeTripState();
 }
 
 class _SelectTypeTripState extends State<SelectTypeTrip> {
-  String? selectedClass;
+  String? selectedType;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -48,21 +55,24 @@ class _SelectTypeTripState extends State<SelectTypeTrip> {
                       .toList(),
                   validator: (value) => value == null ? 'field required' : null,
                   onChanged: (val) {
-                    setState(
-                      () {
-                        selectedClass = val;
-                      },
-                    );
+                    widget.onAddType(val!);
+                    selectedType = null;
+                    setState(() {});
                   },
                   decoration: InputDecoration(
                       border: UnderlineInputBorder(
                           borderSide: BorderSide(color: Themes.primary)),
                       focusedBorder: const UnderlineInputBorder()),
-                  value: selectedClass,
+                  value: selectedType,
                 ),
               ),
             ),
-          )
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'double tap to remove',
+            style: Styles.subtitle,
+          ),
         ],
       ),
     );

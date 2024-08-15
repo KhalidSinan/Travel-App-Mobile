@@ -8,8 +8,8 @@ import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/organizer_report/data/models/organizer_model.dart';
-import 'package:travelapp_flutter/features/organizer_report/presentation/view_model/organizer_report_cubit/organizer_report_cubit.dart';
-import 'package:travelapp_flutter/features/organizer_report/presentation/views/widgets/organizer_report_sheet.dart';
+import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/view_model/organizer_report_cubit/organizer_report_cubit.dart';
+import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/views/widgets/organizer_report_sheet.dart';
 
 class OrganizerCard extends StatelessWidget {
   const OrganizerCard({

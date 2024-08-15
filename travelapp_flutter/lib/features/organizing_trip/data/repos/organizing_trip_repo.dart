@@ -5,7 +5,8 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/view_mod
 abstract class OrganizingTripRepo {
   Future<Either<Failure, Map<String, dynamic>>> getCitiesAndAirlines();
 
-  Future<Either<Failure, Map<String, dynamic>>> shareTrip({required String tripId});
+  Future<Either<Failure, Map<String, dynamic>>> shareTrip(
+      {required String tripId});
 
   Future<Either<Failure, Map<String, dynamic>>> checkFlightsForTrip({
     required String source,
@@ -24,6 +25,15 @@ abstract class OrganizingTripRepo {
     required List<String> flightsReservations,
     required List<String> hotelsReservations,
   });
-  Future<Either<Failure, Map<String, dynamic>>> getTripSchedule(
-      {required String tripId});
+
+  Future<Either<Failure, Map<String, dynamic>>> makeGroupTrip({
+    required String tripId,
+    required int commission,
+    required String desc,
+    required List<String> types,
+  });
+
+  Future<Either<Failure, Map<String, dynamic>>> getTripSchedule({
+    required String tripId,
+  });
 }

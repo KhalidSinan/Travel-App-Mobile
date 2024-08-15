@@ -8,9 +8,10 @@ import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 import 'package:travelapp_flutter/features/organizer_report/data/models/organizer_model.dart';
-import 'package:travelapp_flutter/features/organizer_report/presentation/view_model/organizer_report_cubit/organizer_report_cubit.dart';
 import 'package:travelapp_flutter/features/organizer_report/presentation/view_model/organizer_report_cubit/organizer_report_states.dart';
 import 'package:travelapp_flutter/features/organizer_report/presentation/views/report_sent_success_page.dart';
+import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/view_model/organizer_report_cubit/organizer_report_cubit.dart';
+import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/views/success_page.dart';
 
 class OrganzierReportSheet extends StatefulWidget {
   const OrganzierReportSheet({
@@ -39,7 +40,11 @@ class _OrganzierReportSheetState extends State<OrganzierReportSheet> {
           );
         }
         if (state is SuccessOrganizerReportState) {
-          Get.off(() => const ReportSentSuccessPage());
+          Get.off(() => const SuccessPage(
+                title: 'Congrats!',
+                content:
+                    'Your report request have been sent successfully, we will check it as soon as possible',
+              ));
         }
       },
       builder: (context, state) {

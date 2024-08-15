@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';
 import 'package:travelapp_flutter/features/organizer_report/data/models/organizer_model.dart';
-import 'package:travelapp_flutter/features/organizer_report/data/repos/organizer_report_repo_impl.dart';
 import 'package:travelapp_flutter/features/organizer_report/presentation/view_model/organizer_report_cubit/organizer_report_states.dart';
+import 'package:travelapp_flutter/features/organizer_report_and_review/data/repos/organizer_report_repo_impl.dart';
 
 class OrganizerReportCubit extends Cubit<OrganizerReportStates> {
   OrganizerReportCubit(this.organizerReportRepoImpl)

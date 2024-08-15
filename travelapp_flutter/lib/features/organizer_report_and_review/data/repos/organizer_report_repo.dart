@@ -8,4 +8,8 @@ abstract class OrganizerReportRepo {
     required String title,
     required String message,
   });
+  Future<Either<Failure, Map<String, dynamic>>> reviewOrganizer({
+    required String tripId,
+    required int rate,
+  });
 }

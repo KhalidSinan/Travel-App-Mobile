@@ -8,7 +8,11 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/view_mod
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/organizing_trip_page_body.dart';
 
 class OrganizingTripPage extends StatefulWidget {
-  const OrganizingTripPage({super.key});
+  const OrganizingTripPage({
+    super.key,
+    this.groupTrip = false,
+  });
+  final bool groupTrip;
 
   @override
   State<OrganizingTripPage> createState() => _OrganizingTripPageState();
@@ -46,7 +50,10 @@ class _OrganizingTripPageState extends State<OrganizingTripPage> {
             );
           }
         },
-        child: OrganizingTripPageBody(controller: controller),
+        child: OrganizingTripPageBody(
+          controller: controller,
+          groupTrip: widget.groupTrip,
+        ),
       ),
     );
   }

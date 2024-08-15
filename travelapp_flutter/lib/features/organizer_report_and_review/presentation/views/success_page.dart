@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 
-class ReportSentSuccessPage extends StatelessWidget {
-  const ReportSentSuccessPage({super.key});
+class SuccessPage extends StatelessWidget {
+  const SuccessPage({
+    super.key,
+    required this.content,
+    required this.title,
+  });
+
+  final String content;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +28,12 @@ class ReportSentSuccessPage extends StatelessWidget {
                 repeat: false,
               ),
               Text(
-                'Congrats!',
+                title,
                 style: Styles.heading2,
                 textAlign: TextAlign.center,
               ),
               Text(
-                'You\'re report request have been sent successfully, we will check it as soon as possible',
+                content,
                 style: Styles.subtitle.copyWith(fontSize: 20),
                 textAlign: TextAlign.center,
               )

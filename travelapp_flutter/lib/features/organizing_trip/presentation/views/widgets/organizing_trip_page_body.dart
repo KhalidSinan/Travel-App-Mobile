@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/info_organized_group_trip_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/form_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/1_persons_days_selection_page.dart';
@@ -15,9 +16,11 @@ class OrganizingTripPageBody extends StatelessWidget {
   const OrganizingTripPageBody({
     super.key,
     required this.controller,
+    required this.groupTrip,
   });
 
   final PageController controller;
+  final bool groupTrip;
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +47,17 @@ class OrganizingTripPageBody extends StatelessWidget {
           },
         ),
         const ReviewOrgnizingTrip(),
-        FormPage(
-          trip: BlocProvider.of<OrganizingTripCubit>(context),
-          seats: BlocProvider.of<OrganizingTripCubit>(context).numberPerson!,
-          classType:
-              BlocProvider.of<OrganizingTripCubit>(context).getSeatClass(),
-          onBack: () =>
-              BlocProvider.of<OrganizingTripCubit>(context).onPrevious(),
-        ),
+        !groupTrip
+            ? FormPage(
+                trip: BlocProvider.of<OrganizingTripCubit>(context),
+                seats:
+                    BlocProvider.of<OrganizingTripCubit>(context).numberPerson!,
+                classType: BlocProvider.of<OrganizingTripCubit>(context)
+                    .getSeatClass(),
+                onBack: () =>
+                    BlocProvider.of<OrganizingTripCubit>(context).onPrevious(),
+              )
+            : const InfoOrganizedGroupTripPage(),
       ],
     );
   }

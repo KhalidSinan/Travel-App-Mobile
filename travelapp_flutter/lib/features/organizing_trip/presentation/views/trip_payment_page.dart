@@ -15,27 +15,48 @@ class TripPaymentPage extends StatelessWidget {
   const TripPaymentPage({
     super.key,
     required this.seats,
-    required this.passengers,
     required this.trip,
+    this.passengers,
+    this.groupTrip = false,
   });
-  final int seats;
-  final List<PassengerModel?> passengers;
   final OrganizingTripCubit trip;
+  final int seats;
+  final List<PassengerModel?>? passengers;
+  final bool groupTrip;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => TripPaymentCubit(
         seats: seats,
         trip: trip,
-        passengers: passengers,
+        passengers: getPassengers(),
         organizingTripImpl: getIt.get<OrganizingTripImpl>(),
         flightBookingImp: getIt.get<FlightBookingImp>(),
         hotelBookingImp: getIt.get<HotelBookingImp>(),
+        groupTrip: groupTrip
       )..makeTrip(),
       child: const Scaffold(
         body: TripPaymentPageBody(),
       ),
     );
+  }
+
+  List<PassengerModel?> getPassengers() {
+    if (groupTrip) {
+      return List.generate(seats, (index) {
+        PassengerModel(
+          personName: 'Default',
+          seatClass: trip.classType,
+          passport: '0',
+          seatNumber: null,
+          price: null,
+          id: null,
+          reservationId: null,
+        );
+      });
+    } else {
+      return passengers!;
+    }
   }
 }
 
