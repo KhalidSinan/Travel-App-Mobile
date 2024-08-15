@@ -9,6 +9,7 @@ import 'package:travelapp_flutter/core/helpers/notification_service.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/core/widgets/nav_bar_pages.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/data/repos/organized_group_repo_impl.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/orgainzed_group_trip_cubit.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
@@ -20,6 +21,8 @@ import 'package:travelapp_flutter/features/home/data/repos/home_repo_impl.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/home_cubit/home_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_reservations_cubit/my_reservations_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips_cubit/my_trips_cubit.dart';
+import 'package:travelapp_flutter/features/home/presentation/views/my_reservations_page.dart';
+import 'package:travelapp_flutter/features/home/presentation/views/my_trips.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_selection_page.dart';
 import 'package:travelapp_flutter/features/settings/data/repos/settings_repo_impl.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/delete_account_cubit/delete_account_cubit.dart';
@@ -142,7 +145,7 @@ class _TravelAppState extends State<TravelApp> {
             //   tripId: '66ba0eb360e2f6d63923d080',
             //   isOrganizer: true,
             // ),
-            home: const LoginPage()
+            home: const MyReservationsPage()
             // emailVerify == true
             //     ? EmailConfirmationPage(
             //         email: emailToVerify!,
