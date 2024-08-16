@@ -75,6 +75,7 @@ dependencies:
   table_calendar: ^3.1.2
   text_marquee: ^0.0.2
   url_launcher: ^6.3.0
+  video_player: ^2.9.1
   webview_flutter: ^3.0.4
 dev_dependencies:
   flutter_lints: ^3.0.0
@@ -95,6 +96,7 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
+    - assets/videos/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
