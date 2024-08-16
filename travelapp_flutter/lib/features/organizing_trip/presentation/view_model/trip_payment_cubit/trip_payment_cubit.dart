@@ -70,10 +70,11 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
         emit(TripCreateFailureState(errMessage: failure.errMessage));
       },
       (res) async {
-        emit(TripCreateSuccessState(tripId: res['data']['id']));
         if (groupTrip) {
           await createGroupTrip(tripId: res['data']['id']);
+          return;
         }
+        emit(TripCreateSuccessState(tripId: res['data']['id']));
       },
     );
   }
@@ -90,8 +91,11 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
         emit(TripCreateFailureState(errMessage: failure.errMessage));
       },
       (res) {
-        print(res);
-        emit(GroupTripCreateSuccessState(tripId: res['data']['id']));
+        print(res['data']);
+        emit(GroupTripCreateSuccessState(
+          tripId: tripId,
+          organizedTripId: res['data'],
+        ));
       },
     );
   }

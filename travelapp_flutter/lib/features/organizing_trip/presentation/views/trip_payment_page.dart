@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:travelapp_flutter/core/helpers/api_service.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/core/widgets/paypal_widget.dart';
+import 'package:travelapp_flutter/features/announcements/presentation/views/announcements_subscriptions_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/repos/hotel_booking_impl_repo.dart';
@@ -27,14 +32,14 @@ class TripPaymentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => TripPaymentCubit(
-        seats: seats,
-        trip: trip,
-        passengers: getPassengers(),
-        organizingTripImpl: getIt.get<OrganizingTripImpl>(),
-        flightBookingImp: getIt.get<FlightBookingImp>(),
-        hotelBookingImp: getIt.get<HotelBookingImp>(),
-        groupTrip: groupTrip
-      )..makeTrip(),
+          seats: seats,
+          trip: trip,
+          passengers: getPassengers(),
+          organizingTripImpl: getIt.get<OrganizingTripImpl>(),
+          flightBookingImp: getIt.get<FlightBookingImp>(),
+          hotelBookingImp: getIt.get<HotelBookingImp>(),
+          groupTrip: groupTrip)
+        ..makeTrip(),
       child: const Scaffold(
         body: TripPaymentPageBody(),
       ),
@@ -53,6 +58,7 @@ class TripPaymentPage extends StatelessWidget {
           id: null,
           reservationId: null,
         );
+        return null;
       });
     } else {
       return passengers!;
@@ -71,11 +77,24 @@ class TripPaymentPageBody extends StatelessWidget {
         child: BlocConsumer<TripPaymentCubit, TripPaymentState>(
           listener: (context, state) {
             if (state is TripCreateSuccessState) {
-              // Get.to(() => PayPal(
-              //       url:
-              //           '${getIt.get<ApiService>().baseUrl}/trips/${state.tripId}/pay',
-              //       onSuccess: () {},
-              //     ));
+              Get.to(() => PayPal(
+                    url:
+                        '${getIt.get<ApiService>().baseUrl}/trips/${state.tripId}/pay',
+                    onSuccess: () {
+                      Get.back();
+                      Get.back();
+                    },
+                  ));
+            } else if (state is GroupTripCreateSuccessState) {
+              Get.to(() => PayPal(
+                    url:
+                        '${getIt.get<ApiService>().baseUrl}/trips/${state.tripId}/pay',
+                    onSuccess: () {
+                      Get.back();
+                      Get.off(AnnouncementsSubscriptionsPage(
+                          tripId: state.organizedTripId));
+                    },
+                  ));
             }
           },
           builder: (context, state) {

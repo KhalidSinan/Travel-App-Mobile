@@ -7,6 +7,7 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/plane_page.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/hotel_search_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/1_persons_days_selection_page.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/organizing_trip_page.dart';
 
 class ReserveButtons extends StatelessWidget {
   const ReserveButtons({super.key});
@@ -55,7 +56,7 @@ class ReserveButtons extends StatelessWidget {
                 height: 110,
                 child: GestureDetector(
                   onTap: () {
-                    Get.to(const PersonsDaysSelection());
+                    Get.to(const OrganizingTripPage());
                   },
                   child: Card(
                     surfaceTintColor: Colors.white,
