@@ -8,6 +8,7 @@ import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 import 'package:travelapp_flutter/features/chat/presentation/view_model/chat_cubit.dart';
 import 'package:travelapp_flutter/features/chat/presentation/view_model/chat_cubit_states.dart';
@@ -62,7 +63,7 @@ class _CreateChatPageBodyState extends State<CreateChatPageBody> {
               ),
               const Spacer(flex: 3),
               (state is CreatedChatLoadingState)
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const Center(child: CustomLoading())
                   : SizedBox(
                       width: double.infinity,
                       child: CustomButton(

@@ -12,6 +12,7 @@ import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/custom_text_and_text_form.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/become_organizer_cubit/become_organizer_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/become_organizer_cubit/become_organizer_cubit_state.dart';
@@ -238,7 +239,7 @@ class _BecomeOrganizerPageBodyState extends State<BecomeOrganizerPageBody> {
                   builder: (context, state) {
                     if (state is BecomeOrganizerLoadingState) {
                       return const Center(
-                        child: CircularProgressIndicator(),
+                        child: CustomLoading(),
                       );
                     } else {
                       return SizedBox(

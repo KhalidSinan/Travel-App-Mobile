@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:socket_io_client/socket_io_client.dart' as Io;
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 
 class GroupChat extends StatefulWidget {
   final Io.Socket socket;
@@ -288,9 +289,7 @@ class _GroupChatState extends State<GroupChat> {
                                         width: 200,
                                         fit: BoxFit.cover,
                                         placeholder: (context, url) =>
-                                            CircularProgressIndicator(
-                                          color: Themes.primary,
-                                        ),
+                                       CustomLoading(),
                                         errorWidget: (context, url, error) =>
                                             const Icon(Icons.error),
                                       ),

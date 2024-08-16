@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/reservation_ticket_cubit/reservation_ticket_cubit.dart';
@@ -50,7 +51,7 @@ class _MainContainerState extends State<MainContainer>
             builder: (context, state) {
               if (state is LoadingReservationTicketState) {
                 return const Center(
-                  child: CircularProgressIndicator(),
+                  child: CustomLoading(),
                 );
               } else {
                 return Column(

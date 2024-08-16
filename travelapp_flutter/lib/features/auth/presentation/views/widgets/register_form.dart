@@ -6,6 +6,7 @@ import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_states.dart';
@@ -80,7 +81,7 @@ class _RegisterFormState extends State<RegisterForm> {
             ),
             const SizedBox(height: 24),
             (state is LoadingRegisterState)
-                ? const CircularProgressIndicator()
+                ? const CustomLoading()
                 : SizedBox(
                     width: double.infinity,
                     child: CustomButton(

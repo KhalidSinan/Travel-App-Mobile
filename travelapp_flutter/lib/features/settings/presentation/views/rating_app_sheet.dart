@@ -6,6 +6,7 @@ import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/report_and_rating_cubit/report_and_rating_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/report_and_rating_cubit/report_and_rating_cubit_states.dart';
 
@@ -88,7 +89,7 @@ class _RatingAppSheetState extends State<RatingAppSheet> {
                     builder: (context, state) {
                       return (state is LoadingRatingAppState)
                           ? const Center(
-                              child: CircularProgressIndicator(),
+                              child: CustomLoading(),
                             )
                           : CustomButton(
                               onPressed: () async {

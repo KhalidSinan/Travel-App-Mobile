@@ -19,6 +19,7 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/fetch_profile_data_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
+import 'package:travelapp_flutter/features/auth/presentation/views/register_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/plane_page.dart';
 import 'package:travelapp_flutter/features/home/data/repos/home_repo_impl.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/home_cubit/home_cubit.dart';
@@ -139,6 +140,10 @@ class _TravelAppState extends State<TravelApp> {
           home: rememberMe == true
               ? FetchProfileDataPage(token: token)
               : const LoginPage(),
+          // home: const OrganizedGroupTripDetailsPage(
+          //   tripId: '66ba0eb360e2f6d63923d080',
+          //   isOrganizer: true,
+          // ),
           // home: const OrganizerReviewPage(
           //   tripId: '66bde5102c01e74d54006c7e',
           //   organizerName: 'Khalid Sinan',

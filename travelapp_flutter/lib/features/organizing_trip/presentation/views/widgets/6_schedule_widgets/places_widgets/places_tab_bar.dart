@@ -44,15 +44,15 @@ class PlacesTabBar extends StatelessWidget {
           ],
         ),
       ),
-      const Tab(
-        child: Row(
-          children: [
-            Text('Museum'),
-            SizedBox(width: 7),
-            Icon(Icons.museum),
-          ],
-        ),
-      ),
+      // const Tab(
+      //   child: Row(
+      //     children: [
+      //       Text('Museum'),
+      //       SizedBox(width: 7),
+      //       Icon(Icons.museum),
+      //     ],
+      //   ),
+      // ),
       const Tab(
         child: Row(
           children: [

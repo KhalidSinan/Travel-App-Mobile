@@ -6,6 +6,7 @@ import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/password_eye.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/change_password_cubit/change_password_cubit.dart';
@@ -70,7 +71,7 @@ class _ChangePasswordBodyState extends State<ChangePasswordBody> {
                 physics: const NeverScrollableScrollPhysics(),
                 controlsBuilder: (context, details) {
                   return (state is LoadingChangePassword)
-                      ? const CircularProgressIndicator()
+                      ? const CustomLoading()
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,

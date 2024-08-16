@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/reservation_ticket_cubit/reservation_ticket_cubit.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/reservation_ticket_cubit/reservation_ticket_cubit_states.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/all_flights_page.dart';
@@ -102,7 +103,7 @@ class _OneViewBarState extends State<OneViewBar> {
                 },
                 builder: (context, state) {
                   return (state is LoadingSearchFlightState)
-                      ? const CircularProgressIndicator()
+                      ? const CustomLoading()
                       : SizedBox(
                           width: 350,
                           child: CustomButton(

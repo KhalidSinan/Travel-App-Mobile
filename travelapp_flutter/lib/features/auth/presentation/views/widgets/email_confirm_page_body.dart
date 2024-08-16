@@ -8,6 +8,7 @@ import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/email_confirm_cubit/email_confirm_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/email_confirm_cubit/email_confirm_states.dart';
@@ -70,7 +71,7 @@ class _EmailConfirmationPageBodyState extends State<EmailConfirmationPageBody> {
             ),
             const Spacer(flex: 1),
             (state is LoadingEmailConfirmState)
-                ? const Center(child: CircularProgressIndicator())
+                ? const Center(child: CustomLoading())
                 : SizedBox(
                     width: double.infinity,
                     child: CustomButton(

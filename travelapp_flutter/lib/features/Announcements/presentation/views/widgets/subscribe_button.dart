@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/announcements/presentation/view_model/announcement_subscription_cubit/announcement_subcription_cubit.dart';
 import 'package:travelapp_flutter/features/announcements/presentation/view_model/announcement_subscription_cubit/announcement_subcription_states.dart';
 import 'package:travelapp_flutter/features/announcements/presentation/views/announcement_success_page.dart';
@@ -28,7 +29,7 @@ class SubscribeButton extends StatelessWidget {
           child: SizedBox(
             width: double.infinity,
             child: (state is LoadingSubscribeState)
-                ? const Center(child: CircularProgressIndicator())
+                ? const Center(child: CustomLoading())
                 : CustomButton(
                     onPressed: () async {
                       await BlocProvider.of<AnnouncementSubscriptionCubit>(

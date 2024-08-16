@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/nav_bar_pages.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_states.dart';
@@ -46,7 +47,7 @@ class _FetchProfileDataPageState extends State<FetchProfileDataPage> {
           }
         },
         child: const Center(
-          child: CircularProgressIndicator(),
+          child: CustomLoading(),
         ),
       ),
     );

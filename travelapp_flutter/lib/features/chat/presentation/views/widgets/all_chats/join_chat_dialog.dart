@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
 import 'package:travelapp_flutter/features/chat/data/models/chat_model.dart';
 import 'package:travelapp_flutter/features/chat/presentation/view_model/chat_cubit.dart';
@@ -49,7 +50,7 @@ class JoinChatDialog extends StatelessWidget {
             label: 'Back',
           ),
           (state is JoinChatLoadingState)
-              ? const CircularProgressIndicator()
+              ? const CustomLoading()
               : CustomTextButton(
                   onPressed: () async {
                     await chatCubit.joinChat(chatId: chat.id);

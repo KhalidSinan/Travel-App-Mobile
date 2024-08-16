@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_states.dart';
@@ -49,7 +50,7 @@ class _LoginFormState extends State<LoginForm> {
             const LoginOptions(),
             const SizedBox(height: 24),
             (state is LoadingLoginState)
-                ? const CircularProgressIndicator()
+                ? const CustomLoading()
                 : SizedBox(
                     width: double.infinity,
                     child: CustomButton(

@@ -5,9 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:travelapp_flutter/core/helpers/date_picker.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/custom_search_cities.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/profile_page_widgets/custom_country_codes.dart';
-import 'package:travelapp_flutter/features/settings/presentation/views/widgets/profile_page_widgets/location_cities.dart';
 
 class EditingData extends StatefulWidget {
   const EditingData(
@@ -72,10 +72,12 @@ class _EditingDataState extends State<EditingData> {
                     : widget.type == 'location'
                         ? GestureDetector(
                             onTap: search,
-                            child: Text(
-                              '${BlocProvider.of<ProfilePageCubit>(context).editCity ?? 'City'}, ${BlocProvider.of<ProfilePageCubit>(context).editCountry ?? 'Country'}',
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(fontSize: 20),
+                            child: Expanded(
+                              child: Text(
+                                '${BlocProvider.of<ProfilePageCubit>(context).editCity ?? 'City'}, ${BlocProvider.of<ProfilePageCubit>(context).editCountry ?? 'Country'}',
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(fontSize: 20),
+                              ),
                             ),
                           )
                         : widget.type == 'date'
@@ -237,10 +239,12 @@ class _EditingDataState extends State<EditingData> {
                                         snackPosition: SnackPosition.BOTTOM,
                                       );
                                     },
-                                    child: Text(
-                                      widget.text!,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(fontSize: 20),
+                                    child: Expanded(
+                                      child: Text(
+                                        widget.text!,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(fontSize: 20),
+                                      ),
                                     ),
                                   ),
               ),
@@ -261,7 +265,7 @@ class _EditingDataState extends State<EditingData> {
   void search() async {
     var searchResult = await showSearch(
       context: context,
-      delegate: LocationCities(
+      delegate: CustomSearchCities(
           countries: BlocProvider.of<ProfilePageCubit>(context).cities),
     );
     if (searchResult != null) {

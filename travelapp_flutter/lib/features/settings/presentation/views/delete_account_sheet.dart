@@ -8,6 +8,7 @@ import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/widgets/password_eye.dart';
@@ -121,7 +122,7 @@ class _DelelteAccountSheetState extends State<DelelteAccountSheet>
                   height: 20,
                 ),
                 (state is LoadingCheckPassword)
-                    ? const CircularProgressIndicator()
+                    ? const CustomLoading()
                     : CustomButton(onPressed: checkPassword, label: 'countinue')
               ],
             ),
@@ -180,7 +181,7 @@ class _DelelteAccountSheetState extends State<DelelteAccountSheet>
                   height: 20,
                 ),
                 (state is LoadingDeleteAccount)
-                    ? const CircularProgressIndicator()
+                    ? const CustomLoading()
                     : CustomButton(
                         onPressed: deleteAccount, label: 'countinue'),
               ],

@@ -72,10 +72,12 @@ class SearchDest extends StatelessWidget {
                                     color: Colors.grey[600],
                                   ),
                                   const SizedBox(width: 10),
-                                  Text(
-                                    destination[index].city,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(fontSize: 20),
+                                  Expanded(
+                                    child: Text(
+                                      destination[index].city,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
                                   ),
                                 ],
                               ),

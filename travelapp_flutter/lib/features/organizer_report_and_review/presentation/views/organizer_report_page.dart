@@ -6,6 +6,7 @@ import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/custom_oval_button.dart';
 import 'package:travelapp_flutter/core/widgets/nav_bar_pages.dart';
 import 'package:travelapp_flutter/features/organizer_report_and_review/data/repos/organizer_report_repo_impl.dart';
@@ -31,7 +32,7 @@ class OrganizerReportPage extends StatelessWidget {
             builder: (context, state) {
           if (state is LoadingGetOrganizersState) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CustomLoading(),
             );
           } else if (state is FailureGetOrganizersState) {
             return Center(

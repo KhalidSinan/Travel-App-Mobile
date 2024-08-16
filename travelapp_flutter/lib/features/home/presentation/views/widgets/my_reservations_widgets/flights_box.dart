@@ -66,12 +66,10 @@ class FlightsBox extends StatelessWidget {
                       size: flight!.twoWay == 'Two-Way' ? 38 : 22,
                     ),
                   ),
-                  Expanded(
-                    child: Text(
-                      flight!.destination,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontSize: 20),
-                    ),
+                  Text(
+                    flight!.destination,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 20),
                   ),
                 ],
               ),
@@ -100,10 +98,12 @@ class FlightsBox extends StatelessWidget {
                     color: Colors.grey[800],
                   ),
                   const SizedBox(width: 10),
-                  Text(
-                    flight!.dAirport,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 18),
+                  Expanded(
+                    child: Text(
+                      flight!.dAirport,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 18),
+                    ),
                   ),
                 ],
               ),

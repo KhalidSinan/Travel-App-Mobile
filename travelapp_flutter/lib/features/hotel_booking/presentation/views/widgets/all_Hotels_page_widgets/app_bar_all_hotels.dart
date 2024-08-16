@@ -18,7 +18,7 @@ class AppBarAllHotel extends StatelessWidget {
         return SliverAppBar(
           elevation: 0,
           expandedHeight: 150,
-          leading: const CustomBackButton(),
+          leading: const CustomBackButton(color: Colors.white),
           flexibleSpace: (state is LoadingAllHotelStates)
               ? FlexibleSpaceBar(
                   background: Shimmer.fromColors(

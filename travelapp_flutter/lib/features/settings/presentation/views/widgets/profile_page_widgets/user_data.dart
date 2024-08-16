@@ -39,26 +39,28 @@ class _UserDataState extends State<UserData> {
                 color: Themes.primary,
               ),
               const SizedBox(width: 15),
-              Text(
-                widget.type == 'gender' && widget.text == null
-                    ? 'Define your gender'
-                    : widget.type == 'date' && widget.text == null
-                        ? 'Select your birth date'
-                        : widget.type == 'number' &&
-                                widget.text == '+963  null'
-                            ? 'Add your number'
-                            : widget.type == 'location' &&
-                                    widget.text == 'null, null'
-                                ? 'Add your location'
-                                : widget.text!,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontSize: 20,
-                    color: widget.text == null ||
-                            widget.text == 'null, null' ||
-                            widget.text == '+963  null'
-                        ? Colors.grey
-                        : Colors.black),
+              Expanded(
+                child: Text(
+                  widget.type == 'gender' && widget.text == null
+                      ? 'Define your gender'
+                      : widget.type == 'date' && widget.text == null
+                          ? 'Select your birth date'
+                          : widget.type == 'number' &&
+                                  widget.text == '+963  null'
+                              ? 'Add your number'
+                              : widget.type == 'location' &&
+                                      widget.text == 'null, null'
+                                  ? 'Add your location'
+                                  : widget.text!,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: widget.text == null ||
+                              widget.text == 'null, null' ||
+                              widget.text == '+963  null'
+                          ? Colors.grey
+                          : Colors.black),
+                ),
               ),
             ],
           ),

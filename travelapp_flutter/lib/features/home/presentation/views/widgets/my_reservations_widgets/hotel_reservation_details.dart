@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/home/data/models/room_model.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_reservations_cubit/my_reservations_cubit.dart';
@@ -51,7 +52,7 @@ class _HotelReservationDetailsState extends State<HotelReservationDetails> {
           List<RoomModel> rooms =
               BlocProvider.of<MyReservationsCubit>(context).rooms;
           if (state is MyReservationsLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CustomLoading());
           } else {
             return ListView.builder(
               itemCount: rooms.length,
