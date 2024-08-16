@@ -23,34 +23,37 @@ class _FlightTimerState extends State<FlightTimer> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Divider(
-          indent: 25,
-          endIndent: 25,
-          height: 20,
-        ),
-        SlideCountdownSeparated(
-          padding: EdgeInsets.zero,
-          slideDirection: SlideDirection.up,
-          decoration: const BoxDecoration(),
-          style: TextStyle(
-            fontSize: 18,
-            color: Themes.third,
-            fontWeight: FontWeight.bold,
-          ),
-          duration: Duration(
-            days: timer == null ? 0 : timer!.days,
-            hours: timer == null ? 0 : timer!.hours,
-            minutes: timer == null ? 0 : timer!.minutes,
-            seconds: timer == null ? 0 : timer!.seconds,
-          ),
-          icon: const Text(
-            'Your next flight in ',
-            style: TextStyle(fontSize: 18),
-          ),
-        ),
-      ],
-    );
+    return timer != null
+        ? Column(
+            children: [
+              const SizedBox(height: 10),
+              const Divider(
+                indent: 25,
+                endIndent: 25,
+                height: 20,
+              ),
+              SlideCountdownSeparated(
+                padding: EdgeInsets.zero,
+                slideDirection: SlideDirection.up,
+                decoration: const BoxDecoration(),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Themes.third,
+                  fontWeight: FontWeight.bold,
+                ),
+                duration: Duration(
+                  days: timer!.days,
+                  hours: timer!.hours,
+                  minutes: timer!.minutes,
+                  seconds: timer!.seconds,
+                ),
+                icon: const Text(
+                  'Your next flight in ',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+            ],
+          )
+        : const SizedBox(height: 0);
   }
 }

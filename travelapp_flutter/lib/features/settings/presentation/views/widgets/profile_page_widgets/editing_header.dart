@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:travelapp_flutter/core/helpers/api_service.dart';
+import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
@@ -22,8 +24,7 @@ class _EditingHeaderState extends State<EditingHeader> {
   void initState() {
     super.initState();
     if (widget.photo != null) {
-      image = NetworkImage(
-          'http://10.0.2.2:5000/${widget.photo}');
+      image = NetworkImage('${getIt.get<ApiService>().baseUrl}/${widget.photo}');
     }
   }
 
@@ -52,7 +53,9 @@ class _EditingHeaderState extends State<EditingHeader> {
                             .editImage!
                             .absolute)
                         : image,
-                child: image == null && BlocProvider.of<ProfilePageCubit>(context).editImage == null
+                child: image == null &&
+                        BlocProvider.of<ProfilePageCubit>(context).editImage ==
+                            null
                     ? const Icon(
                         Icons.person_rounded,
                         size: 100,
@@ -91,7 +94,7 @@ class _EditingHeaderState extends State<EditingHeader> {
                     textAlign: TextAlign.center,
                     cursorColor: Colors.white,
                     style: Styles.heading2.copyWith(color: Colors.white),
-                    decoration: const InputDecoration(          
+                    decoration: const InputDecoration(
                       contentPadding: EdgeInsets.all(0),
                       enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white)),

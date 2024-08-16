@@ -47,13 +47,17 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
-  Future<void> getTimer() async {
+   Future<void> getTimer() async {
     emit(HomeLoading());
     var response = await homeRepoImpl.getTimer();
     response.fold(
       (failure) => emit(HomeFailure(failure: failure)),
       (response) {
-        timer = RemainingTimeModel.fromJson(response['data']);
+        if (response['data'] == null) {
+          timer == null;
+        } else {
+          timer = RemainingTimeModel.fromJson(response['data']);
+        }
         emit(TimerSuccess());
       },
     );
