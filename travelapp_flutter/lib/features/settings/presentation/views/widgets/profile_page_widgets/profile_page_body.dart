@@ -61,7 +61,7 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
           ),
           UserData(
             icon: Icons.calendar_today_outlined,
-            text: BlocProvider.of<ProfilePageCubit>(context).editDate,
+            text: BlocProvider.of<ProfilePageCubit>(context).editDate!.substring(0,10),
             type: 'date',
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.06),
