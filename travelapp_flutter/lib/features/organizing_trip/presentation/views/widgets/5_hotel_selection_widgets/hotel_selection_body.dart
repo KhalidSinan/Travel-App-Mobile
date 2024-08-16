@@ -33,7 +33,6 @@ class _HotelSelectionBodyState extends State<HotelSelectionBody> {
         BlocProvider.of<HotelInformationCubit>(context).allHotels;
 
     List<HotelForDestinationModel?> hotels = allHotels.hotels;
-
     return SafeArea(
       child: Column(
         children: [

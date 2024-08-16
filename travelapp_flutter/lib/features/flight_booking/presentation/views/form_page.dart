@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:travelapp_flutter/core/helpers/api_service.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
+import 'package:travelapp_flutter/core/widgets/paypal_widget.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/form_cubit/form_cubit.dart';
@@ -89,27 +91,23 @@ class _FormPageState extends State<FormPage> {
       numberOfSeats--;
       if (numberOfSeats == 0) {
         bool isForm = BlocProvider.of<FormCubit>(context).isForm;
-        if (isForm) {
-          Get.back();
-        } else {
-          Get.offAll(() => const PlanePage());
-        }
+        Get.back();
       }
     }
     if (state is FormSuccess) {
-      // Get.to(() => PayPal(
-      //       url:
-      //           "http://10.0.2.2:5000/plane-reservations/${state.reservationId}/pay",
-      //       onSuccess: () {
-      //       },
-      //     ));
+      Get.to(() => PayPal(
+            url:
+                "${getIt.get<ApiService>().baseUrl}/plane-reservations/${state.reservationId}/pay",
+            onSuccess: () {
+              Get.until((route) => route.settings.name == 'flights');
+              Get.off(
+                () => ConfirmFlightReservationPage(
+                  reservationId: state.reservationId,
+                ),
+              );
+            },
+          ));
       print(state.reservationId);
-      Get.until((route) => route.settings.name == 'flights');
-      Get.off(
-        () => ConfirmFlightReservationPage(
-          reservationId: state.reservationId,
-        ),
-      );
     }
     if (state is FormFailure) {
       Get.to(() => FailurePage(

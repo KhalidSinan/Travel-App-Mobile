@@ -9,6 +9,7 @@ import 'package:travelapp_flutter/features/home/presentation/views/widgets/home_
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/home_page_widgets/nearby_places.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/home_page_widgets/reserve_buttons.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
+import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit_state.dart';
 
 class HomePageBody extends StatefulWidget {
   const HomePageBody({super.key, required this.controller});
@@ -21,40 +22,46 @@ class _HomePageBodyState extends State<HomePageBody> {
   @override
   void initState() {
     super.initState();
-    getHomeData();
     getUserData();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeState>(
-      builder: (context, state) {
-        if (state is HomeSuccess) {
-          return Expanded(
-            child: SingleChildScrollView(
-              controller: widget.controller,
-              child: Column(
-                children: [
-                  AnnouncementsSlider(
-                      isOrganizer: BlocProvider.of<ProfilePageCubit>(context)
-                          .organizer!),
-                  const SizedBox(height: 20),
-                  const ReserveButtons(),
-                  const FlightTimer(),
-                  const SizedBox(height: 20),
-                  const MyHistory(),
-                  const SizedBox(height: 20),
-                  const NearbyPlaces(),
-                ],
-              ),
-            ),
-          );
-        } else {
-          return SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: const CustomLoading());
+    return BlocListener<ProfilePageCubit, ProfileStates>(
+      listener: (context, state) async {
+        if (state is ProfileSuccessState) {
+          await getHomeData();
         }
       },
+      child: BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          if (state is HomeSuccess) {
+            return Expanded(
+              child: SingleChildScrollView(
+                controller: widget.controller,
+                child: Column(
+                  children: [
+                    AnnouncementsSlider(
+                        isOrganizer: BlocProvider.of<ProfilePageCubit>(context)
+                            .organizer!),
+                    const SizedBox(height: 20),
+                    const ReserveButtons(),
+                    const FlightTimer(),
+                    const SizedBox(height: 20),
+                    const MyHistory(),
+                    const SizedBox(height: 20),
+                    const NearbyPlaces(),
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: const CustomLoading());
+          }
+        },
+      ),
     );
   }
 
