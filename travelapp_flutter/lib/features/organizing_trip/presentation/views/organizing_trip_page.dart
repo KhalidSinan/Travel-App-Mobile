@@ -22,11 +22,13 @@ class _OrganizingTripPageState extends State<OrganizingTripPage> {
   late PageController controller;
   @override
   void initState() {
+    super.initState();
     controller = PageController();
   }
 
   @override
   void dispose() {
+    super.dispose();
     controller.dispose();
   }
 

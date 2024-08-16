@@ -25,7 +25,7 @@ class TripCreateSuccessState extends TripPaymentState {
 }
 
 class GroupTripCreateSuccessState extends TripPaymentState {
-  final String tripId;
+  final String tripId, organizedTripId;
 
-  GroupTripCreateSuccessState({required this.tripId});
+  GroupTripCreateSuccessState({required this.tripId, required this.organizedTripId});
 }
