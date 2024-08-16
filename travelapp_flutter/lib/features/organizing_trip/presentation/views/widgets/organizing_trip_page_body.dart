@@ -10,7 +10,6 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/views/4_
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_selection_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/6_schedule_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/7_review_orgnizing_trip_page.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/trip_payment_page.dart';
 
 class OrganizingTripPageBody extends StatelessWidget {
   const OrganizingTripPageBody({

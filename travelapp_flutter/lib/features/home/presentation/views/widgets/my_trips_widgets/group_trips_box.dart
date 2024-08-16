@@ -20,12 +20,7 @@ class GroupTripBox extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
       child: GestureDetector(
         onTap: () {
-          Get.to(
-            () => OrganizedGroupTripDetailsPage(
-              tripId: group != null ? group!.id : organizer!.id,
-              isOrganizer: isOrganizer,
-            ),
-          );
+          Get.to(() => OrganizedGroupTripDetailsPage(tripId: group!.id,));
         },
         child: Container(
           width: double.infinity,
