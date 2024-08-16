@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-<<<<<<< HEAD
-import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-=======
->>>>>>> d7d934584a424f7c1f6990003654c6ce4ac59de9
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
@@ -75,8 +71,7 @@ final List<Map<String, dynamic>> settingsItems = [
     "title": "Report",
     "icon": FontAwesomeIcons.bug,
     "color": Colors.blue,
-    "onTap": (BuildContext context) {
-    }
+    "onTap": (BuildContext context) {}
   },
   {
     "title": "Rate Us",
