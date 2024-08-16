@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
@@ -16,12 +15,12 @@ class ProfilePageCubit extends Cubit<ProfileStates> {
   FormData? body;
   File? editImage;
   bool? organizer;
+  String? editCode;
   String? editCity,
       editCountry,
       editDate,
       editGender,
       editNumber,
-      editCode,
       editFname,
       editLname;
 
@@ -50,7 +49,7 @@ class ProfilePageCubit extends Cubit<ProfileStates> {
         editCountry = profile!.location.country;
         editDate = profile!.birthDate;
         editNumber = profile!.number?.number;
-        editCode = profile!.number?.code;
+        editCode = profile!.number?.code ?? '963';
         editFname = profile!.name.first;
         editLname = profile!.name.last;
         editGender = profile!.gender;
@@ -148,6 +147,7 @@ class ProfilePageCubit extends Cubit<ProfileStates> {
   }
 
   Future<void> updating() async {
+    print(editCode);
     if (editCity != null && editCountry != null) {
       await changeLocation();
     }

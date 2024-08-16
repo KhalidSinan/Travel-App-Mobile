@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/features/settings/data/models/profile_model.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
@@ -34,7 +33,7 @@ class _EditingPageBodyState extends State<EditingPageBody> {
         child: Column(
           children: [
             EditingHeader(photo: profile!.photo),
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
             EditingData(
               icon: Icons.email_outlined,
               text: profile!.email,
@@ -89,7 +88,7 @@ class _EditingPageBodyState extends State<EditingPageBody> {
                     onPressed: () async {
                       Get.off(const ProfilePage());
                     },
-                    color: Themes.third,
+                    color: Colors.grey,
                     label: 'Cancel',
                   ),
                 ),

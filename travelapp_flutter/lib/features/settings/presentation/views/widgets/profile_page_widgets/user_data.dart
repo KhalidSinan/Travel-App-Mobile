@@ -32,7 +32,7 @@ class _UserDataState extends State<UserData> {
               Icon(
                 widget.text == null ||
                         widget.text == 'null, null' ||
-                        widget.text == '+null  null'
+                        widget.text == '+963  null'
                     ? Icons.question_mark_outlined
                     : widget.icon,
                 size: 32,
@@ -45,7 +45,7 @@ class _UserDataState extends State<UserData> {
                     : widget.type == 'date' && widget.text == null
                         ? 'Select your birth date'
                         : widget.type == 'number' &&
-                                widget.text == '+null  null'
+                                widget.text == '+963  null'
                             ? 'Add your number'
                             : widget.type == 'location' &&
                                     widget.text == 'null, null'
@@ -56,7 +56,7 @@ class _UserDataState extends State<UserData> {
                     fontSize: 20,
                     color: widget.text == null ||
                             widget.text == 'null, null' ||
-                            widget.text == '+null  null'
+                            widget.text == '+963  null'
                         ? Colors.grey
                         : Colors.black),
               ),

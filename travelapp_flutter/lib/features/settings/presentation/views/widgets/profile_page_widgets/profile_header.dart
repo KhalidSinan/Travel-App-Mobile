@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/helpers/api_service.dart';
+import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 
@@ -29,7 +31,7 @@ class ProfileHeader extends StatelessWidget {
             radius: 70,
             backgroundColor: Colors.grey,
             backgroundImage: photo != null
-                ? NetworkImage('http://10.0.2.2:5000/$photo')
+                ? NetworkImage('${getIt.get<ApiService>().baseUrl}/$photo')
                 : null,
             child: photo == null
                 ? const Icon(
