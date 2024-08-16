@@ -55,6 +55,7 @@ class FormCubit extends Cubit<FormCubitState> {
         reservations.add(passengers[i]!.toJson());
       }
     }
+    print(reservations);
     var response = await flightBookingImp.makeReservation(
       flights: flights,
       reservations: reservations,

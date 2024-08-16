@@ -5,10 +5,11 @@ import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 class ApiService {
   final String baseUrl = 'https://9686-185-180-222-95.ngrok-free.app';
   //10.0.2.2
+  // final String baseUrl = 'https://ba13-185-180-222-95.ngrok-free.app';
   final Dio _dio;
 
-
-  final String token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBkOTVhMjZmZjk4NWY2ZWUxYzBjNjkwZiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkRhdm9udGUiLCJsYXN0X25hbWUiOiJSb29iIn0sImlhdCI6MTcyMzgxMjA3N30._sU36wrll7j_pj_zuOXUclRjZyTYxoNVZfxj7reI1VA';
+  final String token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBkOTVhMjZmZjk4NWY2ZWUxYzBjNjkwZiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkRhdm9udGUiLCJsYXN0X25hbWUiOiJSb29iIn0sImlhdCI6MTcyMzgxMjA3N30._sU36wrll7j_pj_zuOXUclRjZyTYxoNVZfxj7reI1VA';
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get({

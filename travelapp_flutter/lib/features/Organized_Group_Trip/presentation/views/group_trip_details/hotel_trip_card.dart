@@ -35,7 +35,7 @@ class HotelTripCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(radius),
                 child: Image.network(
-                  '${getIt.get<ApiService>().baseUrl}${hotel.images[0]}',
+                  '${getIt.get<ApiService>().baseUrl}/${hotel.images[0]}',
                 ),
               ),
             ),

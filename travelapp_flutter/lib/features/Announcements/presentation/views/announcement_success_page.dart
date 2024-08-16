@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 
@@ -13,6 +14,18 @@ class AnnouncementSubscribeSuccessPage extends StatefulWidget {
 
 class _AnnouncementSubscribeSuccessPageState
     extends State<AnnouncementSubscribeSuccessPage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        Get.back();
+        Get.back();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
