@@ -82,6 +82,7 @@ class PlaceCard extends StatelessWidget {
                   Text(
                     '+${place.phoneNumber.countryCode} ${place.phoneNumber.number}',
                     style: const TextStyle(fontSize: 18),
+                    overflow: TextOverflow.clip,
                   ),
                 ],
               ),

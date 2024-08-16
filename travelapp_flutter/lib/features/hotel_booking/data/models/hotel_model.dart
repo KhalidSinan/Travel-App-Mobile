@@ -9,7 +9,7 @@ class HotelModel {
   final String description;
   final List<RoomTypeModel> roomType;
   final int? roomsNumber;
-  final double? distanceFromCityCenter;
+  final String distanceFromCityCenter;
   final List<String> images;
   final dynamic startsFrom;
 
@@ -44,7 +44,8 @@ class HotelModel {
         description: jsonData["description"] ?? jsonData['hotel_description'],
         roomType: roomTypes!,
         roomsNumber: jsonData["rooms_number"],
-        distanceFromCityCenter: jsonData["distance_from_city_center"],
+        distanceFromCityCenter:
+            jsonData["distance_from_city_center"].toString(),
         images: List<String>.from(jsonData["images"] ?? [jsonData['image']]),
         startsFrom: jsonData["starts_from"] ?? jsonData['price']);
   }

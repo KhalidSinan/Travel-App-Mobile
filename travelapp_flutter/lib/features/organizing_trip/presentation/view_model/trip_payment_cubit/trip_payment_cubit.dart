@@ -67,7 +67,7 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
     );
     response.fold(
       (failure) {
-        emit(TripCreateFailureState(errMessage: failure.errMessage));
+        emit(TripCreateFailureState(errMessage: failure.errMessage.toString()));
       },
       (res) async {
         if (groupTrip) {
@@ -88,7 +88,7 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
     );
     response.fold(
       (failure) {
-        emit(TripCreateFailureState(errMessage: failure.errMessage));
+        emit(TripCreateFailureState(errMessage: failure.errMessage.toString()));
       },
       (res) {
         print(res['data']);
@@ -111,6 +111,7 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
         reservations.add(passengers[i]!.toJson());
       }
     }
+    bool error = true;
     for (var flight in flights) {
       var response = await flightBookingImp.makeReservation(
         flights: [flight.flight!.id],
@@ -119,8 +120,9 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
       );
       response.fold(
         (failure) {
-          emit(TripCreateFailureState(errMessage: failure.errMessage));
-          return false;
+          emit(TripCreateFailureState(
+              errMessage: failure.errMessage.toString()));
+          error = false;
         },
         (res) {
           emit(FlightsReservationSuccessState());
@@ -128,12 +130,13 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
         },
       );
     }
-    return true;
+    return error;
   }
 
   Future<bool> tripHotelsReservations({
     required HotelReservationModel hotels,
   }) async {
+    bool error = true;
     emit(HotelsReservationLoadingState());
     for (var hotel in hotels.hotels) {
       List<Map<String, dynamic>> rooms = [];
@@ -148,10 +151,11 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
         startDate: formattedStartDate,
         numDays: hotel.numDays.toString(),
       );
+
       response.fold(
         (failure) {
           emit(TripCreateFailureState(errMessage: failure.errMessage));
-          return false;
+          error = false;
         },
         (res) {
           emit(HotelsReservationSuccessState());
@@ -159,7 +163,7 @@ class TripPaymentCubit extends Cubit<TripPaymentState> {
         },
       );
     }
-    return true;
+    return error;
   }
 
   void nextStep() {

@@ -7,7 +7,7 @@ class HotelForDestinationModel {
   final String hotelImage;
   final String hotelLocation;
   final int hotelStars;
-  final double distanceFromCityCenter;
+  final String distanceFromCityCenter;
   final List<RoomCartModel> rooms;
   final String startDate;
   final int numDays;

@@ -3,8 +3,7 @@ import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 
 class ApiService {
-  final String baseUrl = 'https://c354-169-150-196-104.ngrok-free.app';
-  //10.0.2.2
+  final String baseUrl = 'https://aa00-5-0-79-134.ngrok-free.app';
   final Dio _dio;
   // final String token =
   //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmZmNlNGY1NWYzYzAyZGI5ZjU1Y2I3YyIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6Ik1hcmlhbSIsImxhc3RfbmFtZSI6IkJlcmdzdHJvbSJ9LCJpYXQiOjE3MjM3MzYxOTh9.yxeil1og7S4PvyvJbfLfBm6WwSGBNrNSVgsM5X_DxQk';

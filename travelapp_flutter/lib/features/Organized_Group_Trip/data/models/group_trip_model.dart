@@ -16,6 +16,7 @@ class GroupTripModel {
   final TripStatus status;
   final double price;
   final double priceWithCommission;
+  final String description;
 
   GroupTripModel({
     required this.id,
@@ -31,6 +32,7 @@ class GroupTripModel {
     required this.status,
     required this.price,
     required this.priceWithCommission,
+    required this.description,
   });
 
   factory GroupTripModel.fromJson(jsonData) {
@@ -53,6 +55,7 @@ class GroupTripModel {
       status: getTripStatus(jsonData['status_of_trip']),
       price: jsonData['price'],
       priceWithCommission: jsonData['price_with_commission'],
+      description: jsonData['description'],
     );
   }
 

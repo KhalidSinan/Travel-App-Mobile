@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/helpers/api_service.dart';
+import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
@@ -33,7 +35,7 @@ class HotelTripCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(radius),
                 child: Image.network(
-                  'http://10.0.2.2:5000/${hotel.images[0]}',
+                  '${getIt.get<ApiService>().baseUrl}${hotel.images[0]}',
                 ),
               ),
             ),

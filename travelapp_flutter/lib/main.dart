@@ -139,11 +139,7 @@ class _TravelAppState extends State<TravelApp> {
 
           home: rememberMe == true
               ? FetchProfileDataPage(token: token)
-              : const NavBarPages(),
-          // home: const OrganizedGroupTripDetailsPage(
-          //   tripId: '66ba0eb360e2f6d63923d080',
-          //   isOrganizer: true,
-          // ),
+              : const LoginPage(),
           // home: const OrganizerReviewPage(
           //   tripId: '66bde5102c01e74d54006c7e',
           //   organizerName: 'Khalid Sinan',

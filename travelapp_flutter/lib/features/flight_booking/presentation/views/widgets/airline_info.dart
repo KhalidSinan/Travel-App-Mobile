@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_flutter/core/helpers/api_service.dart';
+import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/airline_model.dart';
 
 class AirlineInfo extends StatelessWidget {
@@ -15,7 +17,7 @@ class AirlineInfo extends StatelessWidget {
         CircleAvatar(
           backgroundColor: Colors.white,
           radius: 20,
-          backgroundImage: NetworkImage(airline.logo!),
+          backgroundImage: NetworkImage('${getIt.get<ApiService>().baseUrl}/${airline.logo!}'),
         ),
         const SizedBox(width: 8),
         SizedBox(

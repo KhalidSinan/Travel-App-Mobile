@@ -42,7 +42,7 @@ class HotelInformationCubit extends Cubit<HotelInformationState> {
     required String hotelImage,
     required String hotelLocation,
     required int hotelStars,
-    required double distanceFromCityCenter,
+    required String distanceFromCityCenter,
     required List<RoomCartModel> selectedRooms,
     required String startDate,
     required int numDays,

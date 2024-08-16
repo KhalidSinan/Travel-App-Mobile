@@ -31,7 +31,8 @@ class OrganizerCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Image(
-            image: NetworkImage(organizer.picture),
+            image: NetworkImage(
+                "${getIt.get<ApiService>().baseUrl}/${organizer.picture}"),
             width: 40,
             height: 40,
           ),

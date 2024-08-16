@@ -170,7 +170,8 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
 
   double getTotalTripPrice() {
     // return 9.00;
-    return getTotalFlightsPrice() + allHotels!.getAllHotelsPrice();
+    return (getTotalFlightsPrice() + allHotels!.getAllHotelsPrice())
+        .toPrecision(2);
   }
 
   void addDestination() {

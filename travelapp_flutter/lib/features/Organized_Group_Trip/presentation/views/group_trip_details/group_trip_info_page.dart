@@ -58,6 +58,16 @@ class GroupTripInfoPage extends StatelessWidget {
               child: DashLineDivider(),
             ),
             const TripTypesList(),
+            const SizedBox(height: 16),
+            Text(
+              'Description',
+              style: Styles.heading2.copyWith(color: Colors.black),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              groupTrip.description,
+              style: Styles.subtitle,
+            ),
           ],
         ),
       ),
