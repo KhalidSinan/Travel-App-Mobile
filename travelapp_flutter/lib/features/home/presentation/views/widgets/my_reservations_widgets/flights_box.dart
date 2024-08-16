@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
@@ -64,10 +66,12 @@ class FlightsBox extends StatelessWidget {
                       size: flight!.twoWay == 'Two-Way' ? 38 : 22,
                     ),
                   ),
-                  Text(
-                    flight!.destination,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 20),
+                  Expanded(
+                    child: Text(
+                      flight!.destination,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 20),
+                    ),
                   ),
                 ],
               ),
@@ -79,10 +83,12 @@ class FlightsBox extends StatelessWidget {
                     color: Colors.grey[800],
                   ),
                   const SizedBox(width: 10),
-                  Text(
-                    overflow: TextOverflow.ellipsis,
-                    flight!.sAirpost,
-                    style: const TextStyle(fontSize: 18),
+                  Expanded(
+                    child: Text(
+                      overflow: TextOverflow.ellipsis,
+                      flight!.sAirpost,
+                      style: const TextStyle(fontSize: 18),
+                    ),
                   ),
                 ],
               ),

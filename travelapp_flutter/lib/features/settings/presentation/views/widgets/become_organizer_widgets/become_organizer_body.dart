@@ -12,7 +12,6 @@ import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
-import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/custom_text_and_text_form.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/become_organizer_cubit/become_organizer_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/become_organizer_cubit/become_organizer_cubit_state.dart';
@@ -67,7 +66,7 @@ class _BecomeOrganizerPageBodyState extends State<BecomeOrganizerPageBody> {
                       .copyWith(color: Themes.third, fontSize: 25),
                 ),
                 Text(
-                  'To be organizer, you must enter the following information :',
+                  'To be an organizer, you have to enter the following informations :',
                   style: Styles.heading2
                       .copyWith(color: Themes.primary, fontSize: 20),
                 ),
@@ -116,7 +115,7 @@ class _BecomeOrganizerPageBodyState extends State<BecomeOrganizerPageBody> {
                                 children: [
                                   Expanded(
                                     child: CustomTextAndTextFilledOrganizer(
-                                      text: 'Companies you works its :',
+                                      text: 'Companies you worked in :',
                                       prefixIcon: const Icon(
                                           FontAwesomeIcons.solidBuilding),
                                       hintText: 'Enter companies name',

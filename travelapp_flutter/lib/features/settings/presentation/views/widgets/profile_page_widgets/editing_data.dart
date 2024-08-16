@@ -239,6 +239,7 @@ class _EditingDataState extends State<EditingData> {
                                     },
                                     child: Text(
                                       widget.text!,
+                                      overflow: TextOverflow.ellipsis,
                                       style: const TextStyle(fontSize: 20),
                                     ),
                                   ),

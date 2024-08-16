@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/chat/presentation/views/widgets/all_chats/all_chats_tab.dart';
-import 'package:travelapp_flutter/features/chat/presentation/views/widgets/all_chats/chat_card.dart';
 import 'package:travelapp_flutter/features/chat/presentation/views/widgets/all_chats/not_joined_chats_tab.dart';
 
 class AllChatsPageBody extends StatelessWidget {
@@ -17,11 +15,6 @@ class AllChatsPageBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Chats',
-              style: Styles.heading,
-            ),
-            const SizedBox(height: 16),
             TabBar(
               labelColor: Themes.primary,
               dividerHeight: 0,

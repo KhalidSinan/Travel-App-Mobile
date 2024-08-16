@@ -12,13 +12,13 @@ class ConfirmFlightReservationCubit
   final FlightBookingImp flightBookingImp;
   final String reservationId;
   bool isConfirmed = false;
+  String? url;
   ReservationModel? reservation;
 
   Future<void> getFlightReservationData({required String idflight}) async {
     emit(LoadingConfirmFlightReservationState());
     var response =
         await flightBookingImp.getFlightReservationData(id: idflight);
-    print(response);
     response.fold(
       (error) {
         emit(FailureConfirmFlightReservationState(failure: error));
@@ -34,15 +34,20 @@ class ConfirmFlightReservationCubit
   Future<void> postReservationConfirmation({required String id}) async {
     emit(LoadingConfirmFlightReservationState());
     var response = await flightBookingImp.postReservationConfirmation(id: id);
-    print(response);
     response.fold(
       (error) {
         emit(FailureConfirmFlightReservationState(failure: error));
       },
       (res) {
         isConfirmed = true;
+        url = res['pdf_path'];
         emit(SuccessConfirmFlightReservationState());
       },
     );
+  }
+
+  Future<String> confirmFlight({required String id}) async {
+  await postReservationConfirmation(id: id);
+    return url!;
   }
 }

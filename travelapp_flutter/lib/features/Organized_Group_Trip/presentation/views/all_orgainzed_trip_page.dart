@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:travelapp_flutter/core/widgets/back_button.dart';
+import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/orgainzed_group_trip_cubit.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/organized_group_trip_states.dart';
@@ -27,19 +27,21 @@ class _AllOrganizedGroupTripsState extends State<AllOrganizedGroupTrips> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //leading: const CustomBackButton(),
-        //  ),
+        appBar: AppBar(
+          title: Text('Organized Trips', style: Styles.heading2),
+        ),
         body: BlocListener<OrganizedGroupCubit, OrganizedGroupCubitState>(
           listener: (context, state) {
             if (state is FailureOrganizedGroupTripState) {
-              Get.to(() => FailurePage(
-                    error: state.failure,
-                    onPressed: () async {
-                      await BlocProvider.of<OrganizedGroupCubit>(context)
-                          .getAllOrganizedTrips();
-                    },
-                  ));
+              Get.to(
+                () => FailurePage(
+                  error: state.failure,
+                  onPressed: () async {
+                    await BlocProvider.of<OrganizedGroupCubit>(context)
+                        .getAllOrganizedTrips();
+                  },
+                ),
+              );
             }
           },
           child: Padding(

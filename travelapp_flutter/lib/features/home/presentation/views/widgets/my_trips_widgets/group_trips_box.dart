@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:text_marquee/text_marquee.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/organized_group_trip_details_page.dart';
 import 'package:travelapp_flutter/features/home/data/models/group_trips_model.dart';
 import 'package:travelapp_flutter/features/home/data/models/organizer_trips_model.dart';
 
@@ -18,7 +19,14 @@ class GroupTripBox extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Get.to(
+            () => OrganizedGroupTripDetailsPage(
+              tripId: group != null ? group!.id : organizer!.id,
+              isOrganizer: isOrganizer,
+            ),
+          );
+        },
         child: Container(
           width: double.infinity,
           margin: const EdgeInsets.symmetric(vertical: 10),
@@ -77,7 +85,9 @@ class GroupTripBox extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.only(right: 8),
                       child: Text(
-                        isOrganizer ? organizer!.type[index] : group!.type[index],
+                        isOrganizer
+                            ? organizer!.type[index]
+                            : group!.type[index],
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(fontSize: 18),
                       ),
@@ -97,7 +107,7 @@ class GroupTripBox extends StatelessWidget {
                           color: Colors.grey[800],
                           size: 24,
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: 10),
                         Text(
                           group!.organizerName,
                           style: const TextStyle(fontSize: 18),
@@ -110,9 +120,9 @@ class GroupTripBox extends StatelessWidget {
                         Icon(
                           FontAwesomeIcons.userGroup,
                           color: Colors.grey[800],
-                          size: 24,
+                          size: 22,
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: 10),
                         Text(
                           organizer!.people,
                           style: const TextStyle(fontSize: 18),
@@ -129,7 +139,7 @@ class GroupTripBox extends StatelessWidget {
                           size: 24,
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: 4),
                       Text(
                         isOrganizer
                             ? '${organizer!.days} Days'

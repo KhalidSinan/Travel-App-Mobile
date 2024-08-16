@@ -33,16 +33,18 @@ class _HomePageBodyState extends State<HomePageBody> {
           return Expanded(
             child: SingleChildScrollView(
               controller: widget.controller,
-              child: const Column(
+              child: Column(
                 children: [
-                  AnnouncementsSlider(),
-                  SizedBox(height: 20),
-                  ReserveButtons(),
-                  FlightTimer(),
-                  SizedBox(height: 20),
-                  MyHistory(),
-                  SizedBox(height: 20),
-                  NearbyPlaces(),
+                  AnnouncementsSlider(
+                      isOrganizer: BlocProvider.of<ProfilePageCubit>(context)
+                          .organizer!),
+                  const SizedBox(height: 20),
+                  const ReserveButtons(),
+                  const FlightTimer(),
+                  const SizedBox(height: 20),
+                  const MyHistory(),
+                  const SizedBox(height: 20),
+                  const NearbyPlaces(),
                 ],
               ),
             ),

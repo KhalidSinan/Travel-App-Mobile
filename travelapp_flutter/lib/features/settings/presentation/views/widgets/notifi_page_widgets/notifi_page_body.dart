@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travelapp_flutter/core/utils/themes.dart';
+// import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/settings/data/models/all_notifi_model.dart';
 import 'package:travelapp_flutter/features/settings/data/models/notifi_model.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/notifi_page_widgets/custom_expansion_tile.dart';
@@ -8,7 +8,8 @@ class NotifiPagebody extends StatelessWidget {
   const NotifiPagebody({
     super.key,
     required this.days,
-    required this.allNotifications, required this.controller,
+    required this.allNotifications,
+    required this.controller,
   });
 
   final List<String> days;
@@ -18,25 +19,25 @@ class NotifiPagebody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 16, bottom: 16, top: 16),
-          child: Row(
-            children: [
-              Text(
-                'Notifications',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Themes.primary,
-                    fontSize: 24),
-              ),
-            ],
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 16, bottom: 16, top: 16),
+        //   child: Row(
+        //     children: [
+        //       Text(
+        //         'Notifications',
+        //         style: TextStyle(
+        //             fontWeight: FontWeight.bold,
+        //             color: Themes.primary,
+        //             fontSize: 24),
+        //       ),
+        //     ],
+        //   ),
+        // ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: ListView.builder(
-              controller: controller,
+                controller: controller,
                 itemCount: days.length,
                 itemBuilder: (context, index) {
                   List<NotifiModel>? notificationsList;

@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:slide_countdown/slide_countdown.dart';
+import 'package:travelapp_flutter/core/helpers/api_service.dart';
+import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/reservation_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/confirm_flight_reservation_cubit/confirm_flight_reservation_cubit.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/confirm_flight_reservation_cubit/confirm_flight_reservation_cubit_states.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ConfirmationStepButtons extends StatefulWidget {
-  const ConfirmationStepButtons({
-    super.key,
-  });
+  const ConfirmationStepButtons({super.key});
 
   @override
   State<ConfirmationStepButtons> createState() =>
@@ -20,11 +21,11 @@ class ConfirmationStepButtons extends StatefulWidget {
 }
 
 class _ConfirmationStepButtonsState extends State<ConfirmationStepButtons> {
+  String? url;
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     var screenWidth = screenSize.width;
-
     return BlocBuilder<ConfirmFlightReservationCubit,
         ConfirmFlightReservationState>(
       builder: (context, state) {
@@ -95,14 +96,17 @@ class _ConfirmationStepButtonsState extends State<ConfirmationStepButtons> {
                           Expanded(
                             child: CustomButton(
                               onPressed: () async {
-                                await BlocProvider.of<
+                                url = await BlocProvider.of<
                                         ConfirmFlightReservationCubit>(context)
-                                    .postReservationConfirmation(
-                                  id: BlocProvider.of<
-                                              ConfirmFlightReservationCubit>(
-                                          context)
-                                      .reservationId,
-                                );
+                                    .confirmFlight(
+                                        id: BlocProvider.of<
+                                                    ConfirmFlightReservationCubit>(
+                                                context)
+                                            .reservationId);
+                                print(
+                                    'http://${getIt.get<ApiService>().baseUrl}/$url');
+                                launchUrl(Uri.parse(
+                                    "http://${getIt.get<ApiService>().baseUrl}/$url"));
                               },
                               label: "Confirm",
                               isFlat: true,

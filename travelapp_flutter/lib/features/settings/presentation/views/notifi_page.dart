@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
-import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/features/settings/data/models/all_notifi_model.dart';
+import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/notifi_cubit/notifi_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/notifi_cubit/notifi_cubit_states.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/notifi_page_widgets/notifi_page_body.dart';
@@ -28,6 +26,8 @@ class _NotifiPageState extends State<NotifiPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: AppBar(
+        title: Text('Notifications', style: Styles.heading2),),
       body: BlocConsumer<NotifiPageCubit, NotifiStates>(
           listener: (context, state) {
         if (state is NotifiFailureState) {
