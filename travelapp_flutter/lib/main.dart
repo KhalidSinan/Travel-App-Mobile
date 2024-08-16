@@ -22,6 +22,7 @@ import 'package:travelapp_flutter/features/home/data/repos/home_repo_impl.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/home_cubit/home_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_reservations_cubit/my_reservations_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips_cubit/my_trips_cubit.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/hotel_search_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_selection_page.dart';
 
 import 'package:travelapp_flutter/features/settings/data/repos/settings_repo_impl.dart';
@@ -119,6 +120,7 @@ class _TravelAppState extends State<TravelApp> {
             GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
             GetPage(name: '/LogIn', page: () => const LoginPage()),
             GetPage(name: '/flights', page: () => const PlanePage()),
+            GetPage(name: '/hotelsSearch', page: () => const HotelSearchPage()),
           ],
           theme: ThemeData(
             textSelectionTheme: TextSelectionThemeData(

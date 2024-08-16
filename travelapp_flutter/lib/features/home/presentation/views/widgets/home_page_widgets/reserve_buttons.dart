@@ -79,7 +79,7 @@ class ReserveButtons extends StatelessWidget {
                 height: 80,
                 child: GestureDetector(
                   onTap: () {
-                    Get.to(const HotelSearchPage());
+                    Get.toNamed('hotelsSearch');
                   },
                   child: Card(
                     surfaceTintColor: Themes.primary,

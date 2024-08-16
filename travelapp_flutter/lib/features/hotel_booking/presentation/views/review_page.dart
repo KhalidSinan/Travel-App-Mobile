@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/room_cart_model.dart';
@@ -39,6 +40,8 @@ class _ReviewPageState extends State<ReviewPage> {
                 //       url:
                 //           "https://7157-185-183-34-167.ngrok-free.app/hotels/reservation/665ed1a19af76a7120c1dfbc/pay",
                 //     ));
+                Get.until((route) => route.settings.name == 'hotelsSearch');
+                Get.back();
               }
               if (state is FailureReviewHotelState) {
                 showCustomSnackBar(
