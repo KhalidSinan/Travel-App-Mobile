@@ -12,6 +12,7 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/nav_bar_pages.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/data/repos/organized_group_repo_impl.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/orgainzed_group_trip_cubit.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/cancel_organized_group_trip.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
@@ -23,8 +24,11 @@ import 'package:travelapp_flutter/features/home/data/repos/home_repo_impl.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/home_cubit/home_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_reservations_cubit/my_reservations_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips_cubit/my_trips_cubit.dart';
+import 'package:travelapp_flutter/features/home/presentation/views/home_page.dart';
+import 'package:travelapp_flutter/features/home/presentation/views/my_trips.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/hotel_search_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_selection_page.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/share_trip.dart';
 
 import 'package:travelapp_flutter/features/settings/data/repos/settings_repo_impl.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/delete_account_cubit/delete_account_cubit.dart';
@@ -129,14 +133,9 @@ class _TravelAppState extends State<TravelApp> {
               selectionColor: Themes.primary,
               selectionHandleColor: Themes.primary,
             ),
-            appBarTheme: const AppBarTheme(
-              color: Colors.white,
-              surfaceTintColor: Colors.white,
-            ),
-            scaffoldBackgroundColor: Colors.white,
-            textTheme: GoogleFonts.aBeeZeeTextTheme(),
+            // home: ShareTripPage(id: "66bdc40ad575daa9a7b281b2"),
           ),
-
+// home: NavBarPages(),
           home: rememberMe == true
               ? FetchProfileDataPage(token: token)
               : const LoginPage(),

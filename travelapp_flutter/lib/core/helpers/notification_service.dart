@@ -4,8 +4,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/widgets/nav_bar_pages.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/cancel_organized_group_trip.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/my_reservations_page.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/my_trips.dart';
+import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/views/organizer_review_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/share_trip.dart';
 
 class NotificationService {
@@ -23,14 +25,18 @@ class NotificationService {
   static void handleMessage(RemoteMessage? message) {
     if (message == null) return;
 
+    // عند ارسال اشعار عام لكل المستخدمين
     if (message.data['type'] == "/notification-screen") {
       Get.to(() => const NavBarPages(
             initIndex: 3,
           ));
     }
-
+    
+    // عند اضافة اعلان بالداشبورد ارسال اشعار عام
     if (message.data['type'] == "/home-screen") {
-      Get.to(() => const NavBarPages(initIndex: 0,));
+      Get.to(() => const NavBarPages(
+            initIndex: 0,
+          ));
     }
 
     if (message.data['type'] == "/myTrips-screen") {
@@ -41,15 +47,40 @@ class NotificationService {
       Get.to(() => const MyReservationsPage());
     }
 
+    // عند انتهاء رحلة جماعية من اجل تقييم المنظم
+    if (message.data['type'] == "/rateOrganizer-screen") {
+      String extraData = message.data['extra'];
+      Map<String, dynamic> extraMap = jsonDecode(extraData);
+      String id = extraMap['id'];
+      String organizerName = extraMap['organizer_name'];
+      Get.to(
+          () => OrganizerReviewPage(tripId: id, organizerName: organizerName));
+    }
+
+    // عند انتهاء رحلة فردية من اجل مشاركة الرحلة
     if (message.data['type'] == "/shareTrip-screen") {
       String extraData = message.data['extra'];
       Map<String, dynamic> extraMap = jsonDecode(extraData);
-      print(extraMap['id']);
       Get.to(() => ShareTripPage(id: extraMap['id']));
     }
+
+    // الغاء المنظم رحلته الجماعية
+    if (message.data['type'] == "/cancel-organized-group-screen") {
+      String extraData = message.data['extra'];
+      Map<String, dynamic> extraMap = jsonDecode(extraData);
+      String source = extraMap['source'];
+      String organizerName = extraMap['organizer_name'];
+      String startDate = extraMap['start_date'];
+      List<dynamic> des = extraMap['destinations'];
+      Get.to(() => CancelOrganizedGroupTrip(
+          organizerName: organizerName,
+          startDate: startDate,
+          source: source,
+          des: des));
+    }
+
+    // قبل انتهاء الرحلة الجماعية بيوم
   }
-
-
 
   Future initLocalNotifications() async {
     const android = AndroidInitializationSettings('@drawable/ic_launcher');

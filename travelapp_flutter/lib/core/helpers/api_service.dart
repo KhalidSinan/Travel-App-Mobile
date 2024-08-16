@@ -3,11 +3,12 @@ import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 
 class ApiService {
-  final String baseUrl = 'https://aa00-5-0-79-134.ngrok-free.app';
+  final String baseUrl = 'https://9686-185-180-222-95.ngrok-free.app';
+  //10.0.2.2
   final Dio _dio;
-  // final String token =
-  //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmZmNlNGY1NWYzYzAyZGI5ZjU1Y2I3YyIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6Ik1hcmlhbSIsImxhc3RfbmFtZSI6IkJlcmdzdHJvbSJ9LCJpYXQiOjE3MjM3MzYxOTh9.yxeil1og7S4PvyvJbfLfBm6WwSGBNrNSVgsM5X_DxQk';
-  // final String token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YmYwYTJhOTcxNDJkMzA1ZTk1MGM1ZCIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6InNhcmEiLCJsYXN0X25hbWUiOiJuYWphdGkifSwiaWF0IjoxNzIzODA0MjkxfQ.QyHHBetjEiShFllIzanQn7WOEDpTti2iHieiLXvQZ2Q';
+
+
+  final String token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBkOTVhMjZmZjk4NWY2ZWUxYzBjNjkwZiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkRhdm9udGUiLCJsYXN0X25hbWUiOiJSb29iIn0sImlhdCI6MTcyMzgxMjA3N30._sU36wrll7j_pj_zuOXUclRjZyTYxoNVZfxj7reI1VA';
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get({
