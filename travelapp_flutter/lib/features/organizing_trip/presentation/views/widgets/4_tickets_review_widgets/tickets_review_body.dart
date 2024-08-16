@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/available_flight_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/destinations_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
@@ -26,7 +27,7 @@ class _TicketsReviewBodyState extends State<TicketsReviewBody> {
         destinations =
             BlocProvider.of<OrganizingTripCubit>(context).destinations;
         if (state is LoadingOrganizingTrip) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CustomLoading());
         } else {
           return Padding(
             padding: const EdgeInsets.only(top: 16, left: 16, right: 16),

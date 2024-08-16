@@ -5,6 +5,7 @@ import 'package:travelapp_flutter/core/helpers/api_service.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/core/widgets/paypal_widget.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';
@@ -66,7 +67,7 @@ class _FormPageState extends State<FormPage> {
             builder: (context, state) {
               if (state is FormLoading) {
                 return const Center(
-                  child: CircularProgressIndicator(),
+                  child: CustomLoading(),
                 );
               } else {
                 return FormPageBody(

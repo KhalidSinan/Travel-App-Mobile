@@ -8,6 +8,7 @@ import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/chat/data/repos/chat_repo_impl.dart';
 import 'package:travelapp_flutter/features/chat/presentation/view_model/chat_cubit.dart';
 import 'package:travelapp_flutter/features/chat/presentation/view_model/chat_cubit_states.dart';
@@ -28,7 +29,7 @@ final ScrollController controller;
         listener: (context, state) {},
         builder: (context, state) {
           if (state is GetAllChatsLoadingState) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CustomLoading());
           } else if (state is GetAllChatsFailureState) {
             return Center(
               child: Column(

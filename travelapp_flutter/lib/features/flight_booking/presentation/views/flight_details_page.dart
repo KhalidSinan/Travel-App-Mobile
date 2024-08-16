@@ -6,6 +6,7 @@ import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/flight_details_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
@@ -191,7 +192,7 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                 } else {
                   return const Column(
                     children: [
-                      Center(child: CircularProgressIndicator()),
+                      Center(child: CustomLoading()),
                     ],
                   );
                 }

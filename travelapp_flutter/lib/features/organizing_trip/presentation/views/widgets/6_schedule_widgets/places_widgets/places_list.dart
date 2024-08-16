@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/place_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/schedule_cubit/schedule_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/schedule_cubit/schedule_states.dart';
@@ -59,7 +60,7 @@ class _PlacesListState extends State<PlacesList> {
           }
         } else {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CustomLoading(),
           );
         }
       },

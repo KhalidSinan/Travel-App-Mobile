@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/view_model/organizer_review_cubit/organizer_review_cubit.dart';
 import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/view_model/organizer_review_cubit/organizer_review_states.dart';
 import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/views/success_page.dart';
@@ -81,7 +82,7 @@ class OrganizerReviewPageBody extends StatelessWidget {
             ),
             const Spacer(),
             (state is LoadingReviewState)
-                ? const CircularProgressIndicator()
+                ? const CustomLoading()
                 : SizedBox(
                     width: double.infinity,
                     child: CustomButton(

@@ -18,7 +18,6 @@ class AllHotelsHeader extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: BlocBuilder<AllHotelsCubit, AllHotelStates>(
         builder: (context, state) {
-          print(BlocProvider.of<AllHotelsCubit>(context).allhotels);
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

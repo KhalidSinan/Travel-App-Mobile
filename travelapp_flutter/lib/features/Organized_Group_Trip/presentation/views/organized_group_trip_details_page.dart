@@ -6,6 +6,7 @@ import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/data/repos/organized_group_repo_impl.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/group_trip_details_cubit/group_trip_details_cubit.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/group_trip_details_cubit/group_trip_details_states.dart';
@@ -45,7 +46,7 @@ class OrganizedGroupTripDetailsPage extends StatelessWidget {
           }, builder: (context, state) {
             if (state is GroupTripDetailsLoadingState) {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: CustomLoading(),
               );
             } else if (state is GroupTripDetailsFailureState) {
               return Center(

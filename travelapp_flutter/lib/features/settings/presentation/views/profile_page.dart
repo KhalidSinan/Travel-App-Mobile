@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/core/widgets/failure_page.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit_state.dart';
@@ -55,7 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
           builder: (context, state) {
             if (state is ProfileLoadingState) {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: CustomLoading(),
               );
             } else {
               return const ProfilePageBody();

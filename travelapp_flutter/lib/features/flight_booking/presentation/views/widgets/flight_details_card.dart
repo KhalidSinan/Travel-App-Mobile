@@ -1,4 +1,5 @@
 // import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -47,12 +48,14 @@ class FlightDetailsCard extends StatelessWidget {
               //CustomImage(image:logo!);
             ),
             const SizedBox(width: 16),
-            Text(
-              airline!,
-              overflow: TextOverflow.ellipsis,
-              style: Styles.heading.copyWith(
-                fontSize: 22,
-                color: Colors.black,
+            Expanded(
+              child: Text(
+                airline!,
+                overflow: TextOverflow.ellipsis,
+                style: Styles.heading.copyWith(
+                  fontSize: 22,
+                  color: Colors.black,
+                ),
               ),
             ),
           ],

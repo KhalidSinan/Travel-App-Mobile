@@ -6,6 +6,7 @@ import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/forgot_password_cubit/forgot_password_steps_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/forgot_password_cubit/forgot_password_steps_states.dart';
@@ -72,7 +73,7 @@ class _ForgotPasswordPageBodyState extends State<ForgotPasswordPageBody> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       (state is LoadingStepState)
-                          ? const CircularProgressIndicator()
+                          ? const CustomLoading()
                           : Expanded(
                               child: CustomButton(
                                 onPressed: details.onStepContinue,

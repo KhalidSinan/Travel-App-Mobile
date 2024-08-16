@@ -18,7 +18,7 @@ class PlacesPageBody extends StatelessWidget {
               PlacesList(category: 'Attraction', city: city,step: step,),
               PlacesList(category: 'Cinema', city: city , step: step,),
               PlacesList(category: 'Adventure', city: city , step: step,),
-              PlacesList(category: 'Arts & History', city: city , step: step,),
+              // PlacesList(category: 'Arts & History', city: city , step: step,),
               PlacesList(category: 'Mall', city: city , step: step,),
               PlacesList(category: 'Sports', city: city , step:step ,),
               PlacesList(category: 'Market', city: city , step: step,),

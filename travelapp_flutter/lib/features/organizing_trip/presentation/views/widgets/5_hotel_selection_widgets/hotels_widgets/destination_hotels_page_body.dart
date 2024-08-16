@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_reservation_cubit/hotel_reservation_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_reservation_cubit/hotel_reservations_states.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/hotels_widgets/hotel_selection_pagination.dart';
@@ -25,7 +26,7 @@ class DestinationHotelsPageBody extends StatelessWidget {
           builder: (context, state) {
             if (state is HotelReservationLoadingState) {
               return const SliverFillRemaining(
-                  child: Center(child: CircularProgressIndicator()));
+                  child: Center(child: CustomLoading()));
             } else if (state is NoHotelsState) {
               return const SliverFillRemaining(
                   child: Center(child: Text('No hotels found')));

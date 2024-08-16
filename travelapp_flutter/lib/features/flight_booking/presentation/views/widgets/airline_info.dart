@@ -22,11 +22,13 @@ class AirlineInfo extends StatelessWidget {
         const SizedBox(width: 8),
         SizedBox(
           width: 200,
-          child: Text(
-            airline.name,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              color: Colors.black,
+          child: Expanded(
+            child: Text(
+              airline.name,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: Colors.black,
+              ),
             ),
           ),
         ),

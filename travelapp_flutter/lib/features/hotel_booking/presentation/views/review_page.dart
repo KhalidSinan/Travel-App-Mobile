@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/models/room_cart_model.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/hotel_details_cubit/hotel_details_states.dart';
@@ -70,7 +71,7 @@ class _ReviewPageState extends State<ReviewPage> {
                     ),
                   ),
                   (state is LoadingReviewHotelState)
-                      ? const CircularProgressIndicator()
+                      ? const CustomLoading()
                       : SizedBox(
                           width: double.infinity,
                           child: CustomButton(

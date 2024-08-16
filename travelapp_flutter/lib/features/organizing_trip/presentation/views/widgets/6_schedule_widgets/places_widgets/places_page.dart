@@ -24,7 +24,7 @@ class PlacesPage extends StatelessWidget {
     return BlocProvider.value(
       value: schedule,
       child: DefaultTabController(
-        length: 10,
+        length: 9,
         child: Scaffold(
           appBar: AppBar(
             leading: const CustomBackButton(),

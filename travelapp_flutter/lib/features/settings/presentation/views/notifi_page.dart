@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/notifi_cubit/notifi_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/notifi_cubit/notifi_cubit_states.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/notifi_page_widgets/notifi_page_body.dart';
@@ -42,7 +43,7 @@ class _NotifiPageState extends State<NotifiPage> {
             ),
           );
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CustomLoading());
         }
       }),
     );

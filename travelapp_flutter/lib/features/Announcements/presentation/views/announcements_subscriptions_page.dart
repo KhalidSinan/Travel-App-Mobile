@@ -4,6 +4,7 @@ import 'package:travelapp_flutter/core/helpers/api_service.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/Announcements/presentation/views/widgets/announcements_subscriptions_page_body.dart';
 import 'package:travelapp_flutter/features/announcements/data/repos/announcements_repo_impl.dart';
 import 'package:travelapp_flutter/features/announcements/presentation/view_model/announcement_subscription_cubit/announcement_subcription_cubit.dart';
@@ -30,7 +31,7 @@ class AnnouncementsSubscriptionsPage extends StatelessWidget {
             AnnouncementSubscriptionStates>(
           builder: (context, state) {
             if (state is LoadingGetSubscriptionsState) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(child: CustomLoading());
             } else if (state is FailureGetSubscriptionsState) {
               return Center(
                 child: Text(

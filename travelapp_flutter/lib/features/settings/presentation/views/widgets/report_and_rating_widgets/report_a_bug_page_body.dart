@@ -8,6 +8,7 @@ import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/custom_text_and_text_form.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/report_and_rating_cubit/report_and_rating_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/report_and_rating_cubit/report_and_rating_cubit_states.dart';
@@ -91,7 +92,7 @@ class _ReportABugPageBodyState extends State<ReportABugPageBody> {
             listener: reportABugListener,
             builder: (context, state) {
               return (state is LoadingReportABugState)
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const Center(child: CustomLoading())
                   : Center(
                       child: SizedBox(
                           width: 200,

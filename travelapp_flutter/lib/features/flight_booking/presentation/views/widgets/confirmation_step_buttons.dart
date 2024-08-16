@@ -104,9 +104,9 @@ class _ConfirmationStepButtonsState extends State<ConfirmationStepButtons> {
                                                 context)
                                             .reservationId);
                                 print(
-                                    'http://${getIt.get<ApiService>().baseUrl}/$url');
+                                    '${getIt.get<ApiService>().baseUrl}/$url');
                                 launchUrl(Uri.parse(
-                                    "http://${getIt.get<ApiService>().baseUrl}/$url"));
+                                    "${getIt.get<ApiService>().baseUrl}/$url"));
                               },
                               label: "Confirm",
                               isFlat: true,

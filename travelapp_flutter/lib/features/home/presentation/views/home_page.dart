@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.only(top: 25, bottom: 10),
             child:
                 Image.asset('assets/images/Logo.jpg', width: 120, height: 70),
           ),

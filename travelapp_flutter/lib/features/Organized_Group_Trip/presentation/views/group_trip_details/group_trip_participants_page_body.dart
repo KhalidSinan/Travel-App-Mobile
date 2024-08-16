@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/group_trip_participants_cubit/group_trip_participants_cubit.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/group_trip_participants_cubit/group_trip_participants_states.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/group_trip_details/participant_card.dart';
@@ -35,7 +36,7 @@ class GroupTripParticipantsPageBody extends StatelessWidget {
             if (state is LoadingParticipantsState ||
                 state is LoadingCancelReservationState) {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: CustomLoading(),
               );
             } else if (state is FailureParticipantsState) {
               return Center(

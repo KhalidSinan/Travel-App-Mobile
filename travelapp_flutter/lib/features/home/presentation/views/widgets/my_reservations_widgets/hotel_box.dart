@@ -50,10 +50,12 @@ class HotelBox extends StatelessWidget {
                 children: [
                   Icon(FontAwesomeIcons.hotel, color: Themes.primary, size: 20),
                   const SizedBox(width: 10),
-                  Text(
-                    overflow: TextOverflow.ellipsis,
-                    hotel!.name,
-                    style: const TextStyle(fontSize: 20),
+                  Expanded(
+                    child: Text(
+                      overflow: TextOverflow.ellipsis,
+                      hotel!.name,
+                      style: const TextStyle(fontSize: 20),
+                    ),
                   ),
                 ],
               ),

@@ -5,6 +5,7 @@ import 'package:travelapp_flutter/core/helpers/date_picker.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/custom_button.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_cubit.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model/all_hotel_cubit/all_hotel_states.dart';
@@ -118,7 +119,7 @@ class _SearchFieldsState extends State<SearchFields> {
             BlocBuilder<AllHotelsCubit, AllHotelStates>(
               builder: (context, state) {
                 if (state is LoadingAllHotelStates) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(child: CustomLoading());
                 } else {
                   return SizedBox(
                     width: double.infinity,

@@ -1,10 +1,16 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:travelapp_flutter/core/utils/assets.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/1_persons_days_selection_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/organizing_trip_page.dart';
 
 class ReserveButtons extends StatelessWidget {
@@ -52,10 +58,66 @@ class ReserveButtons extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.32,
                 height: 110,
-                child: GestureDetector(
-                  onTap: () {
-                    Get.to(const OrganizingTripPage());
-                  },
+                child: SpeedDial(
+                  elevation: 0,
+                  overlayOpacity: 0.6,
+                  childrenButtonSize: const Size(100, 100),
+                  backgroundColor: Colors.transparent,
+                  direction: SpeedDialDirection.down,
+                  shape: const CircleBorder(),
+                  children: [
+                    SpeedDialChild(
+                      elevation: 8,
+                      shape: const CircleBorder(),
+                      backgroundColor: Colors.grey[300],
+                      labelWidget: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() =>
+                                  const OrganizingTripPage(groupTrip: false));
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(18),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.grey[300],
+                              ),
+                              child: Column(
+                                children: [
+                                  Icon(FontAwesomeIcons.person,
+                                      color: Themes.primary),
+                                  const Text('Single'),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() =>
+                                  const OrganizingTripPage(groupTrip: true));
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(18),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.grey[300],
+                              ),
+                              child: Column(
+                                children: [
+                                  Icon(FontAwesomeIcons.peopleGroup,
+                                      color: Themes.primary),
+                                  const Text('Group'),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                   child: Card(
                     surfaceTintColor: Colors.white,
                     color: Themes.primary.withOpacity(0.6),
@@ -63,7 +125,7 @@ class ReserveButtons extends StatelessWidget {
                     shape: const CircleBorder(),
                     shadowColor: Colors.grey,
                     child: Padding(
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(5),
                       child: Lottie.asset(
                         Assets.trip,
                         alignment: Alignment.center,

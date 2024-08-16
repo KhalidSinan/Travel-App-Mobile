@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips_cubit/my_trips_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips_cubit/my_trips_state.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/widgets/my_trips_widgets/current_trips.dart';
@@ -43,7 +44,7 @@ class _MyReservationsBodyState extends State<MyTripsBody> {
                 return LatestTrips(isOrganizer: isOrganizer!);
               }
             } else {
-              return const CircularProgressIndicator();
+              return const CustomLoading();
             }
           },
         ),

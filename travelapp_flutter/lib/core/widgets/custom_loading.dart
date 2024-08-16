@@ -6,12 +6,9 @@ class CustomLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Lottie.asset(
-        'assets/animations/loading.json',
-        height: 250,
-        width: 250,
-      ),
-    );
+    return SizedBox(
+      height: 100,
+      width: 100,
+      child: Lottie.asset('assets/animations/loading.json'));
   }
 }
