@@ -24,9 +24,10 @@ import 'package:travelapp_flutter/features/chat/presentation/views/widgets/all_c
 
 class AllChatsTab extends StatefulWidget {
   const AllChatsTab({
-    super.key, required this.controller,
+    super.key,
+    required this.controller,
   });
-final ScrollController controller;
+  final ScrollController controller;
   @override
   State<AllChatsTab> createState() => _AllChatsTabState();
 }
@@ -55,12 +56,16 @@ class _AllChatsTabState extends State<AllChatsTab> {
 
     socket.onConnect((_) {
       print('Connected with the server');
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     });
 
     socket.on('new-message', (data) {
       lastMessages[data['chat_id']] = data['message'];
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     });
 
     socket.onDisconnect((_) {
@@ -124,7 +129,7 @@ class _AllChatsTabState extends State<AllChatsTab> {
             final chats = BlocProvider.of<ChatCubit>(context).chats;
             final count = BlocProvider.of<ChatCubit>(context).count1;
             return ListView(
-              controller: controller,
+              controller: widget.controller,
               children: [
                 Align(
                   alignment: Alignment.centerRight,

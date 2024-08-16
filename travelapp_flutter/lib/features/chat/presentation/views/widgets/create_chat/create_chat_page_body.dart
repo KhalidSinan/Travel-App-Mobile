@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -95,7 +96,9 @@ class _CreateChatPageBodyState extends State<CreateChatPageBody> {
         title: 'Success',
         message: 'Made the $groupName Group',
       );
-      Get.off(() => const AllChatsPage());
+      Get.off(() => AllChatsPage(
+            controller: ScrollController(),
+          ));
     }
     if (state is CreatedChatFailureState) {
       showCustomSnackBar(

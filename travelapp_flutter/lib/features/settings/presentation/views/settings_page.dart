@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:get/get.dart';
-import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/features/settings/presentation/views/profile_page.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/setting_widget.dart/setting_page_body.dart';
 
 class SettingsPage extends StatefulWidget {

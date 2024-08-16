@@ -74,7 +74,7 @@ class _EditingPageBodyState extends State<EditingPageBody> {
                         formKey.currentState!.save();
                         await BlocProvider.of<ProfilePageCubit>(context)
                             .updating();
-                        Get.to(const ProfilePage());
+                        Get.off(const ProfilePage());
                       } else {
                         autovalidateMode = AutovalidateMode.always;
                         setState(() {});
@@ -87,7 +87,7 @@ class _EditingPageBodyState extends State<EditingPageBody> {
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: CustomButton(
                     onPressed: () async {
-                      Get.to(const ProfilePage());
+                      Get.off(const ProfilePage());
                     },
                     color: Themes.third,
                     label: 'Cancel',

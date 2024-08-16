@@ -4,14 +4,13 @@ import 'package:travelapp_flutter/features/chat/presentation/views/widgets/all_c
 
 class AllChatsPage extends StatelessWidget {
   const AllChatsPage({super.key, required this.controller});
-final ScrollController controller;
+  final ScrollController controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const CustomBackButton(),
+      body: SafeArea(
+        child: AllChatsPageBody(controller: controller),
       ),
-      body: AllChatsPageBody(controller: controller),
     );
   }
 }

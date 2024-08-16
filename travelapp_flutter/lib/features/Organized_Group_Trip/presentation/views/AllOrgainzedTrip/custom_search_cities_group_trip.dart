@@ -7,7 +7,6 @@ class CustomSearchCitiesGroupTrip extends SearchDelegate {
 
   CustomSearchCitiesGroupTrip({required this.countries});
 
-
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -40,7 +39,10 @@ class CustomSearchCitiesGroupTrip extends SearchDelegate {
     print(countries);
     List<String> filteredCountries = query.isEmpty
         ? countries
-        : countries.where((country) => country.toLowerCase().contains(query.toLowerCase())).toList();
+        : countries
+            .where((country) =>
+                country.toLowerCase().contains(query.toLowerCase()))
+            .toList();
 
     return ListView.builder(
       itemCount: filteredCountries.length,

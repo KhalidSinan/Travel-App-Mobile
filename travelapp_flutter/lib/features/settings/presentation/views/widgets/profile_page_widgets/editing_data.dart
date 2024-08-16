@@ -59,7 +59,6 @@ class _EditingDataState extends State<EditingData> {
                                 contentPadding: EdgeInsets.only(bottom: 2),
                                 enabledBorder: InputBorder.none,
                                 focusedBorder: InputBorder.none,
-
                               ),
                               onChanged: (value) {
                                 BlocProvider.of<ProfilePageCubit>(context)
@@ -90,6 +89,7 @@ class _EditingDataState extends State<EditingData> {
                                           DateFormat('yyyy-MM-dd');
                                       datecontroller.text =
                                           outputFormat.format(pickeddate);
+
                                       BlocProvider.of<ProfilePageCubit>(context)
                                           .editDate = datecontroller.text;
                                     });
@@ -260,8 +260,7 @@ class _EditingDataState extends State<EditingData> {
   void search() async {
     var searchResult = await showSearch(
       context: context,
-      delegate: 
-       LocationCities(
+      delegate: LocationCities(
           countries: BlocProvider.of<ProfilePageCubit>(context).cities),
     );
     if (searchResult != null) {

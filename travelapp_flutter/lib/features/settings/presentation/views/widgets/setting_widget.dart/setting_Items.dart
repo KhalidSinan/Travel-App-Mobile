@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
+import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
@@ -85,7 +87,8 @@ final List<Map<String, dynamic>> settingsItems = [
           isScrollControlled: true,
           builder: (_) {
             return const RatingAppSheet();
-          });    }
+          });
+    }
   },
   {
     "title": "Delete Account",
@@ -116,9 +119,14 @@ final List<Map<String, dynamic>> settingsItems = [
         descTextStyle: const TextStyle(fontWeight: FontWeight.bold),
         btnCancelColor: Themes.third,
         btnOkColor: Themes.primary,
-        btnCancelOnPress: () {},
-        btnOkOnPress: () {
-            getIt.get<AuthRepoImpl>().token = null;
+        btnCancelOnPress: () {
+          Get.back();
+        },
+        btnOkOnPress: () async {
+          getIt.get<AuthRepoImpl>().token = null;
+          final prefs = getIt.get<SharedPreferences>();
+          await prefs.remove(rememberMeKey);
+          await prefs.remove(tokenKey);
           Get.until(
             (route) => false,
           );

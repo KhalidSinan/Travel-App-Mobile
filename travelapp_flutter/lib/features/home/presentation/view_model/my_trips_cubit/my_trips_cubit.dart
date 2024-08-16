@@ -107,15 +107,4 @@ class MyTripsCubit extends Cubit<MyTripsState> {
   void switchState() {
     emit(MyTripsSuccess());
   }
-<<<<<<< Updated upstream
-=======
-
-  Future<void> getTrips() async {
-    emit(MyTripsLoading());
-    await getMySingleTrips();
-    await getMyGroupTrips();
-    // await getOrganizerTrips();
-    emit(MyTripsSuccess());
-  }
->>>>>>> Stashed changes
 }

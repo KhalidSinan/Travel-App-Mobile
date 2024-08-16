@@ -6,12 +6,8 @@ class ApiService {
   final String baseUrl = 'http://10.0.2.2:5000';
   //10.0.2.2
   final Dio _dio;
-<<<<<<< Updated upstream
-  final String token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjODYwY2VlYmFlZTZmOTBlN2UxYmM4MiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkRhbWVvbiIsImxhc3RfbmFtZSI6IlB1cmR5In0sImlhdCI6MTcyMzc1MDk3OX0.-nm3Pw-LoEiW5hjUQf_YDym9jurLOfdTP68LD8iLsfA';
-=======
   // final String token =
   //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmZmNlNGY1NWYzYzAyZGI5ZjU1Y2I3YyIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6Ik1hcmlhbSIsImxhc3RfbmFtZSI6IkJlcmdzdHJvbSJ9LCJpYXQiOjE3MjM3MzYxOTh9.yxeil1og7S4PvyvJbfLfBm6WwSGBNrNSVgsM5X_DxQk';
->>>>>>> Stashed changes
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get({

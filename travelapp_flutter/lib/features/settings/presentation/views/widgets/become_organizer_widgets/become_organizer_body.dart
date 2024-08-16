@@ -48,7 +48,8 @@ File? personalPicture;
 class _BecomeOrganizerPageBodyState extends State<BecomeOrganizerPageBody> {
   @override
   Widget build(BuildContext context) {
-     String userName = '${BlocProvider.of<ProfilePageCubit>(context).profile!.name.first} ${BlocProvider.of<ProfilePageCubit>(context).profile!.name.last}';
+    String userName =
+        '${BlocProvider.of<ProfilePageCubit>(context).profile!.name.first} ${BlocProvider.of<ProfilePageCubit>(context).profile!.name.last}';
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,
@@ -118,7 +119,7 @@ class _BecomeOrganizerPageBodyState extends State<BecomeOrganizerPageBody> {
                                       text: 'Companies you works its :',
                                       prefixIcon: const Icon(
                                           FontAwesomeIcons.solidBuilding),
-                                      hintText: 'enter the years',
+                                      hintText: 'Enter companies name',
                                       controller: controller3,
                                     ),
                                   ),

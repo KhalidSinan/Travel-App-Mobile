@@ -32,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
         actions: [
           ElevatedButton(
             onPressed: () {
-              Get.to(const EditingPage());
+              Get.off(const EditingPage());
             },
             style: ButtonStyle(
                 elevation: const MaterialStatePropertyAll(0),

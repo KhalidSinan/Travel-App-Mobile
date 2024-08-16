@@ -143,22 +143,6 @@ class _TravelAppState extends State<TravelApp> {
             textTheme: GoogleFonts.aBeeZeeTextTheme(),
           ),
 
-<<<<<<< Updated upstream
-            // home: rememberMe == true
-            //     ? FetchProfileDataPage(token: token)
-            //     : const LoginPage(),
-            // home: const OrganizedGroupTripDetailsPage(
-            //   tripId: '66ba0eb360e2f6d63923d080',
-            //   isOrganizer: true,
-            // ),
-            home: const NavBarPages()
-            // emailVerify == true
-            //     ? EmailConfirmationPage(
-            //         email: emailToVerify!,
-            //       )
-            //     : const LoginPage(),
-            ));
-=======
           home: rememberMe == true
               ? FetchProfileDataPage(token: token)
               : const LoginPage(),
@@ -176,6 +160,5 @@ class _TravelAppState extends State<TravelApp> {
           //       )
           //     : const LoginPage(),
         ));
->>>>>>> Stashed changes
   }
 }
