@@ -7,13 +7,15 @@ import 'package:travelapp_flutter/features/hotel_booking/presentation/view_model
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/widgets/hotel_details_page_widgets/hotel_details_page_body.dart';
 
 class HotelDetailsPage extends StatelessWidget {
-  const HotelDetailsPage(
-      {super.key,
-      required this.hotel,
-      required this.startDate,
-      required this.numDays});
+  const HotelDetailsPage({
+    super.key,
+    required this.hotel,
+    required this.startDate,
+    required this.numDays,
+  });
   final HotelModel hotel;
-  final String? startDate, numDays;
+  final String? startDate;
+  final int? numDays;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -21,7 +23,7 @@ class HotelDetailsPage extends StatelessWidget {
         hotel,
         hotel.roomType,
         startDate,
-        numDays,
+        numDays == null ? '1' : numDays.toString(),
         getIt.get<HotelBookingImp>(),
       ),
       child: const Scaffold(

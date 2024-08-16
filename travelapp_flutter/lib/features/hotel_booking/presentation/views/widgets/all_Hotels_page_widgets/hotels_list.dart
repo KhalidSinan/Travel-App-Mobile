@@ -36,16 +36,17 @@ class HotelsList extends StatelessWidget {
               print(hotels.hotels);
               // http://localhost:5000/images/rooms/00000735.jpg
               return HotelCard(
-                onTap: () => Get.to(
-                  () => HotelDetailsPage(
-                    hotel: hotels.hotels[index],
-                    startDate:
-                        BlocProvider.of<AllHotelsCubit>(context).startDate,
-                    numDays: BlocProvider.of<AllHotelsCubit>(context)
-                        .numDays
-                        .toString(),
-                  ),
-                ),
+                onTap: () {
+                  Get.to(
+                    () => HotelDetailsPage(
+                      hotel: hotels.hotels[index],
+                      startDate:
+                          BlocProvider.of<AllHotelsCubit>(context).startDate,
+                      numDays: BlocProvider.of<AllHotelsCubit>(context)
+                          .numDays,
+                    ),
+                  );
+                },
                 hotel: hotels.hotels[index],
               );
             },

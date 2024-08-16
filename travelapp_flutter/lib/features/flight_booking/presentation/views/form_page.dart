@@ -104,9 +104,12 @@ class _FormPageState extends State<FormPage> {
       //       },
       //     ));
       print(state.reservationId);
-      Get.off(() => ConfirmFlightReservationPage(
-            reservationId: state.reservationId,
-          ));
+      Get.until((route) => route.settings.name == 'flights');
+      Get.off(
+        () => ConfirmFlightReservationPage(
+          reservationId: state.reservationId,
+        ),
+      );
     }
     if (state is FormFailure) {
       Get.to(() => FailurePage(

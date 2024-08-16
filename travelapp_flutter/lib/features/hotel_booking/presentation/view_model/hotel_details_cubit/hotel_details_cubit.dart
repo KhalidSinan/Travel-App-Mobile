@@ -16,7 +16,8 @@ class HotelDetailsCubit extends Cubit<HotelDetailsStates> {
   final HotelModel hotel;
   final List<RoomTypeModel> rooms;
   int selectedRoomType = 0;
-  String? startDate, numDays;
+  String? startDate;
+  String? numDays = '1';
   List<RoomCartModel> selectedRooms = [];
   Map<String, bool> availableRooms = {};
 

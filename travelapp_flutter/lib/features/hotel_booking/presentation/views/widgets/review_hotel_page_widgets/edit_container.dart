@@ -30,14 +30,15 @@ class _EditContainerState extends State<EditContainer> {
     //  اضافة القيم من واجهة سارة أي من الكيوبيت
     DateFormat startDateFormat = DateFormat('dd/MM/yyyy');
     String startDate = startDateFormat.format(DateTime.now());
-    if (BlocProvider.of<HotelDetailsCubit>(context).startDate != null ||
+    if (BlocProvider.of<HotelDetailsCubit>(context).startDate == null ||
         BlocProvider.of<HotelDetailsCubit>(context).startDate!.isEmpty) {
       BlocProvider.of<HotelDetailsCubit>(context).startDate = startDate;
     }
     dateController.text =
         BlocProvider.of<HotelDetailsCubit>(context).startDate!;
-    daysController.text =
-        BlocProvider.of<HotelDetailsCubit>(context).numDays ?? '1';
+    daysController.text = BlocProvider.of<HotelDetailsCubit>(context).numDays!;
+    print(BlocProvider.of<HotelDetailsCubit>(context).numDays);
+
     super.initState();
   }
 
@@ -115,7 +116,7 @@ class _EditContainerState extends State<EditContainer> {
                   readOnly: false,
                   textInputType: TextInputType.number,
                   onSaved: (val) {
-                    BlocProvider.of<HotelDetailsCubit>(context).numDays = val;
+                    BlocProvider.of<HotelDetailsCubit>(context).numDays = val!;
                   },
                 )
               ],

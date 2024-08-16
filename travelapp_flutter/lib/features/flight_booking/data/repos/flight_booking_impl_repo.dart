@@ -199,7 +199,8 @@ class FlightBookingImp extends FlightBookingRepo {
   }
 
   @override
-  Future<Either<Failure, Map<String, dynamic>>> getCountriesAndAirlines() async {
+  Future<Either<Failure, Map<String, dynamic>>>
+      getCountriesAndAirlines() async {
     try {
       Map<String, dynamic> response = await apiService.get(
         endPoint: "/flights/search",
