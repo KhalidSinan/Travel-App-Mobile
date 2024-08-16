@@ -2,15 +2,17 @@ import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/utils/assets.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
+import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/organized_group_trip_details_page.dart';
 import 'package:travelapp_flutter/features/home/data/models/announcement_model.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/home_cubit/home_cubit.dart';
 
 class AnnouncementsSlider extends StatefulWidget {
-  const AnnouncementsSlider({super.key});
-
+  const AnnouncementsSlider({super.key, required this.isOrganizer});
+  final bool isOrganizer;
   @override
   State<AnnouncementsSlider> createState() => _AnnouncementsSliderState();
 }
@@ -65,7 +67,14 @@ class _AnnouncementsSliderState extends State<AnnouncementsSlider> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Get.to(
+                                  () => OrganizedGroupTripDetailsPage(
+                                    tripId: announcement[index].tripId,
+                                    isOrganizer: widget.isOrganizer,
+                                  ),
+                                );
+                              },
                               child: SingleChildScrollView(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,10 +99,13 @@ class _AnnouncementsSliderState extends State<AnnouncementsSlider> {
                                             color: Colors.black54),
                                       ),
                                     ),
+                                    const SizedBox(height: 10),
                                     const Text(
                                       'Tap for more details',
                                       style: TextStyle(
-                                          fontSize: 18, color: Colors.black54),
+                                          fontSize: 15,
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),

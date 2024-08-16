@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart';
-import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/features/home/data/models/group_trips_model.dart';
 import 'package:travelapp_flutter/features/home/data/models/organizer_trips_model.dart';
 import 'package:travelapp_flutter/features/home/data/models/single_trips_model.dart';

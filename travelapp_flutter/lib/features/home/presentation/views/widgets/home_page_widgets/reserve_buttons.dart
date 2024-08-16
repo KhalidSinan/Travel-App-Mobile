@@ -4,8 +4,6 @@ import 'package:lottie/lottie.dart';
 import 'package:travelapp_flutter/core/utils/assets.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/features/flight_booking/presentation/views/plane_page.dart';
-import 'package:travelapp_flutter/features/hotel_booking/presentation/views/hotel_search_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/1_persons_days_selection_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/organizing_trip_page.dart';
 

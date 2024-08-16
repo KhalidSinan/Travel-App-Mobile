@@ -29,7 +29,7 @@ class _LatestReservationsState extends State<LatestTrips> {
     super.initState();
     single = BlocProvider.of<MyTripsCubit>(context).latestSingle;
     group = BlocProvider.of<MyTripsCubit>(context).latestGroup;
-    organizer = BlocProvider.of<MyTripsCubit>(context).currentOrganizer;
+    organizer = BlocProvider.of<MyTripsCubit>(context).latestOrganizer;
   }
 
   @override

@@ -24,12 +24,12 @@ final List<Map<String, dynamic>> settingsItems = [
   //   "color": Colors.blue,
   //   "onTap": () {}
   // },
-  {
-    "title": "General Setting",
-    "icon": Icons.settings,
-    "color": Colors.green,
-    "onTap": () {}
-  },
+  // {
+  //   "title": "General Setting",
+  //   "icon": Icons.settings,
+  //   "color": Colors.green,
+  //   "onTap": () {}
+  // },
   {
     "title": "Security",
     "icon": Icons.security,
