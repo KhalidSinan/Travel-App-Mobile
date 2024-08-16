@@ -10,6 +10,7 @@ import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/nav_bar_pages.dart';
+import 'package:travelapp_flutter/core/widgets/splash_screen.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/data/repos/organized_group_repo_impl.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/orgainzed_group_trip_cubit.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/cancel_organized_group_trip.dart';
@@ -139,7 +140,7 @@ class _TravelAppState extends State<TravelApp> {
 // home: NavBarPages(),
           home: rememberMe == true
               ? FetchProfileDataPage(token: token)
-              : const LoginPage(),
+              : const SplashScreen(),
           // home: const OrganizedGroupTripDetailsPage(
           //   tripId: '66ba0eb360e2f6d63923d080',
           //   isOrganizer: true,
