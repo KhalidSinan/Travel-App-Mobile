@@ -124,15 +124,19 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-  Future<Either<Failure, Map<String, dynamic>>> getTimer() async {
+   Future<Either<Failure, Map<String, dynamic>>> getTimer() async {
+    Map<String, dynamic> response = {};
     try {
-      Map<String, dynamic> response =
-          await apiService.get(endPoint: "/plane-reservations/nearest");
+      response = await apiService.get(endPoint: "/plane-reservations/nearest");
       return right(response);
     } catch (e) {
       if (e is DioException) {
-        return left(
-            Failure.fromDioException(e, getIt.get<DefaultStatusCodeHandler>()));
+        if (e.response!.statusCode == 400) {
+          return right(response);
+        } else {
+          return left(Failure.fromDioException(
+              e, getIt.get<DefaultStatusCodeHandler>()));
+        }
       } else {
         return left(Failure(errMessage: 'Something went wrong'));
       }

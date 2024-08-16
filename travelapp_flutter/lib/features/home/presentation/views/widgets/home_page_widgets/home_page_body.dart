@@ -38,7 +38,6 @@ class _HomePageBodyState extends State<HomePageBody> {
                   AnnouncementsSlider(),
                   SizedBox(height: 20),
                   ReserveButtons(),
-                  SizedBox(height: 10),
                   FlightTimer(),
                   SizedBox(height: 20),
                   MyHistory(),
