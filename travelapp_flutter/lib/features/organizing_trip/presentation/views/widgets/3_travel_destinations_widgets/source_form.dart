@@ -38,6 +38,7 @@ class _SourceFormState extends State<SourceForm> {
               ),
               prefixIcon: const Icon(Icons.flight_takeoff_outlined),
               onTap: () async {
+                print(BlocProvider.of<OrganizingTripCubit>(context).cities);
                 var searchResult = await showSearch(
                   context: context,
                   delegate: CustomSearchCities(

@@ -7,13 +7,10 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelapp_flutter/core/helpers/notification_service.dart';
 import 'package:travelapp_flutter/core/helpers/service_locator.dart';
-import 'package:travelapp_flutter/core/utils/assets.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/core/widgets/nav_bar_pages.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/data/repos/organized_group_repo_impl.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/view_model/OrganizedGroupTripCubit/orgainzed_group_trip_cubit.dart';
-import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/info_organized_group_trip_page.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_cubit/profile_cubit.dart';
@@ -23,16 +20,15 @@ import 'package:travelapp_flutter/features/home/data/repos/home_repo_impl.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/home_cubit/home_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_reservations_cubit/my_reservations_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips_cubit/my_trips_cubit.dart';
-import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/views/organizer_review_page.dart';
-import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/1_persons_days_selection_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_selection_page.dart';
+
 import 'package:travelapp_flutter/features/settings/data/repos/settings_repo_impl.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/delete_account_cubit/delete_account_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/notifi_cubit/notifi_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/report_and_rating_cubit/report_and_rating_cubit.dart';
+import 'package:travelapp_flutter/features/settings/presentation/views/our_team_page.dart';
+import 'package:travelapp_flutter/features/settings/presentation/views/settings_page.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
 // final navigatorKey = GlobalKey<NavigatorState>();
@@ -118,25 +114,33 @@ class _TravelAppState extends State<TravelApp> {
                   ReportAndRatingCubit(getIt.get<SettingsRepoImpl>())),
         ],
         child: GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          getPages: [
-            GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
-            GetPage(name: '/LogIn', page: () => const LoginPage())
-          ],
-          theme: ThemeData(
-            textSelectionTheme: TextSelectionThemeData(
-              cursorColor: Themes.primary,
-              selectionColor: Themes.primary,
-              selectionHandleColor: Themes.primary,
-            ),
-            appBarTheme: const AppBarTheme(
-              color: Colors.white,
-              surfaceTintColor: Colors.white,
-            ),
-            scaffoldBackgroundColor: Colors.white,
-            textTheme: GoogleFonts.aBeeZeeTextTheme(),
-          ),
+            debugShowCheckedModeBanner: false,
+            getPages: [
+              GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
+              GetPage(name: '/LogIn', page: () => const LoginPage())
+            ],
+            theme: ThemeData(
+              textSelectionTheme: TextSelectionThemeData(
+                cursorColor: Themes.primary,
+                selectionColor: Themes.primary,
+                selectionHandleColor: Themes.primary,
+              ),
 
+              // navigatorKey: navigatorKey,
+              // routes: {
+              //    NotifiPage.route :(context) => NotifiPage()
+              // },
+
+              appBarTheme: const AppBarTheme(
+                color: Colors.white,
+                surfaceTintColor: Colors.white,
+              ),
+              scaffoldBackgroundColor: Colors.white,
+              textTheme: GoogleFonts.aBeeZeeTextTheme(),
+            ),
+            home: OurTeamPage(),
+          ),
+ 
             // home: rememberMe == true
             //     ? FetchProfileDataPage(token: token)
             //     : const LoginPage(),
@@ -144,12 +148,15 @@ class _TravelAppState extends State<TravelApp> {
             //   tripId: '66ba0eb360e2f6d63923d080',
             //   isOrganizer: true,
             // ),
-            home: const NavBarPages()
+
+            
+
+
             // emailVerify == true
             //     ? EmailConfirmationPage(
             //         email: emailToVerify!,
             //       )
             //     : const LoginPage(),
-            ));
+            );
   }
 }

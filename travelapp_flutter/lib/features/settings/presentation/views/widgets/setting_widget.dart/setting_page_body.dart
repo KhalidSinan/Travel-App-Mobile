@@ -6,6 +6,7 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/profile_page.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/setting_widget.dart/general_setting_widget.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/setting_widget.dart/other_setting_widget.dart';
+import 'package:travelapp_flutter/features/settings/presentation/views/widgets/setting_widget.dart/report_setting_widget.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/setting_widget.dart/security_widget.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/setting_widget.dart/setting_Items.dart';
 
@@ -56,7 +57,11 @@ final ScrollController controller;
                 );
               } else if (settingsItems[index]["title"] == "General Setting") {
                 return GeneralSettingWidget(index: index);
-              } else {
+              } 
+               else if (settingsItems[index]["title"] == "Report") {
+                return ReportSettingWidget(index: index);
+              } 
+              else {
                 return OtherSettingWidget(
                   index: index,
                 );

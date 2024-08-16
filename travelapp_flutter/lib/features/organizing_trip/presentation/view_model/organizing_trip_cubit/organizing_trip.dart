@@ -76,6 +76,7 @@ class OrganizingTripCubit extends Cubit<OrganizingTripStates> {
       for (var i = 0; i < response['cities'].length; i++) {
         cities.add(CountryModel.fromJson(response["cities"][i]));
       }
+      print("==================$cities");
       print(response);
       emit(SuccessCheckAvailableFlight());
     });

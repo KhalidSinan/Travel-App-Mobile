@@ -10,7 +10,7 @@ import 'package:travelapp_flutter/features/organizing_trip/presentation/views/wi
 class OrganizingTripPage extends StatefulWidget {
   const OrganizingTripPage({
     super.key,
-    this.groupTrip = false,
+    this.groupTrip = true,
   });
   final bool groupTrip;
 

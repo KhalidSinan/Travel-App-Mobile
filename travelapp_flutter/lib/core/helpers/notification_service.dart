@@ -23,15 +23,14 @@ class NotificationService {
   static void handleMessage(RemoteMessage? message) {
     if (message == null) return;
 
-    // ScrollController scrollController = ScrollController();
-    // Get.to(() => HomePage(controller : scrollController));
-
     if (message.data['type'] == "/notification-screen") {
-      Get.to(() => const NavBarPages(initIndex: 3,));
+      Get.to(() => const NavBarPages(
+            initIndex: 3,
+          ));
     }
 
     if (message.data['type'] == "/home-screen") {
-      Get.to(() => const NavBarPages());
+      Get.to(() => const NavBarPages(initIndex: 0,));
     }
 
     if (message.data['type'] == "/myTrips-screen") {
@@ -43,9 +42,14 @@ class NotificationService {
     }
 
     if (message.data['type'] == "/shareTrip-screen") {
-      Get.to(() => const ShareTripPage(id: ''));
+      String extraData = message.data['extra'];
+      Map<String, dynamic> extraMap = jsonDecode(extraData);
+      print(extraMap['id']);
+      Get.to(() => ShareTripPage(id: extraMap['id']));
     }
   }
+
+
 
   Future initLocalNotifications() async {
     const android = AndroidInitializationSettings('@drawable/ic_launcher');
