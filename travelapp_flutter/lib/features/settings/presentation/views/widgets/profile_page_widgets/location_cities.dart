@@ -36,7 +36,7 @@ class LocationCities extends SearchDelegate {
     List<String> cities = [];
     List<String> country = [];
 
-    for (int i = 0; i < 249; i++) {
+    for (int i = 0; i < countries.length; i++) {
       sum += countries[i].cities.length;
       if (countries[i].cities.isEmpty) {
         country.add(countries[i].countryName);
