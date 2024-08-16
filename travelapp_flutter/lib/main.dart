@@ -17,21 +17,11 @@ import 'package:travelapp_flutter/features/auth/presentation/view_model/profile_
 import 'package:travelapp_flutter/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/fetch_profile_data_page.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
-import 'package:travelapp_flutter/features/chat/presentation/views/all_chats.dart';
-import 'package:travelapp_flutter/features/flight_booking/presentation/views/all_flights_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/plane_page.dart';
 import 'package:travelapp_flutter/features/home/data/repos/home_repo_impl.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/home_cubit/home_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_reservations_cubit/my_reservations_cubit.dart';
 import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips_cubit/my_trips_cubit.dart';
-<<<<<<< HEAD
-import 'package:travelapp_flutter/features/home/presentation/views/home_page.dart';
-import 'package:travelapp_flutter/features/organizer_report_and_review/presentation/views/organizer_review_page.dart';
-import 'package:travelapp_flutter/features/organizing_trip/data/repos/organizing_trip_repo_impl.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/1_persons_days_selection_page.dart';
-=======
->>>>>>> d7d934584a424f7c1f6990003654c6ce4ac59de9
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_selection_page.dart';
 
 import 'package:travelapp_flutter/features/settings/data/repos/settings_repo_impl.dart';
@@ -39,8 +29,6 @@ import 'package:travelapp_flutter/features/settings/presentation/view_model/dele
 import 'package:travelapp_flutter/features/settings/presentation/view_model/notifi_cubit/notifi_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/report_and_rating_cubit/report_and_rating_cubit.dart';
-import 'package:travelapp_flutter/features/settings/presentation/views/our_team_page.dart';
-import 'package:travelapp_flutter/features/settings/presentation/views/settings_page.dart';
 import 'package:travelapp_flutter/firebase_options.dart';
 
 // final navigatorKey = GlobalKey<NavigatorState>();
@@ -126,7 +114,6 @@ class _TravelAppState extends State<TravelApp> {
                   ReportAndRatingCubit(getIt.get<SettingsRepoImpl>())),
         ],
         child: GetMaterialApp(
-<<<<<<< HEAD
           debugShowCheckedModeBanner: false,
           getPages: [
             GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
@@ -164,51 +151,5 @@ class _TravelAppState extends State<TravelApp> {
           //       )
           //     : const LoginPage(),
         ));
-=======
-            debugShowCheckedModeBanner: false,
-            getPages: [
-              GetPage(name: '/hotels', page: () => const HotelSelectionPage()),
-              GetPage(name: '/LogIn', page: () => const LoginPage())
-            ],
-            theme: ThemeData(
-              textSelectionTheme: TextSelectionThemeData(
-                cursorColor: Themes.primary,
-                selectionColor: Themes.primary,
-                selectionHandleColor: Themes.primary,
-              ),
-
-              // navigatorKey: navigatorKey,
-              // routes: {
-              //    NotifiPage.route :(context) => NotifiPage()
-              // },
-
-              appBarTheme: const AppBarTheme(
-                color: Colors.white,
-                surfaceTintColor: Colors.white,
-              ),
-              scaffoldBackgroundColor: Colors.white,
-              textTheme: GoogleFonts.aBeeZeeTextTheme(),
-            ),
-            home: OurTeamPage(),
-          ),
- 
-            // home: rememberMe == true
-            //     ? FetchProfileDataPage(token: token)
-            //     : const LoginPage(),
-            // home: const OrganizedGroupTripDetailsPage(
-            //   tripId: '66ba0eb360e2f6d63923d080',
-            //   isOrganizer: true,
-            // ),
-
-            
-
-
-            // emailVerify == true
-            //     ? EmailConfirmationPage(
-            //         email: emailToVerify!,
-            //       )
-            //     : const LoginPage(),
-            );
->>>>>>> d7d934584a424f7c1f6990003654c6ce4ac59de9
   }
 }
