@@ -16,6 +16,7 @@ import 'package:travelapp_flutter/core/widgets/custom_oval_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_sheet.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
 import 'package:travelapp_flutter/core/widgets/custom_text_form_field.dart';
+import 'package:travelapp_flutter/core/widgets/nav_bar_pages.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/data/models/participant_model.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/all_orgainzed_trip_page.dart';
 import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/views/group_trip_details/participant_card.dart';
@@ -64,7 +65,7 @@ class OrganizerReportPage extends StatelessWidget {
                 const SizedBox(height: 24),
                 CustomOvalButton(
                   onPressed: () {
-                   // Get.off(() => const AllOrganizedGroupTrips(controller: null,));
+                   Get.off(() => NavBarPages(initIndex: 1,));
                   },
                   color: Themes.primary,
                   label: 'Participate with one',

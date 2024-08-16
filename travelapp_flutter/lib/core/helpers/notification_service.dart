@@ -1,19 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:travelapp_flutter/core/widgets/nav_bar_pages.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/my_reservations_page.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/my_trips.dart';
-import 'package:travelapp_flutter/features/home/presentation/views/widgets/home_page_widgets/home_page_body.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/share_trip.dart';
-import 'package:travelapp_flutter/features/settings/presentation/views/notifi_page.dart';
-import 'package:travelapp_flutter/features/settings/presentation/views/our_team_page.dart';
-import 'package:travelapp_flutter/main.dart';
 
 class NotificationService {
   final _firebaseMessaging = FirebaseMessaging.instance;
