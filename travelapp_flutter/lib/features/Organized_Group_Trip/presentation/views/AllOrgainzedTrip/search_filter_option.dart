@@ -35,6 +35,39 @@ class _OptionsSearchAndFilterState extends State<OptionsSearchAndFilter> {
                     borderSide: BorderSide(color: Themes.primary),
                     borderRadius: BorderRadius.circular(15),
                   ),
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        searchController1.text = '';
+                        BlocProvider.of<OrganizedGroupCubit>(context).source =
+                            null;
+                        BlocProvider.of<OrganizedGroupCubit>(context).getAllOrganizedTrips(
+                            source: BlocProvider.of<OrganizedGroupCubit>(context)
+                                .source,
+                            page: BlocProvider.of<OrganizedGroupCubit>(context)
+                                .page,
+                            startDate:
+                                BlocProvider.of<OrganizedGroupCubit>(context)
+                                    .startDate,
+                            endDate:
+                                BlocProvider.of<OrganizedGroupCubit>(context)
+                                    .endDate,
+                            startPrice:
+                                BlocProvider.of<OrganizedGroupCubit>(context)
+                                    .minPrice,
+                            endPrice:
+                                BlocProvider.of<OrganizedGroupCubit>(context)
+                                    .maxPrice,
+                            types: BlocProvider.of<OrganizedGroupCubit>(context)
+                                .selectedTypes,
+                            countries:
+                                BlocProvider.of<OrganizedGroupCubit>(context)
+                                    .selectedCountries,
+                            tab: BlocProvider.of<OrganizedGroupCubit>(context)
+                                .currentTab);
+                      },
+                      icon: const Icon(
+                        FontAwesomeIcons.close,
+                      )),
                   hintText: "Search by source city",
                   onTap: () async {
                     var searchResult = await showSearch(

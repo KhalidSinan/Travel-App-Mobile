@@ -35,7 +35,9 @@ class LoginCubit extends Cubit<LoginStates> {
     final prefs = getIt.get<SharedPreferences>();
     if (!rememberMe) {
       await prefs.remove(rememberMeKey);
+      return;
     }
     await prefs.setBool(rememberMeKey, rememberMe);
+    await prefs.setString(tokenKey, _authRepoImpl.token!);
   }
 }
