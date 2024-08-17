@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
@@ -27,6 +28,8 @@ class GroupTripParticipantsPageBody extends StatelessWidget {
                   message: state.failure.errMessage.toString());
             }
             if (state is SuccessCancelReservationState) {
+              Get.back();
+              Get.back();
               showCustomSnackBar(
                   title: 'Cancel Success',
                   message: 'Cancel Reservation Successfully');

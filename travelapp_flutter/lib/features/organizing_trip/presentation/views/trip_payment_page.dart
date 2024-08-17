@@ -9,6 +9,7 @@ import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
 import 'package:travelapp_flutter/core/widgets/paypal_widget.dart';
 import 'package:travelapp_flutter/features/announcements/presentation/views/announcements_subscriptions_page.dart';
+import 'package:travelapp_flutter/features/chat/presentation/views/welcome_chat.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/repos/flight_booking_impl_repo.dart';
 import 'package:travelapp_flutter/features/hotel_booking/data/repos/hotel_booking_impl_repo.dart';
@@ -96,8 +97,7 @@ class TripPaymentPageBody extends StatelessWidget {
                     onSuccess: () {
                       Get.back();
                       Get.back();
-                      Get.off(AnnouncementsSubscriptionsPage(
-                          tripId: state.organizedTripId));
+                      Get.off(const WelcomeChat());
                     },
                   ));
             }
