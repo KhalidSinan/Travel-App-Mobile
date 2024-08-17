@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:socket_io_client/socket_io_client.dart' as Io;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +32,6 @@ class ChatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(chat.lastMessage);
     return Container(
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.only(bottom: 16),

@@ -22,7 +22,7 @@ class ChatModel {
       startDate: jsonData['start_date'],
       endDate: jsonData['end_date'],
       numberOfPeople: jsonData['num_of_people'],
-      lastMessage: jsonData['last_message'],
+      lastMessage: jsonData['last_message'] ?? '',
     );
   }
 }
