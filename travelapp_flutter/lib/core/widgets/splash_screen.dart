@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
+import 'package:travelapp_flutter/features/on_baoarding/presentation/views/onBoarding_screen.dart';
 import 'package:video_player/video_player.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,6 +16,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+  }
+
+  Future<void> initializeController() async {
     _controller = VideoPlayerController.asset('assets/videos/journeyjoy.mp4')
       ..initialize().then(
         (_) {
@@ -24,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
             },
           );
         },
-      ).whenComplete(() => Get.to(const LoginPage()));
+      ).whenComplete(() => Get.off(() => const OnBoarding()));
   }
 
   @override
@@ -37,12 +41,19 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _controller.value.isInitialized
-            ? AspectRatio(
+        child: FutureBuilder(
+          future: initializeController(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return AspectRatio(
                 aspectRatio: _controller.value.aspectRatio,
                 child: VideoPlayer(_controller),
-              )
-            : Container(),
+              );
+            } else {
+              return Container();
+            }
+          },
+        ),
       ),
     );
   }
