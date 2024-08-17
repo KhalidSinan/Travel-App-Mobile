@@ -7,8 +7,8 @@ import 'package:travelapp_flutter/features/chat/presentation/view_model/chat_cub
 import 'package:travelapp_flutter/features/chat/presentation/views/widgets/create_chat/create_chat_page_body.dart';
 
 class CreateChatPage extends StatelessWidget {
-  const CreateChatPage({super.key});
-
+  const CreateChatPage({super.key, required this.tripId});
+  final String tripId;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -17,7 +17,7 @@ class CreateChatPage extends StatelessWidget {
         appBar: AppBar(
           leading: const CustomBackButton(),
         ),
-        body: const CreateChatPageBody(),
+        body: CreateChatPageBody(tripId: tripId),
       ),
     );
   }
