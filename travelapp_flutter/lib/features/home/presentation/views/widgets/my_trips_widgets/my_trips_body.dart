@@ -20,8 +20,7 @@ class _MyReservationsBodyState extends State<MyTripsBody> {
   @override
   void initState() {
     super.initState();
-    isOrganizer = false;
-    // BlocProvider.of<ProfilePageCubit>(context).organizer
+    isOrganizer = BlocProvider.of<ProfilePageCubit>(context).organizer;
     getSingleTrips();
     if (isOrganizer == true) {
       getOrganizerTrips();
