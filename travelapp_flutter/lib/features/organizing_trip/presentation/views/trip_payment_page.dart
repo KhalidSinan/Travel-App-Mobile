@@ -97,7 +97,7 @@ class TripPaymentPageBody extends StatelessWidget {
                     onSuccess: () {
                       Get.back();
                       Get.back();
-                      Get.off(const WelcomeChat());
+                      Get.off(() => const WelcomeChat());
                     },
                   ));
             }
