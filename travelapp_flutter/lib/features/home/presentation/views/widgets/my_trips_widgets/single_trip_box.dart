@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:text_marquee/text_marquee.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/home/data/models/single_trips_model.dart';
+import 'package:travelapp_flutter/features/hotel_booking/presentation/views/review_page.dart';
+import 'package:travelapp_flutter/features/organizing_trip/presentation/views/7_review_orgnizing_trip_page.dart';
 
 class SingleTripBox extends StatelessWidget {
   const SingleTripBox({super.key, required this.single});
@@ -14,7 +17,9 @@ class SingleTripBox extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Get.to(() => ReviewOrgnizingTrip());
+        },
         child: Container(
           width: double.infinity,
           margin: const EdgeInsets.symmetric(vertical: 10),
