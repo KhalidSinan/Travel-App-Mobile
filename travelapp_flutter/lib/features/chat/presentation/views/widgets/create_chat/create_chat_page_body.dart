@@ -15,8 +15,7 @@ import 'package:travelapp_flutter/features/chat/presentation/view_model/chat_cub
 import 'package:travelapp_flutter/features/chat/presentation/views/all_chats.dart';
 
 class CreateChatPageBody extends StatefulWidget {
-  const CreateChatPageBody(
-      {super.key, this.tripId = '66b5e99b7a604121637e91dd'});
+  const CreateChatPageBody({super.key, required this.tripId});
   final String tripId;
   @override
   State<CreateChatPageBody> createState() => _CreateChatPageBodyState();

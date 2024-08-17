@@ -11,7 +11,8 @@ import 'package:travelapp_flutter/core/widgets/custom_text_button.dart';
 import 'package:travelapp_flutter/features/chat/presentation/views/create_chat_page.dart';
 
 class WelcomeChat extends StatelessWidget {
-  const WelcomeChat({super.key});
+  const WelcomeChat({super.key, required this.tripId});
+  final String tripId;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,7 @@ class WelcomeChat extends StatelessWidget {
                       child: CustomButton(
                         onPressed: () {
                           Get.off(
-                            () => const CreateChatPage(),
+                            () => CreateChatPage(tripId: tripId),
                             transition: Transition.fade,
                           );
                         },

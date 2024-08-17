@@ -99,7 +99,9 @@ class TripPaymentPageBody extends StatelessWidget {
               //     ));
               Get.back();
               Get.back();
-              Get.off(() => const WelcomeChat());
+              Get.off(() => WelcomeChat(
+                    tripId: state.organizedTripId,
+                  ));
             }
           },
           builder: (context, state) {
