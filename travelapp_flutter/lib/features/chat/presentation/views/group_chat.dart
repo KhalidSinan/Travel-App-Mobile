@@ -9,12 +9,17 @@ import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:socket_io_client/socket_io_client.dart' as Io;
 import 'package:travelapp_flutter/core/widgets/custom_loading.dart';
+import 'package:travelapp_flutter/features/chat/data/models/chat_model.dart';
 
 class GroupChat extends StatefulWidget {
+  const GroupChat({
+    super.key,
+    required this.socket,
+    required this.chat,
+  });
+
   final Io.Socket socket;
-
-  const GroupChat({super.key, required this.socket});
-
+  final ChatModel chat;
   @override
   _GroupChatState createState() => _GroupChatState();
 }
@@ -183,7 +188,7 @@ class _GroupChatState extends State<GroupChat> {
             ),
           ),
           title: Text(
-            "Journey Joy Chat",
+            widget.chat.name,
             style: Styles.heading2.copyWith(fontSize: 16),
           ),
           actions: [
@@ -191,7 +196,7 @@ class _GroupChatState extends State<GroupChat> {
               padding: const EdgeInsets.only(right: 16.0),
               child: Center(
                 child: Text(
-                  "12/12",
+                  widget.chat.numberOfPeople,
                   style: TextStyle(color: Themes.primary),
                 ),
               ),
@@ -289,7 +294,7 @@ class _GroupChatState extends State<GroupChat> {
                                         width: 200,
                                         fit: BoxFit.cover,
                                         placeholder: (context, url) =>
-                                       CustomLoading(),
+                                            const CustomLoading(),
                                         errorWidget: (context, url, error) =>
                                             const Icon(Icons.error),
                                       ),

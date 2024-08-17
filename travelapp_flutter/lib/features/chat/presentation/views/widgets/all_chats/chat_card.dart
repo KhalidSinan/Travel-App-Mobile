@@ -144,7 +144,10 @@ class ChatCard extends StatelessWidget {
     if (errorMessage != null) {
       showCustomSnackBar(title: 'Chat Error', message: errorMessage!);
     } else {
-      Get.to(() => GroupChat(socket: socket!));
+      Get.to(() => GroupChat(
+            socket: socket!,
+            chat: chat,
+          ));
     }
   }
 }
