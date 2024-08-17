@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:travelapp_flutter/core/helpers/hotel.dart';
 import 'package:travelapp_flutter/core/utils/constants.dart';
 import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/widgets/back_button.dart';
@@ -28,9 +29,10 @@ class HotelDetailsPageBody extends StatelessWidget {
               elevation: 0,
               expandedHeight: MediaQuery.sizeOf(context).height * 0.25,
               leading: getBackButton(),
-              flexibleSpace: const FlexibleSpaceBar(
+              flexibleSpace: FlexibleSpaceBar(
                 background: ImageSlider(
-                  images: ["assets/images/hotel.jpg"],
+                  images: hotel.images,
+                  network: true,
                 ),
               ),
             ),

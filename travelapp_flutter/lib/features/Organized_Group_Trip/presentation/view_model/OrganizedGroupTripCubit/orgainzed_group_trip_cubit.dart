@@ -89,7 +89,17 @@ class OrganizedGroupCubit extends Cubit<OrganizedGroupCubitState> {
 
   Future<void> changePage(int page) async {
     this.page = page;
-    await getAllOrganizedTrips(page: page);
+    await getAllOrganizedTrips(
+      page: page,
+      endDate: endDate,
+      startDate: startDate,
+      endPrice: maxPrice,
+      startPrice: minPrice,
+      source: source,
+      tab: currentTab,
+      types: selectedTypes,
+      countries: selectedCountries,
+    );
   }
 
   void changeTab(String tab) {
