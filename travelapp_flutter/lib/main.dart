@@ -29,6 +29,7 @@ import 'package:travelapp_flutter/features/home/presentation/view_model/my_trips
 import 'package:travelapp_flutter/features/home/presentation/views/home_page.dart';
 import 'package:travelapp_flutter/features/home/presentation/views/my_trips.dart';
 import 'package:travelapp_flutter/features/hotel_booking/presentation/views/hotel_search_page.dart';
+import 'package:travelapp_flutter/features/on_baoarding/presentation/views/onBoarding_screen.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/5_hotel_selection_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/share_trip.dart';
 

@@ -13,11 +13,17 @@ import 'package:travelapp_flutter/core/utils/styles.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/organizing_trip_page.dart';
 
-class ReserveButtons extends StatelessWidget {
+class ReserveButtons extends StatefulWidget {
   const ReserveButtons({super.key});
 
   @override
+  State<ReserveButtons> createState() => _ReserveButtonsState();
+}
+
+class _ReserveButtonsState extends State<ReserveButtons> {
+  @override
   Widget build(BuildContext context) {
+    ValueNotifier<bool> isDialOpen = ValueNotifier(false);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -61,6 +67,7 @@ class ReserveButtons extends StatelessWidget {
                 child: SpeedDial(
                   elevation: 0,
                   overlayOpacity: 0.6,
+                  openCloseDial: isDialOpen,
                   childrenButtonSize: const Size(100, 100),
                   backgroundColor: Colors.transparent,
                   direction: SpeedDialDirection.down,
@@ -77,6 +84,7 @@ class ReserveButtons extends StatelessWidget {
                             onTap: () {
                               Get.to(() =>
                                   const OrganizingTripPage(groupTrip: false));
+                              isDialOpen.value = false;
                             },
                             child: Container(
                               padding: const EdgeInsets.all(18),
@@ -98,6 +106,7 @@ class ReserveButtons extends StatelessWidget {
                             onTap: () {
                               Get.to(() =>
                                   const OrganizingTripPage(groupTrip: true));
+                              isDialOpen.value = false;
                             },
                             child: Container(
                               padding: const EdgeInsets.all(18),
