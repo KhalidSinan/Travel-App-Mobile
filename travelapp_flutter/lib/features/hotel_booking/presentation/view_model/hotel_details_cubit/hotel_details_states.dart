@@ -12,7 +12,11 @@ class FilterRoomType extends HotelDetailsStates {}
 
 class InitialReviewHotelState extends HotelDetailsStates {}
 
-class SuccessReviewHotelState extends HotelDetailsStates {}
+class SuccessReviewHotelState extends HotelDetailsStates {
+  final String hotelId;
+
+  SuccessReviewHotelState({required this.hotelId});
+}
 
 class LoadingReviewHotelState extends HotelDetailsStates {}
 

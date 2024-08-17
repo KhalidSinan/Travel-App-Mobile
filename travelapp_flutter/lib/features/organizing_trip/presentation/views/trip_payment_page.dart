@@ -82,24 +82,24 @@ class TripPaymentPageBody extends StatelessWidget {
         child: BlocConsumer<TripPaymentCubit, TripPaymentState>(
           listener: (context, state) {
             if (state is TripCreateSuccessState) {
-              Get.to(() => PayPal(
-                    url:
-                        '${getIt.get<ApiService>().baseUrl}/trips/${state.tripId}/pay',
-                    onSuccess: () {
-                      Get.back();
-                      Get.back();
-                    },
-                  ));
+              // Get.to(() => PayPal(
+              //       url:
+              //           '${getIt.get<ApiService>().baseUrl}/trips/${state.tripId}/pay',
+              //       onSuccess: () {
+              //       },
+              //     ));
+              Get.back();
+              Get.back();
             } else if (state is GroupTripCreateSuccessState) {
-              Get.to(() => PayPal(
-                    url:
-                        '${getIt.get<ApiService>().baseUrl}/trips/${state.tripId}/pay',
-                    onSuccess: () {
-                      Get.back();
-                      Get.back();
-                      Get.off(() => const WelcomeChat());
-                    },
-                  ));
+              // Get.to(() => PayPal(
+              //       url:
+              //           '${getIt.get<ApiService>().baseUrl}/trips/${state.tripId}/pay',
+              //       onSuccess: () {
+              //       },
+              //     ));
+              Get.back();
+              Get.back();
+              Get.off(() => const WelcomeChat());
             }
           },
           builder: (context, state) {

@@ -3,14 +3,9 @@ import 'package:travelapp_flutter/core/helpers/service_locator.dart';
 import 'package:travelapp_flutter/features/auth/data/repos/auth_repo_impl.dart';
 
 class ApiService {
-<<<<<<< Updated upstream
-  // final String baseUrl = 'http://10.0.2.2:5000';
-  final String baseUrl = 'https://16f9-149-34-244-136.ngrok-free.app';
-=======
   final String baseUrl = 'https://16f9-149-34-244-136.ngrok-free.app';
   //10.0.2.2
   // final String baseUrl = 'https://ba13-185-180-222-95.ngrok-free.app';
->>>>>>> Stashed changes
   final Dio _dio;
 
   // final String token =

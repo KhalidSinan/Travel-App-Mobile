@@ -97,7 +97,7 @@ class HotelDetailsCubit extends Cubit<HotelDetailsStates> {
       }
     }, (res) {
       print(res);
-      emit(SuccessReviewHotelState());
+      emit(SuccessReviewHotelState(hotelId: res['_id']));
     });
   }
 }
