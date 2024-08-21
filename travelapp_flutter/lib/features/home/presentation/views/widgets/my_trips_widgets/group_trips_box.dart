@@ -23,6 +23,7 @@ class GroupTripBox extends StatelessWidget {
           Get.to(() => OrganizedGroupTripDetailsPage(
                 tripId: isOrganizer ? organizer!.id : group!.id,
                 isOrganizer: isOrganizer,
+                subscribed: !isOrganizer,
               ));
         },
         child: Container(
