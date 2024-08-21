@@ -1,5 +1,5 @@
 class AnnouncementSubscriptionModel {
-  final int price;
+  final dynamic price;
   final int duration;
   final String place;
 

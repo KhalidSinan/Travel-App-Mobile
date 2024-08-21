@@ -12,7 +12,7 @@ class OneWayFlightModel {
   final DateInfo arrival;
   final String duration;
   final List<PassengerModel>? reservations;
-  final double flightPrice;
+  final String flightPrice;
   OneWayFlightModel({
     required this.id,
     required this.airline,
@@ -44,7 +44,8 @@ class OneWayFlightModel {
       arrival: DateInfo.fromJson(jsonData['arrival_date']),
       duration: jsonData['duration'].toString(),
       reservations: reservations,
-      flightPrice: jsonData['price'] ?? jsonData['flight_price'],
+      flightPrice:
+          jsonData['price'].toString() ?? jsonData['flight_price'].toString(),
     );
   }
 }

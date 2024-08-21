@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:travelapp_flutter/core/utils/themes.dart';
 import 'package:travelapp_flutter/features/auth/presentation/views/login_page.dart';
 import 'package:travelapp_flutter/features/on_baoarding/data/models/pages_list.dart';
 import 'package:travelapp_flutter/features/on_baoarding/presentation/views/widget/custom_container_next.dart';
@@ -34,7 +34,7 @@ class OnBoarding extends StatelessWidget {
         dotsDecorator: DotsDecorator(
             activeSize: const Size(30, 10),
             color: Colors.black26,
-            activeColor: const Color(0xff6c63ff),
+            activeColor: Themes.primary,
             spacing: const EdgeInsets.symmetric(horizontal: 3),
             activeShape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(25),
