@@ -31,7 +31,7 @@ class NotificationService {
             initIndex: 3,
           ));
     }
-    
+
     // عند اضافة اعلان بالداشبورد ارسال اشعار عام
     if (message.data['type'] == "/home-screen") {
       Get.to(() => const NavBarPages(
@@ -83,7 +83,7 @@ class NotificationService {
   }
 
   Future initLocalNotifications() async {
-    const android = AndroidInitializationSettings('@drawable/ic_launcher');
+    const android = AndroidInitializationSettings('@drawable/logo');
 
     const setting = InitializationSettings(
       android: android,
@@ -124,7 +124,7 @@ class NotificationService {
             android: AndroidNotificationDetails(
                 _androiChannel.id, _androiChannel.name,
                 channelDescription: _androiChannel.description,
-                icon: '@drawable/ic_launcher'),
+                icon: '@drawable/logo'),
           ),
           payload: jsonEncode(message.toMap()));
     });

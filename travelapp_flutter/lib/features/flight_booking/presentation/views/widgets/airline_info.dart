@@ -17,7 +17,7 @@ class AirlineInfo extends StatelessWidget {
         CircleAvatar(
           backgroundColor: Colors.white,
           radius: 20,
-          backgroundImage: NetworkImage('${getIt.get<ApiService>().baseUrl}/${airline.logo!}'),
+          backgroundImage: NetworkImage(airline.logo!),
         ),
         const SizedBox(width: 8),
         SizedBox(

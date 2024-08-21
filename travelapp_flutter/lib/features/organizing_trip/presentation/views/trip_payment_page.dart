@@ -94,8 +94,7 @@ class TripPaymentPageBody extends StatelessWidget {
               // Get.to(() => PayPal(
               //       url:
               //           '${getIt.get<ApiService>().baseUrl}/trips/${state.tripId}/pay',
-              //       onSuccess: () {
-              //       },
+              //       onSuccess: () {},
               //     ));
               Get.back();
               Get.back();

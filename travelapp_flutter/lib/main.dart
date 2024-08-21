@@ -142,19 +142,6 @@ class _TravelAppState extends State<TravelApp> {
           home: rememberMe == true
               ? FetchProfileDataPage(token: token)
               : const SplashScreen(),
-          // home: const OrganizedGroupTripDetailsPage(
-          //   tripId: '66ba0eb360e2f6d63923d080',
-          //   isOrganizer: true,
-          // ),
-          // home: const OrganizerReviewPage(
-          //   tripId: '66bde5102c01e74d54006c7e',
-          //   organizerName: 'Khalid Sinan',
-          // )
-          // emailVerify == true
-          //     ? EmailConfirmationPage(
-          //         email: emailToVerify!,
-          //       )
-          //     : const LoginPage(),
         ));
   }
 }
