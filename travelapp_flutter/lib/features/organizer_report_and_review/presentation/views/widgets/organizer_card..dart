@@ -32,7 +32,7 @@ class OrganizerCard extends StatelessWidget {
         children: [
           Image(
             image: NetworkImage(
-                "${getIt.get<ApiService>().baseUrl}/${organizer.picture}"),
+                "${organizer.picture}"),
             width: 40,
             height: 40,
           ),

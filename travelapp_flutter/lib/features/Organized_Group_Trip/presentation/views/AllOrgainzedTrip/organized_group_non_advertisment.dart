@@ -88,7 +88,7 @@ class OrganizedGroupNonAdvertisment extends StatelessWidget {
                         SizedBox(width: padding),
                         Flexible(
                           child: Text(
-                            '${oneTrip!.destinations[0]}-${oneTrip!.destinations[1]}',
+                            '${oneTrip!.destinations[0]}}',
                             maxLines: 2,
                             style: TextStyle(
                               color: Colors.black,
