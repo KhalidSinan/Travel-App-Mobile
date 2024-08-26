@@ -48,6 +48,7 @@ class _OrganzierReportSheetState extends State<OrganzierReportSheet> {
                   'Your report request have been sent successfully, we will check it as soon as possible',
             ),
           );
+          Get.back();
         }
       },
       builder: (context, state) {

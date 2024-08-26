@@ -268,10 +268,11 @@ class _EditingDataState extends State<EditingData> {
       delegate: CustomSearchCities(
           countries: BlocProvider.of<ProfilePageCubit>(context).cities),
     );
+
     if (searchResult != null) {
       setState(() {
-        searchcontroller1.text = searchResult[0];
-        searchcontroller2.text = searchResult[1];
+         searchcontroller1.text = searchResult['city'];
+        searchcontroller2.text = searchResult['country'];
         BlocProvider.of<ProfilePageCubit>(context).editCity =
             searchcontroller1.text;
         BlocProvider.of<ProfilePageCubit>(context).editCountry =
