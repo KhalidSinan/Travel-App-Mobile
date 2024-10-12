@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:travelapp_flutter/core/helpers/snack_bar.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/hotel_for_destination_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/data/models/hotel_reservation_model.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_information_cubit/hotel_information_cubit.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/hotel_information_cubit/hotel_information_states.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/6_schedule_page.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/7_review_orgnizing_trip_page.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/5_hotel_selection_widgets/city_and_hotel_select_card_.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelapp_flutter/core/widgets/next_button.dart';

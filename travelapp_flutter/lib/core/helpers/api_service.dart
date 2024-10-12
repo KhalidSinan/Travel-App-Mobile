@@ -6,9 +6,6 @@ class ApiService {
   // final String baseUrl = 'http://10.0.2.2:5000';
   final String baseUrl = 'https://55d6-5-155-226-130.ngrok-free.app';
   final Dio _dio;
-
-  // final String token =
-  //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBkOTVhMjZmZjk4NWY2ZWUxYzBjNjkwZiIsIm5hbWUiOnsiZmlyc3RfbmFtZSI6IkRhdm9udGUiLCJsYXN0X25hbWUiOiJSb29iIn0sImlhdCI6MTcyMzgxMjA3N30._sU36wrll7j_pj_zuOXUclRjZyTYxoNVZfxj7reI1VA';
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get({

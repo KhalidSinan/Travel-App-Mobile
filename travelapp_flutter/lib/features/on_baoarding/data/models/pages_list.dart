@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:travelapp_flutter/core/utils/assets.dart';
 import 'package:lottie/lottie.dart';
 
 Widget _buildFullscreenImage() {
@@ -22,51 +21,54 @@ var pageDecoration = PageDecoration(
         fontSize: 28.0, fontWeight: FontWeight.w700, color: Colors.white),
     bodyTextStyle: const TextStyle(fontSize: 19.0, color: Colors.white),
     bodyPadding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-    pageColor: const Color(0xff0e3311).withOpacity(0.5),
+    pageColor: const Color(0xff205e61).withOpacity(0.5),
     imagePadding: EdgeInsets.zero);
 
 List<PageViewModel> pagesList = [
   PageViewModel(
-      titleWidget: const Text(
-        "Find Your Destination ",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+    titleWidget: const Text(
+      "Find Your Destination ",
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+    ),
+    body:
+        "All tourist destinations are in your \n hands just click and find the \n convenience now in phone ",
+    image: SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: Lottie.asset(
+        fit: BoxFit.fill,
+        'assets/animations/world1.json',
       ),
-      body:
-          "All tourist destinations are in your \n hands just click and find the \n convenience now in phone ",
-      image: SizedBox(
-        height: double.infinity,
-        width: double.infinity,
-        child: Lottie.asset(
-          fit: BoxFit.fill,
-          'assets/animations/world1.json',
-        ),
-      )),
+    ),
+  ),
   PageViewModel(
-      titleWidget: const Text(
-        " Start Your Journey ",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+    titleWidget: const Text(
+      " Start Your Journey ",
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+    ),
+    body:
+        "from this seconde you will find an \n amzing and diverse journey \n through the grip and click ",
+    image: SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: Lottie.asset(
+        'assets/animations/world2.json',
       ),
-      body:
-          "from this seconde you will find an \n amzing and diverse journey \n through the grip and click ",
-      image: SizedBox(
-        height: double.infinity,
-        width: double.infinity,
-        child: Lottie.asset(
-          'assets/animations/world2.json',
-        ),
-      )),
+    ),
+  ),
   PageViewModel(
-      titleWidget: const Text(
-        " Travel The World ",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-      ),
-      body:
-          " Explore different places in \n different countries and find many \n surpises always by your side ",
-      image: SizedBox(
-        height: double.infinity,
-        width: double.infinity,
-        child: Lottie.asset('assets/animations/world.json'),
-      )),
+    titleWidget: const Text(
+      " Travel The World ",
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+    ),
+    body:
+        " Explore different places in \n different countries and find many \n surpises always by your side ",
+    image: SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: Lottie.asset('assets/animations/world.json'),
+    ),
+  ),
   PageViewModel(
     title: "Full Screen Page",
     body:

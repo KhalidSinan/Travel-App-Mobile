@@ -5,9 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:travelapp_flutter/core/helpers/date_picker.dart';
 import 'package:travelapp_flutter/core/helpers/validators.dart';
 import 'package:travelapp_flutter/core/utils/themes.dart';
-import 'package:travelapp_flutter/features/organizing_trip/presentation/views/widgets/3_travel_destinations_widgets/custom_search_cities.dart';
 import 'package:travelapp_flutter/features/settings/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:travelapp_flutter/features/settings/presentation/views/widgets/profile_page_widgets/custom_country_codes.dart';
+import 'package:travelapp_flutter/features/settings/presentation/views/widgets/profile_page_widgets/location_cities.dart';
 
 class EditingData extends StatefulWidget {
   const EditingData(
@@ -265,7 +265,7 @@ class _EditingDataState extends State<EditingData> {
   void search() async {
     var searchResult = await showSearch(
       context: context,
-      delegate: CustomSearchCities(
+      delegate: LocationCities(
           countries: BlocProvider.of<ProfilePageCubit>(context).cities),
     );
 

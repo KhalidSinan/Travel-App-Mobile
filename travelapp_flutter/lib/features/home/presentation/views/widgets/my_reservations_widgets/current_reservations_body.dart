@@ -37,11 +37,11 @@ class _CurrentReservationsState extends State<CurrentReservations> {
             children: [
               const TitleRow(title: 'Flights', type: 'current'),
               SizedBox(
-                height: flights.isNotEmpty ? flights.length * 190 : 200,
+                height: 200,
                 child: flights.isNotEmpty
                     ? ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: flights.length,
+                        itemCount: 1,
                         itemBuilder: (context, index) {
                           return FlightsBox(flight: flights[index]);
                         },

@@ -32,7 +32,7 @@ class PlacesPageReview extends StatelessWidget {
                   color: Colors.white,
                 ),
                 const SizedBox(
-                  height: 16,
+                  height: 13,
                 ),
                 Text(
                   "Informations About Your Selected Places",
