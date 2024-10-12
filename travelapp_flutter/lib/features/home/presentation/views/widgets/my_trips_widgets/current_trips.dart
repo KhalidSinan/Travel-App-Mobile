@@ -40,7 +40,7 @@ class _CurrentReservationsState extends State<CurrentTrips> {
           children: [
             const TitleRow(title: 'Single trips', type: 'current'),
             SizedBox(
-              height: single.isNotEmpty ? single.length * 190 : 200,
+              height: single.isNotEmpty ? single.length * 200 : 200,
               child: single.isNotEmpty
                   ? ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
@@ -62,9 +62,9 @@ class _CurrentReservationsState extends State<CurrentTrips> {
             const TitleRow(title: 'Group trips', type: 'current'),
             SizedBox(
               height: group.isNotEmpty
-                  ? group.length * 225
+                  ? group.length * 230
                   : organizer.isNotEmpty
-                      ? organizer.length * 225
+                      ? organizer.length * 230
                       : 200,
               child: group.isNotEmpty || organizer.isNotEmpty
                   ? ListView.builder(

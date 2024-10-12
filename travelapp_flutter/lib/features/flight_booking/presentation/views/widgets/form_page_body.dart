@@ -7,6 +7,7 @@ import 'package:travelapp_flutter/features/Organized_Group_Trip/presentation/vie
 import 'package:travelapp_flutter/features/flight_booking/data/models/form_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/data/models/passenger_model.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/view_model/form_cubit/form_cubit.dart';
+import 'package:travelapp_flutter/features/flight_booking/presentation/views/confirm_flight_reservation_page.dart';
 import 'package:travelapp_flutter/features/flight_booking/presentation/views/widgets/tile_content.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/view_model/organizing_trip_cubit/organizing_trip.dart';
 import 'package:travelapp_flutter/features/organizing_trip/presentation/views/organizing_trip_page.dart';
@@ -139,14 +140,17 @@ class FormPageBody extends StatelessWidget {
                             return;
                           }
                           if (trip != null) {
-                            Get.to(() => TripPaymentPage(
-                                  trip: trip!,
-                                  seats:
-                                      BlocProvider.of<FormCubit>(context).seats,
-                                  passengers:
-                                      BlocProvider.of<FormCubit>(context)
-                                          .passengers,
-                                ));
+                            Get.to(() => ConfirmFlightReservationPage(
+                                    reservationId: flightsId![0])
+                                // TripPaymentPage(
+                                //       trip: trip!,
+                                //       seats:
+                                //           BlocProvider.of<FormCubit>(context).seats,
+                                //       passengers:
+                                //           BlocProvider.of<FormCubit>(context)
+                                //               .passengers,
+                                //     )
+                                );
                             return;
                           }
                           await BlocProvider.of<FormCubit>(context)
